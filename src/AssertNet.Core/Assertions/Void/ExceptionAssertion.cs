@@ -1,4 +1,5 @@
 ﻿using System;
+using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.FailureHandlers;
 
 namespace AssertNet.Core.Assertions.Void
@@ -7,7 +8,7 @@ namespace AssertNet.Core.Assertions.Void
     /// Class representing assertions made on thrown exceptions.
     /// </summary>
     /// <seealso cref="Assertion" />
-    public class ExceptionAssertion : Assertion
+    public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionAssertion"/> class.
@@ -15,7 +16,7 @@ namespace AssertNet.Core.Assertions.Void
         /// <param name="failureHandler">The failure handler.</param>
         /// <param name="exception">The exception.</param>
         public ExceptionAssertion(IFailureHandler failureHandler, Exception exception)
-            : base(failureHandler)
+            : base(failureHandler, exception)
         {
             Exception = exception;
         }

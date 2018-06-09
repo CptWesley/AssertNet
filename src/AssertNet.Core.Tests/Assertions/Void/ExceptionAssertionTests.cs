@@ -1,6 +1,7 @@
 ﻿using System;
 using AssertNet.Core.Assertions.Void;
 using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Tests.Assertions.Objects;
 using Moq;
 using Xunit;
 
@@ -9,16 +10,15 @@ namespace AssertNet.Core.Tests.Assertions.Void
     /// <summary>
     /// Test class for the <see cref="ExceptionAssertion"/> class.
     /// </summary>
-    public class ExceptionAssertionTests
+    public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion>
     {
-        private readonly Mock<IFailureHandler> _handler;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionAssertionTests"/> class.
         /// </summary>
         public ExceptionAssertionTests()
         {
-            _handler = new Mock<IFailureHandler>();
+            FailureHandler = new Mock<IFailureHandler>();
+            Assertion = new ExceptionAssertion(FailureHandler.Object, new Exception());
         }
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace AssertNet.Core.Tests.Assertions.Void
         public void ConstructorTest()
         {
             Exception e = new Mock<Exception>().Object;
-            ExceptionAssertion assertion = new ExceptionAssertion(_handler.Object, e);
-            Assert.Same(_handler.Object, assertion.FailureHandler);
+            ExceptionAssertion assertion = new ExceptionAssertion(FailureHandler.Object, e);
+            Assert.Same(FailureHandler.Object, assertion.FailureHandler);
             Assert.Same(e, assertion.Exception);
         }
 
@@ -40,8 +40,8 @@ namespace AssertNet.Core.Tests.Assertions.Void
         public void WithMessagePassTest()
         {
             string msg = "t2fdres4";
-            new ExceptionAssertion(_handler.Object, new Exception(msg)).WithMessage(msg);
-            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            new ExceptionAssertion(FailureHandler.Object, new Exception(msg)).WithMessage(msg);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
         /// <summary>
@@ -51,8 +51,8 @@ namespace AssertNet.Core.Tests.Assertions.Void
         public void WithMessageFailTest()
         {
             string msg = "4356543rf";
-            new ExceptionAssertion(_handler.Object, new Exception()).WithMessage(msg);
-            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            new ExceptionAssertion(FailureHandler.Object, new Exception()).WithMessage(msg);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void WithMessageContainingPassTest()
         {
-            new ExceptionAssertion(_handler.Object, new Exception("abcd")).WithMessageContaining("c");
-            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            new ExceptionAssertion(FailureHandler.Object, new Exception("abcd")).WithMessageContaining("c");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void WithMessageContainingFailTest()
         {
-            new ExceptionAssertion(_handler.Object, new Exception("b")).WithMessageContaining("a");
-            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            new ExceptionAssertion(FailureHandler.Object, new Exception("b")).WithMessageContaining("a");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
     }
 }
