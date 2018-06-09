@@ -3,7 +3,6 @@ using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.FailureHandlers;
 using Moq;
 using Xunit;
-using System.Linq;
 
 namespace AssertNet.Core.Tests.Assertions.Objects
 {
