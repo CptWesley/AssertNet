@@ -45,6 +45,21 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks whether the object under test is not equal to another object.
+        /// </summary>
+        /// <param name="other">The other object to compare with.</param>
+        /// <returns>The current assertion.</returns>
+        public T IsNotEqualTo(object other)
+        {
+            if (Target.Equals(other))
+            {
+                Fail($"Expected '{Target}' to not be equal to '{other}'.");
+            }
+
+            return (T)this;
+        }
+
+        /// <summary>
         /// Checks whether the object under test is the same as another object.
         /// </summary>
         /// <param name="other">The other to compare with.</param>
@@ -54,6 +69,21 @@ namespace AssertNet.Core.Assertions.Objects
             if (!ReferenceEquals(Target, other))
             {
                 Fail($"'{Target}' is not the same object as '{other}'.");
+            }
+
+            return (T)this;
+        }
+
+        /// <summary>
+        /// Checks whether the object under test is not the same as another object.
+        /// </summary>
+        /// <param name="other">The other to compare with.</param>
+        /// <returns>The current assertion.</returns>
+        public T IsNotSameAs(object other)
+        {
+            if (ReferenceEquals(Target, other))
+            {
+                Fail($"Expected '{Target}' to not be the same object as '{other}'.");
             }
 
             return (T)this;

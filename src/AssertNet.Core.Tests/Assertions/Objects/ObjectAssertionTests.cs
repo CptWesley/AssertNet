@@ -48,6 +48,27 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
+
+        /// <summary>
+        /// Checks that there are no failures if the objects are not equal.
+        /// </summary>
+        [Fact]
+        public void IsNotEqualToTrueTest()
+        {
+            Assertion.IsNotEqualTo(null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the objects are equal.
+        /// </summary>
+        [Fact]
+        public void IsNotEqualToFalseTest()
+        {
+            Assertion.IsNotEqualTo(Assertion.Target);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
         /// <summary>
         /// Checks that there are no failures if the objects are the same.
         /// </summary>
@@ -65,6 +86,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         public void IsSameAsFalseTest()
         {
             Assertion.IsSameAs(null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are no failures if the objects are not the same.
+        /// </summary>
+        [Fact]
+        public void IsNotSameAsTrueTest()
+        {
+            Assertion.IsNotSameAs(null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the objects are the same.
+        /// </summary>
+        [Fact]
+        public void IsNotSameAsFalseTest()
+        {
+            Assertion.IsNotSameAs(Assertion.Target);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
