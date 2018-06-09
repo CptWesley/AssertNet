@@ -27,5 +27,36 @@ namespace AssertNet.Core.Assertions.Void
         /// The exception under test.
         /// </value>
         public Exception Exception { get; }
+
+        /// <summary>
+        /// Asserts that an exception has a certain message.
+        /// </summary>
+        /// <param name="message">The message which the exception should have.</param>
+        /// <returns>The current assertion.</returns>
+        public ExceptionAssertion WithMessage(string message)
+        {
+            if (Exception.Message != message)
+            {
+                Fail($"Expecting message '{message}', but found '{Exception.Message}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts that an exception has a message containing
+        /// a certain string.
+        /// </summary>
+        /// <param name="message">Part of the message which the exception should have.</param>
+        /// <returns>The current assertion.</returns>
+        public ExceptionAssertion WithMessageContaining(string message)
+        {
+            if (!Exception.Message.Contains(message))
+            {
+                Fail($"Expecting '{Exception.Message}' to contain '{message}'.");
+            }
+
+            return this;
+        }
     }
 }
