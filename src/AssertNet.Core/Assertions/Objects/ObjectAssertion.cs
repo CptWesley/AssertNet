@@ -30,15 +30,30 @@ namespace AssertNet.Core.Assertions.Objects
         public object Target { get; }
 
         /// <summary>
-        /// Determines whether the object under test is equal to another object.
+        /// Checks whether the object under test is equal to another object.
         /// </summary>
-        /// <param name="other">The other.</param>
-        /// <returns>The original assertion.</returns>
+        /// <param name="other">The other object to compare with.</param>
+        /// <returns>The current assertion.</returns>
         public T IsEqualTo(object other)
         {
             if (!Target.Equals(other))
             {
                 Fail($"'{Target}' is not equal to '{other}'.");
+            }
+
+            return (T)this;
+        }
+
+        /// <summary>
+        /// Checks whether the object under test is the same as another object.
+        /// </summary>
+        /// <param name="other">The other to compare with.</param>
+        /// <returns>The current assertion.</returns>
+        public T IsSameAs(object other)
+        {
+            if (!ReferenceEquals(Target, other))
+            {
+                Fail($"'{Target}' is not the same object as '{other}'.");
             }
 
             return (T)this;
