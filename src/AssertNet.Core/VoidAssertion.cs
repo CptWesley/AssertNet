@@ -26,5 +26,91 @@ namespace AssertNet.Core
         /// The action under test.
         /// </value>
         public Action Action { get; }
+
+        /// <summary>
+        /// Assert that the action does not throw an exception of a specific type.
+        /// </summary>
+        /// <typeparam name="T">Type of the exception which may not be thrown.</typeparam>
+        /// <returns>The current assertion.</returns>
+        public VoidAssertion DoesNotThrowException<T>()
+            where T : Exception
+        {
+            try
+            {
+                Action.Invoke();
+            }
+            catch (T e)
+            {
+                Fail($"Expected no exception of type '{typeof(T)}', but found exception '{e}'.");
+            }
+            catch
+            {
+                // Pass.
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Assert that the action does not throw any exception.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public VoidAssertion DoesNotThrowException()
+        {
+            try
+            {
+                Action.Invoke();
+            }
+            catch (Exception e)
+            {
+                Fail($"Expected no exception, but found exception '{e}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Assert that the action throws a specific exception.
+        /// </summary>
+        /// <typeparam name="T">Exception type to expect.</typeparam>
+        /// <returns>The current assertion.</returns>
+        public VoidAssertion ThrowsException<T>()
+            where T : Exception
+        {
+            try
+            {
+                Action.Invoke();
+                Fail($"Expected exception of type '{typeof(T)}', but found no exception was thrown.");
+            }
+            catch (T)
+            {
+                // Pass.
+            }
+            catch (Exception e)
+            {
+                Fail($"Expected exception of type '{typeof(T)}', but found '{e}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Assert that the action throws some exception.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public VoidAssertion ThrowsException()
+        {
+            try
+            {
+                Action.Invoke();
+                Fail($"Expected exception, but found no exception was thrown.");
+            }
+            catch (Exception)
+            {
+                // Pass.
+            }
+
+            return this;
+        }
     }
 }
