@@ -6,18 +6,18 @@
     public abstract class Assertion
     {
         /// <summary>
-        /// The failure handler of the assertion.
-        /// </summary>
-        private readonly IFailureHandler _failureHandler;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Assertion"/> class.
         /// </summary>
         /// <param name="failureHandler">The failure handler of the assertion.</param>
         public Assertion(IFailureHandler failureHandler)
         {
-            _failureHandler = failureHandler;
+            FailureHandler = failureHandler;
         }
+
+        /// <summary>
+        /// Gets the failure handler of the assertion.
+        /// </summary>
+        public IFailureHandler FailureHandler { get; }
 
         /// <summary>
         /// Fails an assertion with a specific message.
@@ -25,7 +25,7 @@
         /// <param name="message">The message to fail with.</param>
         protected void Fail(string message)
         {
-            _failureHandler.Fail(message);
+            FailureHandler.Fail(message);
         }
     }
 }
