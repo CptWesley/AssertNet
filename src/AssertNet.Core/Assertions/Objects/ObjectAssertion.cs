@@ -1,4 +1,6 @@
-﻿using AssertNet.Core.FailureHandlers;
+﻿using System.Collections;
+using System.Linq;
+using AssertNet.Core.FailureHandlers;
 
 namespace AssertNet.Core.Assertions.Objects
 {
@@ -172,6 +174,36 @@ namespace AssertNet.Core.Assertions.Objects
             if (Target.GetType() == typeof(T))
             {
                 Fail($"Expected '{Target}' to not be an instance of exactly '{typeof(T)}'.");
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks if the object under test is in an enumerable.
+        /// </summary>
+        /// <param name="enumerable">The enumerable to check in.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsIn(IEnumerable enumerable)
+        {
+            if (!enumerable.Cast<object>().Contains(Target))
+            {
+                Fail($"Expected '{Target}' to be in '[{string.Join(", ", enumerable)}]'.");
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks if the object under test is not in an enumerable.
+        /// </summary>
+        /// <param name="enumerable">The enumerable to check in.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsNotIn(IEnumerable enumerable)
+        {
+            if (enumerable.Cast<object>().Contains(Target))
+            {
+                Fail($"Expected '{Target}' to not be in '[{string.Join(", ", enumerable)}]'.");
             }
 
             return (TAssert)this;

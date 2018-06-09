@@ -187,5 +187,45 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.IsNotExactlyInstanceOf<object>();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if an object is in an enumerable.
+        /// </summary>
+        [Fact]
+        public void IsInPassTest()
+        {
+            Assertion.IsIn(new object[] { 1, 2, Assertion.Target, 3 });
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is not an an enumerable.
+        /// </summary>
+        [Fact]
+        public void IsInFailTest()
+        {
+            Assertion.IsIn(new object[] { 1, 2, 3 });
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are no failures if an object is not in an enumerable.
+        /// </summary>
+        [Fact]
+        public void IsNotInPassTest()
+        {
+            Assertion.IsNotIn(new object[] { 1, 2, 3 });
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is in an enumerable.
+        /// </summary>
+        [Fact]
+        public void IsNotInFailTest()
+        {
+            Assertion.IsNotIn(new object[] { 1, 2, Assertion.Target, 3 });
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }
