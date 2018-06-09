@@ -45,7 +45,7 @@ namespace AssertNet.Core.Assertions.Void
         }
 
         /// <summary>
-        /// Asserts that an exception has a message containing
+        /// Asserts that an exception has a message containing the given string.
         /// a certain string.
         /// </summary>
         /// <param name="message">Part of the message which the exception should have.</param>
@@ -58,6 +58,57 @@ namespace AssertNet.Core.Assertions.Void
             }
 
             return this;
+        }
+
+        /// <summary>
+        /// Asserts that an exception has no inner exception.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public ExceptionAssertion WithNoInnerException()
+        {
+            if (Exception.InnerException != null)
+            {
+                Fail($"Expected '{Exception}' not to have an inner exception, but has '{Exception.InnerException}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts that an exception has an inner exception.
+        /// </summary>
+        /// <returns>An exception assertion for the inner exception.</returns>
+        public ExceptionAssertion WithInnerException()
+        {
+            if (Exception.InnerException != null)
+            {
+                return new ExceptionAssertion(FailureHandler, Exception.InnerException);
+            }
+
+            Fail($"Expected '{Exception}' to have an inner exception, but has '{Exception.InnerException}'.");
+            return null;
+        }
+
+        /// <summary>
+        /// Asserts that an exception has an inner exception with a specific type..
+        /// </summary>
+        /// <typeparam name="T">Type of the inner exception.</typeparam>
+        /// <returns>An exception assertion for the inner exception.</returns>
+        public ExceptionAssertion WithInnerException<T>()
+            where T : Exception
+        {
+            if (Exception.InnerException == null)
+            {
+                Fail($"Expected '{Exception}' to have an inner exception, but has '{Exception.InnerException}'.");
+                return null;
+            }
+            else if (!(Exception.InnerException is T))
+            {
+                Fail($"Expected '{Exception.InnerException}' to be of type '{typeof(T)}'.");
+                return null;
+            }
+
+            return new ExceptionAssertion(FailureHandler, Exception.InnerException);
         }
     }
 }

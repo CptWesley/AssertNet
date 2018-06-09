@@ -74,5 +74,98 @@ namespace AssertNet.Core.Tests.Assertions.Void
             new ExceptionAssertion(FailureHandler.Object, new Exception("b")).WithMessageContaining("a");
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that the assertion passes if the exception does not have an inner exception.
+        /// </summary>
+        [Fact]
+        public void WithNoInnerExceptionPassTest()
+        {
+            new ExceptionAssertion(FailureHandler.Object, new Exception()).WithNoInnerException();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the exception has an inner exception.
+        /// </summary>
+        [Fact]
+        public void WithNoInnerExceptionFailTest()
+        {
+            new ExceptionAssertion(
+                FailureHandler.Object,
+                new Exception(string.Empty, new Exception())).WithNoInnerException();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the exception does have an inner exception.
+        /// </summary>
+        [Fact]
+        public void WithInnerExceptionPassTest()
+        {
+            Exception inner = new Exception();
+            ExceptionAssertion assertion = new ExceptionAssertion(
+                FailureHandler.Object,
+                new Exception(string.Empty, inner)).WithInnerException();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            Assert.Same(inner, assertion.Exception);
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the exception does not have an inner exception.
+        /// </summary>
+        [Fact]
+        public void WithInnerExceptionFailTest()
+        {
+            ExceptionAssertion assertion = new ExceptionAssertion(
+                FailureHandler.Object,
+                new Exception(string.Empty)).WithInnerException();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(assertion);
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the exception does have an inner exception
+        /// of the correct type.
+        /// </summary>
+        [Fact]
+        public void WithInnerExceptionSpecificPassTest()
+        {
+            ArgumentException inner = new ArgumentException(string.Empty);
+            ExceptionAssertion assertion = new ExceptionAssertion(
+                FailureHandler.Object,
+                new Exception(string.Empty, inner)).WithInnerException<ArgumentException>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            Assert.Same(inner, assertion.Exception);
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the exception does not have an inner exception
+        /// at all.
+        /// </summary>
+        [Fact]
+        public void WithInnerExceptionSpecificNoneFailTest()
+        {
+            ExceptionAssertion assertion = new ExceptionAssertion(
+                FailureHandler.Object,
+                new Exception(string.Empty)).WithInnerException<ArgumentException>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(assertion);
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the exception does not have an inner exception
+        /// of the correct type.
+        /// </summary>
+        [Fact]
+        public void WithInnerExceptionSpecificWrongFailTest()
+        {
+            Exception inner = new Exception();
+            ExceptionAssertion assertion = new ExceptionAssertion(
+                FailureHandler.Object,
+                new Exception(string.Empty, inner)).WithInnerException<ArgumentException>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(assertion);
+        }
     }
 }
