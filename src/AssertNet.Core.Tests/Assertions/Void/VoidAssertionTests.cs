@@ -90,8 +90,9 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void ThrowsAnyExceptionPassTest()
         {
-            new VoidAssertion(_handler.Object, () => throw new Exception()).ThrowsException();
+            ExceptionAssertion result = new VoidAssertion(_handler.Object, () => throw new Exception()).ThrowsException();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            Assert.NotNull(result);
         }
 
         /// <summary>
@@ -100,8 +101,9 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void ThrowsAnyExceptionFailTest()
         {
-            new VoidAssertion(_handler.Object, DoNothing).ThrowsException();
+            ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsException();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(result);
         }
 
         /// <summary>
@@ -110,10 +112,11 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void ThrowsSpecificExceptionPassTest()
         {
-            new VoidAssertion(
+            ExceptionAssertion result = new VoidAssertion(
                 _handler.Object,
                 () => throw new ArgumentException(string.Empty)).ThrowsException<ArgumentException>();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            Assert.NotNull(result);
         }
 
         /// <summary>
@@ -122,10 +125,11 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void ThrowsSpecificExceptionWrongFailTest()
         {
-            new VoidAssertion(
+            ExceptionAssertion result = new VoidAssertion(
                 _handler.Object,
                 () => throw new Exception()).ThrowsException<ArgumentException>();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(result);
         }
 
         /// <summary>
@@ -134,8 +138,9 @@ namespace AssertNet.Core.Tests.Assertions.Void
         [Fact]
         public void ThrowsSpecificExceptionFailTest()
         {
-            new VoidAssertion(_handler.Object, DoNothing).ThrowsException<ArgumentException>();
+            ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsException<ArgumentException>();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(result);
         }
 
         /// <summary>

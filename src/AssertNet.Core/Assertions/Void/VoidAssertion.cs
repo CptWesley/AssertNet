@@ -75,7 +75,7 @@ namespace AssertNet.Core.Assertions.Void
         /// </summary>
         /// <typeparam name="T">Exception type to expect.</typeparam>
         /// <returns>The current assertion.</returns>
-        public VoidAssertion ThrowsException<T>()
+        public ExceptionAssertion ThrowsException<T>()
             where T : Exception
         {
             try
@@ -83,35 +83,35 @@ namespace AssertNet.Core.Assertions.Void
                 Action.Invoke();
                 Fail($"Expected exception of type '{typeof(T)}', but found no exception was thrown.");
             }
-            catch (T)
+            catch (T e)
             {
-                // Pass.
+                return new ExceptionAssertion(FailureHandler, e);
             }
             catch (Exception e)
             {
                 Fail($"Expected exception of type '{typeof(T)}', but found '{e}'.");
             }
 
-            return this;
+            return null;
         }
 
         /// <summary>
         /// Assert that the action throws some exception.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public VoidAssertion ThrowsException()
+        public ExceptionAssertion ThrowsException()
         {
             try
             {
                 Action.Invoke();
                 Fail($"Expected exception, but found no exception was thrown.");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // Pass.
+                return new ExceptionAssertion(FailureHandler, e);
             }
 
-            return this;
+            return null;
         }
     }
 }
