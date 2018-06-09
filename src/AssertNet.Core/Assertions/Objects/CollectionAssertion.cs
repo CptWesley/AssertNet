@@ -141,5 +141,67 @@ namespace AssertNet.Core.Assertions.Objects
 
             return this;
         }
+
+        /// <summary>
+        /// Checks if the enumerable contains only the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion ContainsOnly(params object[] values)
+        {
+            IEnumerable<object> difference = Collection.Distinct().Except(values);
+            if (difference.Any())
+            {
+                Fail($"Expected difference to be empty, but found '[{string.Join(", ", difference)}]'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable contains exactly the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion ContainsExactly(params object[] values)
+        {
+            if (!Collection.SequenceEqual(values))
+            {
+                Fail($"Expected '[{string.Join(", ", Collection)}]' to be equal to '[{string.Join(", ", values)}]'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable contains exactly the given values in any order.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion ContainsExactlyInAnyOrder(params object[] values)
+        {
+            List<object> valuesList = values.ToList();
+            List<object> collectionList = Collection.ToList();
+
+            if (valuesList.Count != collectionList.Count)
+            {
+                Fail($"Expected '[{string.Join(", ", collectionList)}]' ({collectionList.Count}) to be of the same length as '[{string.Join(", ", valuesList)}]' ({valuesList.Count}).");
+            }
+
+            for (int i = valuesList.Count - 1; i >= 0; --i)
+            {
+                int index = collectionList.IndexOf(valuesList[i]);
+                if (index == -1)
+                {
+                    Fail($"Excess element '{valuesList[i]}' found in values '[{string.Join(", ", values)}]'.");
+                }
+                else
+                {
+                    valuesList.RemoveAt(index);
+                }
+            }
+
+            return this;
+        }
     }
 }
