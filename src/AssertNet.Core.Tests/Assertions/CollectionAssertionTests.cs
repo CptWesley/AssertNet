@@ -1,6 +1,8 @@
-﻿using Moq;
+﻿using AssertNet.Core.Assertions;
+using AssertNet.Core.FailureHandlers;
+using Moq;
 
-namespace AssertNet.Core.Tests
+namespace AssertNet.Core.Tests.Assertions
 {
     /// <summary>
     /// Test class for the <see cref="CollectionAssertion"/> class.

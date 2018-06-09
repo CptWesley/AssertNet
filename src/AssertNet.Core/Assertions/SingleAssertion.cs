@@ -1,4 +1,6 @@
-﻿namespace AssertNet.Core
+﻿using AssertNet.Core.FailureHandlers;
+
+namespace AssertNet.Core.Assertions
 {
     /// <summary>
     /// Class representing assertions made on single objects.

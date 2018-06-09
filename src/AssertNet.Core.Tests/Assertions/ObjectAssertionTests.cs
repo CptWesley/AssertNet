@@ -1,11 +1,14 @@
-﻿using Moq;
+﻿using AssertNet.Core.Assertions;
+using AssertNet.Core.FailureHandlers;
+using Moq;
 using Xunit;
 
-namespace AssertNet.Core.Tests
+namespace AssertNet.Core.Tests.Assertions
 {
     /// <summary>
     /// Test class for the <see cref="ObjectAssertion{T}"/> class.
     /// </summary>
+    /// <typeparam name="T">Type of the assertion.</typeparam>
     public abstract class ObjectAssertionTests<T>
         where T : ObjectAssertion<T>
     {
