@@ -5,13 +5,13 @@ namespace AssertNet.Core.Assertions.Objects
     /// <summary>
     /// Abstract class representing assertions of objects.
     /// </summary>
-    /// <typeparam name="T">Derived type of the assertion.</typeparam>
+    /// <typeparam name="TAssert">Derived type of the assertion.</typeparam>
     /// <seealso cref="Assertion" />
-    public abstract class ObjectAssertion<T> : Assertion
-        where T : ObjectAssertion<T>
+    public abstract class ObjectAssertion<TAssert> : Assertion
+        where TAssert : ObjectAssertion<TAssert>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectAssertion{T}"/> class.
+        /// Initializes a new instance of the <see cref="ObjectAssertion{TAssert}"/> class.
         /// </summary>
         /// <param name="target">The object which is under test.</param>
         /// <param name="failureHandler">The failure handler of the assertion.</param>
@@ -34,14 +34,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="other">The other object to compare with.</param>
         /// <returns>The current assertion.</returns>
-        public T IsEqualTo(object other)
+        public TAssert IsEqualTo(object other)
         {
             if (!Target.Equals(other))
             {
                 Fail($"'{Target}' is not equal to '{other}'.");
             }
 
-            return (T)this;
+            return (TAssert)this;
         }
 
         /// <summary>
@@ -49,14 +49,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="other">The other object to compare with.</param>
         /// <returns>The current assertion.</returns>
-        public T IsNotEqualTo(object other)
+        public TAssert IsNotEqualTo(object other)
         {
             if (Target.Equals(other))
             {
                 Fail($"Expected '{Target}' to not be equal to '{other}'.");
             }
 
-            return (T)this;
+            return (TAssert)this;
         }
 
         /// <summary>
@@ -64,14 +64,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="other">The other to compare with.</param>
         /// <returns>The current assertion.</returns>
-        public T IsSameAs(object other)
+        public TAssert IsSameAs(object other)
         {
             if (!ReferenceEquals(Target, other))
             {
                 Fail($"'{Target}' is not the same object as '{other}'.");
             }
 
-            return (T)this;
+            return (TAssert)this;
         }
 
         /// <summary>
@@ -79,42 +79,42 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="other">The other to compare with.</param>
         /// <returns>The current assertion.</returns>
-        public T IsNotSameAs(object other)
+        public TAssert IsNotSameAs(object other)
         {
             if (ReferenceEquals(Target, other))
             {
                 Fail($"Expected '{Target}' to not be the same object as '{other}'.");
             }
 
-            return (T)this;
+            return (TAssert)this;
         }
 
         /// <summary>
         /// Checks whether this instance is null.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public T IsNull()
+        public TAssert IsNull()
         {
             if (Target != null)
             {
                 Fail($"Expected '{Target}' to be 'null'.");
             }
 
-            return (T)this;
+            return (TAssert)this;
         }
 
         /// <summary>
         /// Checks whether this instance is not null.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public T IsNotNull()
+        public TAssert IsNotNull()
         {
             if (Target == null)
             {
                 Fail($"Expected '{Target}' not to be 'null'.");
             }
 
-            return (T)this;
+            return (TAssert)this;
         }
     }
 }
