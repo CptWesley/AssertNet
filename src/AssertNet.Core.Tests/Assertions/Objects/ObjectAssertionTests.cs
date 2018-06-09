@@ -67,5 +67,25 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.IsSameAs(null);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if the object is correctly not null.
+        /// </summary>
+        [Fact]
+        public void IsNotNullPassTest()
+        {
+            Assertion.IsNotNull();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the object is incorrectly not null.
+        /// </summary>
+        [Fact]
+        public void IsNullFailTest()
+        {
+            Assertion.IsNull();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }

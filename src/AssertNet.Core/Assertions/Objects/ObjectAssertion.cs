@@ -58,5 +58,33 @@ namespace AssertNet.Core.Assertions.Objects
 
             return (T)this;
         }
+
+        /// <summary>
+        /// Checks whether this instance is null.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public T IsNull()
+        {
+            if (Target != null)
+            {
+                Fail($"Expected '{Target}' to be 'null'.");
+            }
+
+            return (T)this;
+        }
+
+        /// <summary>
+        /// Checks whether this instance is not null.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public T IsNotNull()
+        {
+            if (Target == null)
+            {
+                Fail($"Expected '{Target}' not to be 'null'.");
+            }
+
+            return (T)this;
+        }
     }
 }
