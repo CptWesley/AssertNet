@@ -3,6 +3,7 @@
     /// <summary>
     /// Class representing assertions made on single objects.
     /// </summary>
+    /// <seealso cref="ObjectAssertion{SingleAssertion}" />
     public class SingleAssertion : ObjectAssertion<SingleAssertion>
     {
         /// <summary>
