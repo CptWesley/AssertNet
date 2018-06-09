@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using AssertNet.Core.FailureHandlers;
 
-namespace AssertNet.Core.Assertions
+namespace AssertNet.Core.Assertions.Objects
 {
     /// <summary>
     /// Class representing assertions made on collection objects.

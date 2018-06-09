@@ -1,8 +1,8 @@
-﻿using AssertNet.Core.Assertions;
+﻿using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.FailureHandlers;
 using Moq;
 
-namespace AssertNet.Core.Tests.Assertions
+namespace AssertNet.Core.Tests.Assertions.Objects
 {
     /// <summary>
     /// Test class for the <see cref="SingleAssertion"/> class.

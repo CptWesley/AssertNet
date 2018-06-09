@@ -1,10 +1,10 @@
 ﻿using System;
-using AssertNet.Core.Assertions;
+using AssertNet.Core.Assertions.Void;
 using AssertNet.Core.FailureHandlers;
 using Moq;
 using Xunit;
 
-namespace AssertNet.Core.Tests.Assertions
+namespace AssertNet.Core.Tests.Assertions.Void
 {
     /// <summary>
     /// Test class for the <see cref="VoidAssertion"/> class.

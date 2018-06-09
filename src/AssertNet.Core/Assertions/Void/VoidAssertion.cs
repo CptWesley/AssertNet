@@ -1,7 +1,7 @@
 ﻿using System;
 using AssertNet.Core.FailureHandlers;
 
-namespace AssertNet.Core.Assertions
+namespace AssertNet.Core.Assertions.Void
 {
     /// <summary>
     /// Class representing assertions made on actions.

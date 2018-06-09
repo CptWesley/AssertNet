@@ -1,6 +1,6 @@
 ﻿using AssertNet.Core.FailureHandlers;
 
-namespace AssertNet.Core.Assertions
+namespace AssertNet.Core.Assertions.Objects
 {
     /// <summary>
     /// Abstract class representing assertions of objects.
