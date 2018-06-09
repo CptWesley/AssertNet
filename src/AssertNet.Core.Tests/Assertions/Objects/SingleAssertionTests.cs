@@ -40,5 +40,25 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.IsNull();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if an object is exactly an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsExactlyInstanceOfPassTest()
+        {
+            Assertion.IsExactlyInstanceOf<string>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is exactly an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsNotExactlyInstanceOfFailTest()
+        {
+            Assertion.IsNotExactlyInstanceOf<string>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }

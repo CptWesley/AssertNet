@@ -116,5 +116,65 @@ namespace AssertNet.Core.Assertions.Objects
 
             return (TAssert)this;
         }
+
+        /// <summary>
+        /// Checks if the object under test is an instance of a certain type.
+        /// </summary>
+        /// <typeparam name="T">Type to check for.</typeparam>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsInstanceOf<T>()
+        {
+            if (!(Target is T))
+            {
+                Fail($"Expected '{Target}' to be an instance of '{typeof(T)}'.");
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks if the object under test is not an instance of a certain type.
+        /// </summary>
+        /// <typeparam name="T">Type to check for.</typeparam>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsNotInstanceOf<T>()
+        {
+            if (Target is T)
+            {
+                Fail($"Expected '{Target}' to not be an instance of '{typeof(T)}'.");
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks if the object under test is exactly an instance of a certain type.
+        /// </summary>
+        /// <typeparam name="T">Type to check for.</typeparam>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsExactlyInstanceOf<T>()
+        {
+            if (Target.GetType() != typeof(T))
+            {
+                Fail($"Expected '{Target}' to be an instance of exactly '{typeof(T)}'.");
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks if the object under test is not exactly an instance of a certain type.
+        /// </summary>
+        /// <typeparam name="T">Type to check for.</typeparam>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsNotExactlyInstanceOf<T>()
+        {
+            if (Target.GetType() == typeof(T))
+            {
+                Fail($"Expected '{Target}' to not be an instance of exactly '{typeof(T)}'.");
+            }
+
+            return (TAssert)this;
+        }
     }
 }

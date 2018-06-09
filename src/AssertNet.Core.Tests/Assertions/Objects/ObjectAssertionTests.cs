@@ -127,5 +127,65 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.IsNull();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if an object is an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsInstanceOfPassTest()
+        {
+            Assertion.IsInstanceOf<object>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is not an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsInstanceOfFailTest()
+        {
+            Assertion.IsInstanceOf<int>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are no failures if an object is not an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsNotInstanceOfPassTest()
+        {
+            Assertion.IsNotInstanceOf<int>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsNotInstanceOfFailTest()
+        {
+            Assertion.IsNotInstanceOf<object>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is not exactly an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsExactlyInstanceOfFailTest()
+        {
+            Assertion.IsExactlyInstanceOf<int>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are no failures if an object is not exactly an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsNotExactlyInstanceOfPassTest()
+        {
+            Assertion.IsNotExactlyInstanceOf<object>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
     }
 }
