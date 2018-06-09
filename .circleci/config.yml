@@ -6,15 +6,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: switch
-          command: cd src
-      - run:
           name: Dependencies
-          command: dotnet restore
+          command: |
+                   cd src
+                   dotnet restore
       - run:
           name: Tests
           command: |
+                   cd src
                    dotnet test AssertNet.Core.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
       - run:
           name: Codecov
-          command: bash <(curl -s https://codecov.io/bash) -f "AssertNet.Core.Tests/bin/coverage.xml" -t $CODECOV_KEY
+          command: bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Core.Tests/bin/coverage.xml" -t $CODECOV_KEY
