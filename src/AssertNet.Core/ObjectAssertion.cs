@@ -11,12 +11,12 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="ObjectAssertion{T}"/> class.
         /// </summary>
-        /// <param name="objs">The object which is under test.</param>
+        /// <param name="target">The object which is under test.</param>
         /// <param name="failureHandler">The failure handler of the assertion.</param>
-        public ObjectAssertion(IFailureHandler failureHandler, object objs)
+        public ObjectAssertion(IFailureHandler failureHandler, object target)
             : base(failureHandler)
         {
-            Target = objs;
+            Target = target;
         }
 
         /// <summary>
