@@ -19,7 +19,6 @@ namespace AssertNet.Core.Assertions.Objects
         public CollectionAssertion(IFailureHandler failureHandler, IEnumerable target)
             : base(failureHandler, target)
         {
-            Collection = target.Cast<object>();
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <value>
         /// The collection under test.
         /// </value>
-        public IEnumerable<object> Collection { get; }
+        public IEnumerable<object> Collection => ((IEnumerable)Target).Cast<object>();
 
         /// <summary>
         /// Checks if the enumerable is empty.

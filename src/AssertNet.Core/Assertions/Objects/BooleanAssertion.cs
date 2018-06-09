@@ -17,7 +17,6 @@ namespace AssertNet.Core.Assertions.Objects
         public BooleanAssertion(IFailureHandler failureHandler, bool target)
             : base(failureHandler, target)
         {
-            Value = target;
         }
 
         /// <summary>
@@ -27,7 +26,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// The boolean value under test.
         /// </value>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation must match accessors", Justification = "Does not indicate the state of the object.")]
-        public bool Value { get; }
+        public bool Value => (bool)Target;
 
         /// <summary>
         /// Asserts that the boolean value is true.
