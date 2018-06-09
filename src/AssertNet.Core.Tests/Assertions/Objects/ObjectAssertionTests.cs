@@ -48,7 +48,6 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
-
         /// <summary>
         /// Checks that there are no failures if the objects are not equal.
         /// </summary>
