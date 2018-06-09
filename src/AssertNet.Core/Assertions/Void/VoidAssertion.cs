@@ -74,7 +74,7 @@ namespace AssertNet.Core.Assertions.Void
         /// Assert that the action throws a specific exception.
         /// </summary>
         /// <typeparam name="T">Exception type to expect.</typeparam>
-        /// <returns>The current assertion.</returns>
+        /// <returns>An exception assertion for the thrown exception.</returns>
         public ExceptionAssertion ThrowsException<T>()
             where T : Exception
         {
@@ -98,7 +98,7 @@ namespace AssertNet.Core.Assertions.Void
         /// <summary>
         /// Assert that the action throws some exception.
         /// </summary>
-        /// <returns>The current assertion.</returns>
+        /// <returns>An exception assertion for the thrown exception.</returns>
         public ExceptionAssertion ThrowsException()
         {
             try
