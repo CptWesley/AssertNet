@@ -115,5 +115,21 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsNegativeOrZero() => IsLesserThanOrEqual(0);
+
+        /// <summary>
+        /// Checks whether the double under test is equal to another double.
+        /// </summary>
+        /// <param name="other">The other double to compare with.</param>
+        /// <returns>
+        /// The current assertion.
+        /// </returns>
+        public DoubleAssertion IsEqualTo(double other) => base.IsEqualTo(other);
+
+        /// <summary>
+        /// Checks whether the double under test is not equal to another double.
+        /// </summary>
+        /// <param name="other">The other double to compare with.</param>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsNotEqualTo(double other) => base.IsNotEqualTo(other);
     }
 }

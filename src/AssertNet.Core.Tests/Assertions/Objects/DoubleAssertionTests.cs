@@ -111,7 +111,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that the assertion passes if the value is not equal to 0.
+        /// Checks that the assertion fails if the value is not equal to 0.
         /// </summary>
         [Fact]
         public void IsZeroFailTest()
@@ -131,7 +131,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that the assertion passes if the value is not greater than 0.
+        /// Checks that the assertion fails if the value is not greater than 0.
         /// </summary>
         [Fact]
         public void IsPositiveFailTest()
@@ -151,7 +151,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that the assertion passes if the value is not greater than or equal to 0.
+        /// Checks that the assertion fails if the value is not greater than or equal to 0.
         /// </summary>
         [Fact]
         public void IsPositiveOrZeroFailTest()
@@ -171,7 +171,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that the assertion passes if the value is not lesser than 0.
+        /// Checks that the assertion fails if the value is not lesser than 0.
         /// </summary>
         [Fact]
         public void IsNegativeFailTest()
@@ -191,12 +191,52 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that the assertion passes if the value is not lesser than or equal to 0.
+        /// Checks that the assertion fails if the value is not lesser than or equal to 0.
         /// </summary>
         [Fact]
         public void IsNegativeOrZeroFailTest()
         {
             new DoubleAssertion(FailureHandler.Object, 1).IsNegativeOrZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is equal to another value.
+        /// </summary>
+        [Fact]
+        public void IsEqualToDoublePassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 20).IsEqualTo(20);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is not equal to another value.
+        /// </summary>
+        [Fact]
+        public void IsEqualToDoubleFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsEqualTo(1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not equal to another value.
+        /// </summary>
+        [Fact]
+        public void IsEqualNotToDoublePassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsNotEqualTo(1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is equal to another value.
+        /// </summary>
+        [Fact]
+        public void IsEqualNotToDoubleFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 3).IsNotEqualTo(3);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
     }
