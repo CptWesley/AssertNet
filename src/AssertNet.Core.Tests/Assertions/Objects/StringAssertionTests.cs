@@ -103,6 +103,166 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if the value starts with a substring.
+        /// </summary>
+        [Fact]
+        public void StartsWithPassTest()
+        {
+            StringAssertion.StartsWith("t");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value does not start with a substring.
+        /// </summary>
+        [Fact]
+        public void StartsWithFailTest()
+        {
+            StringAssertion.StartsWith("T");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value does not start with a substring.
+        /// </summary>
+        [Fact]
+        public void DoesNotStartWithPassTest()
+        {
+            StringAssertion.DoesNotStartWith("T");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value starts with a substring.
+        /// </summary>
+        [Fact]
+        public void DoesNotStartWithFailTest()
+        {
+            StringAssertion.DoesNotStartWith("t");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value starts with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void StartsWithIgnoringCasePassTest()
+        {
+            StringAssertion.StartsWithIgnoringCase("T");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value does not start with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void StartsWithIgnoringCaseFailTest()
+        {
+            StringAssertion.StartsWithIgnoringCase("5ft5fre453f34");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value does not start with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void DoesNotStartWithIgnoringCasePassTest()
+        {
+            StringAssertion.DoesNotStartWithIgnoringCase("f457h905f435nh9mfht5");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value starts with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void DoesNotStartWithIgnoringCaseFailTest()
+        {
+            StringAssertion.DoesNotStartWithIgnoringCase("T");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value ends with a substring.
+        /// </summary>
+        [Fact]
+        public void EndsWithPassTest()
+        {
+            StringAssertion.EndsWith("j");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value does not end with a substring.
+        /// </summary>
+        [Fact]
+        public void EndsWithFailTest()
+        {
+            StringAssertion.EndsWith("J");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value does not end with a substring.
+        /// </summary>
+        [Fact]
+        public void DoesNotEndWithPassTest()
+        {
+            StringAssertion.DoesNotEndWith("J");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value ends with a substring.
+        /// </summary>
+        [Fact]
+        public void DoesNotEndWithFailTest()
+        {
+            StringAssertion.DoesNotEndWith("j");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value ends with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void EndsWithIgnoringCasePassTest()
+        {
+            StringAssertion.EndsWithIgnoringCase("J");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value does not end with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void EndsWithIgnoringCaseFailTest()
+        {
+            StringAssertion.EndsWithIgnoringCase("6435f");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value does not end with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void DoesNotEndWithIgnoringCasePassTest()
+        {
+            StringAssertion.DoesNotEndWithIgnoringCase("4356f4356r");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value ends with a substring while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void DoesNotEndWithIgnoringCaseFailTest()
+        {
+            StringAssertion.DoesNotEndWithIgnoringCase("J");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
         /// Checks that the assertion passes if the string is empty.
         /// </summary>
         [Fact]

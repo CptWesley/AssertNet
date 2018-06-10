@@ -1,4 +1,5 @@
-﻿using AssertNet.Core.FailureHandlers;
+﻿using System.Globalization;
+using AssertNet.Core.FailureHandlers;
 
 namespace AssertNet.Core.Assertions.Objects
 {
@@ -81,6 +82,126 @@ namespace AssertNet.Core.Assertions.Objects
             if (Value.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
             {
                 Fail($"Expected '{Value}' to not contain '{substring}' while ignoring case.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string starts with a certain substring.
+        /// </summary>
+        /// <param name="substring">Substring which the string must start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion StartsWith(string substring)
+        {
+            if (!Value.StartsWith(substring, false, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to start with '{substring}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string does not start with a certain substring.
+        /// </summary>
+        /// <param name="substring">Substring which the string may not start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion DoesNotStartWith(string substring)
+        {
+            if (Value.StartsWith(substring, false, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to not start with '{substring}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string starts with a certain substring while ignoring case.
+        /// </summary>
+        /// <param name="substring">Substring which the string must start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion StartsWithIgnoringCase(string substring)
+        {
+            if (!Value.StartsWith(substring, true, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to start with '{substring}' while ignoring cases.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string does not start with a certain substring while ignoring case.
+        /// </summary>
+        /// <param name="substring">Substring which the string may not start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion DoesNotStartWithIgnoringCase(string substring)
+        {
+            if (Value.StartsWith(substring, true, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to not start with '{substring}' while ignoring cases.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string ends with a certain substring.
+        /// </summary>
+        /// <param name="substring">Substring which the string must start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion EndsWith(string substring)
+        {
+            if (!Value.EndsWith(substring, false, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to end with '{substring}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string does not end with a certain substring.
+        /// </summary>
+        /// <param name="substring">Substring which the string may not start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion DoesNotEndWith(string substring)
+        {
+            if (Value.EndsWith(substring, false, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to not end with '{substring}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string ends with a certain substring while ignoring case.
+        /// </summary>
+        /// <param name="substring">Substring which the string must start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion EndsWithIgnoringCase(string substring)
+        {
+            if (!Value.EndsWith(substring, true, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to end with '{substring}' while ignoring cases.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string does not end with a certain substring while ignoring case.
+        /// </summary>
+        /// <param name="substring">Substring which the string may not start with.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion DoesNotEndWithIgnoringCase(string substring)
+        {
+            if (Value.EndsWith(substring, true, CultureInfo.InvariantCulture))
+            {
+                Fail($"Expected '{Value}' to not end with '{substring}' while ignoring cases.");
             }
 
             return this;
