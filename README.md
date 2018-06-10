@@ -4,7 +4,7 @@
 
 ![AssertNET](https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png)
 ### Description
-AssertNET is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/) and [MSTest](https://github.com/Microsoft/testfx)). The library is highly inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework. Currently most of the most common AssertJ assertions are included in AssertNET, but more advanced assertions are yet to be added. More readable assertion failure messages are also on the list of things that need to be added in the future.
+AssertNET is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/) and [MSTest](https://github.com/Microsoft/testfx)). The library is heavily inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework and my love for AssertJ. Currently most of the most common AssertJ assertions are included in AssertNET, but more advanced assertions are yet to be added. More readable assertion failure messages are also on the list of things that need to be added in the future.
 
 ### Downloads
 Currently there are 3 different NuGet packages available (for different testing frameworks):  
@@ -34,7 +34,6 @@ Start writing your new assertions:
 AssertThat(3).IsEqualTo(3);
 AssertThat(() => DoWackyStuff()).ThrowsException<EvilException>().HasMessage("Something bad went wrong.");
 AssertThat("Hello world!").StartsWith("Hello");
-AssertThat(new int[3]).HasSize(3);
-AssertThat(new int[] { 1, 2, 3 }).ContainsExactlyInAnyOrder(2, 3, 1);
+AssertThat(new int[] { 1, 2, 3 }).HasSize(3).ContainsExactlyInAnyOrder(2, 3, 1);
 ```
 More code examples will be supplied on the wiki.
