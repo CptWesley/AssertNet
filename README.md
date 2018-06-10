@@ -4,7 +4,7 @@
 
 ![AssertNET](https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png)
 ### Description
-AssertNET is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/) and [MSTest](https://github.com/Microsoft/testfx)). The library is highly inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration for the lack of a size assertion in the xUnit framework. Currently most of the most common AssertJ assertions are included in AssertNET, but more advanced assertions are yet to be added.
+AssertNET is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/) and [MSTest](https://github.com/Microsoft/testfx)). The library is highly inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework. Currently most of the most common AssertJ assertions are included in AssertNET, but more advanced assertions are yet to be added. More readable assertion failure messages are also on the list of things that need to be added in the future.
 
 ### Downloads
 Currently there are 3 different NuGets options available (for different testing frameworks):  
@@ -12,7 +12,7 @@ Currently there are 3 different NuGets options available (for different testing 
 [AssertNet.NUnit](https://www.nuget.org/packages/AssertNet.NUnit/)  
 [AssertNet.MSTest](https://www.nuget.org/packages/AssertNet.MSTest/)  
   
-There is also exists a fourth NuGet ([AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/)) containing all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks.
+There is also exists a fourth NuGet ([AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/)) containing all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
 
 ### Usage
 Grab one of the available version mentioned in the __Downloads__ section above.  
