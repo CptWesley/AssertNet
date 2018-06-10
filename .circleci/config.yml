@@ -6,11 +6,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Dependencies
-          command: |
-                   cd src
-                   dotnet restore
-      - run:
           name: Tests
           command: |
                    cd src
