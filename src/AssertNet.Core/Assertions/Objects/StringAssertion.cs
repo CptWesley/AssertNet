@@ -85,5 +85,106 @@ namespace AssertNet.Core.Assertions.Objects
 
             return this;
         }
+
+        /// <summary>
+        /// Checks if the string is empty.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion IsEmpty()
+        {
+            if (Value.Length > 0)
+            {
+                Fail($"Expected '{Value}' to be empty.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the string is not empty.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion IsNotEmpty()
+        {
+            if (Value.Length <= 0)
+            {
+                Fail($"Expected string to contain at least 1 element.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the string is null or empty.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion IsNullOrEmpty()
+        {
+            if (!string.IsNullOrEmpty(Value))
+            {
+                Fail($"Expected '{Value}' to be null or empty.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the string is not empty or null.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion IsNotNullOrEmpty()
+        {
+            if (string.IsNullOrEmpty(Value))
+            {
+                Fail($"Expected string to contain at least 1 element, but was '{Value}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the string has a certain size.
+        /// </summary>
+        /// <param name="size">The size the string should have.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion HasSize(int size)
+        {
+            if (Value.Length != size)
+            {
+                Fail($"Expected '{Value}' to have a length of '{size}', while it was '{Value.Length}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the string has at least a certain size.
+        /// </summary>
+        /// <param name="size">The size the string should have.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion HasAtLeastSize(int size)
+        {
+            if (Value.Length < size)
+            {
+                Fail($"Expected '{Value}' to have at least a length of '{size}', while it was '{Value.Length}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the string has at most a certain size.
+        /// </summary>
+        /// <param name="size">The size the string should have.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion HasAtMostSize(int size)
+        {
+            if (Value.Length > size)
+            {
+                Fail($"Expected '{Value}' to have at most a length of '{size}', while it was '{Value.Length}'.");
+            }
+
+            return this;
+        }
     }
 }

@@ -101,5 +101,165 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             StringAssertion.DoesNotContainIgnoringCase("T");
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that the assertion passes if the string is empty.
+        /// </summary>
+        [Fact]
+        public void IsEmptyPassTest()
+        {
+            new StringAssertion(FailureHandler.Object, string.Empty).IsEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string is not empty.
+        /// </summary>
+        [Fact]
+        public void IsEmptyFailTest()
+        {
+            StringAssertion.IsEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the string is not empty.
+        /// </summary>
+        [Fact]
+        public void IsNotEmptyPassTest()
+        {
+            StringAssertion.IsNotEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string is empty.
+        /// </summary>
+        [Fact]
+        public void IsNotEmptyFailTest()
+        {
+            new StringAssertion(FailureHandler.Object, string.Empty).IsNotEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the string is empty.
+        /// </summary>
+        [Fact]
+        public void IsNullOrEmptyEmptyPassTest()
+        {
+            new StringAssertion(FailureHandler.Object, string.Empty).IsNullOrEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the string is null.
+        /// </summary>
+        [Fact]
+        public void IsNullOrEmptyNullPassTest()
+        {
+            new StringAssertion(FailureHandler.Object, null).IsNullOrEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string is not empty.
+        /// </summary>
+        [Fact]
+        public void IsNullOrEmptyFailTest()
+        {
+            StringAssertion.IsNullOrEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the string is not empty.
+        /// </summary>
+        [Fact]
+        public void IsNullOrNotEmptyPassTest()
+        {
+            StringAssertion.IsNotNullOrEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string is empty.
+        /// </summary>
+        [Fact]
+        public void IsNullOrNotEmptyEmptyFailTest()
+        {
+            new StringAssertion(FailureHandler.Object, string.Empty).IsNotNullOrEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string is null.
+        /// </summary>
+        [Fact]
+        public void IsNullOrNotEmptyNullFailTest()
+        {
+            new StringAssertion(FailureHandler.Object, null).IsNotNullOrEmpty();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion does not fail if the string has the correct size.
+        /// </summary>
+        [Fact]
+        public void HasSizePassTest()
+        {
+            new StringAssertion(FailureHandler.Object, "abc").HasSize(3);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string has the incorrect size.
+        /// </summary>
+        [Fact]
+        public void HasSizeFailTest()
+        {
+            new StringAssertion(FailureHandler.Object, "ab").HasSize(3);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion does not fail if the string has the minimum size.
+        /// </summary>
+        [Fact]
+        public void HasAtLeastSizePassTest()
+        {
+            new StringAssertion(FailureHandler.Object, "abcd").HasAtLeastSize(2);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string does not have the minimum size.
+        /// </summary>
+        [Fact]
+        public void HasAtLeastSizeFailTest()
+        {
+            new StringAssertion(FailureHandler.Object, "c").HasAtLeastSize(10);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion does not fail if the string has less than the maximum size.
+        /// </summary>
+        [Fact]
+        public void HasAtMostSizePassTest()
+        {
+            new StringAssertion(FailureHandler.Object, "4534").HasAtMostSize(4);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the string has more than the maximum size.
+        /// </summary>
+        [Fact]
+        public void HasAtMostSizeFailTest()
+        {
+            new StringAssertion(FailureHandler.Object, "ab").HasAtMostSize(1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
     }
 }
