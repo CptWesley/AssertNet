@@ -1,17 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
 	<CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-	<IsPackable>false</IsPackable>
+    <Authors>Wesley Baartman</Authors>
+    <PackageProjectUrl>https://github.com/CptWesley/AssertNET</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CptWesley/AssertNET</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/CptWesley/AssertNET/blob/master/LICENSE</PackageLicenseUrl>
+    <Description>AssertJ style fluent assertions for .NET MSTest testing framework.</Description>
+    <PackageTags>test testing fluent assertions xunit nunit mstest</PackageTags>
+    <AssemblyVersion>0.0.1.0</AssemblyVersion>
+    <FileVersion>0.0.1.0</FileVersion>
+    <Version>0.0.1</Version>
+    <Copyright></Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png</PackageIconUrl>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
-  </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard2.0\CoreResourceManager.xml</DocumentationFile>
@@ -29,6 +32,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.0">
 		<PrivateAssets>all</PrivateAssets>
 	</PackageReference>
+	<PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
 	<PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
 		<PrivateAssets>all</PrivateAssets>
 	</PackageReference>
@@ -36,7 +40,6 @@
   
   <ItemGroup>
     <ProjectReference Include="..\AssertNet.Core\AssertNet.Core.csproj" />
-    <ProjectReference Include="..\AssertNet.NUnit\AssertNet.NUnit.csproj" />
   </ItemGroup>
 
 </Project>

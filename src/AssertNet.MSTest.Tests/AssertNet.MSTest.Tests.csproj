@@ -5,12 +5,12 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 	<IsPackable>false</IsPackable>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="coverlet.msbuild" Version="2.0.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.2.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.2.1" />
   </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,7 +36,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\AssertNet.Core\AssertNet.Core.csproj" />
-    <ProjectReference Include="..\AssertNet.NUnit\AssertNet.NUnit.csproj" />
+    <ProjectReference Include="..\AssertNet.MSTest\AssertNet.MSTest.csproj" />
   </ItemGroup>
 
 </Project>
