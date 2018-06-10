@@ -99,5 +99,105 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             new DoubleAssertion(FailureHandler.Object, 2).IsLesserThanOrEqual(0);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is equal to 0.
+        /// </summary>
+        [Fact]
+        public void IsZeroPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not equal to 0.
+        /// </summary>
+        [Fact]
+        public void IsZeroFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 1).IsZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is greater than 0.
+        /// </summary>
+        [Fact]
+        public void IsPositivePassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 1).IsPositive();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not greater than 0.
+        /// </summary>
+        [Fact]
+        public void IsPositiveFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsPositive();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is greater than or equal to 0.
+        /// </summary>
+        [Fact]
+        public void IsPositiveOrZeroPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsPositiveOrZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not greater than or equal to 0.
+        /// </summary>
+        [Fact]
+        public void IsPositiveOrZeroFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, -1).IsPositiveOrZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is lesser than 0.
+        /// </summary>
+        [Fact]
+        public void IsNegativePassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, -1).IsNegative();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not lesser than 0.
+        /// </summary>
+        [Fact]
+        public void IsNegativeFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsNegative();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is lesser than or equal to 0.
+        /// </summary>
+        [Fact]
+        public void IsNegativeOrZeroPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsNegativeOrZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not lesser than or equal to 0.
+        /// </summary>
+        [Fact]
+        public void IsNegativeOrZeroFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 1).IsNegativeOrZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }

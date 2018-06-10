@@ -85,5 +85,35 @@ namespace AssertNet.Core.Assertions.Objects
 
             return this;
         }
+
+        /// <summary>
+        /// Asserts if a double is equal to zero.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsZero() => IsEqualTo(0);
+
+        /// <summary>
+        /// Asserts if a double is greater than zero.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsPositive() => IsGreaterThan(0);
+
+        /// <summary>
+        /// Asserts if a double is greater than or equal to zero.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsPositiveOrZero() => IsGreaterThanOrEqual(0);
+
+        /// <summary>
+        /// Asserts if a double is greater than zero.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsNegative() => IsLesserThan(0);
+
+        /// <summary>
+        /// Asserts if a double is greater than or equal to zero.
+        /// </summary>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsNegativeOrZero() => IsLesserThanOrEqual(0);
     }
 }
