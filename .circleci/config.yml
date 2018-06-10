@@ -6,12 +6,17 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Dependencies
+          command: |
+                   cd src
+                   +e
+                   dotnet restore
+                   -e
+      - run:
           name: Tests
           command: |
                    cd src
-                   dotnet clean
                    dotnet test AssertNet.Core.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
-                   dotnet clean
                    dotnet test AssertNet.Xunit.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
       - run:
           name: Codecov
