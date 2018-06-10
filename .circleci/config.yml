@@ -9,9 +9,9 @@ jobs:
           name: Dependencies
           command: |
                    cd src
-                   +e
+                   set +e
                    dotnet restore
-                   -e
+                   set -e
       - run:
           name: Tests
           command: |
