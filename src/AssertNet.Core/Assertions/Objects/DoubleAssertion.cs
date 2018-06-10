@@ -1,4 +1,5 @@
-﻿using AssertNet.Core.FailureHandlers;
+﻿using System;
+using AssertNet.Core.FailureHandlers;
 
 namespace AssertNet.Core.Assertions.Objects
 {
@@ -115,6 +116,50 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsNegativeOrZero() => IsLesserThanOrEqual(0);
+
+        /// <summary>
+        /// Asserts if a double is within a certain range.
+        /// </summary>
+        /// <param name="minimum">Lower bound of the range the value should be in.</param>
+        /// <param name="maximum">Upper bound of the range the value should be in.</param>
+        /// <returns>The current assertion.</returns>
+        /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
+        public DoubleAssertion IsInRange(double minimum, double maximum)
+        {
+            if (maximum <= minimum)
+            {
+                throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
+            }
+
+            if (Value < minimum || Value > maximum)
+            {
+                Fail($"Expected '{Value}' to be in the range between '{minimum}' and '{maximum}'.");
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a double is outside a certain range.
+        /// </summary>
+        /// <param name="minimum">Lower bound of the range the value may not be in.</param>
+        /// <param name="maximum">Upper bound of the range the value may not be in.</param>
+        /// <returns>The current assertion.</returns>
+        /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
+        public DoubleAssertion IsNotInRange(double minimum, double maximum)
+        {
+            if (maximum <= minimum)
+            {
+                throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
+            }
+
+            if (Value >= minimum && Value <= maximum)
+            {
+                Fail($"Expected '{Value}' to not be in the range between '{minimum}' and '{maximum}'.");
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Checks whether the double under test is equal to another double.

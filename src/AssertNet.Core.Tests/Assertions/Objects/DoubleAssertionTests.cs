@@ -1,6 +1,7 @@
 ﻿using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.FailureHandlers;
 using Moq;
+using System;
 using Xunit;
 
 namespace AssertNet.Core.Tests.Assertions.Objects
@@ -197,6 +198,84 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         public void IsNegativeOrZeroFailTest()
         {
             new DoubleAssertion(FailureHandler.Object, 1).IsNegativeOrZero();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is in the range.
+        /// </summary>
+        [Fact]
+        public void IsInRangePassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 9).IsInRange(8, 10);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that an exception is thrown when the range is not valid.
+        /// </summary>
+        [Fact]
+        public void IsInRangeExceptionTest()
+        {
+            Assert.Throws<ArgumentException>(() => new DoubleAssertion(FailureHandler.Object, 0).IsInRange(10, 8));
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is below the minimum.
+        /// </summary>
+        [Fact]
+        public void IsInRangeLowFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 3).IsInRange(5, 6);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is above the maximum.
+        /// </summary>
+        [Fact]
+        public void IsInRangeHighFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 4).IsInRange(2, 3);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is below the minimum.
+        /// </summary>
+        [Fact]
+        public void IsNotInRangeLowPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 6).IsNotInRange(8, 10);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is above the maximum.
+        /// </summary>
+        [Fact]
+        public void IsNotInRangeHighPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 5).IsNotInRange(3, 4);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that an exception is thrown when the range is not valid.
+        /// </summary>
+        [Fact]
+        public void IsNotInRangeExceptionTest()
+        {
+            Assert.Throws<ArgumentException>(() => new DoubleAssertion(FailureHandler.Object, 0).IsNotInRange(10, 8));
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is in the range
+        /// </summary>
+        [Fact]
+        public void IsNotInRangeFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 5).IsNotInRange(0, 10);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
