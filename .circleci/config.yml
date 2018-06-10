@@ -15,6 +15,9 @@ jobs:
           command: |
                    cd src
                    dotnet test AssertNet.Core.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
+                   dotnet test AssertNet.Xunit.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
       - run:
           name: Codecov
-          command: bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Core.Tests/bin/coverage.xml" -t $CODECOV_KEY
+          command: |
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Core.Tests/bin/coverage.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Xunit.Tests/bin/coverage.xml" -t $CODECOV_KEY
