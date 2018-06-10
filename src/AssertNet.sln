@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Xunit.Tests", "As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.NUnit", "AssertNet.NUnit\AssertNet.NUnit.csproj", "{12CD905B-0670-475C-BEE2-DE87564223D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Nunit.Tests", "AssertNet.Nunit.Tests\AssertNet.Nunit.Tests.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.NUnit.Tests", "AssertNet.Nunit.Tests\AssertNet.NUnit.Tests.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
