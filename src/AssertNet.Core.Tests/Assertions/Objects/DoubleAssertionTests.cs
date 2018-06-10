@@ -300,6 +300,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if the value is equal to another value within a margin.
+        /// </summary>
+        [Fact]
+        public void IsEqualToMarginPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 21).IsEqualTo(20, 5);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is not equal to another value within a margin.
+        /// </summary>
+        [Fact]
+        public void IsEqualToMarginFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 5).IsEqualTo(1, 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
         /// Checks that the assertion passes if the value is not equal to another value.
         /// </summary>
         [Fact]
@@ -316,6 +336,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         public void IsEqualNotToDoubleFailTest()
         {
             new DoubleAssertion(FailureHandler.Object, 3).IsNotEqualTo(3);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not equal to another value with a margin.
+        /// </summary>
+        [Fact]
+        public void IsEqualNotToMarginPassTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 0).IsNotEqualTo(10, 5);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is equal to another value with a margin.
+        /// </summary>
+        [Fact]
+        public void IsEqualNotToMarginFailTest()
+        {
+            new DoubleAssertion(FailureHandler.Object, 3).IsNotEqualTo(4, 1);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
     }

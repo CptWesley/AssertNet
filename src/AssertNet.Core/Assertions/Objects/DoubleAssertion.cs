@@ -165,10 +165,16 @@ namespace AssertNet.Core.Assertions.Objects
         /// Checks whether the double under test is equal to another double.
         /// </summary>
         /// <param name="other">The other double to compare with.</param>
-        /// <returns>
-        /// The current assertion.
-        /// </returns>
+        /// <returns>The current assertion.</returns>
         public DoubleAssertion IsEqualTo(double other) => base.IsEqualTo(other);
+
+        /// <summary>
+        /// Checks whether the double under test is equal to another double within a certain margin.
+        /// </summary>
+        /// <param name="other">The other double to compare with.</param>
+        /// <param name="margin">The margin to still identify another double as equal.</param>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsEqualTo(double other, double margin) => IsInRange(other - margin, other + margin);
 
         /// <summary>
         /// Checks whether the double under test is not equal to another double.
@@ -176,5 +182,13 @@ namespace AssertNet.Core.Assertions.Objects
         /// <param name="other">The other double to compare with.</param>
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsNotEqualTo(double other) => base.IsNotEqualTo(other);
+
+        /// <summary>
+        /// Checks whether the double under test is not equal to another double within a certain margin.
+        /// </summary>
+        /// <param name="other">The other double to compare with.</param>
+        /// <param name="margin">The margin to still identify another double as equal.</param>
+        /// <returns>The current assertion.</returns>
+        public DoubleAssertion IsNotEqualTo(double other, double margin) => IsNotInRange(other - margin, other + margin);
     }
 }
