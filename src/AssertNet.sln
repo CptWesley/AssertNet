@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Core", "AssertNet.Core\AssertNet.Core.csproj", "{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core", "AssertNet.Core\AssertNet.Core.csproj", "{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Core.Tests", "AssertNet.Core.Tests\AssertNet.Core.Tests.csproj", "{764543CD-C418-4B8E-A697-96EE4BD5BEBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core.Tests", "AssertNet.Core.Tests\AssertNet.Core.Tests.csproj", "{764543CD-C418-4B8E-A697-96EE4BD5BEBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Xunit", "AssertNet.Xunit\AssertNet.Xunit.csproj", "{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Xunit.Tests", "AssertNet.Xunit.Tests\AssertNet.Xunit.Tests.csproj", "{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
