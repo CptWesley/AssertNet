@@ -1,4 +1,4 @@
-﻿namespace AssertNet.Core.FailureHandlers
+﻿namespace AssertNet.Core.Failures
 {
     /// <summary>
     /// Interface for failure handlers.

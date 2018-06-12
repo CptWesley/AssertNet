@@ -1,6 +1,6 @@
 ﻿using System;
 using AssertNet.Core.Assertions.Objects;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 using Moq;
 using Xunit;
 

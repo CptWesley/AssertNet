@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Objects
 {

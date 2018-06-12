@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Objects
 {
