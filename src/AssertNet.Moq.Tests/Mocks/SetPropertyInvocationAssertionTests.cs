@@ -14,8 +14,6 @@ namespace AssertNet.Moq.Tests.Mocks
         private readonly Mock<IMockable> _target;
         private readonly Action<IMockable> _expression;
 
-        private int _val;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SetPropertyInvocationAssertionTests"/> class.
         /// </summary>
