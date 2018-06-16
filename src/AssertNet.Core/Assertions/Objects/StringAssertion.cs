@@ -6,8 +6,8 @@ namespace AssertNet.Core.Assertions.Objects
     /// <summary>
     /// Class representing assertions made about strings.
     /// </summary>
-    /// <seealso cref="ObjectAssertion{StringAssertion}" />
-    public class StringAssertion : ObjectAssertion<StringAssertion>
+    /// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
+    public class StringAssertion : ObjectAssertion<StringAssertion, string>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StringAssertion"/> class.
@@ -20,21 +20,13 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
-        /// Gets the string under test.
-        /// </summary>
-        /// <value>
-        /// The string under test.
-        /// </value>
-        public string Value => (string)Target;
-
-        /// <summary>
         /// Asserts if a string contains a certain substring.
         /// </summary>
         /// <param name="substring">Substring which needs to be contained.</param>
         /// <returns>The current assertion.</returns>
         public StringAssertion Contains(string substring)
         {
-            if (!Value.Contains(substring))
+            if (!Target.Contains(substring))
             {
                 Fail(new FailureBuilder("Contains()")
                     .Append("Expecting", Target)
@@ -52,7 +44,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion DoesNotContain(string substring)
         {
-            if (Value.Contains(substring))
+            if (Target.Contains(substring))
             {
                 Fail(new FailureBuilder("DoesNotContain()")
                     .Append("Expecting", Target)
@@ -70,7 +62,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion ContainsIgnoringCase(string substring)
         {
-            if (!Value.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
+            if (!Target.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
             {
                 Fail(new FailureBuilder("ContainsIgnoringCase()")
                     .Append("Expecting", Target)
@@ -88,7 +80,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion DoesNotContainIgnoringCase(string substring)
         {
-            if (Value.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
+            if (Target.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
             {
                 Fail(new FailureBuilder("DoesNotContainIgnoringCase()")
                     .Append("Expecting", Target)
@@ -106,7 +98,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion StartsWith(string substring)
         {
-            if (!Value.StartsWith(substring, false, CultureInfo.InvariantCulture))
+            if (!Target.StartsWith(substring, false, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("StartsWith()")
                     .Append("Expecting", Target)
@@ -124,7 +116,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion DoesNotStartWith(string substring)
         {
-            if (Value.StartsWith(substring, false, CultureInfo.InvariantCulture))
+            if (Target.StartsWith(substring, false, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("DoesNotStartWith()")
                     .Append("Expecting", Target)
@@ -142,7 +134,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion StartsWithIgnoringCase(string substring)
         {
-            if (!Value.StartsWith(substring, true, CultureInfo.InvariantCulture))
+            if (!Target.StartsWith(substring, true, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("StartsWithIgnoringCase()")
                     .Append("Expecting", Target)
@@ -160,7 +152,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion DoesNotStartWithIgnoringCase(string substring)
         {
-            if (Value.StartsWith(substring, true, CultureInfo.InvariantCulture))
+            if (Target.StartsWith(substring, true, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("DoesNotStartWithIgnoringCase()")
                     .Append("Expecting", Target)
@@ -178,7 +170,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion EndsWith(string substring)
         {
-            if (!Value.EndsWith(substring, false, CultureInfo.InvariantCulture))
+            if (!Target.EndsWith(substring, false, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("EndsWith()")
                     .Append("Expecting", Target)
@@ -196,7 +188,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion DoesNotEndWith(string substring)
         {
-            if (Value.EndsWith(substring, false, CultureInfo.InvariantCulture))
+            if (Target.EndsWith(substring, false, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("DoesNotEndWith()")
                     .Append("Expecting", Target)
@@ -214,7 +206,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion EndsWithIgnoringCase(string substring)
         {
-            if (!Value.EndsWith(substring, true, CultureInfo.InvariantCulture))
+            if (!Target.EndsWith(substring, true, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("EndsWithIgnoringCase()")
                     .Append("Expecting", Target)
@@ -232,7 +224,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion DoesNotEndWithIgnoringCase(string substring)
         {
-            if (Value.EndsWith(substring, true, CultureInfo.InvariantCulture))
+            if (Target.EndsWith(substring, true, CultureInfo.InvariantCulture))
             {
                 Fail(new FailureBuilder("DoesNotEndWithIgnoringCase()")
                     .Append("Expecting", Target)
@@ -249,7 +241,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion IsEmpty()
         {
-            if (Value.Length > 0)
+            if (Target.Length > 0)
             {
                 Fail(new FailureBuilder("IsEmpty()")
                     .Append("Expecting", Target)
@@ -266,7 +258,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion IsNotEmpty()
         {
-            if (Value.Length <= 0)
+            if (Target.Length <= 0)
             {
                 Fail(new FailureBuilder("IsNotEmpty()")
                     .Append("Expecting", Target)
@@ -283,7 +275,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion IsNullOrEmpty()
         {
-            if (!string.IsNullOrEmpty(Value))
+            if (!string.IsNullOrEmpty(Target))
             {
                 Fail(new FailureBuilder("IsNullOrEmpty()")
                     .Append("Expecting", Target)
@@ -300,7 +292,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion IsNotNullOrEmpty()
         {
-            if (string.IsNullOrEmpty(Value))
+            if (string.IsNullOrEmpty(Target))
             {
                 Fail(new FailureBuilder("IsNotNullOrEmpty()")
                     .Append("Expecting", Target)
@@ -318,12 +310,12 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion HasSize(int size)
         {
-            if (Value.Length != size)
+            if (Target.Length != size)
             {
                 Fail(new FailureBuilder("HasSize()")
                     .Append("Expecting", Target)
                     .Append("To have a length of", size)
-                    .Append("But has a length of", Value.Length)
+                    .Append("But has a length of", Target.Length)
                     .Finish());
             }
 
@@ -337,12 +329,12 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion HasAtLeastSize(int size)
         {
-            if (Value.Length < size)
+            if (Target.Length < size)
             {
                 Fail(new FailureBuilder("HasAtLeastSize()")
                     .Append("Expecting", Target)
                     .Append("To have at least a length of", size)
-                    .Append("But has length of", Value.Length)
+                    .Append("But has length of", Target.Length)
                     .Finish());
             }
 
@@ -356,12 +348,12 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public StringAssertion HasAtMostSize(int size)
         {
-            if (Value.Length > size)
+            if (Target.Length > size)
             {
                 Fail(new FailureBuilder("HasAtMostSize()")
                     .Append("Expecting", Target)
                     .Append("To have at most a length of", size)
-                    .Append("But has length of", Value.Length)
+                    .Append("But has length of", Target.Length)
                     .Finish());
             }
 

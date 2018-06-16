@@ -1,13 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using AssertNet.Core.Failures;
+﻿using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Objects
 {
     /// <summary>
     /// Class representing assertions made on boolean items.
     /// </summary>
-    /// <seealso cref="ObjectAssertion{BooleanAssertion}" />
-    public class BooleanAssertion : ObjectAssertion<BooleanAssertion>
+    /// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
+    public class BooleanAssertion : ObjectAssertion<BooleanAssertion, bool>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BooleanAssertion"/> class.
@@ -20,21 +19,12 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
-        /// Gets the boolean value under test.
-        /// </summary>
-        /// <value>
-        /// The boolean value under test.
-        /// </value>
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1623:Property summary documentation must match accessors", Justification = "Does not indicate the state of the object.")]
-        public bool Value => (bool)Target;
-
-        /// <summary>
         /// Asserts that the boolean value is true.
         /// </summary>
         /// <returns>The current assertion.</returns>
         public BooleanAssertion IsTrue()
         {
-            if (Value == false)
+            if (Target == false)
             {
                 Fail(new FailureBuilder("IsTrue()")
                     .Append("Expecting", Target)
@@ -51,7 +41,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public BooleanAssertion IsFalse()
         {
-            if (Value == true)
+            if (Target == true)
             {
                 Fail(new FailureBuilder("IsFalse()")
                     .Append("Expecting", Target)

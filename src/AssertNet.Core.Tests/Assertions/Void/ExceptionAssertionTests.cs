@@ -10,7 +10,7 @@ namespace AssertNet.Core.Tests.Assertions.Void
     /// <summary>
     /// Test class for the <see cref="ExceptionAssertion"/> class.
     /// </summary>
-    public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion>
+    public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, Exception>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionAssertionTests"/> class.
@@ -30,7 +30,7 @@ namespace AssertNet.Core.Tests.Assertions.Void
             Exception e = new Mock<Exception>().Object;
             ExceptionAssertion assertion = new ExceptionAssertion(FailureHandler.Object, e);
             Assert.Same(FailureHandler.Object, assertion.FailureHandler);
-            Assert.Same(e, assertion.Exception);
+            Assert.Same(e, assertion.Target);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace AssertNet.Core.Tests.Assertions.Void
                 FailureHandler.Object,
                 new Exception(string.Empty, inner)).WithInnerException();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
-            Assert.Same(inner, assertion.Exception);
+            Assert.Same(inner, assertion.Target);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace AssertNet.Core.Tests.Assertions.Void
                 FailureHandler.Object,
                 new Exception(string.Empty, inner)).WithInnerException<ArgumentException>();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
-            Assert.Same(inner, assertion.Exception);
+            Assert.Same(inner, assertion.Target);
         }
 
         /// <summary>

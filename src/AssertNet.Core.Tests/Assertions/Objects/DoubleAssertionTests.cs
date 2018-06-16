@@ -9,8 +9,8 @@ namespace AssertNet.Core.Tests.Assertions.Objects
     /// <summary>
     /// Test class for the <see cref="DoubleAssertion"/> class.
     /// </summary>
-    /// <seealso cref="ObjectAssertionTests{DoubleAssertion}" />
-    public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion>
+    /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
+    public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DoubleAssertionTests"/> class.
