@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -35,6 +36,19 @@ namespace AssertNet.Core.Failures
         }
 
         /// <summary>
+        /// Appends an enumerable line.
+        /// </summary>
+        /// <typeparam name="T">Type of the enumerable.</typeparam>
+        /// <param name="objectName">Name of the enumerable.</param>
+        /// <param name="enumerable">The enumerable.</param>
+        /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
+        public FailureBuilder AppendEnumerable<T>(string objectName, IEnumerable<T> enumerable)
+        {
+            _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}[{string.Join(", ", enumerable)}]");
+            return this;
+        }
+
+        /// <summary>
         /// Appends the specified line.
         /// </summary>
         /// <param name="line">The line.</param>
@@ -62,11 +76,6 @@ namespace AssertNet.Core.Failures
             if (ob == null)
             {
                 return "null";
-            }
-
-            if (ob is IEnumerable)
-            {
-                return $"{ob.GetType().Name} [{string.Join(", ", ((IEnumerable)ob).Cast<object>())}]";
             }
 
             return ob.ToString();
