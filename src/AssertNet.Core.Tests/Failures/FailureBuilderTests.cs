@@ -74,7 +74,7 @@ namespace AssertNet.Core.Tests.Failures
         {
             string title = "4325f324";
             Assert.Equal(
-                $"{Name} Assertion failure{NewLine}{title}:{NewLine}[1, 2, 3]",
+                $"{Name} Assertion failure{NewLine}{title}:{NewLine}Int32[] [1, 2, 3]",
                 _builder.Append(title, new int[] { 1, 2, 3 }).Finish());
         }
     }

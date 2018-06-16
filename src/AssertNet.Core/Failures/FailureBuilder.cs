@@ -53,7 +53,7 @@ namespace AssertNet.Core.Failures
 
             if (ob is IEnumerable)
             {
-                return $"[{string.Join(", ", ((IEnumerable)ob).Cast<object>())}]";
+                return $"{ob.GetType().Name} [{string.Join(", ", ((IEnumerable)ob).Cast<object>())}]";
             }
 
             return ob.ToString();
