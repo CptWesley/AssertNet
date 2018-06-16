@@ -7,7 +7,7 @@
     <PackageProjectUrl>https://github.com/CptWesley/AssertNET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CptWesley/AssertNET</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/CptWesley/AssertNET/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>AssertJ style fluent assertions for .NET MSTest testing framework.</Description>
+    <Description>AssertJ style fluent assertions for .NET testing framework MSTest.</Description>
     <PackageTags>test testing fluent assertions xunit nunit mstest</PackageTags>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
@@ -17,11 +17,11 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\CoreResourceManager.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.MSTest.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\CoreResourceManager.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.MSTest.xml</DocumentationFile>
   </PropertyGroup>
   
   <ItemGroup>
