@@ -5,19 +5,21 @@ using Moq;
 namespace AssertNet.Moq.Mocks
 {
     /// <summary>
-    /// Class representing assertions made about mocks.
+    /// Class representing assertions made about invocations.
     /// </summary>
     /// <typeparam name="T">Type of the object being mocked.</typeparam>
-    public class MockAssertion<T>
+    public class InvocationAssertion<T>
         where T : class
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MockAssertion{T}"/> class.
+        /// Initializes a new instance of the <see cref="InvocationAssertion{T}"/> class.
         /// </summary>
         /// <param name="target">The mock under test.</param>
-        public MockAssertion(Mock<T> target)
+        /// <param name="expression">Expression of the invocation.</param>
+        public InvocationAssertion(Mock<T> target, Expression<Action<T>> expression)
         {
             Target = target;
+            Expression = expression;
         }
 
         /// <summary>
@@ -29,10 +31,11 @@ namespace AssertNet.Moq.Mocks
         public Mock<T> Target { get; }
 
         /// <summary>
-        /// Starts an assertion about an invocation.
+        /// Gets expression of the invocation.
         /// </summary>
-        /// <param name="expression">The expression.</param>
-        /// <returns>An assertion about an invocation.</returns>
-        public InvocationAssertion<T> Invoked(Expression<Action<T>> expression) => new InvocationAssertion<T>(Target, expression);
+        /// <value>
+        /// The expression of the invocation.
+        /// </value>
+        public Expression<Action<T>> Expression { get; }
     }
 }
