@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Text;
+using System.Linq;
 
 namespace AssertNet.Core.Failures
 {
@@ -42,6 +44,19 @@ namespace AssertNet.Core.Failures
         /// </summary>
         /// <param name="ob">The object to get the string version of.</param>
         /// <returns>"null" if the object is null. The value of .ToString() otherwise.</returns>
-        private static string StringOf(object ob) => ob == null ? "null" : ob.ToString();
+        private static string StringOf(object ob)
+        {
+            if (ob == null)
+            {
+                return "null";
+            }
+
+            if (ob is IEnumerable)
+            {
+                return $"[{string.Join(", ", ((IEnumerable)ob).Cast<object>())}]";
+            }
+
+            return ob.ToString();
+        }
     }
 }

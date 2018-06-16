@@ -65,5 +65,17 @@ namespace AssertNet.Core.Tests.Failures
                 $"{Name} Assertion failure{NewLine}{title1}:{NewLine}{val1}{NewLine}{title2}:{NewLine}{val2}",
                 _builder.Append(title1, val1).Append(title2, val2).Finish());
         }
+
+        /// <summary>
+        /// Checks that an IEnumerable instance is correctly appended.
+        /// </summary>
+        [Fact]
+        public void AppendIEnumerableTest()
+        {
+            string title = "4325f324";
+            Assert.Equal(
+                $"{Name} Assertion failure{NewLine}{title}:{NewLine}[1, 2, 3]",
+                _builder.Append(title, new int[] { 1, 2, 3 }).Finish());
+        }
     }
 }
