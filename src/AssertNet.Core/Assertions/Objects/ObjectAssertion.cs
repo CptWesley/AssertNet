@@ -113,7 +113,7 @@ namespace AssertNet.Core.Assertions.Objects
             {
                 Fail(new FailureBuilder("IsNull()")
                     .Append("Expecting", Target)
-                    .Append("To be", null)
+                    .Append<object>("To be", null)
                     .Finish());
             }
 
@@ -130,7 +130,7 @@ namespace AssertNet.Core.Assertions.Objects
             {
                 Fail(new FailureBuilder("IsNotNull()")
                     .Append("Expecting", Target)
-                    .Append("Not to be", null)
+                    .Append<object>("Not to be", null)
                     .Finish());
             }
 
