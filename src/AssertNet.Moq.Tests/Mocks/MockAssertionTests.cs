@@ -36,10 +36,23 @@ namespace AssertNet.Moq.Tests.Mocks
         /// Checks that a correct assertion is created when we make an assertion about an invocation.
         /// </summary>
         [Fact]
-        public void InvokedTest()
+        public void HasInvokedTest()
         {
             Expression<Action<IMockable>> expression = x => x.GetInt();
             InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
+            Assert.NotNull(assertion);
+            Assert.Same(_target, assertion.Target);
+            Assert.Same(expression, assertion.Expression);
+        }
+
+        /// <summary>
+        /// Checks that a correct assertion is created when we make an assertion about a property request.
+        /// </summary>
+        [Fact]
+        public void HasInvokedPropertyGetTest()
+        {
+            Expression<Func<IMockable, int>> expression = x => x.Number;
+            GetAssertion<IMockable, int> assertion = _assertion.HasInvoked(expression);
             Assert.NotNull(assertion);
             Assert.Same(_target, assertion.Target);
             Assert.Same(expression, assertion.Expression);
