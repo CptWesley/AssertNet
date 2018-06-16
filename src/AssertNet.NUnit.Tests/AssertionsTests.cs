@@ -77,7 +77,7 @@ namespace AssertNet.Nunit.Tests
         {
             Assertion assertion = AssertThat(Array.Empty<int>());
             Assert.NotNull(assertion);
-            Assert.IsInstanceOf<CollectionAssertion<int>>(assertion);
+            Assert.IsInstanceOf<EnumerableAssertion<int>>(assertion);
         }
 
         /// <summary>

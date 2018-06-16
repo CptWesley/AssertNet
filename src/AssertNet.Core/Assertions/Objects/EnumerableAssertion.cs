@@ -9,14 +9,14 @@ namespace AssertNet.Core.Assertions.Objects
     /// </summary>
     /// <typeparam name="TElement">Element type of the enumerable.</typeparam>
     /// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
-    public class CollectionAssertion<TElement> : ObjectAssertion<CollectionAssertion<TElement>, IEnumerable<TElement>>
+    public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion<TElement>, IEnumerable<TElement>>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionAssertion{TElement}"/> class.
+        /// Initializes a new instance of the <see cref="EnumerableAssertion{TElement}"/> class.
         /// </summary>
         /// <param name="failureHandler">The failure handler of the assertion.</param>
         /// <param name="target">The object which is under test.</param>
-        public CollectionAssertion(IFailureHandler failureHandler, IEnumerable<TElement> target)
+        public EnumerableAssertion(IFailureHandler failureHandler, IEnumerable<TElement> target)
             : base(failureHandler, target)
         {
         }
@@ -25,7 +25,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// Checks if the enumerable is empty.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> IsEmpty()
+        public EnumerableAssertion<TElement> IsEmpty()
         {
             if (Target.Any())
             {
@@ -42,7 +42,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// Checks if the enumerable is not empty.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> IsNotEmpty()
+        public EnumerableAssertion<TElement> IsNotEmpty()
         {
             if (!Target.Any())
             {
@@ -60,7 +60,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="size">The size the enumerable should have.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> HasSize(int size)
+        public EnumerableAssertion<TElement> HasSize(int size)
         {
             int realSize = Target.Count();
             if (realSize != size)
@@ -80,7 +80,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="size">The size the enumerable should have.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> HasAtLeastSize(int size)
+        public EnumerableAssertion<TElement> HasAtLeastSize(int size)
         {
             int realSize = Target.Count();
             if (realSize < size)
@@ -100,7 +100,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="size">The size the enumerable should have.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> HasAtMostSize(int size)
+        public EnumerableAssertion<TElement> HasAtMostSize(int size)
         {
             int realSize = Target.Count();
             if (realSize > size)
@@ -120,14 +120,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> Contains(params TElement[] values) => Contains((IEnumerable<TElement>)values);
+        public EnumerableAssertion<TElement> Contains(params TElement[] values) => Contains((IEnumerable<TElement>)values);
 
         /// <summary>
         /// Checks if the enumerable contains the values.
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> Contains(IEnumerable<TElement> values)
+        public EnumerableAssertion<TElement> Contains(IEnumerable<TElement> values)
         {
             IEnumerable<TElement> difference = values.Except(Target);
 
@@ -148,14 +148,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> DoesNotContain(params TElement[] values) => DoesNotContain((IEnumerable<TElement>)values);
+        public EnumerableAssertion<TElement> DoesNotContain(params TElement[] values) => DoesNotContain((IEnumerable<TElement>)values);
 
         /// <summary>
         /// Checks if the enumerable does not contain the values.
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> DoesNotContain(IEnumerable<TElement> values)
+        public EnumerableAssertion<TElement> DoesNotContain(IEnumerable<TElement> values)
         {
             IEnumerable<TElement> intersection = values.Intersect(Target);
 
@@ -176,14 +176,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsOnly(params TElement[] values) => ContainsOnly((IEnumerable<TElement>)values);
+        public EnumerableAssertion<TElement> ContainsOnly(params TElement[] values) => ContainsOnly((IEnumerable<TElement>)values);
 
         /// <summary>
         /// Checks if the enumerable contains only the given values.
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsOnly(IEnumerable<TElement> values)
+        public EnumerableAssertion<TElement> ContainsOnly(IEnumerable<TElement> values)
         {
             IEnumerable<TElement> difference = Target.Except(values);
 
@@ -204,14 +204,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsExactly(params TElement[] values) => ContainsExactly((IEnumerable<TElement>)values);
+        public EnumerableAssertion<TElement> ContainsExactly(params TElement[] values) => ContainsExactly((IEnumerable<TElement>)values);
 
         /// <summary>
         /// Checks if the enumerable contains exactly the given values.
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsExactly(IEnumerable<TElement> values)
+        public EnumerableAssertion<TElement> ContainsExactly(IEnumerable<TElement> values)
         {
             if (!Target.SequenceEqual(values))
             {
@@ -229,14 +229,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsExactlyInAnyOrder(params TElement[] values) => ContainsExactlyInAnyOrder((IEnumerable<TElement>)values);
+        public EnumerableAssertion<TElement> ContainsExactlyInAnyOrder(params TElement[] values) => ContainsExactlyInAnyOrder((IEnumerable<TElement>)values);
 
         /// <summary>
         /// Checks if the enumerable contains exactly the given values in any order.
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsExactlyInAnyOrder(IEnumerable<TElement> values)
+        public EnumerableAssertion<TElement> ContainsExactlyInAnyOrder(IEnumerable<TElement> values)
         {
             List<TElement> valuesList = values.ToList();
             List<TElement> targetList = Target.ToList();

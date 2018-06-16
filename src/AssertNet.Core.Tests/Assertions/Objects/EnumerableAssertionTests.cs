@@ -10,22 +10,22 @@ namespace AssertNet.Core.Tests.Assertions.Objects
     /// <summary>
     /// Test class for the <see cref="CollectionAssertion"/> class.
     /// </summary>
-    public class CollectionAssertionTests : ObjectAssertionTests<CollectionAssertion<int>, IEnumerable<int>>
+    public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion<int>, IEnumerable<int>>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionAssertionTests"/> class.
+        /// Initializes a new instance of the <see cref="EnumerableAssertionTests"/> class.
         /// </summary>
-        public CollectionAssertionTests()
+        public EnumerableAssertionTests()
         {
             FailureHandler = new Mock<IFailureHandler>();
-            CollectionAssertion = new CollectionAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 });
+            CollectionAssertion = new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 });
             Assertion = CollectionAssertion;
         }
 
         /// <summary>
         /// Gets the assertion under test.
         /// </summary>
-        private CollectionAssertion<int> CollectionAssertion { get; }
+        private EnumerableAssertion<int> CollectionAssertion { get; }
 
         /// <summary>
         /// Checks that the assertion does not fail if the object is correctly contained.
@@ -73,7 +73,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsEmptyPassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, Array.Empty<int>()).IsEmpty();
+            new EnumerableAssertion<int>(FailureHandler.Object, Array.Empty<int>()).IsEmpty();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -83,7 +83,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsEmptyFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 1 }).IsEmpty();
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1 }).IsEmpty();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -93,7 +93,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsNotEmptyPassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 1 }).IsNotEmpty();
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1 }).IsNotEmpty();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -103,7 +103,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsNotEmptyFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, Array.Empty<int>()).IsNotEmpty();
+            new EnumerableAssertion<int>(FailureHandler.Object, Array.Empty<int>()).IsNotEmpty();
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -113,7 +113,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void HasSizePassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasSize(3);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasSize(3);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -123,7 +123,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void HasSizeFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, Array.Empty<int>()).HasSize(3);
+            new EnumerableAssertion<int>(FailureHandler.Object, Array.Empty<int>()).HasSize(3);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -133,7 +133,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void HasAtLeastSizePassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasAtLeastSize(2);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasAtLeastSize(2);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -143,7 +143,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void HasAtLeastSizeFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, Array.Empty<int>()).HasAtLeastSize(1);
+            new EnumerableAssertion<int>(FailureHandler.Object, Array.Empty<int>()).HasAtLeastSize(1);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -153,7 +153,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void HasAtMostSizePassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 5, 2 }).HasAtMostSize(4);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 2 }).HasAtMostSize(4);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -163,7 +163,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void HasAtMostSizeFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasAtMostSize(1);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasAtMostSize(1);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -173,7 +173,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsOnlyPassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 2, 2, 1 }).ContainsOnly(1, 2);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 2, 2, 1 }).ContainsOnly(1, 2);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -183,7 +183,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsOnlyFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 9, 3, 5 }).ContainsOnly(3, 4);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 9, 3, 5 }).ContainsOnly(3, 4);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -193,7 +193,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsExactlyPassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 2, 9, 6 }).ContainsExactly(2, 9, 6);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 2, 9, 6 }).ContainsExactly(2, 9, 6);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -203,7 +203,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsExactlyFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactly(5, 7, 6);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactly(5, 7, 6);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -213,7 +213,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsExactlyInAnyOrderPassTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 7, 6);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 7, 6);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -223,7 +223,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsExactlyInAnyOrderWrongFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 9, 7, 6);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 9, 7, 6);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -233,7 +233,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsExactlyInAnyOrderTooManyFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6, 7, 7);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6, 7, 7);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
@@ -243,7 +243,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void ContainsExactlyInAnyOrderTooFewFailTest()
         {
-            new CollectionAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
     }

@@ -77,7 +77,7 @@ namespace AssertNet.Nunit.Tests
         {
             Assertion assertion = AssertThat(Array.Empty<int>());
             Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(CollectionAssertion<int>));
+            Assert.IsInstanceOfType(assertion, typeof(EnumerableAssertion<int>));
         }
 
         /// <summary>

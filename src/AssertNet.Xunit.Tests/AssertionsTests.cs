@@ -75,7 +75,7 @@ namespace AssertNet.Xunit.Tests
         {
             Assertion assertion = AssertThat(Array.Empty<int>());
             Assert.NotNull(assertion);
-            Assert.IsType<CollectionAssertion<int>>(assertion);
+            Assert.IsType<EnumerableAssertion<int>>(assertion);
         }
 
         /// <summary>

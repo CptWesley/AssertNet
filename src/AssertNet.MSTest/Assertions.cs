@@ -66,9 +66,9 @@ namespace AssertNet.MSTest
         /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
         /// <param name="enumerable">Enumerable under test.</param>
         /// <returns>Assertion about an enumerable.</returns>
-        public static CollectionAssertion<T> AssertThat<T>(IEnumerable<T> enumerable)
+        public static EnumerableAssertion<T> AssertThat<T>(IEnumerable<T> enumerable)
         {
-            return new CollectionAssertion<T>(new MSTestFailureHandler(), enumerable);
+            return new EnumerableAssertion<T>(new MSTestFailureHandler(), enumerable);
         }
 
         /// <summary>
