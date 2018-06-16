@@ -36,7 +36,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Value.Contains(substring))
             {
-                Fail($"Expected '{Value}' to contain '{substring}'.");
+                Fail(new FailureBuilder("Contains()")
+                    .Append("Expecting", Target)
+                    .Append("To contain", substring)
+                    .Finish());
             }
 
             return this;
@@ -51,7 +54,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.Contains(substring))
             {
-                Fail($"Expected '{Value}' to not contain '{substring}'.");
+                Fail(new FailureBuilder("DoesNotContain()")
+                    .Append("Expecting", Target)
+                    .Append("Not to contain", substring)
+                    .Finish());
             }
 
             return this;
@@ -66,7 +72,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Value.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
             {
-                Fail($"Expected '{Value}' to contain '{substring}' while ignoring case.");
+                Fail(new FailureBuilder("ContainsIgnoringCase()")
+                    .Append("Expecting", Target)
+                    .Append("To contain ignoring case", substring)
+                    .Finish());
             }
 
             return this;
@@ -81,7 +90,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.ToUpperInvariant().Contains(substring.ToUpperInvariant()))
             {
-                Fail($"Expected '{Value}' to not contain '{substring}' while ignoring case.");
+                Fail(new FailureBuilder("DoesNotContainIgnoringCase()")
+                    .Append("Expecting", Target)
+                    .Append("Not to contain ignoring case", substring)
+                    .Finish());
             }
 
             return this;
@@ -96,7 +108,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Value.StartsWith(substring, false, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to start with '{substring}'.");
+                Fail(new FailureBuilder("StartsWith()")
+                    .Append("Expecting", Target)
+                    .Append("To start with", substring)
+                    .Finish());
             }
 
             return this;
@@ -111,7 +126,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.StartsWith(substring, false, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to not start with '{substring}'.");
+                Fail(new FailureBuilder("DoesNotStartWith()")
+                    .Append("Expecting", Target)
+                    .Append("Not to start with", substring)
+                    .Finish());
             }
 
             return this;
@@ -126,7 +144,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Value.StartsWith(substring, true, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to start with '{substring}' while ignoring cases.");
+                Fail(new FailureBuilder("StartsWithIgnoringCase()")
+                    .Append("Expecting", Target)
+                    .Append("To start with ignoring case", substring)
+                    .Finish());
             }
 
             return this;
@@ -141,7 +162,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.StartsWith(substring, true, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to not start with '{substring}' while ignoring cases.");
+                Fail(new FailureBuilder("DoesNotStartWithIgnoringCase()")
+                    .Append("Expecting", Target)
+                    .Append("Not to start with ignoring case", substring)
+                    .Finish());
             }
 
             return this;
@@ -156,7 +180,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Value.EndsWith(substring, false, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to end with '{substring}'.");
+                Fail(new FailureBuilder("EndsWith()")
+                    .Append("Expecting", Target)
+                    .Append("To end with", substring)
+                    .Finish());
             }
 
             return this;
@@ -171,7 +198,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.EndsWith(substring, false, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to not end with '{substring}'.");
+                Fail(new FailureBuilder("DoesNotEndWith()")
+                    .Append("Expecting", Target)
+                    .Append("Not to end with", substring)
+                    .Finish());
             }
 
             return this;
@@ -186,7 +216,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Value.EndsWith(substring, true, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to end with '{substring}' while ignoring cases.");
+                Fail(new FailureBuilder("EndsWithIgnoringCase()")
+                    .Append("Expecting", Target)
+                    .Append("To end with ignoring case", substring)
+                    .Finish());
             }
 
             return this;
@@ -201,7 +234,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.EndsWith(substring, true, CultureInfo.InvariantCulture))
             {
-                Fail($"Expected '{Value}' to not end with '{substring}' while ignoring cases.");
+                Fail(new FailureBuilder("DoesNotEndWithIgnoringCase()")
+                    .Append("Expecting", Target)
+                    .Append("Not to end with ignoring case", substring)
+                    .Finish());
             }
 
             return this;
@@ -215,7 +251,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.Length > 0)
             {
-                Fail($"Expected '{Value}' to be empty.");
+                Fail(new FailureBuilder("IsEmpty()")
+                    .Append("Expecting", Target)
+                    .Append("To be empty")
+                    .Finish());
             }
 
             return this;
@@ -229,7 +268,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.Length <= 0)
             {
-                Fail($"Expected string to contain at least 1 element.");
+                Fail(new FailureBuilder("IsNotEmpty()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be empty")
+                    .Finish());
             }
 
             return this;
@@ -243,7 +285,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!string.IsNullOrEmpty(Value))
             {
-                Fail($"Expected '{Value}' to be null or empty.");
+                Fail(new FailureBuilder("IsNullOrEmpty()")
+                    .Append("Expecting", Target)
+                    .Append("To be null or empty")
+                    .Finish());
             }
 
             return this;
@@ -257,7 +302,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (string.IsNullOrEmpty(Value))
             {
-                Fail($"Expected string to contain at least 1 element, but was '{Value}'.");
+                Fail(new FailureBuilder("IsNotNullOrEmpty()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be null or empty")
+                    .Finish());
             }
 
             return this;
@@ -272,7 +320,11 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.Length != size)
             {
-                Fail($"Expected '{Value}' to have a length of '{size}', while it was '{Value.Length}'.");
+                Fail(new FailureBuilder("HasSize()")
+                    .Append("Expecting", Target)
+                    .Append("To have a length of", size)
+                    .Append("But has a length of", Value.Length)
+                    .Finish());
             }
 
             return this;
@@ -287,7 +339,11 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.Length < size)
             {
-                Fail($"Expected '{Value}' to have at least a length of '{size}', while it was '{Value.Length}'.");
+                Fail(new FailureBuilder("HasAtLeastSize()")
+                    .Append("Expecting", Target)
+                    .Append("To have at least a length of", size)
+                    .Append("But has length of", Value.Length)
+                    .Finish());
             }
 
             return this;
@@ -302,7 +358,11 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value.Length > size)
             {
-                Fail($"Expected '{Value}' to have at most a length of '{size}', while it was '{Value.Length}'.");
+                Fail(new FailureBuilder("HasAtMostSize()")
+                    .Append("Expecting", Target)
+                    .Append("To have at most a length of", size)
+                    .Append("But has length of", Value.Length)
+                    .Finish());
             }
 
             return this;
