@@ -1,5 +1,6 @@
 ﻿using AssertNet.Moq.Mocks;
 using Moq;
+using Xunit;
 
 namespace AssertNet.Moq.Tests.Mocks
 {
@@ -18,6 +19,15 @@ namespace AssertNet.Moq.Tests.Mocks
         {
             _target = new Mock<object>();
             _assertion = new MockAssertion<object>(_target);
+        }
+
+        /// <summary>
+        /// Checks that the target is set correctly.
+        /// </summary>
+        [Fact]
+        public void TargetTest()
+        {
+            Assert.Same(_target, _assertion.Target);
         }
     }
 }
