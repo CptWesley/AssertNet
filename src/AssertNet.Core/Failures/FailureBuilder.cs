@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
 using System.Linq;
+using System.Text;
 
 namespace AssertNet.Core.Failures
 {
