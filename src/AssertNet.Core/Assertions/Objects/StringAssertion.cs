@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Text.RegularExpressions;
 using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Objects
@@ -85,6 +86,42 @@ namespace AssertNet.Core.Assertions.Objects
                 Fail(new FailureBuilder("DoesNotContainIgnoringCase()")
                     .Append("Expecting", Target)
                     .Append("Not to contain ignoring case", substring)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Determines whether the string under test contains a given pattern.
+        /// </summary>
+        /// <param name="pattern">The pattern to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion ContainsPattern(string pattern)
+        {
+            if (!Regex.IsMatch(Target, pattern))
+            {
+                Fail(new FailureBuilder("ContainsPattern()")
+                    .Append("Expecting", Target)
+                    .Append("To contain the pattern", pattern)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Determines whether the string under test does not contain a given pattern.
+        /// </summary>
+        /// <param name="pattern">The pattern to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion DoesNotContainPattern(string pattern)
+        {
+            if (Regex.IsMatch(Target, pattern))
+            {
+                Fail(new FailureBuilder("DoesNotContainPattern()")
+                    .Append("Expecting", Target)
+                    .Append("Not to contain the pattern", pattern)
                     .Finish());
             }
 

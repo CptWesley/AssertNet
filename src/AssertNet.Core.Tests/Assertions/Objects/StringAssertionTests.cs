@@ -63,6 +63,46 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if the value contains a pattern.
+        /// </summary>
+        [Fact]
+        public void ContainsPatternPassTest()
+        {
+            StringAssertion.ContainsPattern("[a-zA-Z]+");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value does not contain a pattern.
+        /// </summary>
+        [Fact]
+        public void ContainsPatternFailTest()
+        {
+            StringAssertion.ContainsPattern("[0-9]+");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value does not contain a pattern.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainPatternPassTest()
+        {
+            StringAssertion.DoesNotContainPattern("[0-9]+");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value contains a pattern.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainPatternFailTest()
+        {
+            StringAssertion.DoesNotContainPattern("[a-zA-Z]+");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
         /// Checks that the assertion passes if the value contains a substring while ignoring cases.
         /// </summary>
         [Fact]
