@@ -140,6 +140,16 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that there are no failures if an object is an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsInstanceOfPassSameTest()
+        {
+            Assertion.IsInstanceOf(Assertion.Target.GetType());
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
         /// Checks that there are failures if an object is not an instance of a type.
         /// </summary>
         [Fact]
@@ -166,6 +176,16 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         public void IsNotInstanceOfFailTest()
         {
             Assertion.IsNotInstanceOf<object>();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if an object is an instance of a type.
+        /// </summary>
+        [Fact]
+        public void IsNotInstanceOfFailSameTest()
+        {
+            Assertion.IsNotInstanceOf(Assertion.Target.GetType());
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
