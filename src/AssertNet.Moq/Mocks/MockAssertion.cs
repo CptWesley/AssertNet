@@ -33,6 +33,6 @@ namespace AssertNet.Moq.Mocks
         /// </summary>
         /// <param name="expression">The expression.</param>
         /// <returns>An assertion about an invocation.</returns>
-        public InvocationAssertion<T> Invoked(Expression<Action<T>> expression) => new InvocationAssertion<T>(Target, expression);
+        public InvocationAssertion<T> HasInvoked(Expression<Action<T>> expression) => new InvocationAssertion<T>(Target, expression);
     }
 }

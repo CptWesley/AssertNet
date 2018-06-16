@@ -39,7 +39,7 @@ namespace AssertNet.Moq.Tests.Mocks
         public void InvokedTest()
         {
             Expression<Action<IMockable>> expression = x => x.GetInt();
-            InvocationAssertion<IMockable> assertion = _assertion.Invoked(expression);
+            InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
             Assert.NotNull(assertion);
             Assert.Same(_target, assertion.Target);
             Assert.Same(expression, assertion.Expression);
