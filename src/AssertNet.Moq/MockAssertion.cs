@@ -14,7 +14,6 @@ namespace AssertNet.Moq
         /// </summary>
         /// <param name="target">The mock under test.</param>
         public MockAssertion(Mock<T> target)
-            : base(failureHandler)
         {
             Target = target;
         }
