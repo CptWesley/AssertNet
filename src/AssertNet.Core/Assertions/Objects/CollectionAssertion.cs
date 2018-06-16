@@ -121,7 +121,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> Contains(params TElement[] values)
+        public CollectionAssertion<TElement> Contains(params TElement[] values) => Contains((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains the values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion<TElement> Contains(IEnumerable<TElement> values)
         {
             TElement[] difference = values.Except(Target).ToArray();
 
@@ -142,7 +149,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> DoesNotContain(params TElement[] values)
+        public CollectionAssertion<TElement> DoesNotContain(params TElement[] values) => DoesNotContain((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain the values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion<TElement> DoesNotContain(IEnumerable<TElement> values)
         {
             TElement[] intersection = values.Intersect(Target).ToArray();
 
@@ -163,7 +177,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsOnly(params TElement[] values)
+        public CollectionAssertion<TElement> ContainsOnly(params TElement[] values) => ContainsOnly((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains only the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion<TElement> ContainsOnly(IEnumerable<TElement> values)
         {
             TElement[] difference = Target.Distinct().Except(values).ToArray();
 
@@ -184,7 +205,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsExactly(params TElement[] values)
+        public CollectionAssertion<TElement> ContainsExactly(params TElement[] values) => ContainsExactly((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains exactly the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion<TElement> ContainsExactly(IEnumerable<TElement> values)
         {
             if (!Target.SequenceEqual(values))
             {
@@ -202,7 +230,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion<TElement> ContainsExactlyInAnyOrder(params TElement[] values)
+        public CollectionAssertion<TElement> ContainsExactlyInAnyOrder(params TElement[] values) => ContainsExactlyInAnyOrder((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains exactly the given values in any order.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public CollectionAssertion<TElement> ContainsExactlyInAnyOrder(IEnumerable<TElement> values)
         {
             List<TElement> valuesList = values.ToList();
             List<TElement> targetList = Target.ToList();
