@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.Failures;
 using Moq;
@@ -245,6 +246,34 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         {
             new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that we can properly filter assertions.
+        /// </summary>
+        [Fact]
+        public void WhereTest()
+        {
+            EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3, 4 });
+            EnumerableAssertion<int> newAssertion = originalAssertion.Where(x => x > 2);
+            Assert.Equal(2, newAssertion.Target.Count());
+            Assert.Contains(3, newAssertion.Target);
+            Assert.Contains(4, newAssertion.Target);
+        }
+
+        /// <summary>
+        /// Checks that we can properly project assertions.
+        /// </summary>
+        [Fact]
+        public void SelectTest()
+        {
+            EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3, 4 });
+            EnumerableAssertion<int> newAssertion = originalAssertion.Select(x => x + 1);
+            Assert.Equal(4, newAssertion.Target.Count());
+            Assert.Contains(2, newAssertion.Target);
+            Assert.Contains(3, newAssertion.Target);
+            Assert.Contains(4, newAssertion.Target);
+            Assert.Contains(5, newAssertion.Target);
         }
     }
 }

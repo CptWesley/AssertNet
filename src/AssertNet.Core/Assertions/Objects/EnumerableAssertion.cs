@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AssertNet.Core.Failures;
 
@@ -273,5 +274,20 @@ namespace AssertNet.Core.Assertions.Objects
 
             return this;
         }
+
+        /// <summary>
+        /// Creates a new assertion for a filtered version of the target enumerable.
+        /// </summary>
+        /// <param name="condition">The condition to filter on.</param>
+        /// <returns>A new assertion for a filtered version of the target enumerable.</returns>
+        public EnumerableAssertion<TElement> Where(Func<TElement, bool> condition) => new EnumerableAssertion<TElement>(FailureHandler, Target.Where(condition));
+
+        /// <summary>
+        /// Creates a new assertion for a projected version of the target enumerable.
+        /// </summary>
+        /// <typeparam name="T">The output type of the projection.</typeparam>
+        /// <param name="selector">The selector for the projection.</param>
+        /// <returns>A new assertion for a projected version of the target enumerable.</returns>
+        public EnumerableAssertion<T> Select<T>(Func<TElement, T> selector) => new EnumerableAssertion<T>(FailureHandler, Target.Select(selector));
     }
 }
