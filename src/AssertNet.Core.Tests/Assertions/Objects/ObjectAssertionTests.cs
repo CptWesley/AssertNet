@@ -6,11 +6,12 @@ using Xunit;
 namespace AssertNet.Core.Tests.Assertions.Objects
 {
     /// <summary>
-    /// Test class for the <see cref="ObjectAssertion{T}"/> class.
+    /// Test class for the <see cref="ObjectAssertion{TAssert, TTarget}"/> class.
     /// </summary>
-    /// <typeparam name="T">Type of the assertion.</typeparam>
-    public abstract class ObjectAssertionTests<T>
-        where T : ObjectAssertion<T>
+    /// <typeparam name="T1">Type of the assertion.</typeparam>
+    /// <typeparam name="T2">Type of the object under test.</typeparam>
+    public abstract class ObjectAssertionTests<T1, T2>
+        where T1 : ObjectAssertion<T1, T2>
     {
         /// <summary>
         /// Gets or sets the assertion under test.
@@ -18,7 +19,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         /// <value>
         /// The assertion under test.
         /// </value>
-        protected ObjectAssertion<T> Assertion { get; set; }
+        protected ObjectAssertion<T1, T2> Assertion { get; set; }
 
         /// <summary>
         /// Gets or sets the failure handler.

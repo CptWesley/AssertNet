@@ -6,8 +6,8 @@ namespace AssertNet.Core.Assertions.Objects
     /// <summary>
     /// Class representing assertions made about doubles (and other numeric values).
     /// </summary>
-    /// <seealso cref="ObjectAssertion{DoubleAssertion}" />
-    public class DoubleAssertion : ObjectAssertion<DoubleAssertion>
+    /// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
+    public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DoubleAssertion"/> class.
@@ -20,21 +20,13 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
-        /// Gets the double under test.
-        /// </summary>
-        /// <value>
-        /// The double under test.
-        /// </value>
-        public double Value => (double)Target;
-
-        /// <summary>
         /// Asserts if a double is greater than a certain value.
         /// </summary>
         /// <param name="other">Value which the double should be greater than.</param>
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsGreaterThan(double other)
         {
-            if (Value <= other)
+            if (Target <= other)
             {
                 Fail(new FailureBuilder("IsGreaterThan()")
                     .Append("Expecting", Target)
@@ -52,7 +44,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsGreaterThanOrEqual(double other)
         {
-            if (Value < other)
+            if (Target < other)
             {
                 Fail(new FailureBuilder("IsGreaterThanOrEqual()")
                     .Append("Expecting", Target)
@@ -70,7 +62,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsLesserThan(double other)
         {
-            if (Value >= other)
+            if (Target >= other)
             {
                 Fail(new FailureBuilder("IsLesserThan()")
                     .Append("Expecting", Target)
@@ -88,7 +80,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsLesserThanOrEqual(double other)
         {
-            if (Value > other)
+            if (Target > other)
             {
                 Fail(new FailureBuilder("IsLesserThanOrEqual()")
                     .Append("Expecting", Target)
@@ -105,7 +97,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsZero()
         {
-            if (Value != 0)
+            if (Target != 0)
             {
                 Fail(new FailureBuilder("IsZero()")
                     .Append("Expecting", Target)
@@ -122,7 +114,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsPositive()
         {
-            if (Value <= 0)
+            if (Target <= 0)
             {
                 Fail(new FailureBuilder("IsPositive()")
                     .Append("Expecting", Target)
@@ -139,7 +131,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsPositiveOrZero()
         {
-            if (Value < 0)
+            if (Target < 0)
             {
                 Fail(new FailureBuilder("IsPositiveOrZero()")
                     .Append("Expecting", Target)
@@ -156,7 +148,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsNegative()
         {
-            if (Value >= 0)
+            if (Target >= 0)
             {
                 Fail(new FailureBuilder("IsNegative()")
                     .Append("Expecting", Target)
@@ -173,7 +165,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsNegativeOrZero()
         {
-            if (Value > 0)
+            if (Target > 0)
             {
                 Fail(new FailureBuilder("IsNegativeOrZero()")
                     .Append("Expecting", Target)
@@ -198,7 +190,7 @@ namespace AssertNet.Core.Assertions.Objects
                 throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
             }
 
-            if (Value < minimum || Value > maximum)
+            if (Target < minimum || Target > maximum)
             {
                 Fail(new FailureBuilder("IsInRange()")
                     .Append("Expecting", Target)
@@ -224,7 +216,7 @@ namespace AssertNet.Core.Assertions.Objects
                 throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
             }
 
-            if (Value >= minimum && Value <= maximum)
+            if (Target >= minimum && Target <= maximum)
             {
                 Fail(new FailureBuilder("IsNotInRange()")
                     .Append("Expecting", Target)
@@ -251,7 +243,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsEqualTo(double other, double margin)
         {
-            if (Value < other - margin || Value > other + margin)
+            if (Target < other - margin || Target > other + margin)
             {
                 Fail(new FailureBuilder("IsEqualTo()")
                     .Append("Expecting", Target)
@@ -278,7 +270,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public DoubleAssertion IsNotEqualTo(double other, double margin)
         {
-            if (Value >= other - margin && Value <= other + margin)
+            if (Target >= other - margin && Target <= other + margin)
             {
                 Fail(new FailureBuilder("IsNotEqualTo()")
                     .Append("Expecting", Target)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,7 +43,7 @@ namespace AssertNet.Core.Failures
         /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
         public FailureBuilder AppendEnumerable<T>(string objectName, IEnumerable<T> enumerable)
         {
-            _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}[{string.Join(", ", enumerable)}]");
+            _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}[{string.Join(", ", enumerable.Select(StringOf))}]");
             return this;
         }
 
@@ -71,14 +70,6 @@ namespace AssertNet.Core.Failures
         /// <typeparam name="T">Type of the object.</typeparam>
         /// <param name="ob">The object to get the string version of.</param>
         /// <returns>"null" if the object is null. The value of .ToString() otherwise.</returns>
-        private static string StringOf<T>(T ob)
-        {
-            if (ob == null)
-            {
-                return "null";
-            }
-
-            return ob.ToString();
-        }
+        private static string StringOf<T>(T ob) => ob == null ? "null" : ob.ToString();
     }
 }

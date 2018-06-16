@@ -8,38 +8,31 @@ namespace AssertNet.Core.Assertions.Objects
     /// <summary>
     /// Class representing assertions made on collection objects.
     /// </summary>
-    /// <seealso cref="ObjectAssertion{CollectionAssertion}" />
-    public class CollectionAssertion : ObjectAssertion<CollectionAssertion>
+    /// <typeparam name="TElement">Element type of the enumerable.</typeparam>
+    /// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
+    public class CollectionAssertion<TElement> : ObjectAssertion<CollectionAssertion<TElement>, IEnumerable<TElement>>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CollectionAssertion"/> class.
+        /// Initializes a new instance of the <see cref="CollectionAssertion{TElement}"/> class.
         /// </summary>
         /// <param name="failureHandler">The failure handler of the assertion.</param>
         /// <param name="target">The object which is under test.</param>
-        public CollectionAssertion(IFailureHandler failureHandler, IEnumerable target)
+        public CollectionAssertion(IFailureHandler failureHandler, IEnumerable<TElement> target)
             : base(failureHandler, target)
         {
         }
 
         /// <summary>
-        /// Gets the collection under test.
-        /// </summary>
-        /// <value>
-        /// The collection under test.
-        /// </value>
-        public IEnumerable<object> Collection => ((IEnumerable)Target).Cast<object>();
-
-        /// <summary>
         /// Checks if the enumerable is empty.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion IsEmpty()
+        public CollectionAssertion<TElement> IsEmpty()
         {
-            if (Collection.Any())
+            if (Target.Any())
             {
                 Fail(new FailureBuilder("IsEmpty()")
                     .Append("Expecting", Target)
-                    .AppendEnumerable("To be empty, but contains", Collection)
+                    .AppendEnumerable("To be empty, but contains", Target)
                     .Finish());
             }
 
@@ -50,9 +43,9 @@ namespace AssertNet.Core.Assertions.Objects
         /// Checks if the enumerable is not empty.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion IsNotEmpty()
+        public CollectionAssertion<TElement> IsNotEmpty()
         {
-            if (!Collection.Any())
+            if (!Target.Any())
             {
                 Fail(new FailureBuilder("IsNotEmpty()")
                     .Append("Expecting", Target)
@@ -68,15 +61,15 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="size">The size the enumerable should have.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion HasSize(int size)
+        public CollectionAssertion<TElement> HasSize(int size)
         {
-            int realSize = Collection.Count();
+            int realSize = Target.Count();
             if (realSize != size)
             {
                 Fail(new FailureBuilder("HasSize()")
                     .Append("Expecting", Target)
                     .Append("To have a size of", size)
-                    .Append("But has a size of", Collection.Count())
+                    .Append("But has a size of", realSize)
                     .Finish());
             }
 
@@ -88,15 +81,15 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="size">The size the enumerable should have.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion HasAtLeastSize(int size)
+        public CollectionAssertion<TElement> HasAtLeastSize(int size)
         {
-            int realSize = Collection.Count();
+            int realSize = Target.Count();
             if (realSize < size)
             {
                 Fail(new FailureBuilder("HasAtLeastSize()")
                     .Append("Expecting", Target)
                     .Append("To have at least a size of", size)
-                    .Append("But has a size of", Collection.Count())
+                    .Append("But has a size of", realSize)
                     .Finish());
             }
 
@@ -108,15 +101,15 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="size">The size the enumerable should have.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion HasAtMostSize(int size)
+        public CollectionAssertion<TElement> HasAtMostSize(int size)
         {
-            int realSize = Collection.Count();
+            int realSize = Target.Count();
             if (realSize > size)
             {
                 Fail(new FailureBuilder("HasAtMostSize()")
                     .Append("Expecting", Target)
                     .Append("To have at most a size of", size)
-                    .Append("But has a size of", Collection.Count())
+                    .Append("But has a size of", realSize)
                     .Finish());
             }
 
@@ -128,14 +121,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion Contains(params object[] values)
+        public CollectionAssertion<TElement> Contains(params TElement[] values)
         {
-            object[] difference = values.Except(Collection).ToArray();
+            TElement[] difference = values.Except(Target).ToArray();
 
             if (difference.Any())
             {
                 Fail(new FailureBuilder("Contains()")
-                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("To contain", values)
                     .AppendEnumerable("But misses", difference)
                     .Finish());
@@ -149,14 +142,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion DoesNotContain(params object[] values)
+        public CollectionAssertion<TElement> DoesNotContain(params TElement[] values)
         {
-            object[] intersection = values.Intersect(Collection).ToArray();
+            TElement[] intersection = values.Intersect(Target).ToArray();
 
             if (intersection.Any())
             {
                 Fail(new FailureBuilder("DoesNotContain()")
-                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("Not to contain", values)
                     .AppendEnumerable("But contains", intersection)
                     .Finish());
@@ -170,14 +163,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion ContainsOnly(params object[] values)
+        public CollectionAssertion<TElement> ContainsOnly(params TElement[] values)
         {
-            object[] difference = Collection.Distinct().Except(values).ToArray();
+            TElement[] difference = Target.Distinct().Except(values).ToArray();
 
             if (difference.Any())
             {
                 Fail(new FailureBuilder("ContainsOnly()")
-                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("To only contain", values)
                     .AppendEnumerable("But also contains", difference)
                     .Finish());
@@ -191,12 +184,12 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion ContainsExactly(params object[] values)
+        public CollectionAssertion<TElement> ContainsExactly(params TElement[] values)
         {
-            if (!Collection.SequenceEqual(values))
+            if (!Target.SequenceEqual(values))
             {
                 Fail(new FailureBuilder("ContainsExactly()")
-                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("To contain exactly", values)
                     .Finish());
             }
@@ -209,26 +202,26 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <param name="values">The values to check for.</param>
         /// <returns>The current assertion.</returns>
-        public CollectionAssertion ContainsExactlyInAnyOrder(params object[] values)
+        public CollectionAssertion<TElement> ContainsExactlyInAnyOrder(params TElement[] values)
         {
-            List<object> valuesList = values.ToList();
-            List<object> collectionList = Collection.ToList();
+            List<TElement> valuesList = values.ToList();
+            List<TElement> targetList = Target.ToList();
 
             FailureBuilder failureBuilder = new FailureBuilder("ContainsExactlyInAnyOrder()");
 
             for (int i = valuesList.Count - 1; i >= 0; --i)
             {
-                int index = collectionList.IndexOf(valuesList[i]);
+                int index = targetList.IndexOf(valuesList[i]);
                 if (index >= 0)
                 {
                     valuesList.RemoveAt(i);
-                    collectionList.RemoveAt(index);
+                    targetList.RemoveAt(index);
                 }
             }
 
-            if (valuesList.Any() || collectionList.Any())
+            if (valuesList.Any() || targetList.Any())
             {
-                failureBuilder.AppendEnumerable("Expecting", Collection);
+                failureBuilder.AppendEnumerable("Expecting", Target);
                 failureBuilder.AppendEnumerable("To contain exactly in any order", values);
 
                 if (valuesList.Any())
@@ -236,9 +229,9 @@ namespace AssertNet.Core.Assertions.Objects
                     failureBuilder.AppendEnumerable("But did not find", valuesList);
                 }
 
-                if (collectionList.Any())
+                if (targetList.Any())
                 {
-                    failureBuilder.AppendEnumerable("But found excess", collectionList);
+                    failureBuilder.AppendEnumerable("But found excess", targetList);
                 }
 
                 Fail(failureBuilder.Finish());

@@ -8,7 +8,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
     /// <summary>
     /// Test class for the <see cref="SingleAssertion"/> class.
     /// </summary>
-    public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion>
+    public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SingleAssertionTests"/> class.

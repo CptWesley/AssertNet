@@ -8,8 +8,8 @@ namespace AssertNet.Core.Tests.Assertions.Objects
     /// <summary>
     /// Test class for the <see cref="BooleanAssertion"/> class.
     /// </summary>
-    /// <seealso cref="ObjectAssertionTests{BooleanAssertion}" />
-    public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion>
+    /// <seealso cref="ObjectAssertionTests{T1, T2}" />
+    public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BooleanAssertionTests"/> class.

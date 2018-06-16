@@ -8,7 +8,7 @@ namespace AssertNet.Core.Assertions.Void
     /// Class representing assertions made on thrown exceptions.
     /// </summary>
     /// <seealso cref="Assertion" />
-    public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion>
+    public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExceptionAssertion"/> class.
@@ -18,16 +18,7 @@ namespace AssertNet.Core.Assertions.Void
         public ExceptionAssertion(IFailureHandler failureHandler, Exception exception)
             : base(failureHandler, exception)
         {
-            Exception = exception;
         }
-
-        /// <summary>
-        /// Gets the exception under test.
-        /// </summary>
-        /// <value>
-        /// The exception under test.
-        /// </value>
-        public Exception Exception { get; }
 
         /// <summary>
         /// Asserts that an exception has a certain message.
@@ -36,12 +27,12 @@ namespace AssertNet.Core.Assertions.Void
         /// <returns>The current assertion.</returns>
         public ExceptionAssertion WithMessage(string message)
         {
-            if (Exception.Message != message)
+            if (Target.Message != message)
             {
                 Fail(new FailureBuilder("WithMessage()")
                     .Append("Expecting", Target)
                     .Append("To have the message", message)
-                    .Append("But has the message", Exception.Message)
+                    .Append("But has the message", Target.Message)
                     .Finish());
             }
 
@@ -56,12 +47,12 @@ namespace AssertNet.Core.Assertions.Void
         /// <returns>The current assertion.</returns>
         public ExceptionAssertion WithMessageContaining(string message)
         {
-            if (!Exception.Message.Contains(message))
+            if (!Target.Message.Contains(message))
             {
                 Fail(new FailureBuilder("WithMessageContaining()")
                     .Append("Expecting", Target)
                     .Append("To have a message containing", message)
-                    .Append("But has the message", Exception.Message)
+                    .Append("But has the message", Target.Message)
                     .Finish());
             }
 
@@ -74,11 +65,11 @@ namespace AssertNet.Core.Assertions.Void
         /// <returns>The current assertion.</returns>
         public ExceptionAssertion WithNoInnerException()
         {
-            if (Exception.InnerException != null)
+            if (Target.InnerException != null)
             {
                 Fail(new FailureBuilder("WithMessageContaining()")
                     .Append("Expecting", Target)
-                    .Append("To not have an inner exception, but has", Exception.InnerException)
+                    .Append("To not have an inner exception, but has", Target.InnerException)
                     .Finish());
             }
 
@@ -91,9 +82,9 @@ namespace AssertNet.Core.Assertions.Void
         /// <returns>An exception assertion for the inner exception.</returns>
         public ExceptionAssertion WithInnerException()
         {
-            if (Exception.InnerException != null)
+            if (Target.InnerException != null)
             {
-                return new ExceptionAssertion(FailureHandler, Exception.InnerException);
+                return new ExceptionAssertion(FailureHandler, Target.InnerException);
             }
 
             Fail(new FailureBuilder("WithInnerException()")
@@ -111,7 +102,7 @@ namespace AssertNet.Core.Assertions.Void
         public ExceptionAssertion WithInnerException<T>()
             where T : Exception
         {
-            if (Exception.InnerException == null)
+            if (Target.InnerException == null)
             {
                 Fail(new FailureBuilder("WithInnerException()")
                     .Append("Expecting", Target)
@@ -119,17 +110,17 @@ namespace AssertNet.Core.Assertions.Void
                     .Finish());
                 return null;
             }
-            else if (!(Exception.InnerException is T))
+            else if (!(Target.InnerException is T))
             {
                 Fail(new FailureBuilder("WithInnerException()")
                     .Append("Expecting", Target)
                     .Append("To have an inner exception of type", typeof(T))
-                    .Append("But has an inner exception of type", Exception.InnerException.GetType())
+                    .Append("But has an inner exception of type", Target.InnerException.GetType())
                     .Finish());
                 return null;
             }
 
-            return new ExceptionAssertion(FailureHandler, Exception.InnerException);
+            return new ExceptionAssertion(FailureHandler, Target.InnerException);
         }
     }
 }
