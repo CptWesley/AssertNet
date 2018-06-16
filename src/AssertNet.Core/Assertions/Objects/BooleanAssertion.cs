@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Objects
 {
@@ -36,7 +36,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value == false)
             {
-                Fail($"Expected 'true', but was 'false'.");
+                Fail(new FailureBuilder("IsTrue()")
+                    .Append("Expecting", Target)
+                    .Append("To be equal to", true)
+                    .Finish());
             }
 
             return this;
@@ -50,7 +53,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value == true)
             {
-                Fail($"Expected 'false', but was 'true'.");
+                Fail(new FailureBuilder("IsFalse()")
+                    .Append("Expecting", Target)
+                    .Append("To be equal to", false)
+                    .Finish());
             }
 
             return this;

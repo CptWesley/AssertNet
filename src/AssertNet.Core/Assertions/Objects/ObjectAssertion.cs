@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Objects
 {
@@ -40,7 +40,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Target.Equals(other))
             {
-                Fail($"'{Target}' is not equal to '{other}'.");
+                Fail(new FailureBuilder("IsEqualTo()")
+                    .Append("Expecting", Target)
+                    .Append("To be equal to", other)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -55,7 +58,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target.Equals(other))
             {
-                Fail($"Expected '{Target}' to not be equal to '{other}'.");
+                Fail(new FailureBuilder("IsNotEqualTo()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be equal to", other)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -70,7 +76,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!ReferenceEquals(Target, other))
             {
-                Fail($"'{Target}' is not the same object as '{other}'.");
+                Fail(new FailureBuilder("IsSameAs()")
+                    .Append("Expecting", Target)
+                    .Append("To be the same object as", other)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -85,7 +94,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (ReferenceEquals(Target, other))
             {
-                Fail($"Expected '{Target}' to not be the same object as '{other}'.");
+                Fail(new FailureBuilder("IsNotSameAs()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be the same object as", other)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -99,7 +111,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target != null)
             {
-                Fail($"Expected '{Target}' to be 'null'.");
+                Fail(new FailureBuilder("IsNull()")
+                    .Append("Expecting", Target)
+                    .Append<object>("To be", null)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -113,7 +128,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target == null)
             {
-                Fail($"Expected '{Target}' not to be 'null'.");
+                Fail(new FailureBuilder("IsNotNull()")
+                    .Append("Expecting", Target)
+                    .Append<object>("Not to be", null)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -128,7 +146,11 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!(Target is T))
             {
-                Fail($"Expected '{Target}' to be an instance of '{typeof(T)}'.");
+                Fail(new FailureBuilder("IsInstanceOf()")
+                    .Append("Expecting", Target)
+                    .Append("To be an instance of", typeof(T))
+                    .Append("But is an instance of", Target.GetType())
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -143,7 +165,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target is T)
             {
-                Fail($"Expected '{Target}' to not be an instance of '{typeof(T)}'.");
+                Fail(new FailureBuilder("IsNotInstanceOf()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be an instance of", typeof(T))
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -158,7 +183,11 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target.GetType() != typeof(T))
             {
-                Fail($"Expected '{Target}' to be an instance of exactly '{typeof(T)}'.");
+                Fail(new FailureBuilder("IsExactlyInstanceOf()")
+                    .Append("Expecting", Target)
+                    .Append("To be an exact instance of", typeof(T))
+                    .Append("But is an instance of", Target.GetType())
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -173,7 +202,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target.GetType() == typeof(T))
             {
-                Fail($"Expected '{Target}' to not be an instance of exactly '{typeof(T)}'.");
+                Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be an exact instance of", typeof(T))
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -188,7 +220,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!enumerable.Cast<object>().Contains(Target))
             {
-                Fail($"Expected '{Target}' to be in '[{string.Join(", ", enumerable)}]'.");
+                Fail(new FailureBuilder("IsIn()")
+                    .Append("Expecting", Target)
+                    .Append("To be in", enumerable)
+                    .Finish());
             }
 
             return (TAssert)this;
@@ -203,7 +238,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (enumerable.Cast<object>().Contains(Target))
             {
-                Fail($"Expected '{Target}' to not be in '[{string.Join(", ", enumerable)}]'.");
+                Fail(new FailureBuilder("IsNotIn()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be in", enumerable)
+                    .Finish());
             }
 
             return (TAssert)this;

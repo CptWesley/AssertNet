@@ -1,6 +1,6 @@
 ﻿using System;
 using AssertNet.Core.Assertions.Objects;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Void
 {
@@ -38,7 +38,11 @@ namespace AssertNet.Core.Assertions.Void
         {
             if (Exception.Message != message)
             {
-                Fail($"Expecting message '{message}', but found '{Exception.Message}'.");
+                Fail(new FailureBuilder("WithMessage()")
+                    .Append("Expecting", Target)
+                    .Append("To have the message", message)
+                    .Append("But has the message", Exception.Message)
+                    .Finish());
             }
 
             return this;
@@ -54,7 +58,11 @@ namespace AssertNet.Core.Assertions.Void
         {
             if (!Exception.Message.Contains(message))
             {
-                Fail($"Expecting '{Exception.Message}' to contain '{message}'.");
+                Fail(new FailureBuilder("WithMessageContaining()")
+                    .Append("Expecting", Target)
+                    .Append("To have a message containing", message)
+                    .Append("But has the message", Exception.Message)
+                    .Finish());
             }
 
             return this;
@@ -68,7 +76,10 @@ namespace AssertNet.Core.Assertions.Void
         {
             if (Exception.InnerException != null)
             {
-                Fail($"Expected '{Exception}' not to have an inner exception, but has '{Exception.InnerException}'.");
+                Fail(new FailureBuilder("WithMessageContaining()")
+                    .Append("Expecting", Target)
+                    .Append("To not have an inner exception, but has", Exception.InnerException)
+                    .Finish());
             }
 
             return this;
@@ -85,7 +96,10 @@ namespace AssertNet.Core.Assertions.Void
                 return new ExceptionAssertion(FailureHandler, Exception.InnerException);
             }
 
-            Fail($"Expected '{Exception}' to have an inner exception, but has '{Exception.InnerException}'.");
+            Fail(new FailureBuilder("WithInnerException()")
+                    .Append("Expecting", Target)
+                    .Append("To have an inner exception, but has none")
+                    .Finish());
             return null;
         }
 
@@ -99,12 +113,19 @@ namespace AssertNet.Core.Assertions.Void
         {
             if (Exception.InnerException == null)
             {
-                Fail($"Expected '{Exception}' to have an inner exception, but has '{Exception.InnerException}'.");
+                Fail(new FailureBuilder("WithInnerException()")
+                    .Append("Expecting", Target)
+                    .Append("To have an inner exception, but has none")
+                    .Finish());
                 return null;
             }
             else if (!(Exception.InnerException is T))
             {
-                Fail($"Expected '{Exception.InnerException}' to be of type '{typeof(T)}'.");
+                Fail(new FailureBuilder("WithInnerException()")
+                    .Append("Expecting", Target)
+                    .Append("To have an inner exception of type", typeof(T))
+                    .Append("But has an inner exception of type", Exception.InnerException.GetType())
+                    .Finish());
                 return null;
             }
 

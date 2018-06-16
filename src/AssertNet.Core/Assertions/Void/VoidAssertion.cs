@@ -1,5 +1,5 @@
 ﻿using System;
-using AssertNet.Core.FailureHandlers;
+using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Assertions.Void
 {
@@ -42,7 +42,11 @@ namespace AssertNet.Core.Assertions.Void
             }
             catch (T e)
             {
-                Fail($"Expected no exception of type '{typeof(T)}', but found exception '{e}'.");
+                Fail(new FailureBuilder("DoesNotThrowException()")
+                    .Append("Expecting", Action)
+                    .Append("Not to throw an exception of type", typeof(T))
+                    .Append("But threw", e)
+                    .Finish());
             }
             catch
             {
@@ -64,7 +68,11 @@ namespace AssertNet.Core.Assertions.Void
             }
             catch (Exception e)
             {
-                Fail($"Expected no exception, but found exception '{e}'.");
+                Fail(new FailureBuilder("DoesNotThrowException()")
+                    .Append("Expecting", Action)
+                    .Append("Not to throw an exception")
+                    .Append("But threw", e)
+                    .Finish());
             }
 
             return this;
@@ -81,7 +89,10 @@ namespace AssertNet.Core.Assertions.Void
             try
             {
                 Action.Invoke();
-                Fail($"Expected exception of type '{typeof(T)}', but found no exception was thrown.");
+                Fail(new FailureBuilder("ThrowsException()")
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception of type", typeof(T))
+                    .Finish());
             }
             catch (T e)
             {
@@ -89,7 +100,11 @@ namespace AssertNet.Core.Assertions.Void
             }
             catch (Exception e)
             {
-                Fail($"Expected exception of type '{typeof(T)}', but found '{e}'.");
+                Fail(new FailureBuilder("ThrowsException()")
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception of type", typeof(T))
+                    .Append("But threw", e)
+                    .Finish());
             }
 
             return null;
@@ -104,7 +119,10 @@ namespace AssertNet.Core.Assertions.Void
             try
             {
                 Action.Invoke();
-                Fail($"Expected exception, but found no exception was thrown.");
+                Fail(new FailureBuilder("ThrowsException()")
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception, but nothing was thrown")
+                    .Finish());
             }
             catch (Exception e)
             {
