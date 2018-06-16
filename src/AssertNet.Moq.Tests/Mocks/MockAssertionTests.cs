@@ -39,10 +39,11 @@ namespace AssertNet.Moq.Tests.Mocks
         public void HasInvokedTest()
         {
             Expression<Action<IMockable>> expression = x => x.GetInt();
-            MethodInvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
+            InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
             Assert.NotNull(assertion);
+            Assert.IsType<MethodInvocationAssertion<IMockable>>(assertion);
             Assert.Same(_target, assertion.Target);
-            Assert.Same(expression, assertion.Expression);
+            Assert.Same(expression, ((MethodInvocationAssertion<IMockable>)assertion).Expression);
         }
 
         /// <summary>
@@ -52,10 +53,11 @@ namespace AssertNet.Moq.Tests.Mocks
         public void HasInvokedPropertyGetTest()
         {
             Expression<Func<IMockable, int>> expression = x => x.Number;
-            GetPropertyInvocationAssertion<IMockable, int> assertion = _assertion.HasInvoked(expression);
+            InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
             Assert.NotNull(assertion);
+            Assert.IsType<GetPropertyInvocationAssertion<IMockable, int>>(assertion);
             Assert.Same(_target, assertion.Target);
-            Assert.Same(expression, assertion.Expression);
+            Assert.Same(expression, ((GetPropertyInvocationAssertion<IMockable, int>)assertion).Expression);
         }
     }
 }
