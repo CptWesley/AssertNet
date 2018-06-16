@@ -1,5 +1,4 @@
 ﻿using System;
-using AssertNet.Core.Failures;
 using Moq;
 
 namespace AssertNet.Moq.Tests
@@ -10,7 +9,6 @@ namespace AssertNet.Moq.Tests
     public class MockAssertionTests
     {
         private readonly MockAssertion<Exception> _assertion;
-        private readonly Mock<IFailureHandler> _failureHandler;
         private readonly Mock<Exception> _target;
 
         /// <summary>
@@ -19,8 +17,7 @@ namespace AssertNet.Moq.Tests
         public MockAssertionTests()
         {
             _target = new Mock<Exception>();
-            _failureHandler = new Mock<IFailureHandler>();
-            _assertion = new MockAssertion<Exception>(_failureHandler.Object, _target);
+            _assertion = new MockAssertion<Exception>(_target);
         }
     }
 }

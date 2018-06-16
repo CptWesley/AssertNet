@@ -1,6 +1,4 @@
-﻿using AssertNet.Core.Assertions;
-using AssertNet.Core.Failures;
-using Moq;
+﻿using Moq;
 
 namespace AssertNet.Moq
 {
@@ -8,15 +6,14 @@ namespace AssertNet.Moq
     /// Class representing assertions made about mocks.
     /// </summary>
     /// <typeparam name="T">Type of the object being mocked.</typeparam>
-    public class MockAssertion<T> : Assertion
+    public class MockAssertion<T>
         where T : class
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MockAssertion{T}"/> class.
         /// </summary>
-        /// <param name="failureHandler">The failure handler of the assertion.</param>
         /// <param name="target">The mock under test.</param>
-        public MockAssertion(IFailureHandler failureHandler, Mock<T> target)
+        public MockAssertion(Mock<T> target)
             : base(failureHandler)
         {
             Target = target;
