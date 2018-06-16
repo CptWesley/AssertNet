@@ -185,7 +185,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion<TElement> ContainsOnly(IEnumerable<TElement> values)
         {
-            TElement[] difference = Target.Distinct().Except(values).ToArray();
+            TElement[] difference = Target.Except(values).ToArray();
 
             if (difference.Any())
             {
