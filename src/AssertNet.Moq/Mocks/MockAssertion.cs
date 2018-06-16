@@ -1,6 +1,6 @@
 ﻿using Moq;
 
-namespace AssertNet.Moq
+namespace AssertNet.Moq.Mocks
 {
     /// <summary>
     /// Class representing assertions made about mocks.

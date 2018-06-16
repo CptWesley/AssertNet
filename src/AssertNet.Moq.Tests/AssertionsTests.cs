@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using AssertNet.Moq.Mocks;
+using Moq;
 using Xunit;
 using static AssertNet.Moq.Assertions;
 
