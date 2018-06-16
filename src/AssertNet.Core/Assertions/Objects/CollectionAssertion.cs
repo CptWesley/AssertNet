@@ -129,7 +129,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion<TElement> Contains(IEnumerable<TElement> values)
         {
-            TElement[] difference = values.Except(Target).ToArray();
+            IEnumerable<TElement> difference = values.Except(Target);
 
             if (difference.Any())
             {
@@ -157,7 +157,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion<TElement> DoesNotContain(IEnumerable<TElement> values)
         {
-            TElement[] intersection = values.Intersect(Target).ToArray();
+            IEnumerable<TElement> intersection = values.Intersect(Target);
 
             if (intersection.Any())
             {
@@ -185,7 +185,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion<TElement> ContainsOnly(IEnumerable<TElement> values)
         {
-            TElement[] difference = Target.Except(values).ToArray();
+            IEnumerable<TElement> difference = Target.Except(values);
 
             if (difference.Any())
             {
