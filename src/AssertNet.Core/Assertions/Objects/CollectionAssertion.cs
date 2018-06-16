@@ -37,7 +37,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Collection.Any())
             {
-                Fail($"Expected '[{string.Join(", ", Collection)}]' to be empty.");
+                Fail(new FailureBuilder("IsEmpty()")
+                    .Append("Expecting", Target)
+                    .AppendEnumerable("To be empty, but contains", Collection)
+                    .Finish());
             }
 
             return this;
@@ -51,7 +54,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Collection.Any())
             {
-                Fail($"Expected '[{string.Join(", ", Collection)}]' to contain at least 1 element.");
+                Fail(new FailureBuilder("IsNotEmpty()")
+                    .Append("Expecting", Target)
+                    .Append("Not to be empty")
+                    .Finish());
             }
 
             return this;
@@ -67,7 +73,11 @@ namespace AssertNet.Core.Assertions.Objects
             int realSize = Collection.Count();
             if (realSize != size)
             {
-                Fail($"Expected '[{string.Join(", ", Collection)}]' to have a length of '{size}', while it was '{realSize}'.");
+                Fail(new FailureBuilder("HasSize()")
+                    .Append("Expecting", Target)
+                    .Append("To have a size of", size)
+                    .Append("But has a size of", Collection.Count())
+                    .Finish());
             }
 
             return this;
@@ -83,7 +93,11 @@ namespace AssertNet.Core.Assertions.Objects
             int realSize = Collection.Count();
             if (realSize < size)
             {
-                Fail($"Expected '[{string.Join(", ", Collection)}]' to have at least a length of '{size}', while it was '{realSize}'.");
+                Fail(new FailureBuilder("HasAtLeastSize()")
+                    .Append("Expecting", Target)
+                    .Append("To have at least a size of", size)
+                    .Append("But has a size of", Collection.Count())
+                    .Finish());
             }
 
             return this;
@@ -99,7 +113,11 @@ namespace AssertNet.Core.Assertions.Objects
             int realSize = Collection.Count();
             if (realSize > size)
             {
-                Fail($"Expected '[{string.Join(", ", Collection)}]' to have at most a length of '{size}', while it was '{realSize}'.");
+                Fail(new FailureBuilder("HasAtMostSize()")
+                    .Append("Expecting", Target)
+                    .Append("To have at most a size of", size)
+                    .Append("But has a size of", Collection.Count())
+                    .Finish());
             }
 
             return this;
@@ -112,12 +130,15 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion Contains(params object[] values)
         {
-            foreach (object value in values)
+            object[] difference = values.Except(Collection).ToArray();
+
+            if (difference.Any())
             {
-                if (!Collection.Contains(value))
-                {
-                    Fail($"Expected '{value}' to be in '[{string.Join(", ", Collection)}]'.");
-                }
+                Fail(new FailureBuilder("Contains()")
+                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("To contain", values)
+                    .AppendEnumerable("But misses", difference)
+                    .Finish());
             }
 
             return this;
@@ -130,12 +151,15 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion DoesNotContain(params object[] values)
         {
-            foreach (object value in values)
+            object[] intersection = values.Intersect(Collection).ToArray();
+
+            if (intersection.Any())
             {
-                if (Collection.Contains(value))
-                {
-                    Fail($"Expected '{value}' not to be in '[{string.Join(", ", Collection)}]'.");
-                }
+                Fail(new FailureBuilder("DoesNotContain()")
+                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("Not to contain", values)
+                    .AppendEnumerable("But contains", intersection)
+                    .Finish());
             }
 
             return this;
@@ -148,10 +172,15 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public CollectionAssertion ContainsOnly(params object[] values)
         {
-            IEnumerable<object> difference = Collection.Distinct().Except(values);
+            object[] difference = Collection.Distinct().Except(values).ToArray();
+
             if (difference.Any())
             {
-                Fail($"Expected difference to be empty, but found '[{string.Join(", ", difference)}]'.");
+                Fail(new FailureBuilder("ContainsOnly()")
+                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("To only contain", values)
+                    .AppendEnumerable("But also contains", difference)
+                    .Finish());
             }
 
             return this;
@@ -166,7 +195,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (!Collection.SequenceEqual(values))
             {
-                Fail($"Expected '[{string.Join(", ", Collection)}]' to be equal to '[{string.Join(", ", values)}]'.");
+                Fail(new FailureBuilder("ContainsExactly()")
+                    .AppendEnumerable("Expecting", Collection)
+                    .AppendEnumerable("To contain exactly", values)
+                    .Finish());
             }
 
             return this;
@@ -182,22 +214,34 @@ namespace AssertNet.Core.Assertions.Objects
             List<object> valuesList = values.ToList();
             List<object> collectionList = Collection.ToList();
 
-            if (valuesList.Count != collectionList.Count)
-            {
-                Fail($"Expected '[{string.Join(", ", collectionList)}]' ({collectionList.Count}) to be of the same length as '[{string.Join(", ", valuesList)}]' ({valuesList.Count}).");
-            }
+            FailureBuilder failureBuilder = new FailureBuilder("ContainsExactlyInAnyOrder()");
 
             for (int i = valuesList.Count - 1; i >= 0; --i)
             {
                 int index = collectionList.IndexOf(valuesList[i]);
-                if (index == -1)
+                if (index >= 0)
                 {
-                    Fail($"Excess element '{valuesList[i]}' found in values '[{string.Join(", ", values)}]'.");
+                    valuesList.RemoveAt(i);
+                    collectionList.RemoveAt(index);
                 }
-                else
+            }
+
+            if (valuesList.Any() || collectionList.Any())
+            {
+                failureBuilder.AppendEnumerable("Expecting", Collection);
+                failureBuilder.AppendEnumerable("To contain exactly in any order", values);
+
+                if (valuesList.Any())
                 {
-                    valuesList.RemoveAt(index);
+                    failureBuilder.AppendEnumerable("But did not find", valuesList);
                 }
+
+                if (collectionList.Any())
+                {
+                    failureBuilder.AppendEnumerable("But found excess", collectionList);
+                }
+
+                Fail(failureBuilder.Finish());
             }
 
             return this;
