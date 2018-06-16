@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using AssertNet.Core.Assertions;
 using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.Assertions.Void;
@@ -74,7 +73,7 @@ namespace AssertNet.Xunit.Tests
         [Fact]
         public static void CollectionAssertionTest()
         {
-            Assertion assertion = AssertThat(new List<int>());
+            Assertion assertion = AssertThat(Array.Empty<int>());
             Assert.NotNull(assertion);
             Assert.IsType<CollectionAssertion<int>>(assertion);
         }
