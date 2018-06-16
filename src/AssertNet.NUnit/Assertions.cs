@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using AssertNet.Core.Assertions.Objects;
 using AssertNet.Core.Assertions.Void;
 
@@ -63,11 +63,12 @@ namespace AssertNet.NUnit
         /// <summary>
         /// Makes an assertion about an enumerable.
         /// </summary>
+        /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
         /// <param name="enumerable">Enumerable under test.</param>
         /// <returns>Assertion about an enumerable.</returns>
-        public static CollectionAssertion AssertThat(IEnumerable enumerable)
+        public static CollectionAssertion<T> AssertThat<T>(IEnumerable<T> enumerable)
         {
-            return new CollectionAssertion(new NUnitFailureHandler(), enumerable);
+            return new CollectionAssertion<T>(new NUnitFailureHandler(), enumerable);
         }
 
         /// <summary>
