@@ -59,5 +59,19 @@ namespace AssertNet.Moq.Tests.Mocks
             Assert.Same(_target, assertion.Target);
             Assert.Same(expression, ((GetPropertyInvocationAssertion<IMockable, int>)assertion).Expression);
         }
+
+        /// <summary>
+        /// Checks that a correct assertion is created when we make an assertion about a property set expression.
+        /// </summary>
+        [Fact]
+        public void HasInvokedPropertySetTest()
+        {
+            Action<IMockable> expression = x => x.Number = 3;
+            InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
+            Assert.NotNull(assertion);
+            Assert.IsType<SetPropertyInvocationAssertion<IMockable>>(assertion);
+            Assert.Same(_target, assertion.Target);
+            Assert.Same(expression, ((SetPropertyInvocationAssertion<IMockable>)assertion).Expression);
+        }
     }
 }

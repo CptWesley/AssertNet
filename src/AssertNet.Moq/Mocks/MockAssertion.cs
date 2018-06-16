@@ -36,11 +36,18 @@ namespace AssertNet.Moq.Mocks
         public InvocationAssertion<T> HasInvoked(Expression<Action<T>> expression) => new MethodInvocationAssertion<T>(Target, expression);
 
         /// <summary>
-        /// Starts an assertion about a property request.
+        /// Starts an assertion about a property get expression.
         /// </summary>
         /// <typeparam name="TProperty">The type of the property.</typeparam>
         /// <param name="expression">The expression of getting the property.</param>
-        /// <returns>An assertion about the get.</returns>
+        /// <returns>An assertion about the property get expression.</returns>
         public InvocationAssertion<T> HasInvoked<TProperty>(Expression<Func<T, TProperty>> expression) => new GetPropertyInvocationAssertion<T, TProperty>(Target, expression);
+
+        /// <summary>
+        /// Starts an assertion about a property set expression.
+        /// </summary>
+        /// <param name="expression">The set expression.</param>
+        /// <returns>An assertion about the property set expression.</returns>
+        public InvocationAssertion<T> HasInvoked(Action<T> expression) => new SetPropertyInvocationAssertion<T>(Target, expression);
     }
 }
