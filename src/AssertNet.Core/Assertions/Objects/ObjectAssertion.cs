@@ -75,7 +75,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public TAssert IsSameAs(object other)
         {
-            if (!ReferenceEquals(Target, other))
+            if ((Target.GetType().IsValueType && !Target.Equals(other)) || (!Target.GetType().IsValueType && !ReferenceEquals(Target, other)))
             {
                 Fail(new FailureBuilder("IsSameAs()")
                     .Append("Expecting", Target)
@@ -93,7 +93,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <returns>The current assertion.</returns>
         public TAssert IsNotSameAs(object other)
         {
-            if (ReferenceEquals(Target, other))
+            if ((Target.GetType().IsValueType && Target.Equals(other)) || (!Target.GetType().IsValueType && ReferenceEquals(Target, other)))
             {
                 Fail(new FailureBuilder("IsNotSameAs()")
                     .Append("Expecting", Target)
