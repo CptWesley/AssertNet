@@ -7,22 +7,22 @@ using Xunit;
 namespace AssertNet.Moq.Tests.Mocks
 {
     /// <summary>
-    /// Test class for the <see cref="InvocationAssertion{T}"/> class.
+    /// Test class for the <see cref="MethodInvocationAssertion{T}"/> class.
     /// </summary>
-    public class InvocationAssertionTests
+    public class MethodInvocationAssertionTests
     {
-        private readonly InvocationAssertion<IMockable> _assertion;
+        private readonly MethodInvocationAssertion<IMockable> _assertion;
         private readonly Mock<IMockable> _target;
         private readonly Expression<Action<IMockable>> _expression;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvocationAssertionTests"/> class.
+        /// Initializes a new instance of the <see cref="MethodInvocationAssertionTests"/> class.
         /// </summary>
-        public InvocationAssertionTests()
+        public MethodInvocationAssertionTests()
         {
             _target = new Mock<IMockable>();
             _expression = x => x.GetInt();
-            _assertion = new InvocationAssertion<IMockable>(_target, _expression);
+            _assertion = new MethodInvocationAssertion<IMockable>(_target, _expression);
         }
 
         /// <summary>
