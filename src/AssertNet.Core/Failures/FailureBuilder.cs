@@ -34,6 +34,17 @@ namespace AssertNet.Core.Failures
         }
 
         /// <summary>
+        /// Appends the specified line.
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
+        public FailureBuilder Append(string line)
+        {
+            _builder.Append($"{Environment.NewLine}{line}");
+            return this;
+        }
+
+        /// <summary>
         /// Finishes the FailureBuilder instance.
         /// </summary>
         /// <returns>The assertion error message created.</returns>

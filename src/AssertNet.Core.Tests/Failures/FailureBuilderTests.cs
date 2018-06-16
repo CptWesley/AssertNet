@@ -77,5 +77,15 @@ namespace AssertNet.Core.Tests.Failures
                 $"{Name} Assertion failure{NewLine}{title}:{NewLine}Int32[] [1, 2, 3]",
                 _builder.Append(title, new int[] { 1, 2, 3 }).Finish());
         }
+
+        /// <summary>
+        /// Checks that we can append a regular line correctly.
+        /// </summary>
+        [Fact]
+        public void AppendLineTest()
+        {
+            string line = "fcerd";
+            Assert.Equal($"{Name} Assertion failure{NewLine}{line}", _builder.Append(line).Finish());
+        }
     }
 }
