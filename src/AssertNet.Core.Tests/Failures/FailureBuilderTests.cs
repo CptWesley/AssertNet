@@ -37,7 +37,7 @@ namespace AssertNet.Core.Tests.Failures
         public void AppendNullTest()
         {
             string title = "vg3y56";
-            Assert.Equal($"{Name} Assertion failure{NewLine}{title}:{NewLine}null", _builder.Append(title, null).Finish());
+            Assert.Equal($"{Name} Assertion failure{NewLine}{title}:{NewLine}null", _builder.Append<object>(title, null).Finish());
         }
 
         /// <summary>
