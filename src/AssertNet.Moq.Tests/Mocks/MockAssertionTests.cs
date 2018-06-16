@@ -52,7 +52,7 @@ namespace AssertNet.Moq.Tests.Mocks
         public void HasInvokedPropertyGetTest()
         {
             Expression<Func<IMockable, int>> expression = x => x.Number;
-            GetAssertion<IMockable, int> assertion = _assertion.HasInvoked(expression);
+            GetPropertyInvocationAssertion<IMockable, int> assertion = _assertion.HasInvoked(expression);
             Assert.NotNull(assertion);
             Assert.Same(_target, assertion.Target);
             Assert.Same(expression, assertion.Expression);
