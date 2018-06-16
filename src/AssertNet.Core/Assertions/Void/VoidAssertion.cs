@@ -89,10 +89,6 @@ namespace AssertNet.Core.Assertions.Void
             try
             {
                 Action.Invoke();
-                Fail(new FailureBuilder("ThrowsException()")
-                    .Append("Expecting", Action)
-                    .Append("To throw an exception of type", typeof(T))
-                    .Finish());
             }
             catch (T e)
             {
@@ -105,7 +101,13 @@ namespace AssertNet.Core.Assertions.Void
                     .Append("To throw an exception of type", typeof(T))
                     .Append("But threw", e)
                     .Finish());
+                return null;
             }
+
+            Fail(new FailureBuilder("ThrowsException()")
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception of type", typeof(T))
+                    .Finish());
 
             return null;
         }
@@ -119,15 +121,16 @@ namespace AssertNet.Core.Assertions.Void
             try
             {
                 Action.Invoke();
-                Fail(new FailureBuilder("ThrowsException()")
-                    .Append("Expecting", Action)
-                    .Append("To throw an exception, but nothing was thrown")
-                    .Finish());
             }
             catch (Exception e)
             {
                 return new ExceptionAssertion(FailureHandler, e);
             }
+
+            Fail(new FailureBuilder("ThrowsException()")
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception, but nothing was thrown")
+                    .Finish());
 
             return null;
         }
