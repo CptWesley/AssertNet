@@ -36,7 +36,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value <= other)
             {
-                Fail($"Expected '{Value}' to be greater than '{other}'.");
+                Fail(new FailureBuilder("IsGreaterThan()")
+                    .Append("Expecting", Target)
+                    .Append("To be greater than", other)
+                    .Finish());
             }
 
             return this;
@@ -51,7 +54,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value < other)
             {
-                Fail($"Expected '{Value}' to be greater than or equal to '{other}'.");
+                Fail(new FailureBuilder("IsGreaterThanOrEqual()")
+                    .Append("Expecting", Target)
+                    .Append("To be greater than or equal to", other)
+                    .Finish());
             }
 
             return this;
@@ -66,7 +72,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value >= other)
             {
-                Fail($"Expected '{Value}' to be lesser than '{other}'.");
+                Fail(new FailureBuilder("IsLesserThan()")
+                    .Append("Expecting", Target)
+                    .Append("To be lesser than", other)
+                    .Finish());
             }
 
             return this;
@@ -81,7 +90,10 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Value > other)
             {
-                Fail($"Expected '{Value}' to be lesser than or equal to '{other}'.");
+                Fail(new FailureBuilder("IsLesserThanOrEqual()")
+                    .Append("Expecting", Target)
+                    .Append("To be lesser than or equal to", other)
+                    .Finish());
             }
 
             return this;
@@ -91,31 +103,86 @@ namespace AssertNet.Core.Assertions.Objects
         /// Asserts if a double is equal to zero.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsZero() => IsEqualTo(0);
+        public DoubleAssertion IsZero()
+        {
+            if (Value != 0)
+            {
+                Fail(new FailureBuilder("IsZero()")
+                    .Append("Expecting", Target)
+                    .Append("To be equal to", 0)
+                    .Finish());
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Asserts if a double is greater than zero.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsPositive() => IsGreaterThan(0);
+        public DoubleAssertion IsPositive()
+        {
+            if (Value <= 0)
+            {
+                Fail(new FailureBuilder("IsPositive()")
+                    .Append("Expecting", Target)
+                    .Append("To be greater than", 0)
+                    .Finish());
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Asserts if a double is greater than or equal to zero.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsPositiveOrZero() => IsGreaterThanOrEqual(0);
+        public DoubleAssertion IsPositiveOrZero()
+        {
+            if (Value < 0)
+            {
+                Fail(new FailureBuilder("IsPositiveOrZero()")
+                    .Append("Expecting", Target)
+                    .Append("To be greater than or equal to", 0)
+                    .Finish());
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Asserts if a double is greater than zero.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsNegative() => IsLesserThan(0);
+        public DoubleAssertion IsNegative()
+        {
+            if (Value >= 0)
+            {
+                Fail(new FailureBuilder("IsNegative()")
+                    .Append("Expecting", Target)
+                    .Append("To be lesser than", 0)
+                    .Finish());
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Asserts if a double is greater than or equal to zero.
         /// </summary>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsNegativeOrZero() => IsLesserThanOrEqual(0);
+        public DoubleAssertion IsNegativeOrZero()
+        {
+            if (Value > 0)
+            {
+                Fail(new FailureBuilder("IsNegativeOrZero()")
+                    .Append("Expecting", Target)
+                    .Append("To be lesser than or equal to", 0)
+                    .Finish());
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Asserts if a double is within a certain range.
@@ -133,7 +200,11 @@ namespace AssertNet.Core.Assertions.Objects
 
             if (Value < minimum || Value > maximum)
             {
-                Fail($"Expected '{Value}' to be in the range between '{minimum}' and '{maximum}'.");
+                Fail(new FailureBuilder("IsInRange()")
+                    .Append("Expecting", Target)
+                    .Append("To be greater than or equal to", minimum)
+                    .Append("And lesser than or equal to", maximum)
+                    .Finish());
             }
 
             return this;
@@ -155,7 +226,11 @@ namespace AssertNet.Core.Assertions.Objects
 
             if (Value >= minimum && Value <= maximum)
             {
-                Fail($"Expected '{Value}' to not be in the range between '{minimum}' and '{maximum}'.");
+                Fail(new FailureBuilder("IsNotInRange()")
+                    .Append("Expecting", Target)
+                    .Append("To be lesser than", minimum)
+                    .Append("Or greater than", maximum)
+                    .Finish());
             }
 
             return this;
@@ -174,7 +249,19 @@ namespace AssertNet.Core.Assertions.Objects
         /// <param name="other">The other double to compare with.</param>
         /// <param name="margin">The margin to still identify another double as equal.</param>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsEqualTo(double other, double margin) => IsInRange(other - margin, other + margin);
+        public DoubleAssertion IsEqualTo(double other, double margin)
+        {
+            if (Value < other - margin || Value > other + margin)
+            {
+                Fail(new FailureBuilder("IsEqualTo()")
+                    .Append("Expecting", Target)
+                    .Append("To be greater than or equal to", other - margin)
+                    .Append("And lesser than or equal to", other + margin)
+                    .Finish());
+            }
+
+            return this;
+        }
 
         /// <summary>
         /// Checks whether the double under test is not equal to another double.
@@ -189,6 +276,18 @@ namespace AssertNet.Core.Assertions.Objects
         /// <param name="other">The other double to compare with.</param>
         /// <param name="margin">The margin to still identify another double as equal.</param>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsNotEqualTo(double other, double margin) => IsNotInRange(other - margin, other + margin);
+        public DoubleAssertion IsNotEqualTo(double other, double margin)
+        {
+            if (Value >= other - margin && Value <= other + margin)
+            {
+                Fail(new FailureBuilder("IsNotEqualTo()")
+                    .Append("Expecting", Target)
+                    .Append("To be lesser than", other - margin)
+                    .Append("Or greater than", other + margin)
+                    .Finish());
+            }
+
+            return this;
+        }
     }
 }
