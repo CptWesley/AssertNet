@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using AssertNet.Core.Failures;
 
@@ -143,13 +144,20 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <typeparam name="T">Type to check for.</typeparam>
         /// <returns>The current assertion.</returns>
-        public TAssert IsInstanceOf<T>()
+        public TAssert IsInstanceOf<T>() => IsInstanceOf(typeof(T));
+
+        /// <summary>
+        /// Checks if the object under test is an instance of a certain type.
+        /// </summary>
+        /// <param name="t">Type to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsInstanceOf(Type t)
         {
-            if (!(Target is T))
+            if (!Target.GetType().IsSubclassOf(t) && Target.GetType() != t)
             {
                 Fail(new FailureBuilder("IsInstanceOf()")
                     .Append("Expecting", Target)
-                    .Append("To be an instance of", typeof(T))
+                    .Append("To be an instance of", t)
                     .Append("But is an instance of", Target.GetType())
                     .Finish());
             }
@@ -162,13 +170,20 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <typeparam name="T">Type to check for.</typeparam>
         /// <returns>The current assertion.</returns>
-        public TAssert IsNotInstanceOf<T>()
+        public TAssert IsNotInstanceOf<T>() => IsNotInstanceOf(typeof(T));
+
+        /// <summary>
+        /// Checks if the object under test is not an instance of a certain type.
+        /// </summary>
+        /// <param name="t">Type to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsNotInstanceOf(Type t)
         {
-            if (Target is T)
+            if (Target.GetType().IsSubclassOf(t) || Target.GetType() == t)
             {
                 Fail(new FailureBuilder("IsNotInstanceOf()")
                     .Append("Expecting", Target)
-                    .Append("Not to be an instance of", typeof(T))
+                    .Append("Not to be an instance of", t)
                     .Finish());
             }
 
@@ -180,13 +195,20 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <typeparam name="T">Type to check for.</typeparam>
         /// <returns>The current assertion.</returns>
-        public TAssert IsExactlyInstanceOf<T>()
+        public TAssert IsExactlyInstanceOf<T>() => IsExactlyInstanceOf(typeof(T));
+
+        /// <summary>
+        /// Checks if the object under test is exactly an instance of a certain type.
+        /// </summary>
+        /// <param name="t">Type to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsExactlyInstanceOf(Type t)
         {
-            if (Target.GetType() != typeof(T))
+            if (Target.GetType() != t)
             {
                 Fail(new FailureBuilder("IsExactlyInstanceOf()")
                     .Append("Expecting", Target)
-                    .Append("To be an exact instance of", typeof(T))
+                    .Append("To be an exact instance of", t)
                     .Append("But is an instance of", Target.GetType())
                     .Finish());
             }
@@ -199,13 +221,20 @@ namespace AssertNet.Core.Assertions.Objects
         /// </summary>
         /// <typeparam name="T">Type to check for.</typeparam>
         /// <returns>The current assertion.</returns>
-        public TAssert IsNotExactlyInstanceOf<T>()
+        public TAssert IsNotExactlyInstanceOf<T>() => IsNotExactlyInstanceOf(typeof(T));
+
+        /// <summary>
+        /// Checks if the object under test is not exactly an instance of a certain type.
+        /// </summary>
+        /// <param name="t">Type to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsNotExactlyInstanceOf(Type t)
         {
-            if (Target.GetType() == typeof(T))
+            if (Target.GetType() == t)
             {
                 Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
                     .Append("Expecting", Target)
-                    .Append("Not to be an exact instance of", typeof(T))
+                    .Append("Not to be an exact instance of", t)
                     .Finish());
             }
 
