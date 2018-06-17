@@ -67,7 +67,7 @@ namespace AssertNet.Moq.Tests.Mocks
         public void HasInvokedPropertySetTest()
         {
             Action<IMockable> expression = x => x.Number = 3;
-            InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
+            InvocationAssertion<IMockable> assertion = _assertion.HasAssigned(expression);
             Assert.NotNull(assertion);
             Assert.IsType<SetPropertyInvocationAssertion<IMockable>>(assertion);
             Assert.Same(_target, assertion.Target);
