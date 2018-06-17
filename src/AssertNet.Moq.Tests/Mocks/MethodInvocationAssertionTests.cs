@@ -7,24 +7,24 @@ using Xunit;
 namespace AssertNet.Moq.Tests.Mocks
 {
     /// <summary>
-    /// Test class for the <see cref="GetPropertyInvocationAssertion{T, TProperty}"/> class.
+    /// Test class for the <see cref="MethodInvocationAssertion{T, TProperty}"/> class.
     /// </summary>
-    public class GetPropertyInvocationAssertionTests
+    public class MethodInvocationAssertionTests
     {
-        private readonly GetPropertyInvocationAssertion<IMockable, int> _assertion;
+        private readonly MethodInvocationAssertion<IMockable, int> _assertion;
         private readonly Mock<IMockable> _target;
         private readonly Expression<Func<IMockable, int>> _expression;
 
         private int _val;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GetPropertyInvocationAssertionTests"/> class.
+        /// Initializes a new instance of the <see cref="MethodInvocationAssertionTests"/> class.
         /// </summary>
-        public GetPropertyInvocationAssertionTests()
+        public MethodInvocationAssertionTests()
         {
             _target = new Mock<IMockable>();
             _expression = x => x.Number;
-            _assertion = new GetPropertyInvocationAssertion<IMockable, int>(_target, _expression);
+            _assertion = new MethodInvocationAssertion<IMockable, int>(_target, _expression);
         }
 
         /// <summary>

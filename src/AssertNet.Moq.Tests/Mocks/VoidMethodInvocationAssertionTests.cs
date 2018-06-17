@@ -9,16 +9,16 @@ namespace AssertNet.Moq.Tests.Mocks
     /// <summary>
     /// Test class for the <see cref="VoidMethodInvocationAssertion{T}"/> class.
     /// </summary>
-    public class MethodInvocationAssertionTests
+    public class VoidMethodInvocationAssertionTests
     {
         private readonly VoidMethodInvocationAssertion<IMockable> _assertion;
         private readonly Mock<IMockable> _target;
         private readonly Expression<Action<IMockable>> _expression;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MethodInvocationAssertionTests"/> class.
+        /// Initializes a new instance of the <see cref="VoidMethodInvocationAssertionTests"/> class.
         /// </summary>
-        public MethodInvocationAssertionTests()
+        public VoidMethodInvocationAssertionTests()
         {
             _target = new Mock<IMockable>();
             _expression = x => x.GetInt();

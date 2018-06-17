@@ -5,27 +5,28 @@ using Moq;
 namespace AssertNet.Moq.Mocks
 {
     /// <summary>
-    /// Class representing assertions made about method invocations.
+    /// Class representing assertions made about non-void methods.
     /// </summary>
     /// <typeparam name="T">Type of the object being mocked.</typeparam>
-    public class VoidMethodInvocationAssertion<T> : InvocationAssertion<T>
+    /// <typeparam name="TProperty">Return type of the method.</typeparam>
+    public class MethodInvocationAssertion<T, TProperty> : InvocationAssertion<T>
         where T : class
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="VoidMethodInvocationAssertion{T}"/> class.
+        /// Initializes a new instance of the <see cref="MethodInvocationAssertion{T, TProperty}"/> class.
         /// </summary>
         /// <param name="target">The mock under test.</param>
         /// <param name="expression">Expression of the invocation.</param>
-        public VoidMethodInvocationAssertion(Mock<T> target, Expression<Action<T>> expression)
+        public MethodInvocationAssertion(Mock<T> target, Expression<Func<T, TProperty>> expression)
             : base(target) => Expression = expression;
 
         /// <summary>
-        /// Gets expression of the invocation.
+        /// Gets expression of the method invocation.
         /// </summary>
         /// <value>
-        /// The expression of the invocation.
+        /// The expression of the method invocation.
         /// </value>
-        public Expression<Action<T>> Expression { get; }
+        public Expression<Func<T, TProperty>> Expression { get; }
 
         /// <inheritdoc/>
         public override void Never() => Target.Verify(Expression, Times.Never);
