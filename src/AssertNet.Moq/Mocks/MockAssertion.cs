@@ -48,6 +48,6 @@ namespace AssertNet.Moq.Mocks
         /// </summary>
         /// <param name="expression">The set expression.</param>
         /// <returns>An assertion about the property set expression.</returns>
-        public InvocationAssertion<T> HasInvoked(Action<T> expression) => new SetPropertyInvocationAssertion<T>(Target, expression);
+        public InvocationAssertion<T> HasAssigned(Action<T> expression) => new SetPropertyInvocationAssertion<T>(Target, expression);
     }
 }
