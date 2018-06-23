@@ -217,6 +217,35 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable contains other values than the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainOnly(params TElement[] values) => DoesNotContainOnly((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains other values than the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainOnly(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerable<TElement> difference = Target.Except(values);
+
+            if (!difference.Any())
+            {
+                Fail(new FailureBuilder("DoesNotContainOnly()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("To contain other elements besides", values)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Checks if the enumerable contains exactly the given values.
         /// </summary>
         /// <param name="values">The values to check for.</param>
@@ -237,6 +266,33 @@ namespace AssertNet.Core.Assertions.Objects
                     .Append(message)
                     .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("To contain exactly", values)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable does not contain exactly the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactly(params TElement[] values) => DoesNotContainExactly((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain exactly the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactly(IEnumerable<TElement> values, string message = null)
+        {
+            if (Target.SequenceEqual(values))
+            {
+                Fail(new FailureBuilder("DoesNotContainExactly()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("Not to contain exactly", values)
                     .Finish());
             }
 
@@ -290,6 +346,209 @@ namespace AssertNet.Core.Assertions.Objects
                 }
 
                 Fail(failureBuilder.Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable does not contain exactly the given elements in any given order.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactlyInAnyOrder(params TElement[] values) => DoesNotContainExactlyInAnyOrder((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain exactly the given elements in any given order.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactlyInAnyOrder(IEnumerable<TElement> values, string message = null)
+        {
+            List<TElement> valuesList = values.ToList();
+            List<TElement> targetList = Target.ToList();
+
+            for (int i = valuesList.Count - 1; i >= 0; --i)
+            {
+                int index = targetList.IndexOf(valuesList[i]);
+                if (index >= 0)
+                {
+                    valuesList.RemoveAt(i);
+                    targetList.RemoveAt(index);
+                }
+            }
+
+            if (!valuesList.Any() && !targetList.Any())
+            {
+                Fail(new FailureBuilder("DoesNotContainExactlyInAnyOrder()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("Not to contain exactly in any order", values)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable contains a given sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsSequence(params TElement[] values) => ContainsSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains a given sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+            foreach (TElement el in Target)
+            {
+                if (!it.MoveNext())
+                {
+                    return this;
+                }
+
+                if (!el.Equals(it.Current))
+                {
+                    it.Reset();
+                }
+            }
+
+            Fail(new FailureBuilder("ContainsSequence()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("To contain the sequence", values)
+                    .Finish());
+
+            return null;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable does not contain a given sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainSequence(params TElement[] values) => DoesNotContainSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain a given sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+            foreach (TElement el in Target)
+            {
+                if (!it.MoveNext())
+                {
+                    Fail(new FailureBuilder("DoesNotContainSequence()")
+                        .Append(message)
+                        .AppendEnumerable("Expecting", Target)
+                        .AppendEnumerable("Not to contain the sequence", values)
+                        .Finish());
+                    return null;
+                }
+
+                if (!el.Equals(it.Current))
+                {
+                    it.Reset();
+                }
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable contains a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsInterleavedSequence(params TElement[] values) => ContainsInterleavedSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsInterleavedSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+
+            if (!it.MoveNext())
+            {
+                return this;
+            }
+
+            foreach (TElement el in Target)
+            {
+                if (el.Equals(it.Current))
+                {
+                    if (!it.MoveNext())
+                    {
+                        return this;
+                    }
+                }
+            }
+
+            Fail(new FailureBuilder("ContainsInterleavedSequence()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("To contain the interleaved sequence", values)
+                    .Finish());
+
+            return null;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable does not contain a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainInterleavedSequence(params TElement[] values) => DoesNotContainInterleavedSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainInterleavedSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+            bool failed = !it.MoveNext();
+
+            if (!failed)
+            {
+                foreach (TElement el in Target)
+                {
+                    if (el.Equals(it.Current))
+                    {
+                        if (!it.MoveNext())
+                        {
+                            failed = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (failed)
+            {
+                Fail(new FailureBuilder("DoesNotContainInterleavedSequence()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("Not to contain the interleaved sequence", values)
+                    .Finish());
+                return null;
             }
 
             return this;
