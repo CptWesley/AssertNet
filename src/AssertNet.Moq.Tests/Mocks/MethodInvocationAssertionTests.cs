@@ -51,7 +51,7 @@ namespace AssertNet.Moq.Tests.Mocks
         [Fact]
         public void NeverPassTest()
         {
-            _assertion.Never();
+            Assert.Same(_target, _assertion.Never().Target);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace AssertNet.Moq.Tests.Mocks
         public void OncePassTest()
         {
             _val = _target.Object.Number;
-            _assertion.Once();
+            Assert.Same(_target, _assertion.Once().Target);
         }
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace AssertNet.Moq.Tests.Mocks
         {
             Assert.Throws<MockException>(() => _assertion.AtLeastOnce());
             _val = _target.Object.Number;
-            _assertion.AtLeastOnce();
+            Assert.Same(_target, _assertion.AtLeastOnce().Target);
             _val = _target.Object.Number;
-            _assertion.AtLeastOnce();
+            Assert.Same(_target, _assertion.AtLeastOnce().Target);
         }
 
         /// <summary>
@@ -105,9 +105,9 @@ namespace AssertNet.Moq.Tests.Mocks
         [Fact]
         public void AtMostOnce()
         {
-            _assertion.AtMostOnce();
+            Assert.Same(_target, _assertion.AtMostOnce().Target);
             _val = _target.Object.Number;
-            _assertion.AtMostOnce();
+            Assert.Same(_target, _assertion.AtMostOnce().Target);
             _val = _target.Object.Number;
             Assert.Throws<MockException>(() => _assertion.AtMostOnce());
         }
@@ -120,9 +120,9 @@ namespace AssertNet.Moq.Tests.Mocks
         {
             Assert.Throws<MockException>(() => _assertion.AtLeast(1));
             _val = _target.Object.Number;
-            _assertion.AtLeast(1);
+            Assert.Same(_target, _assertion.AtLeast(1).Target);
             _val = _target.Object.Number;
-            _assertion.AtLeast(1);
+            Assert.Same(_target, _assertion.AtLeast(1).Target);
         }
 
         /// <summary>
@@ -131,11 +131,11 @@ namespace AssertNet.Moq.Tests.Mocks
         [Fact]
         public void AtMostTest()
         {
-            _assertion.AtMost(2);
+            Assert.Same(_target, _assertion.AtMost(2).Target);
             _val = _target.Object.Number;
-            _assertion.AtMost(2);
+            Assert.Same(_target, _assertion.AtMost(2).Target);
             _val = _target.Object.Number;
-            _assertion.AtMost(2);
+            Assert.Same(_target, _assertion.AtMost(2).Target);
             _val = _target.Object.Number;
             Assert.Throws<MockException>(() => _assertion.AtMost(2));
         }
@@ -150,7 +150,7 @@ namespace AssertNet.Moq.Tests.Mocks
             _val = _target.Object.Number;
             Assert.Throws<MockException>(() => _assertion.Exactly(2));
             _val = _target.Object.Number;
-            _assertion.Exactly(2);
+            Assert.Same(_target, _assertion.Exactly(2).Target);
             _val = _target.Object.Number;
             Assert.Throws<MockException>(() => _assertion.Exactly(2));
         }
@@ -163,9 +163,9 @@ namespace AssertNet.Moq.Tests.Mocks
         {
             Assert.Throws<MockException>(() => _assertion.Between(1, 2));
             _val = _target.Object.Number;
-            _assertion.Between(1, 2);
+            Assert.Same(_target, _assertion.Between(1, 2).Target);
             _val = _target.Object.Number;
-            _assertion.Between(1, 2);
+            Assert.Same(_target, _assertion.Between(1, 2).Target);
             _val = _target.Object.Number;
             Assert.Throws<MockException>(() => _assertion.Between(1, 2));
         }
