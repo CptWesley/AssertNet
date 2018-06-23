@@ -80,7 +80,39 @@ namespace AssertNet.Core.Tests.Assertions.Void
         {
             new VoidAssertion(
                 _handler.Object,
-                () => throw new ArgumentException(string.Empty)).DoesNotThrowException<ArgumentException>();
+                () => throw new ArgumentException(string.Empty)).DoesNotThrowException<Exception>();
+            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that whenever a method does not throw an exception the condition passes.
+        /// </summary>
+        [Fact]
+        public void DoesNotThrowExactlyExceptionAnyPassTest()
+        {
+            new VoidAssertion(_handler.Object, DoNothing).DoesNotThrowExactlyException<ArgumentException>();
+            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that whenever a method does not throw the exact exception the condition passes.
+        /// </summary>
+        [Fact]
+        public void DoesNotThrowExactlyExceptionPassTest()
+        {
+            new VoidAssertion(_handler.Object, () => throw new ArgumentException(string.Empty)).DoesNotThrowExactlyException<Exception>();
+            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that whenever a method throws the exact exception the condition fails.
+        /// </summary>
+        [Fact]
+        public void DoesNotThrowExactlyExceptionFailTest()
+        {
+            new VoidAssertion(
+                _handler.Object,
+                () => throw new ArgumentException(string.Empty)).DoesNotThrowExactlyException<ArgumentException>();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
@@ -139,6 +171,43 @@ namespace AssertNet.Core.Tests.Assertions.Void
         public void ThrowsSpecificExceptionFailTest()
         {
             ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsException<ArgumentException>();
+            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(result);
+        }
+
+        /// <summary>
+        /// Checks that the condition passes whenever the exact exception is thrown.
+        /// </summary>
+        [Fact]
+        public void ThrowsExactlyExceptionPassTest()
+        {
+            ExceptionAssertion result = new VoidAssertion(
+                _handler.Object,
+                () => throw new ArgumentException(string.Empty)).ThrowsExactlyException<ArgumentException>();
+            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+            Assert.NotNull(result);
+        }
+
+        /// <summary>
+        /// Checks that the condition fails whenever the invalid exception is thrown.
+        /// </summary>
+        [Fact]
+        public void ThrowsExactlyExceptionWrongFailTest()
+        {
+            ExceptionAssertion result = new VoidAssertion(
+                _handler.Object,
+                () => throw new ArgumentException(string.Empty)).ThrowsExactlyException<Exception>();
+            _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+            Assert.Null(result);
+        }
+
+        /// <summary>
+        /// Checks that the condition fails whenever no exception is thrown.
+        /// </summary>
+        [Fact]
+        public void ThrowsExactlyExceptionFailTest()
+        {
+            ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsExactlyException<ArgumentException>();
             _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
             Assert.Null(result);
         }
