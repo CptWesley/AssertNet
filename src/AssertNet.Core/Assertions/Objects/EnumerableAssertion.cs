@@ -352,6 +352,46 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable does not contain exactly the given elements in any given order.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactlyInAnyOrder(params TElement[] values) => DoesNotContainExactlyInAnyOrder((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain exactly the given elements in any given order.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactlyInAnyOrder(IEnumerable<TElement> values, string message = null)
+        {
+            List<TElement> valuesList = values.ToList();
+            List<TElement> targetList = Target.ToList();
+
+            for (int i = valuesList.Count - 1; i >= 0; --i)
+            {
+                int index = targetList.IndexOf(valuesList[i]);
+                if (index >= 0)
+                {
+                    valuesList.RemoveAt(i);
+                    targetList.RemoveAt(index);
+                }
+            }
+
+            if (!valuesList.Any() && !targetList.Any())
+            {
+                Fail(new FailureBuilder("DoesNotContainExactlyInAnyOrder()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("Not to contain exactly in any order", values)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>

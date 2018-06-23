@@ -289,6 +289,46 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion does fails if collection only contains the given values in correct order.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainExactlyInAnyOrderFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 7, 6);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if collection contains too many values.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainExactlyInAnyOrderTooManyPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 6, 7, 7);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if collection contains too few values.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainExactlyInAnyOrderTooFewPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 6);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if collection contains wrong elements.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainExactlyInAnyOrderWrongPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 9, 7, 6);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
         /// Checks that we can properly filter assertions.
         /// </summary>
         [Fact]
