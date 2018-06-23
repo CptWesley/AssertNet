@@ -27,58 +27,58 @@ namespace AssertNet.Moq.Mocks
         public Action<T> Expression { get; }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> Never()
+        public override MockAssertion<T> Never(string message = null)
         {
-            Target.VerifySet(Expression, Times.Never);
+            Target.VerifySet(Expression, Times.Never(), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> Once()
+        public override MockAssertion<T> Once(string message = null)
         {
-            Target.VerifySet(Expression, Times.Once);
+            Target.VerifySet(Expression, Times.Once(), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> AtLeastOnce()
+        public override MockAssertion<T> AtLeastOnce(string message = null)
         {
-            Target.VerifySet(Expression, Times.AtLeastOnce);
+            Target.VerifySet(Expression, Times.AtLeastOnce(), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> AtMostOnce()
+        public override MockAssertion<T> AtMostOnce(string message = null)
         {
-            Target.VerifySet(Expression, Times.AtMostOnce);
+            Target.VerifySet(Expression, Times.AtMostOnce(), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> AtLeast(int count)
+        public override MockAssertion<T> AtLeast(int count, string message = null)
         {
-            Target.VerifySet(Expression, Times.AtLeast(count));
+            Target.VerifySet(Expression, Times.AtLeast(count), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> AtMost(int count)
+        public override MockAssertion<T> AtMost(int count, string message = null)
         {
-            Target.VerifySet(Expression, Times.AtMost(count));
+            Target.VerifySet(Expression, Times.AtMost(count), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> Exactly(int count)
+        public override MockAssertion<T> Exactly(int count, string message = null)
         {
-            Target.VerifySet(Expression, Times.Exactly(count));
+            Target.VerifySet(Expression, Times.Exactly(count), message);
             return new MockAssertion<T>(Target);
         }
 
         /// <inheritdoc/>
-        public override MockAssertion<T> Between(int minimum, int maximum)
+        public override MockAssertion<T> Between(int minimum, int maximum, string message = null)
         {
-            Target.VerifySet(Expression, Times.Between(minimum, maximum, Range.Inclusive));
+            Target.VerifySet(Expression, Times.Between(minimum, maximum, Range.Inclusive), message);
             return new MockAssertion<T>(Target);
         }
     }
