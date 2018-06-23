@@ -392,6 +392,44 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable contains a given sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsSequence(params TElement[] values) => ContainsSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains a given sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+            foreach (TElement el in Target)
+            {
+                if (!it.MoveNext())
+                {
+                    return this;
+                }
+
+                if (!el.Equals(it.Current))
+                {
+                    it.Reset();
+                }
+            }
+
+            Fail(new FailureBuilder("ContainsSequence()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("To contain the sequence", values)
+                    .Finish());
+
+            return null;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>

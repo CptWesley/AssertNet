@@ -329,6 +329,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if a collection contains a certain sequence.
+        /// </summary>
+        [Fact]
+        public void ContainsSequencePassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsSequence(1, 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if a collection does not contain a certain sequence.
+        /// </summary>
+        [Fact]
+        public void ContainsSequenceFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsSequence(1, 1, 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
         /// Checks that we can properly filter assertions.
         /// </summary>
         [Fact]
