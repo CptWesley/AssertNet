@@ -369,6 +369,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if a collection contains a certain interleaved sequence.
+        /// </summary>
+        [Fact]
+        public void ContainsInterleavedSequencePassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsInterleavedSequence(1, 0, 0);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if a collection does not contain a certain interleaved sequence.
+        /// </summary>
+        [Fact]
+        public void ContainsInterleavedSequenceFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsInterleavedSequence(1, 1, 1, 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
         /// Checks that we can properly filter assertions.
         /// </summary>
         [Fact]

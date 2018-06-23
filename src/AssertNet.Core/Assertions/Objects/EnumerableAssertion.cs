@@ -467,6 +467,48 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable contains a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsInterleavedSequence(params TElement[] values) => ContainsInterleavedSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsInterleavedSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+
+            if (!it.MoveNext())
+            {
+                return this;
+            }
+
+            foreach (TElement el in Target)
+            {
+                if (el.Equals(it.Current))
+                {
+                    if (!it.MoveNext())
+                    {
+                        return this;
+                    }
+                }
+            }
+
+            Fail(new FailureBuilder("ContainsInterleavedSequence()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("To contain the interleaved sequence", values)
+                    .Finish());
+
+            return null;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>
