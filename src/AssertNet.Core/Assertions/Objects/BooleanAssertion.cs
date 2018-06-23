@@ -21,12 +21,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// <summary>
         /// Asserts that the boolean value is true.
         /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public BooleanAssertion IsTrue()
+        public BooleanAssertion IsTrue(string message = null)
         {
             if (Target == false)
             {
                 Fail(new FailureBuilder("IsTrue()")
+                    .Append(message)
                     .Append("Expecting", Target)
                     .Append("To be equal to", true)
                     .Finish());
@@ -38,12 +40,14 @@ namespace AssertNet.Core.Assertions.Objects
         /// <summary>
         /// Asserts that the boolean value is false.
         /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public BooleanAssertion IsFalse()
+        public BooleanAssertion IsFalse(string message = null)
         {
             if (Target == true)
             {
                 Fail(new FailureBuilder("IsFalse()")
+                    .Append(message)
                     .Append("Expecting", Target)
                     .Append("To be equal to", false)
                     .Finish());

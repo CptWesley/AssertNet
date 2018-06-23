@@ -54,7 +54,11 @@ namespace AssertNet.Core.Failures
         /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
         public FailureBuilder Append(string line)
         {
-            _builder.Append($"{Environment.NewLine}{line}");
+            if (line != null)
+            {
+                _builder.Append($"{Environment.NewLine}{line}");
+            }
+
             return this;
         }
 
