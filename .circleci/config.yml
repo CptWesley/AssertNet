@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Codecov
           command: |
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Core.Tests/bin/coverage.xml" -t $CODECOV_KEY
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Xunit.Tests/bin/coverage.xml" -t $CODECOV_KEY
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.NUnit.Tests/bin/coverage.xml" -t $CODECOV_KEY
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.MSTest.Tests/bin/coverage.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Core.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Xunit.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.NUnit.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.MSTest.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
