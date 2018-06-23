@@ -273,6 +273,33 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable does not contain exactly the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactly(params TElement[] values) => DoesNotContainExactly((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain exactly the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainExactly(IEnumerable<TElement> values, string message = null)
+        {
+            if (Target.SequenceEqual(values))
+            {
+                Fail(new FailureBuilder("DoesNotContainExactly()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("Not to contain exactly", values)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Checks if the enumerable contains exactly the given values in any order.
         /// </summary>
         /// <param name="values">The values to check for.</param>

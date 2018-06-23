@@ -188,7 +188,6 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
-
         /// <summary>
         /// Checks that the assertion does not fail if collection other elements.
         /// </summary>
@@ -226,6 +225,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         public void ContainsExactlyFailTest()
         {
             new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactly(5, 7, 6);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the collection is not sequence equal to some other collection.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainExactlyPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 3, 4, 5 }).DoesNotContainExactly(3, 5, 4);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the collection is sequence equal to some other collection.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainExactlyFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 9, 6, 4 }).DoesNotContainExactly(9, 6, 4);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
