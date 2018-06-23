@@ -188,6 +188,27 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
+
+        /// <summary>
+        /// Checks that the assertion does not fail if collection other elements.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainOnlyPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 2, 2, 1 }).DoesNotContainOnly(1, 3);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if collection contains only the given values.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainOnlyFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 9, 3, 5 }).DoesNotContainOnly(9, 3, 3, 5);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
         /// <summary>
         /// Checks that the assertion does not fail if collection only contains the given values in correct order.
         /// </summary>

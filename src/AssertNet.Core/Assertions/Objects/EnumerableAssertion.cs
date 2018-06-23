@@ -217,6 +217,35 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable contains other values than the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainOnly(params TElement[] values) => DoesNotContainOnly((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable contains other values than the given values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainOnly(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerable<TElement> difference = Target.Except(values);
+
+            if (!difference.Any())
+            {
+                Fail(new FailureBuilder("DoesNotContainOnly()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("To contain other elements besides", values)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Checks if the enumerable contains exactly the given values.
         /// </summary>
         /// <param name="values">The values to check for.</param>
