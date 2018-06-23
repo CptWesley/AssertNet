@@ -31,9 +31,10 @@ namespace AssertNet.Core.Assertions.Void
         /// <summary>
         /// Assert that the action does not throw an exception of a specific type.
         /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
         /// <typeparam name="T">Type of the exception which may not be thrown.</typeparam>
         /// <returns>The current assertion.</returns>
-        public VoidAssertion DoesNotThrowException<T>()
+        public VoidAssertion DoesNotThrowException<T>(string message = null)
             where T : Exception
         {
             try
@@ -43,6 +44,7 @@ namespace AssertNet.Core.Assertions.Void
             catch (T e)
             {
                 Fail(new FailureBuilder("DoesNotThrowException()")
+                    .Append(message)
                     .Append("Expecting", Action)
                     .Append("Not to throw an exception of type", typeof(T))
                     .Append("But threw", e)
@@ -59,8 +61,9 @@ namespace AssertNet.Core.Assertions.Void
         /// <summary>
         /// Assert that the action does not throw any exception.
         /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public VoidAssertion DoesNotThrowException()
+        public VoidAssertion DoesNotThrowException(string message = null)
         {
             try
             {
@@ -69,6 +72,7 @@ namespace AssertNet.Core.Assertions.Void
             catch (Exception e)
             {
                 Fail(new FailureBuilder("DoesNotThrowException()")
+                    .Append(message)
                     .Append("Expecting", Action)
                     .Append("Not to throw an exception")
                     .Append("But threw", e)
@@ -81,9 +85,10 @@ namespace AssertNet.Core.Assertions.Void
         /// <summary>
         /// Assert that the action throws a specific exception.
         /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
         /// <typeparam name="T">Exception type to expect.</typeparam>
         /// <returns>An exception assertion for the thrown exception.</returns>
-        public ExceptionAssertion ThrowsException<T>()
+        public ExceptionAssertion ThrowsException<T>(string message = null)
             where T : Exception
         {
             try
@@ -97,6 +102,7 @@ namespace AssertNet.Core.Assertions.Void
             catch (Exception e)
             {
                 Fail(new FailureBuilder("ThrowsException()")
+                    .Append(message)
                     .Append("Expecting", Action)
                     .Append("To throw an exception of type", typeof(T))
                     .Append("But threw", e)
@@ -105,6 +111,7 @@ namespace AssertNet.Core.Assertions.Void
             }
 
             Fail(new FailureBuilder("ThrowsException()")
+                    .Append(message)
                     .Append("Expecting", Action)
                     .Append("To throw an exception of type", typeof(T))
                     .Finish());
@@ -115,8 +122,9 @@ namespace AssertNet.Core.Assertions.Void
         /// <summary>
         /// Assert that the action throws some exception.
         /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>An exception assertion for the thrown exception.</returns>
-        public ExceptionAssertion ThrowsException()
+        public ExceptionAssertion ThrowsException(string message = null)
         {
             try
             {
@@ -128,6 +136,7 @@ namespace AssertNet.Core.Assertions.Void
             }
 
             Fail(new FailureBuilder("ThrowsException()")
+                    .Append(message)
                     .Append("Expecting", Action)
                     .Append("To throw an exception, but nothing was thrown")
                     .Finish());
