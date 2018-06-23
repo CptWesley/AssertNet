@@ -87,5 +87,16 @@ namespace AssertNet.Core.Tests.Failures
             string line = "fcerd";
             Assert.Equal($"{Name} Assertion failure{NewLine}{line}", _builder.Append(line).Finish());
         }
+
+        /// <summary>
+        /// Checks that we don't append anything if we append null.
+        /// </summary>
+        [Fact]
+        public void AppendLineNullTest()
+        {
+            string line = _builder.Append("fgdsfgds").Finish();
+
+            Assert.Equal(line.Length, _builder.Append(null).Finish().Length);
+        }
     }
 }
