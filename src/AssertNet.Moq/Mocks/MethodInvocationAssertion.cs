@@ -29,27 +29,59 @@ namespace AssertNet.Moq.Mocks
         public Expression<Func<T, TProperty>> Expression { get; }
 
         /// <inheritdoc/>
-        public override void Never() => Target.Verify(Expression, Times.Never);
+        public override MockAssertion<T> Never()
+        {
+            Target.Verify(Expression, Times.Never);
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void Once() => Target.Verify(Expression, Times.Once);
+        public override MockAssertion<T> Once()
+        {
+            Target.Verify(Expression, Times.Once);
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void AtLeastOnce() => Target.Verify(Expression, Times.AtLeastOnce);
+        public override MockAssertion<T> AtLeastOnce()
+        {
+            Target.Verify(Expression, Times.AtLeastOnce);
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void AtMostOnce() => Target.Verify(Expression, Times.AtMostOnce);
+        public override MockAssertion<T> AtMostOnce()
+        {
+            Target.Verify(Expression, Times.AtMostOnce);
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void AtLeast(int count) => Target.Verify(Expression, Times.AtLeast(count));
+        public override MockAssertion<T> AtLeast(int count)
+        {
+            Target.Verify(Expression, Times.AtLeast(count));
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void AtMost(int count) => Target.Verify(Expression, Times.AtMost(count));
+        public override MockAssertion<T> AtMost(int count)
+        {
+            Target.Verify(Expression, Times.AtMost(count));
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void Exactly(int count) => Target.Verify(Expression, Times.Exactly(count));
+        public override MockAssertion<T> Exactly(int count)
+        {
+            Target.Verify(Expression, Times.Exactly(count));
+            return new MockAssertion<T>(Target);
+        }
 
         /// <inheritdoc/>
-        public override void Between(int minimum, int maximum) => Target.Verify(Expression, Times.Between(minimum, maximum, Range.Inclusive));
+        public override MockAssertion<T> Between(int minimum, int maximum)
+        {
+            Target.Verify(Expression, Times.Between(minimum, maximum, Range.Inclusive));
+            return new MockAssertion<T>(Target);
+        }
     }
 }
