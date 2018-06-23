@@ -509,6 +509,52 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable does not contain a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainInterleavedSequence(params TElement[] values) => DoesNotContainInterleavedSequence((IEnumerable<TElement>)values);
+
+        /// <summary>
+        /// Checks if the enumerable does not contain a given an interleaved sequence of values.
+        /// </summary>
+        /// <param name="values">The values to check for.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainInterleavedSequence(IEnumerable<TElement> values, string message = null)
+        {
+            IEnumerator<TElement> it = values.GetEnumerator();
+            bool failed = !it.MoveNext();
+
+            if (!failed)
+            {
+                foreach (TElement el in Target)
+                {
+                    if (el.Equals(it.Current))
+                    {
+                        if (!it.MoveNext())
+                        {
+                            failed = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (failed)
+            {
+                Fail(new FailureBuilder("DoesNotContainInterleavedSequence()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .AppendEnumerable("Not to contain the interleaved sequence", values)
+                    .Finish());
+                return null;
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>
