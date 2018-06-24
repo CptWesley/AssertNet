@@ -555,6 +555,29 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that a condition holds for all elements in an enumerable.
+        /// </summary>
+        /// <param name="condition">The condition which needs to hold for all elements.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> AllSatisfy(Func<TElement, bool> condition, string message = null)
+        {
+            IEnumerable<TElement> failed = Target.Where(x => !condition.Invoke(x));
+
+            if (failed.Any())
+            {
+                Fail(new FailureBuilder("AllSatisfy()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append("To all satisfy", condition)
+                    .AppendEnumerable("But did not hold for", failed)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>
