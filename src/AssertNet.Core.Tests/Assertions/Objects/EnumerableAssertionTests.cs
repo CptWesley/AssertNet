@@ -412,9 +412,9 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         /// Checks that the assertion passes if all elements hold to a condition.
         /// </summary>
         [Fact]
-        public void ForEachHoldsPassTest()
+        public void AllSatisfyPassTest()
         {
-            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).ForEachHolds(x => x > 0);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).AllSatisfy(x => x > 0);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -422,9 +422,9 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         /// Checks that the assertion fails if not all elements hold to a condition.
         /// </summary>
         [Fact]
-        public void ForEachHoldsFailTest()
+        public void AllSatisfyFailTest()
         {
-            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).ForEachHolds(x => x > 1);
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).AllSatisfy(x => x > 1);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 

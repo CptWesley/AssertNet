@@ -560,7 +560,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <param name="condition">The condition which needs to hold for all elements.</param>
         /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public EnumerableAssertion<TElement> ForEachHolds(Func<TElement, bool> condition, string message = null)
+        public EnumerableAssertion<TElement> AllSatisfy(Func<TElement, bool> condition, string message = null)
         {
             IEnumerable<TElement> failed = Target.Where(x => !condition.Invoke(x));
 
