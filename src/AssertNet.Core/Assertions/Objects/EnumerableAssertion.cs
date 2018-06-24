@@ -555,6 +555,48 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable contains null.
+        /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsNull(string message = null)
+        {
+            IEnumerable<TElement> nulls = Target.Where(x => x == null);
+
+            if (!nulls.Any())
+            {
+                Fail(new FailureBuilder("ContainsNull()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append<object>("To contain", null)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable does not contain null.
+        /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainNull(string message = null)
+        {
+            IEnumerable<TElement> nulls = Target.Where(x => x == null);
+
+            if (nulls.Any())
+            {
+                Fail(new FailureBuilder("DoesNotContainNull()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append<object>("Not to contain", null)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Checks that a condition holds for all elements in an enumerable.
         /// </summary>
         /// <param name="condition">The condition which needs to hold for all elements.</param>
