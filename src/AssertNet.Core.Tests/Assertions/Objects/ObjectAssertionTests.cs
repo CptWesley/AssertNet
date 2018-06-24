@@ -248,5 +248,25 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.IsNotIn(new object[] { 1, 2, Assertion.Target, 3 });
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if the condition holds for the object.
+        /// </summary>
+        [Fact]
+        public void HoldsPassTest()
+        {
+            Assertion.Holds(x => x != null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the condition does not hold for the object.
+        /// </summary>
+        [Fact]
+        public void HoldsFailTest()
+        {
+            Assertion.Holds(x => x == null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }
