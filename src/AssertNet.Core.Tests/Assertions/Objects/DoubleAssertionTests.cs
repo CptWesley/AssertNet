@@ -47,7 +47,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsGreaterThanOrEqualPassTest()
         {
-            new DoubleAssertion(FailureHandler.Object, 32).IsGreaterThanOrEqual(32);
+            new DoubleAssertion(FailureHandler.Object, 32).IsGreaterThanOrEqualTo(32);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -57,7 +57,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsGreaterThanOrEqualFailTest()
         {
-            new DoubleAssertion(FailureHandler.Object, 2).IsGreaterThanOrEqual(23);
+            new DoubleAssertion(FailureHandler.Object, 2).IsGreaterThanOrEqualTo(23);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 
@@ -87,7 +87,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsLesserThanOrEqualPassTest()
         {
-            new DoubleAssertion(FailureHandler.Object, 2).IsLesserThanOrEqual(2);
+            new DoubleAssertion(FailureHandler.Object, 2).IsLesserThanOrEqualTo(2);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -97,7 +97,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         [Fact]
         public void IsLesserThanOrEqualFailTest()
         {
-            new DoubleAssertion(FailureHandler.Object, 2).IsLesserThanOrEqual(0);
+            new DoubleAssertion(FailureHandler.Object, 2).IsLesserThanOrEqualTo(0);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
 

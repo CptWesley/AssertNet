@@ -45,7 +45,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <param name="other">Value which the double should be greater than or equal to.</param>
         /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsGreaterThanOrEqual(double other, string message = null)
+        public DoubleAssertion IsGreaterThanOrEqualTo(double other, string message = null)
         {
             if (Target < other)
             {
@@ -85,7 +85,7 @@ namespace AssertNet.Core.Assertions.Objects
         /// <param name="other">Value which the double should be lesser than or equal to.</param>
         /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public DoubleAssertion IsLesserThanOrEqual(double other, string message = null)
+        public DoubleAssertion IsLesserThanOrEqualTo(double other, string message = null)
         {
             if (Target > other)
             {
