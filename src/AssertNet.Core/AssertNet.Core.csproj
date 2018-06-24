@@ -7,11 +7,11 @@
     <PackageProjectUrl>https://github.com/CptWesley/AssertNET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CptWesley/AssertNET</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/CptWesley/AssertNET/blob/master/LICENSE</PackageLicenseUrl>
-    <Description>Core dependency for AssertNET: AssertJ style fluent assertions for .NET Standard testing frameworks: xUnit, NUnit and MSTest.</Description>
-    <PackageTags>test testing fluent assertions xunit nunit mstest</PackageTags>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-    <Version>1.0.0</Version>
+    <Description>Core dependency for AssertNET: AssertJ style fluent assertions for .NET Standard.</Description>
+    <PackageTags>assertnet test testing fluent assertions xunit nunit mstest moq</PackageTags>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.1.0</Version>
     <PackageIconUrl>https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png</PackageIconUrl>
   </PropertyGroup>
 
