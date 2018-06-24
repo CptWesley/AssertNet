@@ -253,9 +253,9 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         /// Checks that there are no failures if the condition holds for the object.
         /// </summary>
         [Fact]
-        public void HoldsPassTest()
+        public void SatisfiesPassTest()
         {
-            Assertion.Holds(x => x != null);
+            Assertion.Satisfies(x => x != null);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         }
 
@@ -263,9 +263,9 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         /// Checks that there are failures if the condition does not hold for the object.
         /// </summary>
         [Fact]
-        public void HoldsFailTest()
+        public void SatisfiesFailTest()
         {
-            Assertion.Holds(x => x == null);
+            Assertion.Satisfies(x => x == null);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
     }

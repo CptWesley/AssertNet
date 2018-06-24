@@ -306,16 +306,16 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that a condition holds for an object.
+        /// Checks that an object satisfies a condition.
         /// </summary>
         /// <param name="condition">The condition which needs to hold for the object.</param>
         /// <param name="message">Custom message for the assertion failure.</param>
         /// <returns>The current assertion.</returns>
-        public TAssert Holds(Func<TTarget, bool> condition, string message = null)
+        public TAssert Satisfies(Func<TTarget, bool> condition, string message = null)
         {
             if (!condition.Invoke(Target))
             {
-                Fail(new FailureBuilder("Holds()")
+                Fail(new FailureBuilder("Satisfies()")
                     .Append(message)
                     .Append("Expecting", Target)
                     .Append("To hold to the condition", condition)
