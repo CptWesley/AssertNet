@@ -49,7 +49,7 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target < other)
             {
-                Fail(new FailureBuilder("IsGreaterThanOrEqual()")
+                Fail(new FailureBuilder("IsGreaterThanOrEqualTo()")
                     .Append(message)
                     .Append("Expecting", Target)
                     .Append("To be greater than or equal to", other)
@@ -89,7 +89,7 @@ namespace AssertNet.Core.Assertions.Objects
         {
             if (Target > other)
             {
-                Fail(new FailureBuilder("IsLesserThanOrEqual()")
+                Fail(new FailureBuilder("IsLesserThanOrEqualTo()")
                     .Append(message)
                     .Append("Expecting", Target)
                     .Append("To be lesser than or equal to", other)
