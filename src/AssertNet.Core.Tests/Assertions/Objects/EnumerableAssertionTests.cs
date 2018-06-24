@@ -469,6 +469,26 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if some element holds to a condition.
+        /// </summary>
+        [Fact]
+        public void SomeSatisfyPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).SomeSatisfy(x => x > 2);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if no element holds to a condition.
+        /// </summary>
+        [Fact]
+        public void SomeSatisfyFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).SomeSatisfy(x => x > 5);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
         /// Checks that we can properly filter assertions.
         /// </summary>
         [Fact]

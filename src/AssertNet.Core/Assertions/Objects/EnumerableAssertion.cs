@@ -620,6 +620,28 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that a condition holds for some element in the enumerable.
+        /// </summary>
+        /// <param name="condition">The condition which needs to hold for some element.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> SomeSatisfy(Func<TElement, bool> condition, string message = null)
+        {
+            IEnumerable<TElement> holds = Target.Where(condition);
+
+            if (!holds.Any())
+            {
+                Fail(new FailureBuilder("SomeSatisfy()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append("To have any element satisfying", condition)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>
