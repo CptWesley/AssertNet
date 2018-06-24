@@ -324,5 +324,25 @@ namespace AssertNet.Core.Assertions.Objects
 
             return (TAssert)this;
         }
+
+        /// <summary>
+        /// Checks that an object does not satisfy a condition.
+        /// </summary>
+        /// <param name="condition">The condition which may not hold for the object.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert DoesNotSatisfy(Func<TTarget, bool> condition, string message = null)
+        {
+            if (condition.Invoke(Target))
+            {
+                Fail(new FailureBuilder("DoesNotSatisfy()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("Not to satisfy", condition)
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
     }
 }

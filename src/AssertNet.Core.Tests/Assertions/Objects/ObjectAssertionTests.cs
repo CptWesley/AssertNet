@@ -268,5 +268,25 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.Satisfies(x => x == null);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if the condition does not hold for the object.
+        /// </summary>
+        [Fact]
+        public void DoesNotSatisfyPassTest()
+        {
+            Assertion.DoesNotSatisfy(x => x == null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the condition holds for the object.
+        /// </summary>
+        [Fact]
+        public void DoesNotSatisfyFailTest()
+        {
+            Assertion.DoesNotSatisfy(x => x != null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }
