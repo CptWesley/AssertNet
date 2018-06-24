@@ -642,6 +642,29 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that a condition holds for none of the elements in an enumerable.
+        /// </summary>
+        /// <param name="condition">The condition which may not hold for each element.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> NoneSatisfy(Func<TElement, bool> condition, string message = null)
+        {
+            IEnumerable<TElement> holds = Target.Where(condition);
+
+            if (holds.Any())
+            {
+                Fail(new FailureBuilder("NoneSatisfy()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append("Not to have elements satisfying", condition)
+                    .AppendEnumerable("But found", holds)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Creates a new assertion for a filtered version of the target enumerable.
         /// </summary>
         /// <param name="condition">The condition to filter on.</param>
