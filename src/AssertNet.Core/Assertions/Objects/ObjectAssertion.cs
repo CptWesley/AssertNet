@@ -318,7 +318,7 @@ namespace AssertNet.Core.Assertions.Objects
                 Fail(new FailureBuilder("Satisfies()")
                     .Append(message)
                     .Append("Expecting", Target)
-                    .Append("To hold to the condition", condition)
+                    .Append("To satisfy", condition)
                     .Finish());
             }
 

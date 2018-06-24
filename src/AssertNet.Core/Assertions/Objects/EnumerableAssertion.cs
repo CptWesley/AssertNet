@@ -566,11 +566,11 @@ namespace AssertNet.Core.Assertions.Objects
 
             if (failed.Any())
             {
-                Fail(new FailureBuilder("ForEachHolds()")
+                Fail(new FailureBuilder("AllSatisfy()")
                     .Append(message)
                     .AppendEnumerable("Expecting", Target)
-                    .Append("To all hold to the condition", condition)
-                    .AppendEnumerable("But elements did not hold", failed)
+                    .Append("To all satisfy", condition)
+                    .AppendEnumerable("But did not hold for", failed)
                     .Finish());
             }
 
