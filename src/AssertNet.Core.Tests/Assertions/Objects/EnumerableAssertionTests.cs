@@ -409,6 +409,46 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks that the assertion passes if the enumerable contains null.
+        /// </summary>
+        [Fact]
+        public void ContainsNullPassTest()
+        {
+            new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "a", null, "b" }).ContainsNull();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the enumerable does not contain null.
+        /// </summary>
+        [Fact]
+        public void ContainsNullFailTest()
+        {
+            new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "c", "d" }).ContainsNull();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the enumerable does not contain null.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainNullPassTest()
+        {
+            new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "e", "f" }).DoesNotContainNull();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the enumerable contains null.
+        /// </summary>
+        [Fact]
+        public void DoesNotContainNullFailTest()
+        {
+            new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "g", null, "h" }).DoesNotContainNull();
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
         /// Checks that the assertion passes if all elements hold to a condition.
         /// </summary>
         [Fact]
@@ -425,6 +465,46 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         public void AllSatisfyFailTest()
         {
             new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).AllSatisfy(x => x > 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if some element holds to a condition.
+        /// </summary>
+        [Fact]
+        public void SomeSatisfyPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).SomeSatisfy(x => x > 2);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if no element holds to a condition.
+        /// </summary>
+        [Fact]
+        public void SomeSatisfyFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).SomeSatisfy(x => x > 5);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if no element holds to a condition.
+        /// </summary>
+        [Fact]
+        public void NoneSatisfyPassTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).NoneSatisfy(x => x > 5);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if some element holds to a condition.
+        /// </summary>
+        [Fact]
+        public void NoneSatisfyFailTest()
+        {
+            new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).NoneSatisfy(x => x > 2);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
         }
 

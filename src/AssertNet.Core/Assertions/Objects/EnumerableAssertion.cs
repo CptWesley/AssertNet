@@ -555,6 +555,48 @@ namespace AssertNet.Core.Assertions.Objects
         }
 
         /// <summary>
+        /// Checks if the enumerable contains null.
+        /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> ContainsNull(string message = null)
+        {
+            IEnumerable<TElement> nulls = Target.Where(x => x == null);
+
+            if (!nulls.Any())
+            {
+                Fail(new FailureBuilder("ContainsNull()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append<object>("To contain", null)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if the enumerable does not contain null.
+        /// </summary>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> DoesNotContainNull(string message = null)
+        {
+            IEnumerable<TElement> nulls = Target.Where(x => x == null);
+
+            if (nulls.Any())
+            {
+                Fail(new FailureBuilder("DoesNotContainNull()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append<object>("Not to contain", null)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
         /// Checks that a condition holds for all elements in an enumerable.
         /// </summary>
         /// <param name="condition">The condition which needs to hold for all elements.</param>
@@ -571,6 +613,51 @@ namespace AssertNet.Core.Assertions.Objects
                     .AppendEnumerable("Expecting", Target)
                     .Append("To all satisfy", condition)
                     .AppendEnumerable("But did not hold for", failed)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks that a condition holds for some element in the enumerable.
+        /// </summary>
+        /// <param name="condition">The condition which needs to hold for some element.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> SomeSatisfy(Func<TElement, bool> condition, string message = null)
+        {
+            IEnumerable<TElement> holds = Target.Where(condition);
+
+            if (!holds.Any())
+            {
+                Fail(new FailureBuilder("SomeSatisfy()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append("To have any element satisfying", condition)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Checks that a condition holds for none of the elements in an enumerable.
+        /// </summary>
+        /// <param name="condition">The condition which may not hold for each element.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public EnumerableAssertion<TElement> NoneSatisfy(Func<TElement, bool> condition, string message = null)
+        {
+            IEnumerable<TElement> holds = Target.Where(condition);
+
+            if (holds.Any())
+            {
+                Fail(new FailureBuilder("NoneSatisfy()")
+                    .Append(message)
+                    .AppendEnumerable("Expecting", Target)
+                    .Append("Not to have elements satisfying", condition)
+                    .AppendEnumerable("But found", holds)
                     .Finish());
             }
 
