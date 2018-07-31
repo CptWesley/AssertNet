@@ -49,14 +49,6 @@ namespace AssertNet.Xunit
         /// Makes an assertion about an enumerable.
         /// </summary>
         /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
-        /// <param name="values">Values under test.</param>
-        /// <returns>Assertion about an enumerable.</returns>
-        public static EnumerableAssertion<T> AssertThat<T>(params T[] values) => AssertThat((IEnumerable<T>)values);
-
-        /// <summary>
-        /// Makes an assertion about an enumerable.
-        /// </summary>
-        /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
         /// <param name="enumerable">Enumerable under test.</param>
         /// <returns>Assertion about an enumerable.</returns>
         public static EnumerableAssertion<T> AssertThat<T>(IEnumerable<T> enumerable) => new EnumerableAssertion<T>(new XunitFailureHandler(), enumerable);
