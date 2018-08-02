@@ -1,10 +1,10 @@
-[![CircleCI](https://circleci.com/gh/CptWesley/AssertNET.svg?style=shield)](https://circleci.com/gh/CptWesley/AssertNET)
-[![BetterCodeHub](https://bettercodehub.com/edge/badge/CptWesley/AssertNET?branch=master)](https://bettercodehub.com/results/CptWesley/AssertNET)
-[![CodeCov](https://codecov.io/gh/CptWesley/AssertNET/branch/master/graph/badge.svg)](https://codecov.io/gh/CptWesley/AssertNET/)
+[![CircleCI](https://circleci.com/gh/CptWesley/AssertNet.svg?style=shield)](https://circleci.com/gh/CptWesley/AssertNet)
+[![BetterCodeHub](https://bettercodehub.com/edge/badge/CptWesley/AssertNet?branch=master)](https://bettercodehub.com/results/CptWesley/AssertNet)
+[![CodeCov](https://codecov.io/gh/CptWesley/AssertNet/branch/master/graph/badge.svg)](https://codecov.io/gh/CptWesley/AssertNet/)
 
-![AssertNET](https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png)
+![AssertNet](https://raw.githubusercontent.com/CptWesley/AssertNet/master/logo.png)
 ### Description
-AssertNET is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/), [MSTest](https://github.com/Microsoft/testfx)) and the mocking framework [Moq](https://github.com/Moq/moq4/). The library is heavily inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework and my love for AssertJ. Currently most of the most common AssertJ assertions are included in AssertNET, but more advanced assertions are yet to be added. The package for Moq simply adds sugared assertions that look similar to the assertions in the other packages to have more consitensy in the way your tests look like.
+AssertNet is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/), [MSTest](https://github.com/Microsoft/testfx)) and the mocking framework [Moq](https://github.com/Moq/moq4/). The library is heavily inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework and my love for AssertJ. Currently most of the most common AssertJ assertions are included in AssertNet, but more advanced assertions are yet to be added. The package for Moq simply adds sugared assertions that look similar to the assertions in the other packages to have more consitensy in the way your tests look like.
 
 ### Downloads
 Currently there are four different NuGet packages available (for different testing frameworks):  
@@ -17,7 +17,7 @@ There is also a fifth NuGet package available: [AssertNet.Core](https://www.nuge
 
 ### Usage
 Grab one of the available version mentioned in the __Downloads__ section above.  
-Add the following line to the test files where you intend to use _AssertNET_ depending on your version:  
+Add the following line to the test files where you intend to use _AssertNet_ depending on your version:  
 For xUnit:  
 ```cs
 using static AssertNet.Xunit.Assertions;
