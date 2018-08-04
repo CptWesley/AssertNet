@@ -328,5 +328,45 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.DoesNotHaveHashCode(Assertion.Target.GetHashCode());
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if the object has the right hash code.
+        /// </summary>
+        [Fact]
+        public void HasSameHashCodeAsPassTest()
+        {
+            Assertion.HasSameHashCodeAs(Assertion.Target);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the object has a different hash code.
+        /// </summary>
+        [Fact]
+        public void HasSameHashCodeAsFailTest()
+        {
+            Assertion.HasSameHashCodeAs(432545324);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are no failures if the object has a different hash code.
+        /// </summary>
+        [Fact]
+        public void DoesNotHaveSameHashCodeAsPassTest()
+        {
+            Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target.GetHashCode() - 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the object has the given hash code.
+        /// </summary>
+        [Fact]
+        public void DoesNotHaveSameHashCodeAsFailTest()
+        {
+            Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }

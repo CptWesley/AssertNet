@@ -385,5 +385,46 @@ namespace AssertNet.Core.Assertions.Objects
 
             return (TAssert)this;
         }
+
+        /// <summary>
+        /// Checks that an object has the same hash code as another object.
+        /// </summary>
+        /// <param name="other">The other object which should have the same hash code.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert HasSameHashCodeAs(object other, string message = null)
+        {
+            if (Target.GetHashCode() != other.GetHashCode())
+            {
+                Fail(new FailureBuilder("HasSameHashCodeAs()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("To have the hash code", other.GetHashCode())
+                    .Append("But has hash code", Target.GetHashCode())
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks that an object has a different hash code than another object.
+        /// </summary>
+        /// <param name="other">The other object which may not have the same hash code.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert DoesNotHaveSameHashCodeAs(object other, string message = null)
+        {
+            if (Target.GetHashCode() == other.GetHashCode())
+            {
+                Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("Not to have the hash code", other.GetHashCode())
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
     }
 }
