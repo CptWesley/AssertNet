@@ -9,9 +9,9 @@
     <PackageLicenseUrl>https://github.com/CptWesley/AssertNET/blob/master/LICENSE</PackageLicenseUrl>
     <Description>AssertJ style fluent assertions for .NET testing framework MSTest.</Description>
     <PackageTags>assertnet test testing fluent assertions mstest</PackageTags>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
-    <FileVersion>1.1.2.0</FileVersion>
-    <Version>1.1.2</Version>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
+    <FileVersion>1.2.0.0</FileVersion>
+    <Version>1.2.0</Version>
     <Copyright></Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png</PackageIconUrl>
   </PropertyGroup>
