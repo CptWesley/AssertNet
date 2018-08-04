@@ -426,5 +426,25 @@ namespace AssertNet.Core.Assertions.Objects
 
             return (TAssert)this;
         }
+
+        /// <summary>
+        /// Checks that the ToString() call returns the given string.
+        /// </summary>
+        /// <param name="str">The expected ToString() result.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert ToStringYields(string str, string message = null)
+        {
+            if (Target.ToString() != str)
+            {
+                Fail(new FailureBuilder("ToStringYields()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("To be represented as", str)
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
     }
 }

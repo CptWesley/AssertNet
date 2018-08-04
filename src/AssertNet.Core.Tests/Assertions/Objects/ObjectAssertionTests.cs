@@ -368,5 +368,25 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if the ToString() returns the correct thing.
+        /// </summary>
+        [Fact]
+        public void ToStringYieldsPassTest()
+        {
+            Assertion.ToStringYields(Assertion.Target.ToString());
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the object has a different ToString() result.
+        /// </summary>
+        [Fact]
+        public void ToStringYieldsFailTest()
+        {
+            Assertion.ToStringYields(Assertion.Target.ToString() + "ft2gr");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }
