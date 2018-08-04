@@ -344,5 +344,46 @@ namespace AssertNet.Core.Assertions.Objects
 
             return (TAssert)this;
         }
+
+        /// <summary>
+        /// Checks that an object has a certain hash code.
+        /// </summary>
+        /// <param name="hashCode">The expected hash code of the object.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert HasHashCode(int hashCode, string message = null)
+        {
+            if (Target.GetHashCode() != hashCode)
+            {
+                Fail(new FailureBuilder("HasHashCode()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("To have the hash code", hashCode)
+                    .Append("But has hash code", Target.GetHashCode())
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks that an object does not have a certain hash code.
+        /// </summary>
+        /// <param name="hashCode">The forbidden hash code of the object.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert DoesNotHaveHashCode(int hashCode, string message = null)
+        {
+            if (Target.GetHashCode() == hashCode)
+            {
+                Fail(new FailureBuilder("DoesNotHaveHashCode()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("Not to have the hash code", hashCode)
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
     }
 }

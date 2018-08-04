@@ -288,5 +288,45 @@ namespace AssertNet.Core.Tests.Assertions.Objects
             Assertion.DoesNotSatisfy(x => x != null);
             FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
         }
+
+        /// <summary>
+        /// Checks that there are no failures if the object has the right hash code.
+        /// </summary>
+        [Fact]
+        public void HasHashCodePassTest()
+        {
+            Assertion.HasHashCode(Assertion.Target.GetHashCode());
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the object has a different hash code.
+        /// </summary>
+        [Fact]
+        public void HasHashCodeFailTest()
+        {
+            Assertion.HasHashCode(Assertion.Target.GetHashCode() + 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that there are no failures if the object has a different hash code.
+        /// </summary>
+        [Fact]
+        public void DoesNotHaveHashCodePassTest()
+        {
+            Assertion.DoesNotHaveHashCode(Assertion.Target.GetHashCode() - 1);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the object has the given hash code.
+        /// </summary>
+        [Fact]
+        public void DoesNotHaveHashCodeFailTest()
+        {
+            Assertion.DoesNotHaveHashCode(Assertion.Target.GetHashCode());
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
     }
 }
