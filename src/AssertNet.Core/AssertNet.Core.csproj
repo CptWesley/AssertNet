@@ -6,7 +6,7 @@
     <Authors>Wesley Baartman</Authors>
     <PackageProjectUrl>https://github.com/CptWesley/AssertNET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CptWesley/AssertNET</RepositoryUrl>
-    <PackageLicenseUrl>https://github.com/CptWesley/AssertNET/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Core dependency for AssertNET: AssertJ style fluent assertions for .NET Standard.</Description>
     <PackageTags>assertnet test testing fluent assertions xunit nunit mstest moq</PackageTags>
     <AssemblyVersion>1.3.0.0</AssemblyVersion>
