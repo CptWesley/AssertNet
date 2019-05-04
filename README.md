@@ -13,7 +13,7 @@ Currently there are four different NuGet packages available (for different testi
 [AssertNet.MSTest](https://www.nuget.org/packages/AssertNet.MSTest/)  [![NuGet](https://img.shields.io/nuget/v/AssertNet.MSTest.svg)](https://www.nuget.org/packages/AssertNet.MSTest/)
 [AssertNet.Moq](https://www.nuget.org/packages/AssertNet.Moq/)  [![NuGet](https://img.shields.io/nuget/v/AssertNet.Moq.svg)](https://www.nuget.org/packages/AssertNet.Moq/)
   
-There is also a fifth NuGet package available: [AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/), which contains all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
+There is also a fifth NuGet package available: [AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Core.svg)](https://www.nuget.org/packages/AssertNet.Core/), which contains all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
 
 ### Usage
 Grab one of the available version mentioned in the __Downloads__ section above.  
