@@ -31,7 +31,7 @@ namespace AssertNet.MSTest.Tests
             {
                 _handler.Fail(msg);
             }
-            catch (Exception e)
+            catch (AssertFailedException e)
             {
                 exception = e;
             }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions.Objects
+namespace AssertNet.Core.AssertionTypes.Objects
 {
     /// <summary>
     /// Abstract class representing assertions of objects.

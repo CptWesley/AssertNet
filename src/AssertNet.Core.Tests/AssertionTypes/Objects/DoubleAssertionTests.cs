@@ -1,10 +1,10 @@
 ﻿using System;
-using AssertNet.Core.Assertions.Objects;
+using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.Failures;
 using Moq;
 using Xunit;
 
-namespace AssertNet.Core.Tests.Assertions.Objects
+namespace AssertNet.Core.Tests.AssertionTypes.Objects
 {
     /// <summary>
     /// Test class for the <see cref="DoubleAssertion"/> class.
@@ -270,7 +270,7 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         /// <summary>
-        /// Checks that the assertion fails if the value is in the range
+        /// Checks that the assertion fails if the value is in the range.
         /// </summary>
         [Fact]
         public void IsNotInRangeFailTest()

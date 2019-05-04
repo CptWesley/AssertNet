@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions.Void
+namespace AssertNet.Core.AssertionTypes.Void
 {
     /// <summary>
     /// Class representing assertions made on actions.
     /// </summary>
     /// <seealso cref="Assertion" />
+    [SuppressMessage("Design", "CA1031", Justification = "Needed for the library functionality.")]
     public class VoidAssertion : Assertion
     {
         /// <summary>

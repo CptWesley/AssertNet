@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using AssertNet.Core.Assertions.Objects;
-using AssertNet.Core.Assertions.Void;
+using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes.Void;
 
 namespace AssertNet.Xunit
 {

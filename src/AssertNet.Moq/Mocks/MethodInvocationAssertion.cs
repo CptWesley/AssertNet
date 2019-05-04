@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using Moq;
 
 namespace AssertNet.Moq.Mocks
@@ -17,7 +16,7 @@ namespace AssertNet.Moq.Mocks
         /// </summary>
         /// <param name="target">The mock under test.</param>
         /// <param name="expression">Expression of the invocation.</param>
-        public MethodInvocationAssertion(Mock<T> target, Expression<Func<T, TProperty>> expression)
+        public MethodInvocationAssertion(Mock<T> target, Expression<System.Func<T, TProperty>> expression)
             : base(target) => Expression = expression;
 
         /// <summary>
@@ -26,7 +25,7 @@ namespace AssertNet.Moq.Mocks
         /// <value>
         /// The expression of the method invocation.
         /// </value>
-        public Expression<Func<T, TProperty>> Expression { get; }
+        public Expression<System.Func<T, TProperty>> Expression { get; }
 
         /// <inheritdoc/>
         public override MockAssertion<T> Never(string message = null)

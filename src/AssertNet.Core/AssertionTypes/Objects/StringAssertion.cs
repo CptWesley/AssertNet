@@ -1,13 +1,16 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions.Objects
+namespace AssertNet.Core.AssertionTypes.Objects
 {
     /// <summary>
     /// Class representing assertions made about strings.
     /// </summary>
     /// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
+    [SuppressMessage("Globalization", "CA1307", Justification = "Build target netstandard2.0 does not support suggested function and invariants are already being used.")]
     public class StringAssertion : ObjectAssertion<StringAssertion, string>
     {
         /// <summary>
@@ -18,6 +21,46 @@ namespace AssertNet.Core.Assertions.Objects
         public StringAssertion(IFailureHandler failureHandler, string target)
             : base(failureHandler, target)
         {
+        }
+
+        /// <summary>
+        /// Asserts if a string is equal to a given other string if cases are ignored.
+        /// </summary>
+        /// <param name="other">The other string to compare with.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion IsEqualToIgnoringCase(string other, string message = null)
+        {
+            if (!Target.ToUpperInvariant().Equals(other.ToUpperInvariant(), StringComparison.InvariantCultureIgnoreCase))
+            {
+                Fail(new FailureBuilder("IsEqualToIgnoringCase()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("To be equal to while ignoring cases", other)
+                    .Finish());
+            }
+
+            return this;
+        }
+
+        /// <summary>
+        /// Asserts if a string is not equal to a given other string if cases are ignored.
+        /// </summary>
+        /// <param name="other">The other string to compare with.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public StringAssertion IsNotEqualToIgnoringCase(string other, string message = null)
+        {
+            if (Target.ToUpperInvariant().Equals(other.ToUpperInvariant(), StringComparison.InvariantCultureIgnoreCase))
+            {
+                Fail(new FailureBuilder("IsNotEqualToIgnoringCase()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("Not to be equal to while ignoring cases", other)
+                    .Finish());
+            }
+
+            return this;
         }
 
         /// <summary>

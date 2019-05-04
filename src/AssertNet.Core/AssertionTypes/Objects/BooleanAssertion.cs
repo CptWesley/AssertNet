@@ -1,6 +1,6 @@
 ﻿using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions.Objects
+namespace AssertNet.Core.AssertionTypes.Objects
 {
     /// <summary>
     /// Class representing assertions made on boolean items.
