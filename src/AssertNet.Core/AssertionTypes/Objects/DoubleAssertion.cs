@@ -1,7 +1,7 @@
 ﻿using System;
 using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions.Objects
+namespace AssertNet.Core.AssertionTypes.Objects
 {
     /// <summary>
     /// Class representing assertions made about doubles (and other numeric values).

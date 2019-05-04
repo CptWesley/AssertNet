@@ -1,13 +1,15 @@
 ﻿using System;
-using AssertNet.Core.Assertions.Objects;
+using System.Diagnostics.CodeAnalysis;
+using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions.Void
+namespace AssertNet.Core.AssertionTypes.Void
 {
     /// <summary>
     /// Class representing assertions made on thrown exceptions.
     /// </summary>
     /// <seealso cref="Assertion" />
+    [SuppressMessage("Globalization", "CA1307", Justification = "Build target netstandard2.0 does not support suggested function.")]
     public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     {
         /// <summary>

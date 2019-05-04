@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Xunit.Tests", "As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.NUnit", "AssertNet.NUnit\AssertNet.NUnit.csproj", "{12CD905B-0670-475C-BEE2-DE87564223D0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.NUnit.Tests", "AssertNet.Nunit.Tests\AssertNet.NUnit.Tests.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.NUnit.Tests", "AssertNet.NUnit.Tests\AssertNet.NUnit.Tests.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.MSTest", "AssertNet.MSTest\AssertNet.MSTest.csproj", "{F7239922-73B5-4EC3-9E14-12922824389C}"
 EndProject

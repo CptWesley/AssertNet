@@ -1,16 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-	<IsPackable>false</IsPackable>
+    <CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="2.1.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="coverlet.msbuild" Version="2.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="NUnit" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
   </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,12 +29,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1">
-		<PrivateAssets>all</PrivateAssets>
-	</PackageReference>
-	<PackageReference Include="StyleCop.Analyzers" Version="1.0.2">
-		<PrivateAssets>all</PrivateAssets>
-	</PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   
   <ItemGroup>

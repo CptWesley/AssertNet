@@ -1,5 +1,4 @@
-﻿using System;
-using Moq;
+﻿using Moq;
 
 namespace AssertNet.Moq.Mocks
 {
@@ -15,7 +14,7 @@ namespace AssertNet.Moq.Mocks
         /// </summary>
         /// <param name="target">The mock under test.</param>
         /// <param name="expression">Expression of the invocation.</param>
-        public SetPropertyInvocationAssertion(Mock<T> target, Action<T> expression)
+        public SetPropertyInvocationAssertion(Mock<T> target, System.Action<T> expression)
             : base(target) => Expression = expression;
 
         /// <summary>
@@ -24,7 +23,7 @@ namespace AssertNet.Moq.Mocks
         /// <value>
         /// The expression of the property requests.
         /// </value>
-        public Action<T> Expression { get; }
+        public System.Action<T> Expression { get; }
 
         /// <inheritdoc/>
         public override MockAssertion<T> Never(string message = null)

@@ -1,3 +1,4 @@
+[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/CptWesley/AssertNet?svg=true)](https://ci.appveyor.com/project/CptWesley/AssertNet)
 [![CircleCI](https://circleci.com/gh/CptWesley/AssertNet.svg?style=shield)](https://circleci.com/gh/CptWesley/AssertNet)
 [![CodeCov](https://codecov.io/gh/CptWesley/AssertNet/branch/master/graph/badge.svg)](https://codecov.io/gh/CptWesley/AssertNet/)
 
@@ -7,12 +8,12 @@ AssertNet is a fluent assertion library for multiple different .NET testing fram
 
 ### Downloads
 Currently there are four different NuGet packages available (for different testing frameworks):  
-[AssertNet.Xunit](https://www.nuget.org/packages/AssertNet.Xunit/)  
-[AssertNet.NUnit](https://www.nuget.org/packages/AssertNet.NUnit/)  
-[AssertNet.MSTest](https://www.nuget.org/packages/AssertNet.MSTest/)  
-[AssertNet.Moq](https://www.nuget.org/packages/AssertNet.Moq/)  
+[AssertNet.Xunit](https://www.nuget.org/packages/AssertNet.Xunit/)  [![NuGet](https://img.shields.io/nuget/v/AssertNet.Xunit.svg)](https://www.nuget.org/packages/AssertNet.Xunit/)
+[AssertNet.NUnit](https://www.nuget.org/packages/AssertNet.NUnit/)  [![NuGet](https://img.shields.io/nuget/v/AssertNet.NUnit.svg)](https://www.nuget.org/packages/AssertNet.NUnit/)
+[AssertNet.MSTest](https://www.nuget.org/packages/AssertNet.MSTest/)  [![NuGet](https://img.shields.io/nuget/v/AssertNet.MSTest.svg)](https://www.nuget.org/packages/AssertNet.MSTest/)
+[AssertNet.Moq](https://www.nuget.org/packages/AssertNet.Moq/)  [![NuGet](https://img.shields.io/nuget/v/AssertNet.Moq.svg)](https://www.nuget.org/packages/AssertNet.Moq/)
   
-There is also a fifth NuGet package available: [AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/), which contains all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
+There is also a fifth NuGet package available: [AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Core.svg)](https://www.nuget.org/packages/AssertNet.Core/), which contains all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
 
 ### Usage
 Grab one of the available version mentioned in the __Downloads__ section above.  

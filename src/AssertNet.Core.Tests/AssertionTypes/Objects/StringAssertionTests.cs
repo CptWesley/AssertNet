@@ -1,9 +1,9 @@
-﻿using AssertNet.Core.Assertions.Objects;
+﻿using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.Failures;
 using Moq;
 using Xunit;
 
-namespace AssertNet.Core.Tests.Assertions.Objects
+namespace AssertNet.Core.Tests.AssertionTypes.Objects
 {
     /// <summary>
     /// Test class for the <see cref="StringAssertion"/> class.
@@ -21,6 +21,46 @@ namespace AssertNet.Core.Tests.Assertions.Objects
         }
 
         private StringAssertion StringAssertion => (StringAssertion)Assertion;
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is equal to the given value while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void IsEqualToIgnoringCasePassTest()
+        {
+            StringAssertion.IsEqualToIgnoringCase("Threhterj");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is not equal to the given value while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void IsEqualToIgnoringCaseFailTest()
+        {
+            StringAssertion.IsEqualToIgnoringCase("fdsdFSD");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
+        /// Checks that the assertion passes if the value is not equal to the given value while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void IsNotEqualToIgnoringCasePassTest()
+        {
+            StringAssertion.IsNotEqualToIgnoringCase("rey");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that the assertion fails if the value is equal to the given value while ignoring cases.
+        /// </summary>
+        [Fact]
+        public void IsNotEqualToIgnoringCaseFailTest()
+        {
+            StringAssertion.IsNotEqualToIgnoringCase("ThrehteRj");
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
 
         /// <summary>
         /// Checks that the assertion passes if the value contains a substring.

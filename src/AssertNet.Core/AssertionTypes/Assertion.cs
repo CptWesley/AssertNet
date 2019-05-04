@@ -1,6 +1,6 @@
 ﻿using AssertNet.Core.Failures;
 
-namespace AssertNet.Core.Assertions
+namespace AssertNet.Core.AssertionTypes
 {
     /// <summary>
     /// Abstract class representing assertions.

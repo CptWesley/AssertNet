@@ -1,7 +1,7 @@
 ﻿using System;
-using AssertNet.Core.Assertions;
-using AssertNet.Core.Assertions.Objects;
-using AssertNet.Core.Assertions.Void;
+using AssertNet.Core.AssertionTypes;
+using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes.Void;
 using AssertNet.NUnit;
 using NUnit.Framework;
 using static AssertNet.NUnit.Assertions;
