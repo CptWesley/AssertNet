@@ -42,11 +42,11 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
-		<PrivateAssets>all</PrivateAssets>
-	</PackageReference>
-	<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-		<PrivateAssets>all</PrivateAssets>
-	</PackageReference>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

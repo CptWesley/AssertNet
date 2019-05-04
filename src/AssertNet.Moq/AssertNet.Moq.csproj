@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
-	<CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
     <Authors>Wesley Baartman</Authors>
     <PackageProjectUrl>https://github.com/CptWesley/AssertNET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CptWesley/AssertNET</RepositoryUrl>
@@ -30,12 +30,12 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
-		<PrivateAssets>all</PrivateAssets>
-	</PackageReference>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Moq" Version="4.10.1" />
-	<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
-		<PrivateAssets>all</PrivateAssets>
-	</PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   
   <ItemGroup>
