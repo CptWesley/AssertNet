@@ -9,9 +9,9 @@
     <PackageLicenseUrl>https://github.com/CptWesley/AssertNET/blob/master/LICENSE</PackageLicenseUrl>
     <Description>AssertJ style fluent assertions for the Moq mocking framework.</Description>
     <PackageTags>assertnet test testing fluent assertions moq</PackageTags>
-    <AssemblyVersion>1.2.0.0</AssemblyVersion>
-    <FileVersion>1.2.0.0</FileVersion>
-    <Version>1.2.0</Version>
+    <AssemblyVersion>1.3.0.0</AssemblyVersion>
+    <FileVersion>1.3.0.0</FileVersion>
+    <Version>1.3.0</Version>
     <Copyright></Copyright>
     <PackageIconUrl>https://raw.githubusercontent.com/CptWesley/AssertNET/master/logo.png</PackageIconUrl>
   </PropertyGroup>
