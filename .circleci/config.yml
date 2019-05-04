@@ -14,10 +14,7 @@ jobs:
           name: Tests
           command: |
                    cd src
-                   dotnet test AssertNet.Core.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
-                   dotnet test AssertNet.Xunit.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
-                   dotnet test AssertNet.NUnit.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
-                   dotnet test AssertNet.MSTest.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutputDirectory=bin
+                   dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./bin/ /p:Exclude="[xunit*]*"
       - run:
           name: Codecov
           command: |
