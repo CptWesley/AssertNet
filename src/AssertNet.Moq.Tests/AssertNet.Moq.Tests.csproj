@@ -5,6 +5,13 @@
     <CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutput>./bin/</CoverletOutput>
+    <Include>[AssertNet.Moq]*</Include>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="coverlet.msbuild" Version="2.6.1">

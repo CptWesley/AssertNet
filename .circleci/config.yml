@@ -14,11 +14,13 @@ jobs:
           name: Tests
           command: |
                    cd src
-                   dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./bin/ /p:Exclude="[xunit*]*"
+                   dotnet test
       - run:
           name: Codecov
           command: |
                    bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Core.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Xunit.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.NUnit.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
-                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.MSTest.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Tests.Xunit/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Tests.Nunit/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Tests.MsTest/bin/coverage.opencover.xml" -t $CODECOV_KEY
+                   bash <(curl -s https://codecov.io/bash) -f "src/AssertNet.Moq.Tests/bin/coverage.opencover.xml" -t $CODECOV_KEY

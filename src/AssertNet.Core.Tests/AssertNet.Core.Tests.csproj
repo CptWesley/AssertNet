@@ -5,6 +5,13 @@
     <CodeAnalysisRuleSet>../Ruleset.ruleset</CodeAnalysisRuleSet>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+  
+  <PropertyGroup>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutput>./bin/</CoverletOutput>
+    <Include>[AssertNet.Core]*</Include>
+  </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netcoreapp2.0\AssertNet.Core.Tests.xml</DocumentationFile>
