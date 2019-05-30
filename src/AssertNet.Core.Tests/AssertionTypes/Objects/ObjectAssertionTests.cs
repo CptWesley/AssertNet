@@ -50,6 +50,26 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects
         }
 
         /// <summary>
+        /// Checks that there are no failures if the objects are equal.
+        /// </summary>
+        [Fact]
+        public void IsEquivalentToTrueTest()
+        {
+            Assertion.IsEquivalentTo(Assertion.Target);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
+        }
+
+        /// <summary>
+        /// Checks that there are failures if the objects are not equal.
+        /// </summary>
+        [Fact]
+        public void IsEquivalentToFalseTest()
+        {
+            Assertion.IsEquivalentTo(null);
+            FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
+        }
+
+        /// <summary>
         /// Checks that there are no failures if the objects are not equal.
         /// </summary>
         [Fact]

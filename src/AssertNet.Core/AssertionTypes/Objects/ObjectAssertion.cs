@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using AssertNet.Core.Failures;
+using AssertNet.Core.Helpers;
 
 namespace AssertNet.Core.AssertionTypes.Objects
 {
@@ -67,6 +68,46 @@ namespace AssertNet.Core.AssertionTypes.Objects
                     .Append(message)
                     .Append("Expecting", Target)
                     .Append("Not to be equal to", other)
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks whether the object under test is equivalent to another object.
+        /// </summary>
+        /// <param name="other">The other object to compare with.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsEquivalentTo(object other, string message = null)
+        {
+            if (!EquivalencyHelper.AreEquivalent(Target, other))
+            {
+                Fail(new FailureBuilder("IsEquivalentTo()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("To be equivalent to", other)
+                    .Finish());
+            }
+
+            return (TAssert)this;
+        }
+
+        /// <summary>
+        /// Checks whether the object under test is not equivalent to another object.
+        /// </summary>
+        /// <param name="other">The other object to compare with.</param>
+        /// <param name="message">Custom message for the assertion failure.</param>
+        /// <returns>The current assertion.</returns>
+        public TAssert IsNotEquivalentTo(object other, string message = null)
+        {
+            if (EquivalencyHelper.AreEquivalent(Target, other))
+            {
+                Fail(new FailureBuilder("IsNotEquivalentTo()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("Not to be equivalent to", other)
                     .Finish());
             }
 
