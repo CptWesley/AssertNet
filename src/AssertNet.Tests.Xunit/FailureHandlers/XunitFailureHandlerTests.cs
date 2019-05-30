@@ -3,7 +3,7 @@ using AssertNet.FailureHandlers;
 using Xunit;
 using Xunit.Sdk;
 
-namespace AssertNet.Tests.Xunit
+namespace AssertNet.Tests.Xunit.FailureHandlers
 {
     /// <summary>
     /// Test class for the <see cref="XunitFailureHandler"/> class.

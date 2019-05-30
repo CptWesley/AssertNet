@@ -2,7 +2,7 @@ using System;
 using AssertNet.FailureHandlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AssertNet.Tests.MsTest
+namespace AssertNet.Tests.MsTest.FailureHandlers
 {
     /// <summary>
     /// Test class for the <see cref="MsTestFailureHandler"/> class.

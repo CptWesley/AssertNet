@@ -2,7 +2,7 @@
 using AssertNet.FailureHandlers;
 using NUnit.Framework;
 
-namespace AssertNet.Tests.Nunit
+namespace AssertNet.Tests.Nunit.FailureHandlers
 {
     /// <summary>
     /// Test class for the <see cref="NunitFailureHandler"/> class.
