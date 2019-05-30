@@ -8,7 +8,7 @@
 AssertNet is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/), [MSTest](https://github.com/Microsoft/testfx)) and the mocking framework [Moq](https://github.com/Moq/moq4/). The library is heavily inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework and my love for AssertJ. Currently most of the most common AssertJ assertions are included in AssertNet, but more advanced assertions are yet to be added. The package for Moq simply adds sugared assertions that look similar to the assertions in the other packages to have more consitensy in the way your tests look like.
 
 ### Downloads
-Currently there are four different NuGet packages available (for different testing frameworks):  
+Currently there are multiple different NuGet packages available (for different frameworks):  
 [AssertNet](https://www.nuget.org/packages/AssertNet/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.svg)](https://www.nuget.org/packages/AssertNet/)  
 [AssertNet.Moq](https://www.nuget.org/packages/AssertNet.Moq/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Moq.svg)](https://www.nuget.org/packages/AssertNet.Moq/)  
   
