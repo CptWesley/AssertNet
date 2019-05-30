@@ -73,5 +73,14 @@ namespace AssertNet.Moq.Tests.Mocks
             Assert.Same(_target, assertion.Target);
             Assert.Same(expression, ((SetPropertyInvocationAssertion<IMockable>)assertion).Expression);
         }
+
+        /// <summary>
+        /// Checks that we can correctly verify that no other calls have been made on the mock object.
+        /// </summary>
+        [Fact]
+        public void HasNotPerformedOtherInvocationsTest()
+        {
+            Assert.Same(_target, _assertion.HasNotPerformedOtherInvocations().Target);
+        }
     }
 }
