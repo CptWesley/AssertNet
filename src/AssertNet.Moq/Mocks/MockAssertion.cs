@@ -49,5 +49,15 @@ namespace AssertNet.Moq.Mocks
         /// <param name="expression">The set expression.</param>
         /// <returns>An assertion about the property set expression.</returns>
         public InvocationAssertion<T> HasAssigned(Action<T> expression) => new SetPropertyInvocationAssertion<T>(Target, expression);
+
+        /// <summary>
+        /// Determines whether the target mock has not performed any other unverified invocations.
+        /// </summary>
+        /// <returns>The current mock assertion.</returns>
+        public MockAssertion<T> HasNotPerformedOtherInvocations()
+        {
+            Target.VerifyNoOtherCalls();
+            return this;
+        }
     }
 }
