@@ -1,94 +1,92 @@
-﻿using System;
+using System;
 using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.AssertionTypes.Void;
-using AssertNet.MSTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static AssertNet.MSTest.Assertions;
+using Xunit;
+using static AssertNet.Assertions;
 
-namespace AssertNet.Nunit.Tests
+namespace AssertNet.Xunit.Tests
 {
     /// <summary>
     /// Test class for the <see cref="Assertions"/> class.
     /// </summary>
-    [TestClass]
-    public class AssertionsTests
+    public static class AssertionsTests
     {
         /// <summary>
         /// Checks that void assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void VoidAssertionTest()
+        [Fact]
+        public static void VoidAssertionTest()
         {
             Assertion assertion = AssertThat(() => { });
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(VoidAssertion));
+            Assert.NotNull(assertion);
+            Assert.IsType<VoidAssertion>(assertion);
         }
 
         /// <summary>
         /// Checks that exception assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void ExceptionAssertionTest()
+        [Fact]
+        public static void ExceptionAssertionTest()
         {
             Assertion assertion = AssertThat(new Exception());
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(ExceptionAssertion));
+            Assert.NotNull(assertion);
+            Assert.IsType<ExceptionAssertion>(assertion);
         }
 
         /// <summary>
         /// Checks that boolean assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void BooleanAssertionTest()
+        [Fact]
+        public static void BooleanAssertionTest()
         {
             Assertion assertion = AssertThat(true);
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(BooleanAssertion));
+            Assert.NotNull(assertion);
+            Assert.IsType<BooleanAssertion>(assertion);
         }
 
         /// <summary>
         /// Checks that double assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void DoubleAssertionTest()
+        [Fact]
+        public static void DoubleAssertionTest()
         {
             Assertion assertion = AssertThat(4.5);
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(DoubleAssertion));
+            Assert.NotNull(assertion);
+            Assert.IsType<DoubleAssertion>(assertion);
         }
 
         /// <summary>
         /// Checks that string assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void StringAssertionTest()
+        [Fact]
+        public static void StringAssertionTest()
         {
             Assertion assertion = AssertThat(string.Empty);
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(StringAssertion));
+            Assert.NotNull(assertion);
+            Assert.IsType<StringAssertion>(assertion);
         }
 
         /// <summary>
         /// Checks that collection assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void CollectionAssertionTest()
+        [Fact]
+        public static void CollectionAssertionTest()
         {
             Assertion assertion = AssertThat(Array.Empty<int>());
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(EnumerableAssertion<int>));
+            Assert.NotNull(assertion);
+            Assert.IsType<EnumerableAssertion<int>>(assertion);
         }
 
         /// <summary>
         /// Checks that single object assertions are created correctly.
         /// </summary>
-        [TestMethod]
-        public void SingleAssertionTest()
+        [Fact]
+        public static void SingleAssertionTest()
         {
             Assertion assertion = AssertThat(new object());
-            Assert.IsNotNull(assertion);
-            Assert.IsInstanceOfType(assertion, typeof(SingleAssertion));
+            Assert.NotNull(assertion);
+            Assert.IsType<SingleAssertion>(assertion);
         }
     }
 }

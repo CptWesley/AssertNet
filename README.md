@@ -1,34 +1,24 @@
 [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/CptWesley/AssertNet?svg=true)](https://ci.appveyor.com/project/CptWesley/AssertNet)
 [![CircleCI](https://circleci.com/gh/CptWesley/AssertNet.svg?style=shield)](https://circleci.com/gh/CptWesley/AssertNet)
 [![CodeCov](https://codecov.io/gh/CptWesley/AssertNet/branch/master/graph/badge.svg)](https://codecov.io/gh/CptWesley/AssertNet/)
+[![BetterCodeHub](https://bettercodehub.com/edge/badge/CptWesley/AssertNet?branch=master)](https://bettercodehub.com/results/CptWesley/AssertNet)
 
 ![AssertNet](https://raw.githubusercontent.com/CptWesley/AssertNet/master/logo.png)
 ### Description
 AssertNet is a fluent assertion library for multiple different .NET testing frameworks ([xUnit](https://xunit.github.io/), [NUnit](http://nunit.org/), [MSTest](https://github.com/Microsoft/testfx)) and the mocking framework [Moq](https://github.com/Moq/moq4/). The library is heavily inspired by [AssertJ](http://joel-costigliola.github.io/assertj/), a fluent assertion library for Java. The project originated from a personal frustration caused by a lack of a size assertion in the xUnit framework and my love for AssertJ. Currently most of the most common AssertJ assertions are included in AssertNet, but more advanced assertions are yet to be added. The package for Moq simply adds sugared assertions that look similar to the assertions in the other packages to have more consitensy in the way your tests look like.
 
 ### Downloads
-Currently there are four different NuGet packages available (for different testing frameworks):  
-[AssertNet.Xunit](https://www.nuget.org/packages/AssertNet.Xunit/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Xunit.svg)](https://www.nuget.org/packages/AssertNet.Xunit/)  
-[AssertNet.NUnit](https://www.nuget.org/packages/AssertNet.NUnit/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.NUnit.svg)](https://www.nuget.org/packages/AssertNet.NUnit/)  
-[AssertNet.MSTest](https://www.nuget.org/packages/AssertNet.MSTest/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.MSTest.svg)](https://www.nuget.org/packages/AssertNet.MSTest/)  
+Currently there are multiple different NuGet packages available (for different frameworks):  
+[AssertNet](https://www.nuget.org/packages/AssertNet/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.svg)](https://www.nuget.org/packages/AssertNet/)  
 [AssertNet.Moq](https://www.nuget.org/packages/AssertNet.Moq/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Moq.svg)](https://www.nuget.org/packages/AssertNet.Moq/)  
   
-There is also a fifth NuGet package available: [AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Core.svg)](https://www.nuget.org/packages/AssertNet.Core/), which contains all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
+There is also a third NuGet package available: [AssertNet.Core](https://www.nuget.org/packages/AssertNet.Core/) [![NuGet](https://img.shields.io/nuget/v/AssertNet.Core.svg)](https://www.nuget.org/packages/AssertNet.Core/), which contains all implementations of the custom assertions. This package can be used for adding support to other .NET testing frameworks. More information about this will be available on the wiki.
 
 ### Usage
 Grab one of the available version mentioned in the __Downloads__ section above.  
 Add the following line to the test files where you intend to use _AssertNet_ depending on your version:  
-For xUnit:  
 ```cs
-using static AssertNet.Xunit.Assertions;
-```  
-For NUnit:  
-```cs
-using static AssertNet.NUnit.Assertions;
-```  
-For MSTest:  
-```cs
-using static AssertNet.MSTest.Assertions;
+using static AssertNet.Assertions;
 ```  
 For Moq:  
 ```cs

@@ -10,7 +10,7 @@
     <CollectCoverage>true</CollectCoverage>
     <CoverletOutputFormat>opencover</CoverletOutputFormat>
     <CoverletOutput>./bin/</CoverletOutput>
-    <Include>[AssertNet.Moq]*</Include>
+    <Include>[AssertNet]*</Include>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,13 +26,21 @@
     </PackageReference>
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AssertNet\AssertNet.csproj" />
+  </ItemGroup>
+  
+    <ItemGroup>
+    <ProjectReference Include="..\AssertNet.Core\AssertNet.Core.csproj" />
+  </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.Moq.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.Tests.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.Moq.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.Tests.xml</DocumentationFile>
   </PropertyGroup>
   
   <ItemGroup>
@@ -46,10 +54,6 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\AssertNet.Moq\AssertNet.Moq.csproj" />
   </ItemGroup>
 
 </Project>
