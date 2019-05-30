@@ -1,27 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2000
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core", "AssertNet.Core\AssertNet.Core.csproj", "{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core.Tests", "AssertNet.Core.Tests\AssertNet.Core.Tests.csproj", "{764543CD-C418-4B8E-A697-96EE4BD5BEBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Xunit", "AssertNet.Xunit\AssertNet.Xunit.csproj", "{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Xunit", "AssertNet.Tests.Xunit\AssertNet.Tests.Xunit.csproj", "{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Xunit.Tests", "AssertNet.Xunit.Tests\AssertNet.Xunit.Tests.csproj", "{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Nunit", "AssertNet.Tests.Nunit\AssertNet.Tests.Nunit.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.NUnit", "AssertNet.NUnit\AssertNet.NUnit.csproj", "{12CD905B-0670-475C-BEE2-DE87564223D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.MsTest", "AssertNet.Tests.MsTest\AssertNet.Tests.MsTest.csproj", "{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.NUnit.Tests", "AssertNet.NUnit.Tests\AssertNet.NUnit.Tests.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Moq", "AssertNet.Moq\AssertNet.Moq.csproj", "{1B766528-9834-4D73-AB59-0209DAA5CCCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.MSTest", "AssertNet.MSTest\AssertNet.MSTest.csproj", "{F7239922-73B5-4EC3-9E14-12922824389C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Moq.Tests", "AssertNet.Moq.Tests\AssertNet.Moq.Tests.csproj", "{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.MSTest.Tests", "AssertNet.MSTest.Tests\AssertNet.MSTest.Tests.csproj", "{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet", "AssertNet\AssertNet.csproj", "{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Moq", "AssertNet.Moq\AssertNet.Moq.csproj", "{1B766528-9834-4D73-AB59-0209DAA5CCCA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Moq.Tests", "AssertNet.Moq.Tests\AssertNet.Moq.Tests.csproj", "{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Tests", "AssertNet.Tests\AssertNet.Tests.csproj", "{9B336433-CB36-4D04-8ED5-B57C1A36352C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,26 +35,14 @@ Global
 		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27E9A464-81BF-4D32-86F3-93FA84FBC0AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12CD905B-0670-475C-BEE2-DE87564223D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12CD905B-0670-475C-BEE2-DE87564223D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12CD905B-0670-475C-BEE2-DE87564223D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12CD905B-0670-475C-BEE2-DE87564223D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{281C91C5-D1F0-41B1-9C8E-DC241B883333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{281C91C5-D1F0-41B1-9C8E-DC241B883333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{281C91C5-D1F0-41B1-9C8E-DC241B883333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{281C91C5-D1F0-41B1-9C8E-DC241B883333}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7239922-73B5-4EC3-9E14-12922824389C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7239922-73B5-4EC3-9E14-12922824389C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7239922-73B5-4EC3-9E14-12922824389C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7239922-73B5-4EC3-9E14-12922824389C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +55,14 @@ Global
 		{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

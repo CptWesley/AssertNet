@@ -1,22 +1,32 @@
 using System;
+using AssertNet.FailureHandlers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AssertNet.MSTest.Tests
+namespace AssertNet.Tests.MsTest
 {
     /// <summary>
-    /// Test class for the <see cref="MSTestFailureHandler"/> class.
+    /// Test class for the <see cref="MsTestFailureHandler"/> class.
     /// </summary>
     [TestClass]
-    public class MSTestFailureHandlerTests
+    public class MsTestFailureHandlerTests
     {
-        private MSTestFailureHandler _handler;
+        private readonly MsTestFailureHandler handler;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MSTestFailureHandlerTests"/> class.
+        /// Initializes a new instance of the <see cref="MsTestFailureHandlerTests"/> class.
         /// </summary>
-        public MSTestFailureHandlerTests()
+        public MsTestFailureHandlerTests()
         {
-            _handler = new MSTestFailureHandler();
+            handler = new MsTestFailureHandler();
+        }
+
+        /// <summary>
+        /// Checks that the handler is available.
+        /// </summary>
+        [TestMethod]
+        public void AvailableTest()
+        {
+            Assert.IsTrue(handler.IsAvailable());
         }
 
         /// <summary>
@@ -29,7 +39,7 @@ namespace AssertNet.MSTest.Tests
             Exception exception = null;
             try
             {
-                _handler.Fail(msg);
+                handler.Fail(msg);
             }
             catch (AssertFailedException e)
             {

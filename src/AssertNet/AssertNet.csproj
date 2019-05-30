@@ -7,8 +7,8 @@
     <PackageProjectUrl>https://github.com/CptWesley/AssertNET</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CptWesley/AssertNET</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Description>AssertJ style fluent assertions for .NET testing framework MSTest.</Description>
-    <PackageTags>assertnet test testing fluent assertions mstest</PackageTags>
+    <Description>AssertJ style fluent assertions for .NET unit testing frameworks.</Description>
+    <PackageTags>assertnet test testing fluent assertions xunit nunit mstest</PackageTags>
     <AssemblyVersion>1.3.0.0</AssemblyVersion>
     <FileVersion>1.3.0.0</FileVersion>
     <Version>1.3.0</Version>
@@ -17,11 +17,11 @@
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.MSTest.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.MSTest.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.xml</DocumentationFile>
   </PropertyGroup>
   
   <ItemGroup>
@@ -32,12 +32,11 @@
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.2">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\AssertNet.Core\AssertNet.Core.csproj" />
   </ItemGroup>

@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AssertNet.Xunit\AssertNet.Xunit.csproj" />
+    <ProjectReference Include="..\AssertNet\AssertNet.csproj" />
   </ItemGroup>
   
     <ItemGroup>
@@ -29,11 +29,11 @@
   </ItemGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.Xunit.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\AssertNet.Tests.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.Xunit.Tests.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\AssertNet.Tests.xml</DocumentationFile>
   </PropertyGroup>
   
   <ItemGroup>
