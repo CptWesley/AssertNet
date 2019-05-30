@@ -9,7 +9,7 @@ namespace AssertNet.FailureHandlers
     /// General exception failure handler.
     /// </summary>
     /// <seealso cref="IFailureHandler" />
-    public class ExceptionFailureHandler : IFailureHandler
+    public abstract class ExceptionFailureHandler : IFailureHandler
     {
         private readonly Type exceptionType;
 
