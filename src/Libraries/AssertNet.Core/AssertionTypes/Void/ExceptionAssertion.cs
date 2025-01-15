@@ -121,6 +121,7 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
                 .Append("Expecting", Target)
                 .Append("To have an inner exception, but is null")
                 .Finish());
+            return this;
         }
         else if (Target.InnerException is null)
         {
@@ -129,6 +130,7 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
                 .Append("Expecting", Target)
                 .Append("To have an inner exception, but has none")
                 .Finish());
+            return this;
         }
 
         return new ExceptionAssertion(FailureHandler, Target.InnerException);

@@ -382,7 +382,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsNullOrEmpty(string? message = null)
     {
-        if (Target is null || !string.IsNullOrEmpty(Target))
+        if (!string.IsNullOrEmpty(Target))
         {
             Fail(new FailureBuilder("IsNullOrEmpty()")
                 .Append(message)

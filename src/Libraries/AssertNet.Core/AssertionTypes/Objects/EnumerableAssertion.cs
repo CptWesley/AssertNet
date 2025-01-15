@@ -565,6 +565,7 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
                     .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("Not to contain the sequence", values)
                     .Finish());
+                return this;
             }
 
             if (!Equals(el, it.Current))
