@@ -14,6 +14,7 @@
 
   <PropertyGroup>
     <Version>3.0.0</Version>
+    <ProductName>AssertNet</ProductName>
     <Description>AssertJ style fluent assertions for .NET unit testing frameworks.</Description>
     <PackageTags>assertnet test testing fluent assertions fluentassertions xunit nunit mstest</PackageTags>
     <PackageReleaseNotes>
@@ -45,6 +46,10 @@
     <GenerateSBOM>true</GenerateSBOM>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>SA1633</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">

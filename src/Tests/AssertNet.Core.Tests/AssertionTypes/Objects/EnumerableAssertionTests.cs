@@ -14,7 +14,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     public EnumerableAssertionTests()
     {
         FailureHandler = new Mock<IFailureHandler>();
-        CollectionAssertion = new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 });
+        CollectionAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]);
         Assertion = CollectionAssertion;
     }
 
@@ -79,7 +79,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void IsEmptyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1 }).IsEmpty();
+        new EnumerableAssertion<int>(FailureHandler.Object, [1]).IsEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -89,7 +89,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void IsNotEmptyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1 }).IsNotEmpty();
+        new EnumerableAssertion<int>(FailureHandler.Object, [1]).IsNotEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -109,7 +109,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void HasSizePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasSize(3);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).HasSize(3);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -129,7 +129,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void HasAtLeastSizePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasAtLeastSize(2);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).HasAtLeastSize(2);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -149,7 +149,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void HasAtMostSizePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 2 }).HasAtMostSize(4);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 2]).HasAtMostSize(4);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -159,7 +159,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void HasAtMostSizeFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).HasAtMostSize(1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).HasAtMostSize(1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -169,7 +169,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsOnlyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 2, 2, 1 }).ContainsOnly(1, 2);
+        new EnumerableAssertion<int>(FailureHandler.Object, [2, 2, 1]).ContainsOnly(1, 2);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -179,7 +179,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsOnlyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 9, 3, 5 }).ContainsOnly(3, 4);
+        new EnumerableAssertion<int>(FailureHandler.Object, [9, 3, 5]).ContainsOnly(3, 4);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -189,7 +189,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainOnlyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 2, 2, 1 }).DoesNotContainOnly(1, 3);
+        new EnumerableAssertion<int>(FailureHandler.Object, [2, 2, 1]).DoesNotContainOnly(1, 3);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -199,7 +199,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainOnlyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 9, 3, 5 }).DoesNotContainOnly(9, 3, 3, 5);
+        new EnumerableAssertion<int>(FailureHandler.Object, [9, 3, 5]).DoesNotContainOnly(9, 3, 3, 5);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -209,7 +209,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsExactlyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 2, 9, 6 }).ContainsExactly(2, 9, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [2, 9, 6]).ContainsExactly(2, 9, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -219,7 +219,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsExactlyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactly(5, 7, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).ContainsExactly(5, 7, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -229,7 +229,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainExactlyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 3, 4, 5 }).DoesNotContainExactly(3, 5, 4);
+        new EnumerableAssertion<int>(FailureHandler.Object, [3, 4, 5]).DoesNotContainExactly(3, 5, 4);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -239,7 +239,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainExactlyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 9, 6, 4 }).DoesNotContainExactly(9, 6, 4);
+        new EnumerableAssertion<int>(FailureHandler.Object, [9, 6, 4]).DoesNotContainExactly(9, 6, 4);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -249,7 +249,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsExactlyInAnyOrderPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 7, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).ContainsExactlyInAnyOrder(5, 7, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -259,7 +259,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsExactlyInAnyOrderWrongFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 9, 7, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).ContainsExactlyInAnyOrder(5, 9, 7, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -269,7 +269,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsExactlyInAnyOrderTooManyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6, 7, 7);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).ContainsExactlyInAnyOrder(5, 6, 7, 7);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -279,7 +279,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsExactlyInAnyOrderTooFewFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).ContainsExactlyInAnyOrder(5, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).ContainsExactlyInAnyOrder(5, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -289,7 +289,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainExactlyInAnyOrderFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 7, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).DoesNotContainExactlyInAnyOrder(5, 7, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -299,7 +299,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainExactlyInAnyOrderTooManyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 6, 7, 7);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).DoesNotContainExactlyInAnyOrder(5, 6, 7, 7);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -309,7 +309,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainExactlyInAnyOrderTooFewPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).DoesNotContainExactlyInAnyOrder(5, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -319,7 +319,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainExactlyInAnyOrderWrongPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 5, 6, 7 }).DoesNotContainExactlyInAnyOrder(5, 9, 7, 6);
+        new EnumerableAssertion<int>(FailureHandler.Object, [5, 6, 7]).DoesNotContainExactlyInAnyOrder(5, 9, 7, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -329,7 +329,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsSequencePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsSequence(1, 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).ContainsSequence(1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -339,7 +339,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsSequenceFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsSequence(1, 1, 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).ContainsSequence(1, 1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -349,7 +349,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainSequencePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).DoesNotContainSequence(1, 1, 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).DoesNotContainSequence(1, 1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -359,7 +359,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainSequenceFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).DoesNotContainSequence(1, 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).DoesNotContainSequence(1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -369,7 +369,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsInterleavedSequencePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsInterleavedSequence(1, 0, 0);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).ContainsInterleavedSequence(1, 0, 0);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -379,7 +379,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsInterleavedSequenceFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).ContainsInterleavedSequence(1, 1, 1, 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).ContainsInterleavedSequence(1, 1, 1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -389,7 +389,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainInterleavedSequencePassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).DoesNotContainInterleavedSequence(1, 1, 0, 0);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).DoesNotContainInterleavedSequence(1, 1, 0, 0);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -399,7 +399,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainInterleavedSequenceFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 0, 1, 0, 1, 1, 0 }).DoesNotContainInterleavedSequence(0, 1, 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [0, 1, 0, 1, 1, 0]).DoesNotContainInterleavedSequence(0, 1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -409,7 +409,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsNullPassTest()
     {
-        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "a", null!, "b" }).ContainsNull();
+        new EnumerableAssertion<string>(FailureHandler.Object, ["a", null!, "b"]).ContainsNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -419,7 +419,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsNullFailTest()
     {
-        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "c", "d" }).ContainsNull();
+        new EnumerableAssertion<string>(FailureHandler.Object, ["c", "d"]).ContainsNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -429,7 +429,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainNullPassTest()
     {
-        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "e", "f" }).DoesNotContainNull();
+        new EnumerableAssertion<string>(FailureHandler.Object, ["e", "f"]).DoesNotContainNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -439,7 +439,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainNullFailTest()
     {
-        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "g", null!, "h" }).DoesNotContainNull();
+        new EnumerableAssertion<string>(FailureHandler.Object, ["g", null!, "h"]).DoesNotContainNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -449,7 +449,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void AllSatisfyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).AllSatisfy(x => x > 0);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).AllSatisfy(x => x > 0);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -459,7 +459,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void AllSatisfyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).AllSatisfy(x => x > 1);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).AllSatisfy(x => x > 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -469,7 +469,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void SomeSatisfyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).SomeSatisfy(x => x > 2);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).SomeSatisfy(x => x > 2);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -479,7 +479,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void SomeSatisfyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).SomeSatisfy(x => x > 5);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).SomeSatisfy(x => x > 5);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -489,7 +489,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void NoneSatisfyPassTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).NoneSatisfy(x => x > 5);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).NoneSatisfy(x => x > 5);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -499,7 +499,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void NoneSatisfyFailTest()
     {
-        new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3 }).NoneSatisfy(x => x > 2);
+        new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]).NoneSatisfy(x => x > 2);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -509,7 +509,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void WhereTest()
     {
-        EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3, 4 });
+        EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
         EnumerableAssertion<int> newAssertion = originalAssertion.Where(x => x > 2);
         Assert.Equal(2, newAssertion.Target.Count());
         Assert.Contains(3, newAssertion.Target);
@@ -522,7 +522,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void SelectTest()
     {
-        EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, new int[] { 1, 2, 3, 4 });
+        EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
         EnumerableAssertion<int> newAssertion = originalAssertion.Select(x => x + 1);
         Assert.Equal(4, newAssertion.Target.Count());
         Assert.Contains(2, newAssertion.Target);

@@ -12,8 +12,6 @@ public class MethodInvocationAssertionTests
     private readonly Mock<IMockable> _target;
     private readonly Expression<Func<IMockable, int>> _expression;
 
-    private int _val;
-
     /// <summary>
     /// Initializes a new instance of the <see cref="MethodInvocationAssertionTests"/> class.
     /// </summary>

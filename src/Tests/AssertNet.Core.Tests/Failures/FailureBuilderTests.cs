@@ -74,7 +74,7 @@ public class FailureBuilderTests
         string title = "4325f324";
         Assert.Equal(
             $"{Name} Assertion failure{NewLine}{title}:{NewLine}[1, 2, 3]",
-            _builder.AppendEnumerable(title, new int[] { 1, 2, 3 }).Finish());
+            _builder.AppendEnumerable(title, [1, 2, 3]).Finish());
     }
 
     /// <summary>

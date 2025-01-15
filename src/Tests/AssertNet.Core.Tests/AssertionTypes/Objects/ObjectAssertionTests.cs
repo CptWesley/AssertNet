@@ -403,7 +403,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void ToStringYieldsFailTest()
     {
-        Assertion.ToStringYields(Assertion.Target!.ToString() + "ft2gr");
+        Assertion.ToStringYields(Assertion.Target + "ft2gr");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 }

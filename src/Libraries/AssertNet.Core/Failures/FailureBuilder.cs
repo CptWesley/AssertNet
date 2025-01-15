@@ -5,7 +5,7 @@ namespace AssertNet.Core.Failures;
 /// </summary>
 public class FailureBuilder
 {
-    private StringBuilder _builder;
+    private readonly StringBuilder _builder;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FailureBuilder"/> class.
