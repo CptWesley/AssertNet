@@ -1,9 +1,3 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Text.RegularExpressions;
-using AssertNet.Core.Failures;
-
 namespace AssertNet.Core.AssertionTypes.Objects;
 
 /// <summary>

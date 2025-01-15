@@ -1,8 +1,3 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using AssertNet.Core.AssertionTypes.Objects;
-using AssertNet.Core.Failures;
-
 namespace AssertNet.Core.AssertionTypes.Void;
 
 /// <summary>

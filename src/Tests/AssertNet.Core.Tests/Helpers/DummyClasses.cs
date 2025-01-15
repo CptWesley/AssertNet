@@ -1,5 +1,3 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using AssertNet.Core.Helpers;
 
 namespace AssertNet.Core.Tests.Helpers;

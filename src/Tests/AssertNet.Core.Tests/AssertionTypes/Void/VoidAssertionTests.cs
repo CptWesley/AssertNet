@@ -1,8 +1,5 @@
-﻿using System;
 using AssertNet.Core.AssertionTypes.Void;
 using AssertNet.Core.Failures;
-using Moq;
-using Xunit;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Void;
 

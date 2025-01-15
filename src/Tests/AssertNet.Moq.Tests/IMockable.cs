@@ -1,4 +1,4 @@
-﻿namespace AssertNet.Moq.Tests;
+namespace AssertNet.Moq.Tests;
 
 /// <summary>
 /// Simple mockable interface.

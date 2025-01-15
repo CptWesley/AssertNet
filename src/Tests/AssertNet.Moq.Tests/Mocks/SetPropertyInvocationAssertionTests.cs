@@ -1,7 +1,4 @@
-﻿using System;
 using AssertNet.Moq.Mocks;
-using Moq;
-using Xunit;
 
 namespace AssertNet.Moq.Tests.Mocks;
 

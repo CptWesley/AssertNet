@@ -1,6 +1,4 @@
-using System;
 using AssertNet.FailureHandlers;
-using NUnit.Framework;
 
 namespace AssertNet.Tests.Nunit.FailureHandlers;
 

@@ -1,9 +1,6 @@
-using System;
 using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.AssertionTypes.Void;
-using Xunit;
-using static AssertNet.Assertions;
 
 namespace AssertNet.Xunit.Tests;
 

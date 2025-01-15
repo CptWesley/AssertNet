@@ -1,5 +1,4 @@
-﻿using AssertNet.Core.Failures;
-using Xunit;
+using AssertNet.Core.Failures;
 using static System.Environment;
 
 namespace AssertNet.Core.Tests.Failures;

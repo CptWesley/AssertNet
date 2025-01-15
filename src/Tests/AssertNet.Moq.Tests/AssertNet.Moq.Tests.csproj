@@ -3,7 +3,7 @@
   <Import Project="../../xunit.props"/>
   
   <ItemGroup>
-    <ProjectReference Include="../../Libraries/AssertNet.Moq\AssertNet.Moq.csproj" />
+    <ProjectReference Include="../../Libraries/AssertNet.Moq/AssertNet.Moq.csproj" />
   </ItemGroup>
 
 </Project>

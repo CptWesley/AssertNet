@@ -1,8 +1,5 @@
-﻿using System;
 using System.Linq.Expressions;
 using AssertNet.Moq.Mocks;
-using Moq;
-using Xunit;
 
 namespace AssertNet.Moq.Tests.Mocks;
 

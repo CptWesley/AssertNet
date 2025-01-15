@@ -1,5 +1,4 @@
-﻿using AssertNet.FailureHandlers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AssertNet.FailureHandlers;
 
 namespace AssertNet.Tests.MsTest.FailureHandlers;
 

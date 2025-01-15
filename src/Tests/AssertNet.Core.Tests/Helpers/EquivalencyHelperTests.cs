@@ -1,6 +1,4 @@
-﻿using System;
 using AssertNet.Core.Helpers;
-using Xunit;
 using static AssertNet.Core.Helpers.EquivalencyHelper;
 
 namespace AssertNet.Core.Tests.Helpers;

@@ -67,7 +67,7 @@
 
   <ItemGroup Label="ProjectFiles">
     <AdditionalFiles Include="*.??proj" Visible="false" />
-    <AdditionalFiles Include="../*.props" Visible="false" />
+    <AdditionalFiles Include="../../*.props" Visible="false" />
   </ItemGroup>
 
   <ItemGroup Label="DefaultImports">

@@ -1,7 +1,5 @@
-﻿using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.Failures;
-using Moq;
-using Xunit;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 

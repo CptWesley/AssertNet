@@ -1,4 +1,4 @@
-﻿namespace AssertNet.FailureHandlers;
+namespace AssertNet.FailureHandlers;
 
 /// <summary>
 /// Handles failures when running xUnit.

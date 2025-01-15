@@ -1,5 +1,3 @@
-﻿using AssertNet.Core.Failures;
-
 namespace AssertNet.Core.AssertionTypes.Objects;
 
 /// <summary>

@@ -1,6 +1,4 @@
-﻿using System;
 using AssertNet.FailureHandlers;
-using Xunit;
 
 namespace AssertNet.Tests.FailureHandlers;
 

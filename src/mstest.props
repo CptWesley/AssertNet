@@ -2,9 +2,6 @@
 
   <Import Project="tests.props" />
 
-  <ItemGroup Label="Analyzers">
-  </ItemGroup>
-
   <ItemGroup Label="Dependencies">
     <PackageReference Include="MSTest" />
   </ItemGroup>

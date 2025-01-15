@@ -1,4 +1,4 @@
-﻿using AssertNet.Moq.Mocks;
+using AssertNet.Moq.Mocks;
 using Moq;
 
 namespace AssertNet.Moq;

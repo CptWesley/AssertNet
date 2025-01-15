@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using AssertNet.Core.AssertionTypes.Objects;
-using AssertNet.Core.AssertionTypes.Void;
-using AssertNet.FailureHandlers;
-
 namespace AssertNet;
 
 /// <summary>
