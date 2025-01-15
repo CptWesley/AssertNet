@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using Moq;
 
 namespace AssertNet.Moq.Mocks
@@ -78,7 +78,7 @@ namespace AssertNet.Moq.Mocks
         /// <inheritdoc/>
         public override MockAssertion<T> Between(int minimum, int maximum, string message = null)
         {
-            Target.Verify(Expression, Times.Between(minimum, maximum, Range.Inclusive), message);
+            Target.Verify(Expression, Times.Between(minimum, maximum, global::Moq.Range.Inclusive), message);
             return new MockAssertion<T>(Target);
         }
     }

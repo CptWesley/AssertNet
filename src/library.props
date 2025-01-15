@@ -1,0 +1,7 @@
+<Project>
+  <Import Project="common.props" />
+
+  <PropertyGroup Label="Technical">
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+</Project>

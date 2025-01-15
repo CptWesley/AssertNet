@@ -1,0 +1,16 @@
+<Project>
+
+  <Import Project="tests.props" />
+
+  <ItemGroup Label="Analyzers">
+  </ItemGroup>
+
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="MSTest" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+</Project>

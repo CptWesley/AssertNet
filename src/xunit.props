@@ -1,0 +1,18 @@
+<Project>
+
+  <Import Project="tests.props" />
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="xunit.analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

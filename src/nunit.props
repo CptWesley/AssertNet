@@ -1,0 +1,18 @@
+<Project>
+
+  <Import Project="tests.props" />
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="NUnit.Analyzers" />
+  </ItemGroup>
+
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
+
+</Project>
