@@ -11,8 +11,7 @@ public abstract class ExceptionFailureHandler : IFailureHandler
     private static readonly Func<string, Exception> defaultCreateException
         = msg => new AssertionFailedException(msg);
 
-    private readonly Type? exceptionType;
-    private readonly Func<string, Exception> createException;
+    private readonly Func<string, Exception> createException = defaultCreateException;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionFailureHandler"/> class.
@@ -23,13 +22,8 @@ public abstract class ExceptionFailureHandler : IFailureHandler
     {
         if (TryLoadAssembly(assemblyName, out var assembly))
         {
-            exceptionType = assembly.GetType(exceptionName);
-        }
-
-        createException = GenerateCreationFunction(exceptionType);
-        if (createException == defaultCreateException)
-        {
-            exceptionType = null;
+            var exceptionType = assembly.GetType(exceptionName);
+            createException = GenerateCreationFunction(exceptionType);
         }
     }
 
@@ -70,7 +64,7 @@ public abstract class ExceptionFailureHandler : IFailureHandler
 
     /// <inheritdoc/>
     public bool IsAvailable()
-        => exceptionType != null;
+        => createException != defaultCreateException;
 
     [SuppressMessage("Microsoft.Design", "CA1031", Justification = "We don't really care about the reason why it's not available.")]
     private static bool TryLoadAssembly(string assemblyName, [MaybeNullWhen(false)] out Assembly assembly)
