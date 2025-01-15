@@ -27,6 +27,5 @@ public abstract class Assertion
     protected void Fail(string message)
     {
         FailureHandler.Fail(message);
-        throw new InvalidOperationException("Should not occur.");
     }
 }
