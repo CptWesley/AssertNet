@@ -14,6 +14,6 @@ public static class FailureHandlerFactoryTests
     [Test]
     public static void FactoryTest()
     {
-        Assert.IsInstanceOf<NunitFailureHandler>(FailureHandlerFactory.Create());
+        Assert.That(FailureHandlerFactory.Create(), Is.InstanceOf<NunitFailureHandler>());
     }
 }

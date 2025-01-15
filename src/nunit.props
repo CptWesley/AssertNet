@@ -3,7 +3,7 @@
   <Import Project="tests.props" />
 
   <ItemGroup Label="Analyzers">
-    <PackageReference Include="NUnit.Analyzers" />
+    <PackageReference Include="NUnit.Analyzers" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup Label="Dependencies">
