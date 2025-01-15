@@ -22,7 +22,7 @@
 
   <ItemGroup Label="DefaultImports">
     <Using Include="Moq" />
-    <Using Static="true" Include="AssertNet.Assertions" />
+    <Using Static="true" Include="AssertNet.AssertionBuilder" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,5 @@
 using AssertNet.Moq.Mocks;
-using static AssertNet.Moq.Assertions;
+using static AssertNet.AssertionBuilder;
 
 namespace AssertNet.Moq.Tests;
 
@@ -14,8 +14,8 @@ public static class AssertionsTests
     [Fact]
     public static void AssertThatTest()
     {
-        Mock<object> target = new Mock<object>(MockBehavior.Loose);
-        MockAssertion<object> assertion = AssertThat(target);
+        Mock<object> target = new Mock<object>();
+        MockAssertion<object> assertion = Asserts.That(target);
         Assert.NotNull(assertion);
         Assert.Same(target, assertion.Target);
     }

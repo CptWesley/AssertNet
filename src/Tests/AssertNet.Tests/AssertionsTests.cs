@@ -15,7 +15,7 @@ public static class AssertionsTests
     [Fact]
     public static void VoidAssertionTest()
     {
-        Assertion assertion = AssertThat(() => { });
+        Assertion assertion = Asserts.That(() => { });
         Assert.NotNull(assertion);
         Assert.IsType<VoidAssertion>(assertion);
     }
@@ -26,7 +26,7 @@ public static class AssertionsTests
     [Fact]
     public static void ExceptionAssertionTest()
     {
-        Assertion assertion = AssertThat(new Exception());
+        Assertion assertion = Asserts.That(new Exception());
         Assert.NotNull(assertion);
         Assert.IsType<ExceptionAssertion>(assertion);
     }
@@ -37,7 +37,7 @@ public static class AssertionsTests
     [Fact]
     public static void BooleanAssertionTest()
     {
-        Assertion assertion = AssertThat(true);
+        Assertion assertion = Asserts.That(true);
         Assert.NotNull(assertion);
         Assert.IsType<BooleanAssertion>(assertion);
     }
@@ -48,7 +48,7 @@ public static class AssertionsTests
     [Fact]
     public static void DoubleAssertionTest()
     {
-        Assertion assertion = AssertThat(4.5);
+        Assertion assertion = Asserts.That(4.5);
         Assert.NotNull(assertion);
         Assert.IsType<DoubleAssertion>(assertion);
     }
@@ -59,7 +59,7 @@ public static class AssertionsTests
     [Fact]
     public static void StringAssertionTest()
     {
-        Assertion assertion = AssertThat(string.Empty);
+        Assertion assertion = Asserts.That(string.Empty);
         Assert.NotNull(assertion);
         Assert.IsType<StringAssertion>(assertion);
     }
@@ -70,7 +70,7 @@ public static class AssertionsTests
     [Fact]
     public static void CollectionAssertionTest()
     {
-        Assertion assertion = AssertThat(Array.Empty<int>());
+        Assertion assertion = Asserts.That(Array.Empty<int>());
         Assert.NotNull(assertion);
         Assert.IsType<EnumerableAssertion<int>>(assertion);
     }
@@ -81,7 +81,7 @@ public static class AssertionsTests
     [Fact]
     public static void SingleAssertionTest()
     {
-        Assertion assertion = AssertThat(new object());
+        Assertion assertion = Asserts.That(new object());
         Assert.NotNull(assertion);
         Assert.IsType<SingleAssertion>(assertion);
     }
