@@ -100,7 +100,7 @@ internal static class DummyClasses
         /// <returns>
         ///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => EquivalencyHelper.AreEquivalent(this, obj);
 
         /// <summary>
@@ -110,6 +110,6 @@ internal static class DummyClasses
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         public override int GetHashCode()
-            => base.GetHashCode();
+            => 0;
     }
 }

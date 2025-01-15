@@ -2,6 +2,10 @@
 
   <Import Project="../../library.props" />
 
+  <PropertyGroup>
+    <PackageId>AssertNet.Moq</PackageId>
+  </PropertyGroup>
+
   <ItemGroup Label="Dependencies">
     <PackageReference Include="Moq" />
   </ItemGroup>

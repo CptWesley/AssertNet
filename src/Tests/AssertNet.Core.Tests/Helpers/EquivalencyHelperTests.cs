@@ -80,8 +80,8 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void ArrayTrueTest()
     {
-        int[] a = new int[] { 1, 2, 3 };
-        int[] b = new int[] { 1, 2, 3 };
+        int[] a = [1, 2, 3];
+        int[] b = [1, 2, 3];
         Assert.True(AreEquivalent(a, b));
         Assert.True(AreEquivalent(b, a));
     }
@@ -92,8 +92,8 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void ArrayFalseTest()
     {
-        int[] a = new int[] { 1, 2, 3 };
-        int[] b = new int[] { 1, 2, 4 };
+        int[] a = [1, 2, 3];
+        int[] b = [1, 2, 4];
         Assert.False(AreEquivalent(a, b));
         Assert.False(AreEquivalent(b, a));
     }
