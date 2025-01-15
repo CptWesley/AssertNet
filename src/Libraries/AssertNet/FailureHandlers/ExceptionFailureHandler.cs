@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace AssertNet.FailureHandlers;
 
 /// <summary>
@@ -6,7 +8,10 @@ namespace AssertNet.FailureHandlers;
 /// <seealso cref="IFailureHandler" />
 public abstract class ExceptionFailureHandler : IFailureHandler
 {
-    private readonly Type? exceptionType;
+    private static readonly Func<string, Exception> defaultCreateException
+        = msg => new AssertionFailedException(msg);
+
+    private readonly Func<string, Exception> createException = defaultCreateException;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionFailureHandler"/> class.
@@ -17,27 +22,48 @@ public abstract class ExceptionFailureHandler : IFailureHandler
     {
         if (TryLoadAssembly(assemblyName, out var assembly))
         {
-            exceptionType = assembly.GetType(exceptionName);
+            var exceptionType = assembly.GetType(exceptionName);
+            createException = GenerateCreationFunction(exceptionType);
         }
+    }
+
+    private static Func<string, Exception> GenerateCreationFunction(Type? type)
+    {
+        if (type is null)
+        {
+            return defaultCreateException;
+        }
+
+        var constructor = type
+            .GetConstructors()
+            .FirstOrDefault(c => c.GetParameters() is { Length: 1 } parameters && parameters[0].ParameterType == typeof(string));
+
+        if (constructor is null)
+        {
+            return defaultCreateException;
+        }
+
+        var arg = Expression.Parameter(typeof(string), "message");
+        var create = Expression.New(constructor, arg);
+        var func = Expression.Lambda(typeof(Func<string, Exception>), create, arg);
+        var compiled = func.Compile();
+
+        if (compiled is not Func<string, Exception> cast)
+        {
+            return defaultCreateException;
+        }
+
+        return cast;
     }
 
     /// <inheritdoc/>
     [DoesNotReturn]
     public void Fail(string message)
-    {
-        Exception? ex = null;
-        if (exceptionType is { })
-        {
-            ex = Activator.CreateInstance(exceptionType, message) as Exception;
-        }
-
-        ex ??= new AssertionFailedException(message);
-        throw ex;
-    }
+        => throw createException(message);
 
     /// <inheritdoc/>
     public bool IsAvailable()
-        => exceptionType != null;
+        => createException != defaultCreateException;
 
     [SuppressMessage("Microsoft.Design", "CA1031", Justification = "We don't really care about the reason why it's not available.")]
     private static bool TryLoadAssembly(string assemblyName, [MaybeNullWhen(false)] out Assembly assembly)
