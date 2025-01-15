@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../library.props" />
+
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="Moq" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="Moq.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../AssertNet.Core/AssertNet.Core.csproj" />
+  </ItemGroup>
+
+</Project>

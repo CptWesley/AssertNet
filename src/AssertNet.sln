@@ -1,25 +1,41 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28922.388
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core", "AssertNet.Core\AssertNet.Core.csproj", "{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core", "Libraries\AssertNet.Core\AssertNet.Core.csproj", "{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core.Tests", "AssertNet.Core.Tests\AssertNet.Core.Tests.csproj", "{764543CD-C418-4B8E-A697-96EE4BD5BEBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core.Tests", "Tests\AssertNet.Core.Tests\AssertNet.Core.Tests.csproj", "{764543CD-C418-4B8E-A697-96EE4BD5BEBE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Xunit", "AssertNet.Tests.Xunit\AssertNet.Tests.Xunit.csproj", "{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Xunit", "Tests\AssertNet.Tests.Xunit\AssertNet.Tests.Xunit.csproj", "{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Nunit", "AssertNet.Tests.Nunit\AssertNet.Tests.Nunit.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Nunit", "Tests\AssertNet.Tests.Nunit\AssertNet.Tests.Nunit.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.MsTest", "AssertNet.Tests.MsTest\AssertNet.Tests.MsTest.csproj", "{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.MsTest", "Tests\AssertNet.Tests.MsTest\AssertNet.Tests.MsTest.csproj", "{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Moq", "AssertNet.Moq\AssertNet.Moq.csproj", "{1B766528-9834-4D73-AB59-0209DAA5CCCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Moq", "Libraries\AssertNet.Moq\AssertNet.Moq.csproj", "{1B766528-9834-4D73-AB59-0209DAA5CCCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Moq.Tests", "AssertNet.Moq.Tests\AssertNet.Moq.Tests.csproj", "{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Moq.Tests", "Tests\AssertNet.Moq.Tests\AssertNet.Moq.Tests.csproj", "{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet", "AssertNet\AssertNet.csproj", "{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet", "Libraries\AssertNet\AssertNet.csproj", "{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Tests", "AssertNet.Tests\AssertNet.Tests.csproj", "{9B336433-CB36-4D04-8ED5-B57C1A36352C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Tests", "Tests\AssertNet.Tests\AssertNet.Tests.csproj", "{9B336433-CB36-4D04-8ED5-B57C1A36352C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{E75DD6AB-5E41-44D9-BE42-D6FA4609C0EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F45DB523-682E-49EB-B71A-002C2636D042}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", "{F8F399BB-011A-475E-B6A2-BD892024B9FA}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		common.props = common.props
+		Directory.Packages.props = Directory.Packages.props
+		library.props = library.props
+		mstest.props = mstest.props
+		nunit.props = nunit.props
+		tests.props = tests.props
+		xunit.props = xunit.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +82,17 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389} = {E75DD6AB-5E41-44D9-BE42-D6FA4609C0EA}
+		{764543CD-C418-4B8E-A697-96EE4BD5BEBE} = {F45DB523-682E-49EB-B71A-002C2636D042}
+		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D} = {F45DB523-682E-49EB-B71A-002C2636D042}
+		{281C91C5-D1F0-41B1-9C8E-DC241B883333} = {F45DB523-682E-49EB-B71A-002C2636D042}
+		{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E} = {F45DB523-682E-49EB-B71A-002C2636D042}
+		{1B766528-9834-4D73-AB59-0209DAA5CCCA} = {E75DD6AB-5E41-44D9-BE42-D6FA4609C0EA}
+		{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F} = {F45DB523-682E-49EB-B71A-002C2636D042}
+		{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C} = {E75DD6AB-5E41-44D9-BE42-D6FA4609C0EA}
+		{9B336433-CB36-4D04-8ED5-B57C1A36352C} = {F45DB523-682E-49EB-B71A-002C2636D042}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58755FB7-C0CB-4762-8E4D-062B9B167DEF}

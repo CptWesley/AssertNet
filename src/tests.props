@@ -1,0 +1,41 @@
+<Project>
+  <Import Project="common.props" />
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>net9.0</TargetFrameworks>
+    <IsTestProject>true</IsTestProject>
+    <CollectCoverage>true</CollectCoverage>
+    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutput>./bin/</CoverletOutput>
+    <Include>[AssertNet]*</Include>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>SA1600,CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="Moq" VersionOverride="4.20.72" />
+  </ItemGroup>
+
+  <ItemGroup Label="Build dependencies">
+    <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.TestPlatform.TestHost" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="Moq.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="Moq" />
+    <Using Static="true" Include="AssertNet.Assertions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Libraries/AssertNet/AssertNet.csproj" />
+    <ProjectReference Include="../../Libraries/AssertNet.Core/AssertNet.Core.csproj" />
+  </ItemGroup>
+</Project>

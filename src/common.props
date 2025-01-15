@@ -1,0 +1,99 @@
+<Project>
+  
+  <PropertyGroup>
+    <Authors>Wesley Baartman</Authors>
+    <Copyright>Copyright © Wesley Baartman 2018-current</Copyright>
+    <RepositoryUrl>https://github.com/CptWesley/AssertNet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIconUrl>https://github.com/CptWesley/AssertNet/blob/master/logo.png?raw=true</PackageIconUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Version>3.0.0</Version>
+    <Description>AssertJ style fluent assertions for .NET unit testing frameworks.</Description>
+    <PackageTags>assertnet test testing fluent assertions fluentassertions xunit nunit mstest</PackageTags>
+    <PackageReleaseNotes>
+      <![CDATA[
+        ### V3.0.0
+        - Updates to modern standards.
+      ]]>
+    </PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../../logo.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../../../README.md" Pack="true" Visible="false" PackagePath="" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <LangVersion>13.0</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NuGetAudit>true</NuGetAudit>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IsPublishable>false</IsPublishable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>false</IsTestProject>
+    <GenerateSBOM>true</GenerateSBOM>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup Label="Analyzers">
+    <PackageReference Include="AsyncFixer" PrivateAssets="all" />
+    <PackageReference Include="DotNetProjectFile.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="IDisposableAnalyzers" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" PrivateAssets="all" />
+    <PackageReference Include="Qowaiv.Analyzers.CSharp" PrivateAssets="all" />
+    <PackageReference Include="SonarAnalyzer.CSharp" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="CodeGenerators">
+    <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <PackageReference Include="PolySharp" PrivateAssets="all" />
+    <PackageReference Include="Qowaiv.Diagnostics.Contracts" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="*.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Label="ProjectFiles">
+    <AdditionalFiles Include="*.??proj" Visible="false" />
+    <AdditionalFiles Include="../../*.props" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="System" />
+    <Using Include="System.Collections" />
+    <Using Include="System.Collections.Concurrent" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Collections.Immutable" />
+    <Using Include="System.ComponentModel" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Diagnostics.CodeAnalysis" />
+    <Using Include="System.Diagnostics.Contracts" />
+    <Using Include="System.Globalization" />
+    <Using Include="System.IO" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Reflection" />
+    <Using Include="System.Runtime.CompilerServices" />
+    <Using Include="System.Runtime.InteropServices" />
+    <Using Include="System.Text" />
+    <Using Include="System.Text.RegularExpressions" />
+    <Using Include="System.Threading" />
+    <Using Include="System.Threading.Tasks" />
+  </ItemGroup>
+
+</Project>
