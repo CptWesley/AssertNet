@@ -69,5 +69,5 @@ public class FailureBuilder
     /// <typeparam name="T">Type of the object.</typeparam>
     /// <param name="ob">The object to get the string version of.</param>
     /// <returns>"null" if the object is null. The value of .ToString() otherwise.</returns>
-    private static string StringOf<T>(T? ob) => ob is null ? "null" : ob.ToString();
+    private static string StringOf<T>(T? ob) => ob is null ? "null" : ob.ToString() ?? string.Empty;
 }

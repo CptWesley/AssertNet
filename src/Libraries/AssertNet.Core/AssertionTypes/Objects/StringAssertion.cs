@@ -145,7 +145,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion ContainsPattern(string pattern, string? message = null)
     {
-        if (!Regex.IsMatch(Target, pattern))
+        if (Target is null || !Regex.IsMatch(Target, pattern))
         {
             Fail(new FailureBuilder("ContainsPattern()")
                 .Append(message)
