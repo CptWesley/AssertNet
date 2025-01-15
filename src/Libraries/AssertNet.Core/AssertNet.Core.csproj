@@ -4,6 +4,7 @@
 
   <PropertyGroup>
     <PackageId>AssertNet.Core</PackageId>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net9.0</TargetFrameworks>
   </PropertyGroup>
 
 </Project>
