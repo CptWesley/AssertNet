@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", 
 		library.props = library.props
 		mstest.props = mstest.props
 		nunit.props = nunit.props
+		..\README.md = ..\README.md
 		tests.props = tests.props
 		tunit.props = tunit.props
 		vstest.props = vstest.props

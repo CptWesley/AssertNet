@@ -1,7 +1,4 @@
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/CptWesley/AssertNet?svg=true)](https://ci.appveyor.com/project/CptWesley/AssertNet)
-[![CircleCI](https://circleci.com/gh/CptWesley/AssertNet.svg?style=shield)](https://circleci.com/gh/CptWesley/AssertNet)
 [![CodeCov](https://codecov.io/gh/CptWesley/AssertNet/branch/master/graph/badge.svg)](https://codecov.io/gh/CptWesley/AssertNet/)
-[![BetterCodeHub](https://bettercodehub.com/edge/badge/CptWesley/AssertNet?branch=master)](https://bettercodehub.com/results/CptWesley/AssertNet)
 
 ![AssertNet](https://raw.githubusercontent.com/CptWesley/AssertNet/master/logo.png)
 ### Description
