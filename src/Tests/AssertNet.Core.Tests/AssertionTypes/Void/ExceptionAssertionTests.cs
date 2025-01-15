@@ -114,11 +114,10 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithInnerExceptionFailTest()
     {
-        ExceptionAssertion assertion = new ExceptionAssertion(
+        new ExceptionAssertion(
             FailureHandler.Object,
             new Exception(string.Empty)).WithInnerException();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(assertion);
     }
 
     /// <summary>

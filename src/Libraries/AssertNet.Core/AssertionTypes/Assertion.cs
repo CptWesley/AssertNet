@@ -9,7 +9,7 @@ public abstract class Assertion
     /// Initializes a new instance of the <see cref="Assertion"/> class.
     /// </summary>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
-    public Assertion(IFailureHandler failureHandler)
+    protected Assertion(IFailureHandler failureHandler)
     {
         FailureHandler = failureHandler;
     }
@@ -23,6 +23,7 @@ public abstract class Assertion
     /// Fails an assertion with a specific message.
     /// </summary>
     /// <param name="message">The message to fail with.</param>
+    [DoesNotReturn]
     protected void Fail(string message)
     {
         FailureHandler.Fail(message);

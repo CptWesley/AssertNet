@@ -23,7 +23,7 @@ public class FailureBuilder
     /// <param name="objectName">Name of the object.</param>
     /// <param name="part">The object.</param>
     /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
-    public FailureBuilder Append<T>(string objectName, T part)
+    public FailureBuilder Append<T>(string objectName, T? part)
     {
         _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}{StringOf(part)}");
         return this;
@@ -47,7 +47,7 @@ public class FailureBuilder
     /// </summary>
     /// <param name="line">The line.</param>
     /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
-    public FailureBuilder Append(string line)
+    public FailureBuilder Append(string? line)
     {
         if (line != null)
         {
@@ -69,5 +69,5 @@ public class FailureBuilder
     /// <typeparam name="T">Type of the object.</typeparam>
     /// <param name="ob">The object to get the string version of.</param>
     /// <returns>"null" if the object is null. The value of .ToString() otherwise.</returns>
-    private static string StringOf<T>(T ob) => ob == null ? "null" : ob.ToString();
+    private static string StringOf<T>(T? ob) => ob is null ? "null" : ob.ToString();
 }
