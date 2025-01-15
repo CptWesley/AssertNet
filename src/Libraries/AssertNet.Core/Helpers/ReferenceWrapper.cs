@@ -1,42 +1,41 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace AssertNet.Core.Helpers
+namespace AssertNet.Core.Helpers;
+
+/// <summary>
+/// Struct which wraps an object so we can compare the references.
+/// </summary>
+internal struct ReferenceWrapper : IEquatable<ReferenceWrapper>
 {
     /// <summary>
-    /// Struct which wraps an object so we can compare the references.
+    /// Initializes a new instance of the <see cref="ReferenceWrapper"/> struct.
     /// </summary>
-    internal struct ReferenceWrapper : IEquatable<ReferenceWrapper>
+    /// <param name="target">The target.</param>
+    internal ReferenceWrapper(object target)
+        => Target = target;
+
+    /// <summary>
+    /// Gets the target.
+    /// </summary>
+    internal object Target { get; }
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ReferenceWrapper"/> struct.
-        /// </summary>
-        /// <param name="target">The target.</param>
-        internal ReferenceWrapper(object target)
-            => Target = target;
-
-        /// <summary>
-        /// Gets the target.
-        /// </summary>
-        internal object Target { get; }
-
-        /// <inheritdoc/>
-        public override bool Equals(object obj)
+        if (obj is ReferenceWrapper other)
         {
-            if (obj is ReferenceWrapper other)
-            {
-                return Equals(other);
-            }
-
-            return false;
+            return Equals(other);
         }
 
-        /// <inheritdoc/>
-        public override int GetHashCode()
-            => RuntimeHelpers.GetHashCode(Target);
-
-        /// <inheritdoc/>
-        public bool Equals(ReferenceWrapper other)
-            => ReferenceEquals(Target, other.Target);
+        return false;
     }
+
+    /// <inheritdoc/>
+    public override int GetHashCode()
+        => RuntimeHelpers.GetHashCode(Target);
+
+    /// <inheritdoc/>
+    public bool Equals(ReferenceWrapper other)
+        => ReferenceEquals(Target, other.Target);
 }

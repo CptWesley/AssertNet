@@ -1,21 +1,20 @@
 ﻿using AssertNet.FailureHandlers;
 using NUnit.Framework;
 
-namespace AssertNet.Tests.Xunit.FailureHandlers
+namespace AssertNet.Tests.Xunit.FailureHandlers;
+
+/// <summary>
+/// Test class for the <see cref="FailureHandlerFactory"/> class.
+/// </summary>
+[TestFixture]
+public static class FailureHandlerFactoryTests
 {
     /// <summary>
-    /// Test class for the <see cref="FailureHandlerFactory"/> class.
+    /// Checks that the factory creates the correct type.
     /// </summary>
-    [TestFixture]
-    public static class FailureHandlerFactoryTests
+    [Test]
+    public static void FactoryTest()
     {
-        /// <summary>
-        /// Checks that the factory creates the correct type.
-        /// </summary>
-        [Test]
-        public static void FactoryTest()
-        {
-            Assert.IsInstanceOf<NunitFailureHandler>(FailureHandlerFactory.Create());
-        }
+        Assert.IsInstanceOf<NunitFailureHandler>(FailureHandlerFactory.Create());
     }
 }

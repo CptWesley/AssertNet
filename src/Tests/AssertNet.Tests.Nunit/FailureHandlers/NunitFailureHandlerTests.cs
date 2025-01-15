@@ -1,43 +1,42 @@
-﻿using System;
+using System;
 using AssertNet.FailureHandlers;
 using NUnit.Framework;
 
-namespace AssertNet.Tests.Nunit.FailureHandlers
+namespace AssertNet.Tests.Nunit.FailureHandlers;
+
+/// <summary>
+/// Test class for the <see cref="NunitFailureHandler"/> class.
+/// </summary>
+[TestFixture]
+public class NunitFailureHandlerTests
 {
+    private readonly NunitFailureHandler handler;
+
     /// <summary>
-    /// Test class for the <see cref="NunitFailureHandler"/> class.
+    /// Initializes a new instance of the <see cref="NunitFailureHandlerTests"/> class.
     /// </summary>
-    [TestFixture]
-    public class NunitFailureHandlerTests
+    public NunitFailureHandlerTests()
     {
-        private readonly NunitFailureHandler handler;
+        handler = new NunitFailureHandler();
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NunitFailureHandlerTests"/> class.
-        /// </summary>
-        public NunitFailureHandlerTests()
-        {
-            handler = new NunitFailureHandler();
-        }
+    /// <summary>
+    /// Checks that the handler is available.
+    /// </summary>
+    [Test]
+    public void AvailableTest()
+    {
+        Assert.True(handler.IsAvailable());
+    }
 
-        /// <summary>
-        /// Checks that the handler is available.
-        /// </summary>
-        [Test]
-        public void AvailableTest()
-        {
-            Assert.True(handler.IsAvailable());
-        }
-
-        /// <summary>
-        /// Tests that calling a failure throws the correct exception.
-        /// </summary>
-        [Test]
-        public void FailTest()
-        {
-            string msg = "54363tr3f4";
-            Exception e = Assert.Throws<AssertionException>(() => handler.Fail(msg));
-            Assert.AreEqual(msg, e.Message);
-        }
+    /// <summary>
+    /// Tests that calling a failure throws the correct exception.
+    /// </summary>
+    [Test]
+    public void FailTest()
+    {
+        string msg = "54363tr3f4";
+        Exception e = Assert.Throws<AssertionException>(() => handler.Fail(msg));
+        Assert.AreEqual(msg, e.Message);
     }
 }

@@ -1,17 +1,16 @@
-﻿namespace AssertNet.FailureHandlers
+﻿namespace AssertNet.FailureHandlers;
+
+/// <summary>
+/// Handles failures when running MSTest.
+/// </summary>
+/// <seealso cref="ExceptionFailureHandler" />
+public class MsTestFailureHandler : ExceptionFailureHandler
 {
     /// <summary>
-    /// Handles failures when running MSTest.
+    /// Initializes a new instance of the <see cref="MsTestFailureHandler"/> class.
     /// </summary>
-    /// <seealso cref="ExceptionFailureHandler" />
-    public class MsTestFailureHandler : ExceptionFailureHandler
+    public MsTestFailureHandler()
+        : base("Microsoft.VisualStudio.TestPlatform.TestFramework", "Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException")
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MsTestFailureHandler"/> class.
-        /// </summary>
-        public MsTestFailureHandler()
-            : base("Microsoft.VisualStudio.TestPlatform.TestFramework", "Microsoft.VisualStudio.TestTools.UnitTesting.AssertFailedException")
-        {
-        }
     }
 }

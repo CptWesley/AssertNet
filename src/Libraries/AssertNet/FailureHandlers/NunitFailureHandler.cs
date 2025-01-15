@@ -1,17 +1,16 @@
-﻿namespace AssertNet.FailureHandlers
+﻿namespace AssertNet.FailureHandlers;
+
+/// <summary>
+/// Handles failures when running NUnit.
+/// </summary>
+/// <seealso cref="ExceptionFailureHandler" />
+public class NunitFailureHandler : ExceptionFailureHandler
 {
     /// <summary>
-    /// Handles failures when running NUnit.
+    /// Initializes a new instance of the <see cref="NunitFailureHandler"/> class.
     /// </summary>
-    /// <seealso cref="ExceptionFailureHandler" />
-    public class NunitFailureHandler : ExceptionFailureHandler
+    public NunitFailureHandler()
+        : base("nunit.framework", "NUnit.Framework.AssertionException")
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NunitFailureHandler"/> class.
-        /// </summary>
-        public NunitFailureHandler()
-            : base("nunit.framework", "NUnit.Framework.AssertionException")
-        {
-        }
     }
 }
