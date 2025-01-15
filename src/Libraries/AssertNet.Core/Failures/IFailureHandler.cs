@@ -15,5 +15,6 @@ public interface IFailureHandler
     /// Creates an assertion failure with a certain message.
     /// </summary>
     /// <param name="message">The message of the assertion failure.</param>
+    [DoesNotReturn]
     void Fail(string message);
 }
