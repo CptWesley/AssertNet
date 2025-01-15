@@ -165,7 +165,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotContainPattern(string pattern, string? message = null)
     {
-        if (Regex.IsMatch(Target, pattern))
+        if (Target is { } && Regex.IsMatch(Target, pattern))
         {
             Fail(new FailureBuilder("DoesNotContainPattern()")
                 .Append(message)
@@ -205,7 +205,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotStartWith(string substring, string? message = null)
     {
-        if (Target is null || Target.StartsWith(substring, false, CultureInfo.InvariantCulture))
+        if (Target is { } && Target.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotStartWith()")
                 .Append(message)
@@ -245,7 +245,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotStartWithIgnoringCase(string substring, string? message = null)
     {
-        if (Target is null || Target.StartsWith(substring, true, CultureInfo.InvariantCulture))
+        if (Target is { } && Target.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotStartWithIgnoringCase()")
                 .Append(message)
@@ -285,7 +285,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotEndWith(string substring, string? message = null)
     {
-        if (Target is null || Target.EndsWith(substring, false, CultureInfo.InvariantCulture))
+        if (Target is { } && Target.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotEndWith()")
                 .Append(message)
@@ -325,7 +325,7 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotEndWithIgnoringCase(string substring, string? message = null)
     {
-        if (Target is null || Target.EndsWith(substring, true, CultureInfo.InvariantCulture))
+        if (Target is { } && Target.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotEndWithIgnoringCase()")
                 .Append(message)
