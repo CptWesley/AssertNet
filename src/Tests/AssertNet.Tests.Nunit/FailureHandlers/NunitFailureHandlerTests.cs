@@ -24,7 +24,7 @@ public class NunitFailureHandlerTests
     [Test]
     public void AvailableTest()
     {
-        Assert.True(handler.IsAvailable());
+        Assert.That(handler.IsAvailable(), Is.True);
     }
 
     /// <summary>
@@ -35,6 +35,7 @@ public class NunitFailureHandlerTests
     {
         string msg = "54363tr3f4";
         Exception e = Assert.Throws<AssertionException>(() => handler.Fail(msg));
-        Assert.AreEqual(msg, e.Message);
+
+        Assert.That(e.Message, Is.EqualTo(msg));
     }
 }
