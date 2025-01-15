@@ -25,6 +25,7 @@
     <PackageVersion Include="Qowaiv.Diagnostics.Contracts" Version="2.0.3" />
     <PackageVersion Include="SonarAnalyzer.CSharp" Version="10.5.0.109200" />
     <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
+    <PackageVersion Include="TUnit" Version="0.6.100" />
     <PackageVersion Include="xunit" Version="2.9.2" />
     <PackageVersion Include="xunit.analyzers" Version="1.17.0" />
   </ItemGroup>

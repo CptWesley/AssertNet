@@ -1,0 +1,23 @@
+<Project>
+
+  <Import Project="tests.props" />
+
+  <PropertyGroup Label="Technical">
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn),CA1822</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="Dependencies">
+    <PackageReference Include="TUnit" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup Label="DefaultImports">
+    <Using Include="TUnit.Assertions" />
+    <Using Include="TUnit.Assertions.Extensions" />
+    <Using Include="TUnit.Core" />
+  </ItemGroup>
+
+</Project>
