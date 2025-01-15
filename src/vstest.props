@@ -11,6 +11,7 @@
 
   <ItemGroup Label="Build dependencies">
     <PackageReference Include="coverlet.collector" PrivateAssets="all" />
+    <PackageReference Include="coverlet.msbuild" PrivateAssets="all" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" PrivateAssets="all" />
     <PackageReference Include="Microsoft.TestPlatform.TestHost" PrivateAssets="all" />
   </ItemGroup>
