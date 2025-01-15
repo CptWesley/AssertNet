@@ -14,6 +14,16 @@ public static class Assertions
     /// <param name="mock">Mock under test.</param>
     /// <typeparam name="T">Type of the mock.</typeparam>
     /// <returns>Assertion about a mock.</returns>
+    public static MockAssertion<T> That<T>(this AssertionBuilder _, Mock<T> mock) where T : class
+        => new(mock);
+
+    /// <summary>
+    /// Makes an assertion about a mock.
+    /// </summary>
+    /// <param name="mock">Mock under test.</param>
+    /// <typeparam name="T">Type of the mock.</typeparam>
+    /// <returns>Assertion about a mock.</returns>
+    [Obsolete("Use Asserts.That instead.")]
     public static MockAssertion<T> AssertThat<T>(Mock<T> mock)
         where T : class
         => new MockAssertion<T>(mock);
