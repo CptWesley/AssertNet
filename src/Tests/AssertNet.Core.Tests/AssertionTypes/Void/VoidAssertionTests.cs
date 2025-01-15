@@ -15,7 +15,7 @@ public class VoidAssertionTests
     /// </summary>
     public VoidAssertionTests()
     {
-        _handler = new Mock<IFailureHandler>();
+        _handler = new Mock<IFailureHandler>(MockBehavior.Loose);
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public class VoidAssertionTests
     [Fact]
     public void ConstructorTest()
     {
-        Action action = new Mock<Action>().Object;
+        Action action = new Mock<Action>(MockBehavior.Loose).Object;
         VoidAssertion assertion = new VoidAssertion(_handler.Object, action);
         Assert.Same(_handler.Object, assertion.FailureHandler);
     }
@@ -214,5 +214,6 @@ public class VoidAssertionTests
     /// </summary>
     private static void DoNothing()
     {
+        // Do nothing.
     }
 }

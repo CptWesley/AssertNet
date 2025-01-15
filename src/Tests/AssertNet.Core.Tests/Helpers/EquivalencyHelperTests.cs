@@ -58,7 +58,7 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void NullTrueTest()
     {
-        object val = null;
+        object? val = null;
         Assert.True(AreEquivalent(val, null));
         Assert.True(AreEquivalent(null, val));
     }
@@ -69,7 +69,7 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void NullFalseTest()
     {
-        object val = null;
+        object? val = null;
         Assert.False(AreEquivalent(val, "Hello!"));
         Assert.False(AreEquivalent("Hello!", val));
     }
@@ -80,8 +80,8 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void ArrayTrueTest()
     {
-        int[] a = new int[] { 1, 2, 3 };
-        int[] b = new int[] { 1, 2, 3 };
+        int[] a = [1, 2, 3];
+        int[] b = [1, 2, 3];
         Assert.True(AreEquivalent(a, b));
         Assert.True(AreEquivalent(b, a));
     }
@@ -92,8 +92,8 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void ArrayFalseTest()
     {
-        int[] a = new int[] { 1, 2, 3 };
-        int[] b = new int[] { 1, 2, 4 };
+        int[] a = [1, 2, 3];
+        int[] b = [1, 2, 4];
         Assert.False(AreEquivalent(a, b));
         Assert.False(AreEquivalent(b, a));
     }

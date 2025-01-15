@@ -22,7 +22,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be greater than.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsGreaterThan(double other, string message = null)
+    public DoubleAssertion IsGreaterThan(double other, string? message = null)
     {
         if (Target <= other)
         {
@@ -42,7 +42,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be greater than or equal to.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsGreaterThanOrEqualTo(double other, string message = null)
+    public DoubleAssertion IsGreaterThanOrEqualTo(double other, string? message = null)
     {
         if (Target < other)
         {
@@ -62,7 +62,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be lesser than.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsLesserThan(double other, string message = null)
+    public DoubleAssertion IsLesserThan(double other, string? message = null)
     {
         if (Target >= other)
         {
@@ -82,7 +82,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be lesser than or equal to.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsLesserThanOrEqualTo(double other, string message = null)
+    public DoubleAssertion IsLesserThanOrEqualTo(double other, string? message = null)
     {
         if (Target > other)
         {
@@ -101,9 +101,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsZero(string message = null)
+    public DoubleAssertion IsZero(string? message = null)
     {
+#pragma warning disable S1244 // Intentionally comparing to exactly zero.
         if (Target != 0)
+#pragma warning restore S1244
         {
             Fail(new FailureBuilder("IsZero()")
                 .Append(message)
@@ -120,7 +122,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsPositive(string message = null)
+    public DoubleAssertion IsPositive(string? message = null)
     {
         if (Target <= 0)
         {
@@ -139,7 +141,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsPositiveOrZero(string message = null)
+    public DoubleAssertion IsPositiveOrZero(string? message = null)
     {
         if (Target < 0)
         {
@@ -158,7 +160,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsNegative(string message = null)
+    public DoubleAssertion IsNegative(string? message = null)
     {
         if (Target >= 0)
         {
@@ -177,7 +179,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsNegativeOrZero(string message = null)
+    public DoubleAssertion IsNegativeOrZero(string? message = null)
     {
         if (Target > 0)
         {
@@ -199,7 +201,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
-    public DoubleAssertion IsInRange(double minimum, double maximum, string message = null)
+    public DoubleAssertion IsInRange(double minimum, double maximum, string? message = null)
     {
         if (maximum <= minimum)
         {
@@ -227,7 +229,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
-    public DoubleAssertion IsNotInRange(double minimum, double maximum, string message = null)
+    public DoubleAssertion IsNotInRange(double minimum, double maximum, string? message = null)
     {
         if (maximum <= minimum)
         {
@@ -253,7 +255,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="other">The other double to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsEqualTo(double other, string message = null) => base.IsEqualTo(other, message);
+    public DoubleAssertion IsEqualTo(double other, string? message = null) => base.IsEqualTo(other, message);
 
     /// <summary>
     /// Checks whether the double under test is equal to another double within a certain margin.
@@ -262,7 +264,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="margin">The margin to still identify another double as equal.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsEqualTo(double other, double margin, string message = null)
+    public DoubleAssertion IsEqualTo(double other, double margin, string? message = null)
     {
         if (Target < other - margin || Target > other + margin)
         {
@@ -283,7 +285,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="other">The other double to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsNotEqualTo(double other, string message = null) => base.IsNotEqualTo(other, message);
+    public DoubleAssertion IsNotEqualTo(double other, string? message = null) => base.IsNotEqualTo(other, message);
 
     /// <summary>
     /// Checks whether the double under test is not equal to another double within a certain margin.
@@ -292,7 +294,7 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <param name="margin">The margin to still identify another double as equal.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsNotEqualTo(double other, double margin, string message = null)
+    public DoubleAssertion IsNotEqualTo(double other, double margin, string? message = null)
     {
         if (Target >= other - margin && Target <= other + margin)
         {

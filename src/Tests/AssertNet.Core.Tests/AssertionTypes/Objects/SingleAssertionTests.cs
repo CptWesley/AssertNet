@@ -6,14 +6,14 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 /// <summary>
 /// Test class for the <see cref="SingleAssertion"/> class.
 /// </summary>
-public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object>
+public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SingleAssertionTests"/> class.
     /// </summary>
     public SingleAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         Assertion = new SingleAssertion(FailureHandler.Object, "bery43566435fgdtfg");
     }
 

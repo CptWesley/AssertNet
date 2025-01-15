@@ -7,14 +7,14 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 /// Test class for the <see cref="StringAssertion"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string>
+public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="StringAssertionTests"/> class.
     /// </summary>
     public StringAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         Assertion = new StringAssertion(FailureHandler.Object, "threhterj");
     }
 

@@ -8,12 +8,13 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://github.com/CptWesley/AssertNet/blob/master/logo.png?raw=true</PackageIconUrl>
-    <PackageIcon>logo.png</PackageIcon>
+    <PackageIcon>logo_128x128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <PropertyGroup>
     <Version>3.0.0</Version>
+    <ProductName>AssertNet</ProductName>
     <Description>AssertJ style fluent assertions for .NET unit testing frameworks.</Description>
     <PackageTags>assertnet test testing fluent assertions fluentassertions xunit nunit mstest</PackageTags>
     <PackageReleaseNotes>
@@ -25,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../../logo.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../../../logo_128x128.png" Pack="true" Visible="false" PackagePath="" />
     <None Include="../../../README.md" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 
@@ -45,6 +46,10 @@
     <GenerateSBOM>true</GenerateSBOM>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>SA1633</NoWarn>
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
@@ -75,6 +80,7 @@
   </ItemGroup>
 
   <ItemGroup Label="DefaultImports">
+    <Using Include="Qowaiv.Diagnostics.Contracts" />
     <Using Include="System" />
     <Using Include="System.Collections" />
     <Using Include="System.Collections.Concurrent" />

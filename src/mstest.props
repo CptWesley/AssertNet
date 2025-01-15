@@ -1,6 +1,6 @@
 <Project>
 
-  <Import Project="tests.props" />
+  <Import Project="vstest.props" />
 
   <ItemGroup Label="Dependencies">
     <PackageReference Include="MSTest" />

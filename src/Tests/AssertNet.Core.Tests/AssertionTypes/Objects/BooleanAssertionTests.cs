@@ -14,7 +14,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool
     /// </summary>
     public BooleanAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         Assertion = new BooleanAssertion(FailureHandler.Object, true);
     }
 

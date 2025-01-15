@@ -2,6 +2,10 @@
 
   <Import Project="../../library.props" />
 
+  <PropertyGroup>
+    <PackageId>AssertNet</PackageId>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="../AssertNet.Core/AssertNet.Core.csproj" />
   </ItemGroup>
