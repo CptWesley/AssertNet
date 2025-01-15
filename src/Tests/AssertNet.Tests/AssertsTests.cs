@@ -3,7 +3,6 @@ using AssertNet.Core.Failures;
 using AssertNet.FailureHandlers;
 using System.Numerics;
 using static AssertNet.Asserter;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AssertNet.Tests;
 
