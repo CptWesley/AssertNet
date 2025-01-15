@@ -23,9 +23,18 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     /// <param name="message">The message which the exception should have.</param>
     /// <param name="customMessage">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public ExceptionAssertion WithMessage(string message, string customMessage = null)
+    public ExceptionAssertion WithMessage(string message, string? customMessage = null)
     {
-        if (Target.Message != message)
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("WithMessage()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To have the message", message)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.Message != message)
         {
             Fail(new FailureBuilder("WithMessage()")
                 .Append(customMessage)
@@ -45,9 +54,18 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     /// <param name="message">Part of the message which the exception should have.</param>
     /// <param name="customMessage">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public ExceptionAssertion WithMessageContaining(string message, string customMessage = null)
+    public ExceptionAssertion WithMessageContaining(string message, string? customMessage = null)
     {
-        if (!Target.Message.Contains(message))
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("WithMessageContaining()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To have a message containing", message)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.Message?.Contains(message) is not true)
         {
             Fail(new FailureBuilder("WithMessageContaining()")
                 .Append(customMessage)
@@ -65,14 +83,24 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public ExceptionAssertion WithNoInnerException(string message = null)
+    public ExceptionAssertion WithNoInnerException(string? message = null)
     {
-        if (Target.InnerException != null)
+        if (Target is null)
         {
-            Fail(new FailureBuilder("WithMessageContaining()")
+            Fail(new FailureBuilder("WithNoInnerException()")
                 .Append(message)
                 .Append("Expecting", Target)
-                .Append("To not have an inner exception, but has", Target.InnerException)
+                .Append("To not have an inner exception")
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.InnerException != null)
+        {
+            Fail(new FailureBuilder("WithNoInnerException()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To not have an inner exception")
+                .Append("But has", Target.InnerException)
                 .Finish());
         }
 
@@ -84,19 +112,26 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the inner exception.</returns>
-    public ExceptionAssertion WithInnerException(string message = null)
+    public ExceptionAssertion WithInnerException(string? message = null)
     {
-        if (Target.InnerException != null)
+        if (Target is null)
         {
-            return new ExceptionAssertion(FailureHandler, Target.InnerException);
+            Fail(new FailureBuilder("WithInnerException()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To have an inner exception, but is null")
+                .Finish());
         }
-
-        Fail(new FailureBuilder("WithInnerException()")
+        else if (Target.InnerException is null)
+        {
+            Fail(new FailureBuilder("WithInnerException()")
                 .Append(message)
                 .Append("Expecting", Target)
                 .Append("To have an inner exception, but has none")
                 .Finish());
-        return null;
+        }
+
+        return new ExceptionAssertion(FailureHandler, Target.InnerException);
     }
 
     /// <summary>
@@ -105,10 +140,18 @@ public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type of the inner exception.</typeparam>
     /// <returns>An exception assertion for the inner exception.</returns>
-    public ExceptionAssertion WithInnerException<T>(string message = null)
+    public ExceptionAssertion WithInnerException<T>(string? message = null)
         where T : Exception
     {
-        if (Target.InnerException == null)
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("WithInnerException()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To have an inner exception, but is null")
+                .Finish());
+        }
+        else if (Target.InnerException == null)
         {
             Fail(new FailureBuilder("WithInnerException()")
                 .Append(message)

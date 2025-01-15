@@ -18,7 +18,7 @@ internal static class DummyClasses
         /// <value>
         /// The reference.
         /// </value>
-        public CircularClass Reference { get; set; }
+        public CircularClass? Reference { get; set; }
     }
 
     /// <summary>

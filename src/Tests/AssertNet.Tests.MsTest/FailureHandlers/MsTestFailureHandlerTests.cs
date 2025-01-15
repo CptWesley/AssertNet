@@ -34,7 +34,7 @@ public class MsTestFailureHandlerTests
     public void FailTest()
     {
         string msg = "f4357gn48gm";
-        Exception exception = null;
+        Exception? exception = null;
         try
         {
             handler.Fail(msg);

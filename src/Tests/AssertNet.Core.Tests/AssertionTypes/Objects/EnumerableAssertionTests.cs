@@ -409,7 +409,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void ContainsNullPassTest()
     {
-        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "a", null, "b" }).ContainsNull();
+        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "a", null!, "b" }).ContainsNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -439,7 +439,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void DoesNotContainNullFailTest()
     {
-        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "g", null, "h" }).DoesNotContainNull();
+        new EnumerableAssertion<string>(FailureHandler.Object, new string[] { "g", null!, "h" }).DoesNotContainNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 

@@ -21,9 +21,9 @@ public class BooleanAssertion : ObjectAssertion<BooleanAssertion, bool>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public BooleanAssertion IsTrue(string message = null)
+    public BooleanAssertion IsTrue(string? message = null)
     {
-        if (Target == false)
+        if (!Target)
         {
             Fail(new FailureBuilder("IsTrue()")
                 .Append(message)
@@ -40,9 +40,9 @@ public class BooleanAssertion : ObjectAssertion<BooleanAssertion, bool>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public BooleanAssertion IsFalse(string message = null)
+    public BooleanAssertion IsFalse(string? message = null)
     {
-        if (Target == true)
+        if (Target)
         {
             Fail(new FailureBuilder("IsFalse()")
                 .Append(message)

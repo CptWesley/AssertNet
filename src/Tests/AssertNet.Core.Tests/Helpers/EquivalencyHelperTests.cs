@@ -58,7 +58,7 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void NullTrueTest()
     {
-        object val = null;
+        object? val = null;
         Assert.True(AreEquivalent(val, null));
         Assert.True(AreEquivalent(null, val));
     }
@@ -69,7 +69,7 @@ public static class EquivalencyHelperTests
     [Fact]
     public static void NullFalseTest()
     {
-        object val = null;
+        object? val = null;
         Assert.False(AreEquivalent(val, "Hello!"));
         Assert.False(AreEquivalent("Hello!", val));
     }

@@ -14,7 +14,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// </summary>
     /// <param name="target">The object which is under test.</param>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
-    public ObjectAssertion(IFailureHandler failureHandler, TTarget target)
+    protected ObjectAssertion(IFailureHandler failureHandler, TTarget target)
         : base(failureHandler)
     {
         Target = target;
@@ -34,7 +34,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsEqualTo(object other, string? message = null)
+    public TAssert IsEqualTo(object? other, string? message = null)
     {
         if (!Equals(Target, other))
         {
@@ -54,7 +54,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotEqualTo(object other, string? message = null)
+    public TAssert IsNotEqualTo(object? other, string? message = null)
     {
         if (Equals(Target, other))
         {
@@ -74,7 +74,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsEquivalentTo(object other, string? message = null)
+    public TAssert IsEquivalentTo(object? other, string? message = null)
     {
         if (!EquivalencyHelper.AreEquivalent(Target, other))
         {
@@ -94,7 +94,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotEquivalentTo(object other, string? message = null)
+    public TAssert IsNotEquivalentTo(object? other, string? message = null)
     {
         if (EquivalencyHelper.AreEquivalent(Target, other))
         {
@@ -114,7 +114,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsSameAs(object other, string? message = null)
+    public TAssert IsSameAs(object? other, string? message = null)
     {
         var isValueType = Target?.GetType().IsValueType ?? false;
 
@@ -136,7 +136,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotSameAs(object other, string? message = null)
+    public TAssert IsNotSameAs(object? other, string? message = null)
     {
         var isValueType = Target?.GetType().IsValueType ?? false;
 
@@ -370,7 +370,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <returns>The current assertion.</returns>
     public TAssert Satisfies(Func<TTarget, bool> condition, string? message = null)
     {
-        if (!condition.Invoke(Target))
+        if (!condition.Invoke(Target!))
         {
             Fail(new FailureBuilder("Satisfies()")
                 .Append(message)
@@ -390,7 +390,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <returns>The current assertion.</returns>
     public TAssert DoesNotSatisfy(Func<TTarget, bool> condition, string? message = null)
     {
-        if (condition.Invoke(Target))
+        if (condition.Invoke(Target!))
         {
             Fail(new FailureBuilder("DoesNotSatisfy()")
                 .Append(message)

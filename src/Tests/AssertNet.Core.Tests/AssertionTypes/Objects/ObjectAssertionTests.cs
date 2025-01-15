@@ -17,7 +17,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     /// <value>
     /// The assertion under test.
     /// </value>
-    protected ObjectAssertion<T1, T2> Assertion { get; set; }
+    protected ObjectAssertion<T1, T2> Assertion { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the failure handler.
@@ -25,7 +25,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     /// <value>
     /// The failure handler.
     /// </value>
-    protected Mock<IFailureHandler> FailureHandler { get; set; }
+    protected Mock<IFailureHandler> FailureHandler { get; set; } = null!;
 
     /// <summary>
     /// Checks that there are no failures if the objects are equal.
@@ -163,7 +163,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsInstanceOfPassSameTest()
     {
-        Assertion.IsInstanceOf(Assertion.Target.GetType());
+        Assertion.IsInstanceOf(Assertion.Target!.GetType());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -203,7 +203,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsNotInstanceOfFailSameTest()
     {
-        Assertion.IsNotInstanceOf(Assertion.Target.GetType());
+        Assertion.IsNotInstanceOf(Assertion.Target!.GetType());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -233,7 +233,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsInPassTest()
     {
-        Assertion.IsIn(new object[] { 1, 2, Assertion.Target, 3 });
+        Assertion.IsIn(new object[] { 1, 2, Assertion.Target!, 3 });
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -263,7 +263,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsNotInFailTest()
     {
-        Assertion.IsNotIn(new object[] { 1, 2, Assertion.Target, 3 });
+        Assertion.IsNotIn(new object[] { 1, 2, Assertion.Target!, 3 });
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -273,7 +273,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void SatisfiesPassTest()
     {
-        Assertion.Satisfies(x => x != null);
+        Assertion.Satisfies(x => x is not null);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -283,7 +283,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void SatisfiesFailTest()
     {
-        Assertion.Satisfies(x => x == null);
+        Assertion.Satisfies(x => x is null);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -303,7 +303,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotSatisfyFailTest()
     {
-        Assertion.DoesNotSatisfy(x => x != null);
+        Assertion.DoesNotSatisfy(x => x is not null);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -313,7 +313,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void HasHashCodePassTest()
     {
-        Assertion.HasHashCode(Assertion.Target.GetHashCode());
+        Assertion.HasHashCode(Assertion.Target!.GetHashCode());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -323,7 +323,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void HasHashCodeFailTest()
     {
-        Assertion.HasHashCode(Assertion.Target.GetHashCode() + 1);
+        Assertion.HasHashCode(Assertion.Target!.GetHashCode() + 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -333,7 +333,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveHashCodePassTest()
     {
-        Assertion.DoesNotHaveHashCode(Assertion.Target.GetHashCode() - 1);
+        Assertion.DoesNotHaveHashCode(Assertion.Target!.GetHashCode() - 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -343,7 +343,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveHashCodeFailTest()
     {
-        Assertion.DoesNotHaveHashCode(Assertion.Target.GetHashCode());
+        Assertion.DoesNotHaveHashCode(Assertion.Target!.GetHashCode());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -373,7 +373,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveSameHashCodeAsPassTest()
     {
-        Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target.GetHashCode() - 1);
+        Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target!.GetHashCode() - 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -393,7 +393,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void ToStringYieldsPassTest()
     {
-        Assertion.ToStringYields(Assertion.Target.ToString());
+        Assertion.ToStringYields(Assertion.Target!.ToString());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -403,7 +403,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void ToStringYieldsFailTest()
     {
-        Assertion.ToStringYields(Assertion.Target.ToString() + "ft2gr");
+        Assertion.ToStringYields(Assertion.Target!.ToString() + "ft2gr");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 }

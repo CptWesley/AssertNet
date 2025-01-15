@@ -11,11 +11,11 @@ public static class FailureHandlerFactory
     /// <returns>A new <see cref="IFailureHandler"/> instance.</returns>
     public static IFailureHandler Create()
     {
-        IEnumerable<Type> types = typeof(FailureHandlerFactory).Assembly.GetTypes()
+        var types = typeof(FailureHandlerFactory).Assembly.GetTypes()
             .Where(t => typeof(IFailureHandler).IsAssignableFrom(t) && !t.IsAbstract && t != typeof(FallbackFailureHandler));
         foreach (Type type in types)
         {
-            IFailureHandler handler = Activator.CreateInstance(type) as IFailureHandler;
+            var handler = (IFailureHandler)Activator.CreateInstance(type);
 
             if (handler.IsAvailable())
             {

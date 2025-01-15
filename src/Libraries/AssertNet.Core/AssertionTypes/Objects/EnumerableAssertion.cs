@@ -1,3 +1,5 @@
+using DotNetProjectFile.Resx;
+
 namespace AssertNet.Core.AssertionTypes.Objects;
 
 /// <summary>
@@ -24,7 +26,15 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> IsEmpty(string? message = null)
     {
-        if (Target.Any())
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("IsEmpty()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To be empty, but is null")
+                .Finish());
+        }
+        else if (Target.Any())
         {
             Fail(new FailureBuilder("IsEmpty()")
                 .Append(message)
@@ -43,7 +53,15 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> IsNotEmpty(string? message = null)
     {
-        if (!Target.Any())
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("IsNotEmpty()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("Not to be empty, but is null")
+                .Finish());
+        }
+        else if (!Target.Any())
         {
             Fail(new FailureBuilder("IsNotEmpty()")
                 .Append(message)
@@ -136,6 +154,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> Contains(IEnumerable<TElement> values, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("Contains()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("To contain", values)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> difference = values.Except(Target);
 
         if (difference.Any())
@@ -166,6 +194,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContain(IEnumerable<TElement> values, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContain()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("Not to contain", values)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> intersection = values.Intersect(Target);
 
         if (intersection.Any())
@@ -196,6 +234,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> ContainsOnly(IEnumerable<TElement> values, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContain()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("Not to contain", values)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> difference = Target.Except(values);
 
         if (difference.Any())
@@ -226,6 +274,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContainOnly(IEnumerable<TElement> values, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContainOnly()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("To contain other elements besides", values)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> difference = Target.Except(values);
 
         if (!difference.Any())
@@ -255,7 +313,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> ContainsExactly(IEnumerable<TElement> values, string? message = null)
     {
-        if (!Target.SequenceEqual(values))
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("ContainsExactly()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("To contain exactly", values)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (!Target.SequenceEqual(values))
         {
             Fail(new FailureBuilder("ContainsExactly()")
                 .Append(message)
@@ -282,7 +349,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContainExactly(IEnumerable<TElement> values, string? message = null)
     {
-        if (Target.SequenceEqual(values))
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContainExactly()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("Not to contain exactly", values)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.SequenceEqual(values))
         {
             Fail(new FailureBuilder("DoesNotContainExactly()")
                 .Append(message)
@@ -309,6 +385,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> ContainsExactlyInAnyOrder(IEnumerable<TElement> values, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("ContainsExactlyInAnyOrder()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("To contain exactly in any order", values)
+                .Append("But is null")
+                .Finish());
+        }
+
         List<TElement> valuesList = values.ToList();
         List<TElement> targetList = Target.ToList();
 
@@ -361,6 +447,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContainExactlyInAnyOrder(IEnumerable<TElement> values, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContainExactlyInAnyOrder()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("Not to contain exactly in any order", values)
+                .Append("But is null")
+                .Finish());
+        }
+
         List<TElement> valuesList = values.ToList();
         List<TElement> targetList = Target.ToList();
 
@@ -401,7 +497,17 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> ContainsSequence(IEnumerable<TElement> values, string? message = null)
     {
-        IEnumerator<TElement> it = values.GetEnumerator();
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("ContainsSequence()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("To contain the sequence", values)
+                .Append("But is null")
+                .Finish());
+        }
+
+        using IEnumerator<TElement> it = values.GetEnumerator();
         foreach (TElement el in Target)
         {
             if (!it.MoveNext())
@@ -439,7 +545,17 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContainSequence(IEnumerable<TElement> values, string? message = null)
     {
-        IEnumerator<TElement> it = values.GetEnumerator();
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContainSequence()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("Not to contain the sequence", values)
+                .Append("But is null")
+                .Finish());
+        }
+
+        using IEnumerator<TElement> it = values.GetEnumerator();
         foreach (TElement el in Target)
         {
             if (!it.MoveNext())
@@ -449,7 +565,6 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
                     .AppendEnumerable("Expecting", Target)
                     .AppendEnumerable("Not to contain the sequence", values)
                     .Finish());
-                return null;
             }
 
             if (!Equals(el, it.Current))
@@ -476,7 +591,17 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> ContainsInterleavedSequence(IEnumerable<TElement> values, string? message = null)
     {
-        IEnumerator<TElement> it = values.GetEnumerator();
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("ContainsInterleavedSequence()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("To contain the interleaved sequence", values)
+                .Append("But is null")
+                .Finish());
+        }
+
+        using IEnumerator<TElement> it = values.GetEnumerator();
 
         if (!it.MoveNext())
         {
@@ -500,7 +625,7 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
                 .AppendEnumerable("To contain the interleaved sequence", values)
                 .Finish());
 
-        return null;
+        return this;
     }
 
     /// <summary>
@@ -518,7 +643,17 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContainInterleavedSequence(IEnumerable<TElement> values, string? message = null)
     {
-        IEnumerator<TElement> it = values.GetEnumerator();
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContainInterleavedSequence()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .AppendEnumerable("Not to contain the interleaved sequence", values)
+                .Append("But is null")
+                .Finish());
+        }
+
+        using IEnumerator<TElement> it = values.GetEnumerator();
         bool failed = !it.MoveNext();
 
         if (!failed)
@@ -543,7 +678,6 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
                 .AppendEnumerable("Expecting", Target)
                 .AppendEnumerable("Not to contain the interleaved sequence", values)
                 .Finish());
-            return null;
         }
 
         return this;
@@ -556,6 +690,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> ContainsNull(string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("ContainsNull()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append<object>("To contain", null)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> nulls = Target.Where(x => x is null);
 
         if (!nulls.Any())
@@ -577,6 +721,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> DoesNotContainNull(string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("DoesNotContainNull()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append<object>("Not to contain", null)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> nulls = Target.Where(x => x is null);
 
         if (nulls.Any())
@@ -599,6 +753,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> AllSatisfy(Func<TElement, bool> condition, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("AllSatisfy()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To all satisfy", condition)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> failed = Target.Where(x => !condition.Invoke(x));
 
         if (failed.Any())
@@ -622,6 +786,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> SomeSatisfy(Func<TElement, bool> condition, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("SomeSatisfy()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To have any element satisfying", condition)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> holds = Target.Where(condition);
 
         if (!holds.Any())
@@ -644,6 +818,16 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
     /// <returns>The current assertion.</returns>
     public EnumerableAssertion<TElement> NoneSatisfy(Func<TElement, bool> condition, string? message = null)
     {
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("NoneSatisfy()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("Not to have elements satisfying", condition)
+                .Append("But is null")
+                .Finish());
+        }
+
         IEnumerable<TElement> holds = Target.Where(condition);
 
         if (holds.Any())
