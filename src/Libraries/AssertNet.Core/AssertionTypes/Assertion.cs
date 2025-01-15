@@ -23,6 +23,7 @@ public abstract class Assertion
     /// Fails an assertion with a specific message.
     /// </summary>
     /// <param name="message">The message to fail with.</param>
+    [DoesNotReturnAttribute]
     protected void Fail(string message)
     {
         FailureHandler.Fail(message);

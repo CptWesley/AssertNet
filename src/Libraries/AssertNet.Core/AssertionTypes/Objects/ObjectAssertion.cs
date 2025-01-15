@@ -34,9 +34,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsEqualTo(object other, string message = null)
+    public TAssert IsEqualTo(object other, string? message = null)
     {
-        if (!Target.Equals(other))
+        if (!Equals(Target, other))
         {
             Fail(new FailureBuilder("IsEqualTo()")
                 .Append(message)
@@ -54,9 +54,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotEqualTo(object other, string message = null)
+    public TAssert IsNotEqualTo(object other, string? message = null)
     {
-        if (Target.Equals(other))
+        if (Equals(Target, other))
         {
             Fail(new FailureBuilder("IsNotEqualTo()")
                 .Append(message)
@@ -74,7 +74,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsEquivalentTo(object other, string message = null)
+    public TAssert IsEquivalentTo(object other, string? message = null)
     {
         if (!EquivalencyHelper.AreEquivalent(Target, other))
         {
@@ -94,7 +94,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotEquivalentTo(object other, string message = null)
+    public TAssert IsNotEquivalentTo(object other, string? message = null)
     {
         if (EquivalencyHelper.AreEquivalent(Target, other))
         {
@@ -114,9 +114,11 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsSameAs(object other, string message = null)
+    public TAssert IsSameAs(object other, string? message = null)
     {
-        if ((Target.GetType().IsValueType && !Target.Equals(other)) || (!Target.GetType().IsValueType && !ReferenceEquals(Target, other)))
+        var isValueType = Target?.GetType().IsValueType ?? false;
+
+        if ((isValueType && !Equals(Target, other)) || (!isValueType && !ReferenceEquals(Target, other)))
         {
             Fail(new FailureBuilder("IsSameAs()")
                 .Append(message)
@@ -134,9 +136,11 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotSameAs(object other, string message = null)
+    public TAssert IsNotSameAs(object other, string? message = null)
     {
-        if ((Target.GetType().IsValueType && Target.Equals(other)) || (!Target.GetType().IsValueType && ReferenceEquals(Target, other)))
+        var isValueType = Target?.GetType().IsValueType ?? false;
+
+        if ((isValueType && Equals(Target, other)) || (!isValueType && ReferenceEquals(Target, other)))
         {
             Fail(new FailureBuilder("IsNotSameAs()")
                 .Append(message)
@@ -153,9 +157,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNull(string message = null)
+    public TAssert IsNull(string? message = null)
     {
-        if (Target != null)
+        if (Target is not null)
         {
             Fail(new FailureBuilder("IsNull()")
                 .Append(message)
@@ -172,9 +176,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotNull(string message = null)
+    public TAssert IsNotNull(string? message = null)
     {
-        if (Target == null)
+        if (Target is null)
         {
             Fail(new FailureBuilder("IsNotNull()")
                 .Append(message)
@@ -192,7 +196,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsInstanceOf<T>(string message = null) => IsInstanceOf(typeof(T), message);
+    public TAssert IsInstanceOf<T>(string? message = null) => IsInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is an instance of a certain type.
@@ -200,9 +204,18 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsInstanceOf(Type t, string message = null)
+    public TAssert IsInstanceOf(Type t, string? message = null)
     {
-        if (!Target.GetType().IsSubclassOf(t) && Target.GetType() != t)
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("IsInstanceOf()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To be an instance of", t)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (!Target.GetType().IsSubclassOf(t) && Target.GetType() != t)
         {
             Fail(new FailureBuilder("IsInstanceOf()")
                 .Append(message)
@@ -221,7 +234,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotInstanceOf<T>(string message = null) => IsNotInstanceOf(typeof(T), message);
+    public TAssert IsNotInstanceOf<T>(string? message = null) => IsNotInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is not an instance of a certain type.
@@ -229,9 +242,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotInstanceOf(Type t, string message = null)
+    public TAssert IsNotInstanceOf(Type t, string? message = null)
     {
-        if (Target.GetType().IsSubclassOf(t) || Target.GetType() == t)
+        if (Target is { } && (Target.GetType().IsSubclassOf(t) || Target.GetType() == t))
         {
             Fail(new FailureBuilder("IsNotInstanceOf()")
                 .Append(message)
@@ -249,7 +262,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsExactlyInstanceOf<T>(string message = null) => IsExactlyInstanceOf(typeof(T), message);
+    public TAssert IsExactlyInstanceOf<T>(string? message = null) => IsExactlyInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is exactly an instance of a certain type.
@@ -257,9 +270,18 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsExactlyInstanceOf(Type t, string message = null)
+    public TAssert IsExactlyInstanceOf(Type t, string? message = null)
     {
-        if (Target.GetType() != t)
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("IsExactlyInstanceOf()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To be an exact instance of", t)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.GetType() != t)
         {
             Fail(new FailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
@@ -278,7 +300,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotExactlyInstanceOf<T>(string message = null) => IsNotExactlyInstanceOf(typeof(T), message);
+    public TAssert IsNotExactlyInstanceOf<T>(string? message = null) => IsNotExactlyInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is not exactly an instance of a certain type.
@@ -286,9 +308,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotExactlyInstanceOf(Type t, string message = null)
+    public TAssert IsNotExactlyInstanceOf(Type t, string? message = null)
     {
-        if (Target.GetType() == t)
+        if (Target is { } && Target.GetType() == t)
         {
             Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
                 .Append(message)
@@ -306,9 +328,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsIn(IEnumerable enumerable, string message = null)
+    public TAssert IsIn(IEnumerable enumerable, string? message = null)
     {
-        if (!enumerable.Cast<object>().Contains(Target))
+        if (!enumerable.Cast<object?>().Contains(Target))
         {
             Fail(new FailureBuilder("IsIn()")
                 .Append(message)
@@ -326,9 +348,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotIn(IEnumerable enumerable, string message = null)
+    public TAssert IsNotIn(IEnumerable enumerable, string? message = null)
     {
-        if (enumerable.Cast<object>().Contains(Target))
+        if (enumerable.Cast<object?>().Contains(Target))
         {
             Fail(new FailureBuilder("IsNotIn()")
                 .Append(message)
@@ -346,7 +368,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="condition">The condition which needs to hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert Satisfies(Func<TTarget, bool> condition, string message = null)
+    public TAssert Satisfies(Func<TTarget, bool> condition, string? message = null)
     {
         if (!condition.Invoke(Target))
         {
@@ -366,7 +388,7 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="condition">The condition which may not hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert DoesNotSatisfy(Func<TTarget, bool> condition, string message = null)
+    public TAssert DoesNotSatisfy(Func<TTarget, bool> condition, string? message = null)
     {
         if (condition.Invoke(Target))
         {
@@ -386,9 +408,18 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="hashCode">The expected hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert HasHashCode(int hashCode, string message = null)
+    public TAssert HasHashCode(int hashCode, string? message = null)
     {
-        if (Target.GetHashCode() != hashCode)
+        if (Target is null)
+        {
+            Fail(new FailureBuilder("HasHashCode()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To have the hash code", hashCode)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.GetHashCode() != hashCode)
         {
             Fail(new FailureBuilder("HasHashCode()")
                 .Append(message)
@@ -407,9 +438,9 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="hashCode">The forbidden hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert DoesNotHaveHashCode(int hashCode, string message = null)
+    public TAssert DoesNotHaveHashCode(int hashCode, string? message = null)
     {
-        if (Target.GetHashCode() == hashCode)
+        if (Target is { } && Target.GetHashCode() == hashCode)
         {
             Fail(new FailureBuilder("DoesNotHaveHashCode()")
                 .Append(message)
@@ -427,9 +458,30 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object which should have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert HasSameHashCodeAs(object other, string message = null)
+    public TAssert HasSameHashCodeAs(object? other, string? message = null)
     {
-        if (Target.GetHashCode() != other.GetHashCode())
+        if (Target is null)
+        {
+            if (other is not null)
+            {
+                Fail(new FailureBuilder("HasSameHashCodeAs()")
+                    .Append(message)
+                    .Append("Expecting", Target)
+                    .Append("To have the hash code", other.GetHashCode())
+                    .Append("But is null")
+                    .Finish());
+            }
+        }
+        else if (other is null)
+        {
+            Fail(new FailureBuilder("HasSameHashCodeAs()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To be null")
+                .Append("But has hash code", Target.GetHashCode())
+                .Finish());
+        }
+        else if (Target.GetHashCode() != other.GetHashCode())
         {
             Fail(new FailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
@@ -448,9 +500,17 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="other">The other object which may not have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert DoesNotHaveSameHashCodeAs(object other, string message = null)
+    public TAssert DoesNotHaveSameHashCodeAs(object? other, string? message = null)
     {
-        if (Target.GetHashCode() == other.GetHashCode())
+        if (Target is null && other is null)
+        {
+            Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("Not to be null")
+                .Finish());
+        }
+        else if (Target is { } && other is { } && Target.GetHashCode() == other.GetHashCode())
         {
             Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
@@ -468,14 +528,24 @@ public abstract class ObjectAssertion<TAssert, TTarget> : Assertion
     /// <param name="str">The expected ToString() result.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert ToStringYields(string str, string message = null)
+    public TAssert ToStringYields(string? str, string? message = null)
     {
-        if (Target.ToString() != str)
+        if (Target is null)
         {
             Fail(new FailureBuilder("ToStringYields()")
                 .Append(message)
                 .Append("Expecting", Target)
                 .Append("To be represented as", str)
+                .Append("But is null")
+                .Finish());
+        }
+        else if (Target.ToString() is { } other && !Equals(other, str))
+        {
+            Fail(new FailureBuilder("ToStringYields()")
+                .Append(message)
+                .Append("Expecting", Target)
+                .Append("To be represented as", str)
+                .Append("But is represented as", other)
                 .Finish());
         }
 

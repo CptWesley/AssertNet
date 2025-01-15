@@ -11,12 +11,12 @@ public static class EquivalencyHelper
     /// <param name="that">The object to check for.</param>
     /// <param name="other">The object to check with.</param>
     /// <returns>True if internally equal, false otherwise.</returns>
-    public static bool AreEquivalent(object that, object other)
+    public static bool AreEquivalent(object? that, object? other)
         => AreEquivalent(that, other, new Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>>());
 
-    private static bool AreEquivalent(this object that, object other, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
+    private static bool AreEquivalent(this object? that, object? other, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
-        if (that == null || other == null)
+        if (that is null || other is null)
         {
             return that == other;
         }
@@ -46,7 +46,7 @@ public static class EquivalencyHelper
 
         if (type.IsArray)
         {
-            return ArrayEquals(that as Array, other as Array, comparisons);
+            return ArrayEquals((Array)that, (Array)other, comparisons);
         }
 
         return ObjectEquals(that, other, comparisons);
