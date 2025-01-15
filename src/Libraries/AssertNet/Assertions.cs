@@ -46,7 +46,7 @@ public static class Assertions
     /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
     /// <param name="enumerable">Enumerable under test.</param>
     /// <returns>Assertion about an enumerable.</returns>
-    public static EnumerableAssertion<T> That<T>(IEnumerable<T> enumerable) => new(FailureHandlerFactory.Create(), enumerable);
+    public static EnumerableAssertion<T> That<T>(this AssertionBuilder _, IEnumerable<T> enumerable) => new(FailureHandlerFactory.Create(), enumerable);
 
     /// <summary>
     /// Makes an assertion about an object.
