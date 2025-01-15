@@ -6,6 +6,10 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn),CA1822</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup Label="Dependencies">
     <PackageReference Include="TUnit" PrivateAssets="all" />
   </ItemGroup>
