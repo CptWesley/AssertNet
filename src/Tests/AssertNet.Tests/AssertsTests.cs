@@ -2,7 +2,6 @@ using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.Failures;
 using AssertNet.FailureHandlers;
 using System.Numerics;
-using static AssertNet.AssertionBuilder;
 
 namespace AssertNet.Tests;
 
@@ -12,6 +11,13 @@ public class Asserts_That
     public void supports_fluent_syntax()
     {
         Asserts.That("123").Contains("2");
+    }
+
+    [Fact]
+    public void gaaf()
+    {
+        var assertion = new Assertion<int[]>([1, 2, 3, 4], FailureHandlerFactory.Create());
+        assertion.Contains(4);
     }
 
     [Fact]

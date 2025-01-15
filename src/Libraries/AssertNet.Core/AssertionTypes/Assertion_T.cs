@@ -1,8 +1,8 @@
 namespace AssertNet.Core.AssertionTypes;
 
-public abstract class Assertion<TSubject> : Assertion
+public class Assertion<TSubject> : Assertion
 {
-    protected Assertion(TSubject subject, IFailureHandler failureHandler) : base(failureHandler)
+    public Assertion(TSubject subject, IFailureHandler failureHandler) : base(failureHandler)
     {
         Subject = subject;
     }
