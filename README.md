@@ -15,6 +15,7 @@ There is also a third NuGet package available: [AssertNet.Core](https://www.nuge
 Grab one of the available version mentioned in the __Downloads__ section above.  
 Add the following line to the test files where you intend to use _AssertNet_ depending on your version:  
 ```cs
+using AssertNet;
 using static AssertNet.AssertionBuilder;
 ```  
 
