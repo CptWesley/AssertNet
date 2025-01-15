@@ -14,7 +14,7 @@ public class Asserts_That
     }
 
     [Fact]
-    public void gaaf()
+    public void supports_generics_with()
     {
         var assertion = new Assertion<int[]>([1, 2, 3, 4], FailureHandlerFactory.Create());
         assertion.Contains(4);
