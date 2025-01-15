@@ -21,7 +21,7 @@ public class Asserts_That
     }
 }
 
-file static class AssertionExtesions
+file static class AssertionExtensions
 {
     public static NumberAssertion<TNumber> ThatX<TNumber>(this Asserter _, TNumber value) where TNumber : struct, INumber<TNumber>
     {
