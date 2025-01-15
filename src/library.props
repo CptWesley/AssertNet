@@ -8,4 +8,8 @@
     <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
 </Project>

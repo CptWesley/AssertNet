@@ -13,7 +13,7 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     /// </summary>
     public EnumerableAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         CollectionAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3]);
         Assertion = CollectionAssertion;
     }

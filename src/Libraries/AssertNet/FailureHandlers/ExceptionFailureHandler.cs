@@ -31,7 +31,7 @@ public abstract class ExceptionFailureHandler : IFailureHandler
             ex = Activator.CreateInstance(exceptionType, message) as Exception;
         }
 
-        ex ??= new Exception(message);
+        ex ??= new AssertionFailedException(message);
         throw ex;
     }
 

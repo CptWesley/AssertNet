@@ -12,14 +12,12 @@ public class MethodInvocationAssertionTests
     private readonly Mock<IMockable> _target;
     private readonly Expression<Func<IMockable, int>> _expression;
 
-    private int _val;
-
     /// <summary>
     /// Initializes a new instance of the <see cref="MethodInvocationAssertionTests"/> class.
     /// </summary>
     public MethodInvocationAssertionTests()
     {
-        _target = new Mock<IMockable>();
+        _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.Number;
         _assertion = new MethodInvocationAssertion<IMockable, int>(_target, _expression);
     }
@@ -57,7 +55,7 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void NeverFailTest()
     {
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.Never());
     }
 
@@ -67,7 +65,7 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void OncePassTest()
     {
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Once().Target);
     }
 
@@ -78,8 +76,8 @@ public class MethodInvocationAssertionTests
     public void OnceFailTest()
     {
         Assert.Throws<MockException>(() => _assertion.Once());
-        _val = _target.Object.Number;
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.Once());
     }
 
@@ -90,9 +88,9 @@ public class MethodInvocationAssertionTests
     public void AtLeastOnceTest()
     {
         Assert.Throws<MockException>(() => _assertion.AtLeastOnce());
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtLeastOnce().Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtLeastOnce().Target);
     }
 
@@ -103,9 +101,9 @@ public class MethodInvocationAssertionTests
     public void AtMostOnce()
     {
         Assert.Same(_target, _assertion.AtMostOnce().Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtMostOnce().Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.AtMostOnce());
     }
 
@@ -116,9 +114,9 @@ public class MethodInvocationAssertionTests
     public void AtLeastTest()
     {
         Assert.Throws<MockException>(() => _assertion.AtLeast(1));
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtLeast(1).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtLeast(1).Target);
     }
 
@@ -129,11 +127,11 @@ public class MethodInvocationAssertionTests
     public void AtMostTest()
     {
         Assert.Same(_target, _assertion.AtMost(2).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtMost(2).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtMost(2).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.AtMost(2));
     }
 
@@ -144,11 +142,11 @@ public class MethodInvocationAssertionTests
     public void ExactlyTest()
     {
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Exactly(2).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
     }
 
@@ -159,11 +157,11 @@ public class MethodInvocationAssertionTests
     public void BetweenTest()
     {
         Assert.Throws<MockException>(() => _assertion.Between(1, 2));
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Between(1, 2).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Between(1, 2).Target);
-        _val = _target.Object.Number;
+        _ = _target.Object.Number;
         Assert.Throws<MockException>(() => _assertion.Between(1, 2));
     }
 }

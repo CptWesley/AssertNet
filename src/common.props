@@ -8,7 +8,7 @@
     <PackageProjectUrl>$(RepositoryUrl)</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIconUrl>https://github.com/CptWesley/AssertNet/blob/master/logo.png?raw=true</PackageIconUrl>
-    <PackageIcon>logo.png</PackageIcon>
+    <PackageIcon>logo_128x128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../../logo.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="../../../logo_128x128.png" Pack="true" Visible="false" PackagePath="" />
     <None Include="../../../README.md" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 
@@ -80,6 +80,7 @@
   </ItemGroup>
 
   <ItemGroup Label="DefaultImports">
+    <Using Include="Qowaiv.Diagnostics.Contracts" />
     <Using Include="System" />
     <Using Include="System.Collections" />
     <Using Include="System.Collections.Concurrent" />

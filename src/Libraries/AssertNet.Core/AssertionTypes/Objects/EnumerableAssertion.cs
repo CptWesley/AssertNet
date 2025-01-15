@@ -662,12 +662,9 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
 
         foreach (TElement el in Target)
         {
-            if (Equals(el, it.Current))
+            if (Equals(el, it.Current) && !it.MoveNext())
             {
-                if (!it.MoveNext())
-                {
-                    return this;
-                }
+                return this;
             }
         }
 
@@ -707,13 +704,10 @@ public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion
         {
             foreach (TElement el in Target)
             {
-                if (Equals(el, it.Current))
+                if (Equals(el, it.Current) && !it.MoveNext())
                 {
-                    if (!it.MoveNext())
-                    {
-                        failed = true;
-                        break;
-                    }
+                    failed = true;
+                    break;
                 }
             }
         }
