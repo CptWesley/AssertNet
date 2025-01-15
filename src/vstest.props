@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <CollectCoverage>true</CollectCoverage>
-    <CoverletOutputFormat>opencover</CoverletOutputFormat>
+    <CoverletOutputFormat>cobertura</CoverletOutputFormat>
     <CoverletOutput>./bin/</CoverletOutput>
     <Include>[AssertNet]*</Include>
   </PropertyGroup>
