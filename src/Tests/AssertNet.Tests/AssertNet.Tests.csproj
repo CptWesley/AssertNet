@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="../../xunit.props"/>
+  <Import Project="../../xunit.props" />
+
+  <ItemGroup>
+    <PackageReference Update="xunit.runner.visualstudio">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>
