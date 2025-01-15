@@ -1,7 +1,4 @@
-[![AppVeyor](https://ci.appveyor.com/api/projects/status/github/CptWesley/AssertNet?svg=true)](https://ci.appveyor.com/project/CptWesley/AssertNet)
-[![CircleCI](https://circleci.com/gh/CptWesley/AssertNet.svg?style=shield)](https://circleci.com/gh/CptWesley/AssertNet)
 [![CodeCov](https://codecov.io/gh/CptWesley/AssertNet/branch/master/graph/badge.svg)](https://codecov.io/gh/CptWesley/AssertNet/)
-[![BetterCodeHub](https://bettercodehub.com/edge/badge/CptWesley/AssertNet?branch=master)](https://bettercodehub.com/results/CptWesley/AssertNet)
 
 ![AssertNet](https://raw.githubusercontent.com/CptWesley/AssertNet/master/logo.png)
 ### Description
@@ -18,18 +15,16 @@ There is also a third NuGet package available: [AssertNet.Core](https://www.nuge
 Grab one of the available version mentioned in the __Downloads__ section above.  
 Add the following line to the test files where you intend to use _AssertNet_ depending on your version:  
 ```cs
-using static AssertNet.Assertions;
+using AssertNet;
+using static AssertNet.AssertionBuilder;
 ```  
-For Moq:  
-```cs
-using static AssertNet.Moq.Assertions;
-```  
+
 Start writing your new assertions:
 ```cs
-AssertThat(3).IsEqualTo(3);
-AssertThat(() => DoWackyStuff()).ThrowsException<EvilException>().HasMessage("Something bad went wrong.");
-AssertThat("Hello world!").StartsWith("Hello");
-AssertThat(new int[] { 1, 2, 3 }).HasSize(3).ContainsExactlyInAnyOrder(2, 3, 1);
-AssertThat(someMock).HasInvoked(x => x.SomeStubbedFunction()).Once();
+Asserts.That(3).IsEqualTo(3);
+Asserts.That(() => DoWackyStuff()).ThrowsException<EvilException>().HasMessage("Something bad went wrong.");
+Asserts.That("Hello world!").StartsWith("Hello");
+Asserts.That(new int[] { 1, 2, 3 }).HasSize(3).ContainsExactlyInAnyOrder(2, 3, 1);
+Asserts.That(someMock).HasInvoked(x => x.SomeStubbedFunction()).Once();
 ```
 More code examples will be supplied on the wiki.

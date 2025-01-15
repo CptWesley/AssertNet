@@ -33,9 +33,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Properties", "Properties", 
 		library.props = library.props
 		mstest.props = mstest.props
 		nunit.props = nunit.props
+		..\README.md = ..\README.md
 		tests.props = tests.props
+		tunit.props = tunit.props
+		vstest.props = vstest.props
 		xunit.props = xunit.props
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssertNet.Tests.TUnit", "Tests\AssertNet.Tests.TUnit\AssertNet.Tests.TUnit.csproj", "{EB3D1308-59BE-40FF-9C67-7D4B96D3A639}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +84,10 @@ Global
 		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B336433-CB36-4D04-8ED5-B57C1A36352C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB3D1308-59BE-40FF-9C67-7D4B96D3A639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB3D1308-59BE-40FF-9C67-7D4B96D3A639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB3D1308-59BE-40FF-9C67-7D4B96D3A639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB3D1308-59BE-40FF-9C67-7D4B96D3A639}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +102,7 @@ Global
 		{2559D35E-AA42-445B-91EF-6DF8BA8DAD0F} = {F45DB523-682E-49EB-B71A-002C2636D042}
 		{40DE7E19-0E85-44F8-A5A3-E9A776DBBE9C} = {E75DD6AB-5E41-44D9-BE42-D6FA4609C0EA}
 		{9B336433-CB36-4D04-8ED5-B57C1A36352C} = {F45DB523-682E-49EB-B71A-002C2636D042}
+		{EB3D1308-59BE-40FF-9C67-7D4B96D3A639} = {F45DB523-682E-49EB-B71A-002C2636D042}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58755FB7-C0CB-4762-8E4D-062B9B167DEF}

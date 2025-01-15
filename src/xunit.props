@@ -1,6 +1,6 @@
 <Project>
 
-  <Import Project="tests.props" />
+  <Import Project="vstest.props" />
 
   <ItemGroup Label="Analyzers">
     <PackageReference Include="xunit.analyzers" PrivateAssets="all" />
