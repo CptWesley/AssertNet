@@ -16,7 +16,7 @@ public class MockAssertionTests
     /// </summary>
     public MockAssertionTests()
     {
-        _target = new Mock<IMockable>();
+        _target = new Mock<IMockable>(MockBehavior.Loose);
         _assertion = new MockAssertion<IMockable>(_target);
     }
 

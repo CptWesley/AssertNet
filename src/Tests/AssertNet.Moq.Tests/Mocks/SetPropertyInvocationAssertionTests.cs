@@ -16,7 +16,7 @@ public class SetPropertyInvocationAssertionTests
     /// </summary>
     public SetPropertyInvocationAssertionTests()
     {
-        _target = new Mock<IMockable>();
+        _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.Number = It.IsAny<int>();
         _assertion = new SetPropertyInvocationAssertion<IMockable>(_target, _expression);
     }

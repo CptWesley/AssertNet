@@ -14,7 +14,7 @@ public static class AssertionsTests
     [Fact]
     public static void AssertThatTest()
     {
-        Mock<object> target = new Mock<object>();
+        Mock<object> target = new Mock<object>(MockBehavior.Loose);
         MockAssertion<object> assertion = AssertThat(target);
         Assert.NotNull(assertion);
         Assert.Same(target, assertion.Target);

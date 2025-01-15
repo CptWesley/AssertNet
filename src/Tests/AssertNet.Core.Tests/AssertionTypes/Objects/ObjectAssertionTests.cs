@@ -8,6 +8,7 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 /// </summary>
 /// <typeparam name="T1">Type of the assertion.</typeparam>
 /// <typeparam name="T2">Type of the object under test.</typeparam>
+[Mutable]
 public abstract class ObjectAssertionTests<T1, T2>
     where T1 : ObjectAssertion<T1, T2>
 {
@@ -293,7 +294,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotSatisfyPassTest()
     {
-        Assertion.DoesNotSatisfy(x => x == null);
+        Assertion.DoesNotSatisfy(x => x is null);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 

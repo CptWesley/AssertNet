@@ -95,12 +95,14 @@ public static class EquivalencyHelper
 
     private static bool EqualsForType(object that, object other, Type type, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
-        FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+#pragma warning disable S3011 // Intentionally accessing private fields.
+        var fields = type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+#pragma warning restore S3011
 
         foreach (FieldInfo field in fields)
         {
-            object thatValue = field.GetValue(that);
-            object otherValue = field.GetValue(other);
+            var thatValue = field.GetValue(that);
+            var otherValue = field.GetValue(other);
 
             if (!AreEquivalent(thatValue, otherValue, comparisons))
             {

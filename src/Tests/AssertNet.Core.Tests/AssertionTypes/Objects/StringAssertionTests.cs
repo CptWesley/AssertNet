@@ -14,7 +14,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     /// </summary>
     public StringAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         Assertion = new StringAssertion(FailureHandler.Object, "threhterj");
     }
 

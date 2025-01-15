@@ -14,7 +14,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     /// </summary>
     public DoubleAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         Assertion = new DoubleAssertion(FailureHandler.Object, 500);
     }
 

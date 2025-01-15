@@ -3,6 +3,7 @@ namespace AssertNet.Moq.Tests;
 /// <summary>
 /// Simple mockable interface.
 /// </summary>
+[Mutable]
 public interface IMockable
 {
     /// <summary>

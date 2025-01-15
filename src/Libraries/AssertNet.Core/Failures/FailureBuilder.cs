@@ -30,19 +30,6 @@ public class FailureBuilder
     }
 
     /// <summary>
-    /// Appends an enumerable line.
-    /// </summary>
-    /// <typeparam name="T">Type of the enumerable.</typeparam>
-    /// <param name="objectName">Name of the enumerable.</param>
-    /// <param name="enumerable">The enumerable.</param>
-    /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
-    public FailureBuilder AppendEnumerable<T>(string objectName, IEnumerable<T> enumerable)
-    {
-        _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}[{string.Join(", ", enumerable.Select(StringOf))}]");
-        return this;
-    }
-
-    /// <summary>
     /// Appends the specified line.
     /// </summary>
     /// <param name="line">The line.</param>
@@ -54,6 +41,19 @@ public class FailureBuilder
             _builder.Append($"{Environment.NewLine}{line}");
         }
 
+        return this;
+    }
+
+    /// <summary>
+    /// Appends an enumerable line.
+    /// </summary>
+    /// <typeparam name="T">Type of the enumerable.</typeparam>
+    /// <param name="objectName">Name of the enumerable.</param>
+    /// <param name="enumerable">The enumerable.</param>
+    /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
+    public FailureBuilder AppendEnumerable<T>(string objectName, IEnumerable<T> enumerable)
+    {
+        _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}[{string.Join(", ", enumerable.Select(StringOf))}]");
         return this;
     }
 

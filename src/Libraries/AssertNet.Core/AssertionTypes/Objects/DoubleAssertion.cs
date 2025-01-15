@@ -103,7 +103,9 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsZero(string? message = null)
     {
+#pragma warning disable S1244 // Intentionally comparing to exactly zero.
         if (Target != 0)
+#pragma warning restore S1244
         {
             Fail(new FailureBuilder("IsZero()")
                 .Append(message)

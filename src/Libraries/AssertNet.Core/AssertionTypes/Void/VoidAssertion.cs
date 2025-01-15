@@ -27,6 +27,30 @@ public class VoidAssertion : Assertion
     public Action Action { get; }
 
     /// <summary>
+    /// Assert that the action does not throw any exception.
+    /// </summary>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public VoidAssertion DoesNotThrowException(string? message = null)
+    {
+        try
+        {
+            Action.Invoke();
+        }
+        catch (Exception e)
+        {
+            Fail(new FailureBuilder("DoesNotThrowException()")
+                .Append(message)
+                .Append("Expecting", Action)
+                .Append("Not to throw an exception")
+                .Append("But threw", e)
+                .Finish());
+        }
+
+        return this;
+    }
+
+    /// <summary>
     /// Assert that the action does not throw an exception of a specific type.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
@@ -101,11 +125,11 @@ public class VoidAssertion : Assertion
     }
 
     /// <summary>
-    /// Assert that the action does not throw any exception.
+    /// Assert that the action throws some exception.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>The current assertion.</returns>
-    public VoidAssertion DoesNotThrowException(string? message = null)
+    /// <returns>An exception assertion for the thrown exception.</returns>
+    public ExceptionAssertion ThrowsException(string? message = null)
     {
         try
         {
@@ -113,15 +137,16 @@ public class VoidAssertion : Assertion
         }
         catch (Exception e)
         {
-            Fail(new FailureBuilder("DoesNotThrowException()")
-                .Append(message)
-                .Append("Expecting", Action)
-                .Append("Not to throw an exception")
-                .Append("But threw", e)
-                .Finish());
+            return new ExceptionAssertion(FailureHandler, e);
         }
 
-        return this;
+        Fail(new FailureBuilder("ThrowsException()")
+                .Append(message)
+                .Append("Expecting", Action)
+                .Append("To throw an exception, but nothing was thrown")
+                .Finish());
+
+        return null;
     }
 
     /// <summary>
@@ -215,31 +240,6 @@ public class VoidAssertion : Assertion
                 .Append(message)
                 .Append("Expecting", Action)
                 .Append("To throw an exception exactly of type", t)
-                .Finish());
-
-        return null;
-    }
-
-    /// <summary>
-    /// Assert that the action throws some exception.
-    /// </summary>
-    /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>An exception assertion for the thrown exception.</returns>
-    public ExceptionAssertion ThrowsException(string? message = null)
-    {
-        try
-        {
-            Action.Invoke();
-        }
-        catch (Exception e)
-        {
-            return new ExceptionAssertion(FailureHandler, e);
-        }
-
-        Fail(new FailureBuilder("ThrowsException()")
-                .Append(message)
-                .Append("Expecting", Action)
-                .Append("To throw an exception, but nothing was thrown")
                 .Finish());
 
         return null;

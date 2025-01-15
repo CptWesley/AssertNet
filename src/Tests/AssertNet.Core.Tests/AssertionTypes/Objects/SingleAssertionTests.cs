@@ -13,7 +13,7 @@ public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object
     /// </summary>
     public SingleAssertionTests()
     {
-        FailureHandler = new Mock<IFailureHandler>();
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
         Assertion = new SingleAssertion(FailureHandler.Object, "bery43566435fgdtfg");
     }
 

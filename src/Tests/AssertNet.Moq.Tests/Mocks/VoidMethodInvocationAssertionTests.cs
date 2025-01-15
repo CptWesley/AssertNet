@@ -17,7 +17,7 @@ public class VoidMethodInvocationAssertionTests
     /// </summary>
     public VoidMethodInvocationAssertionTests()
     {
-        _target = new Mock<IMockable>();
+        _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.GetInt();
         _assertion = new VoidMethodInvocationAssertion<IMockable>(_target, _expression);
     }

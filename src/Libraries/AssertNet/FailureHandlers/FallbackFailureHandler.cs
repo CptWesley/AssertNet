@@ -7,6 +7,7 @@ namespace AssertNet.FailureHandlers;
 public class FallbackFailureHandler : IFailureHandler
 {
     /// <inheritdoc/>
+    [DoesNotReturn]
     public void Fail(string message)
         => throw new AssertionFailedException(message);
 
