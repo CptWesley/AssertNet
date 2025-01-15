@@ -41,7 +41,6 @@ public abstract class ExceptionFailureHandler : IFailureHandler
         if (constructor is null)
         {
             return defaultCreateException;
-
         }
 
         var arg = Expression.Parameter(typeof(string), "message");
