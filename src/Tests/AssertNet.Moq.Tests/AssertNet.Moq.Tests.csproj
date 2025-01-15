@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="../../xunit.props"/>
+  <Import Project="../../xunit.props" />
   
   <ItemGroup>
     <ProjectReference Include="../../Libraries/AssertNet.Moq/AssertNet.Moq.csproj" />
