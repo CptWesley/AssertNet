@@ -37,10 +37,12 @@
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NuGetAudit>true</NuGetAudit>
-    <DebugType>full</DebugType>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IsPublishable>false</IsPublishable>
     <IsPackable>false</IsPackable>
     <IsTestProject>false</IsTestProject>
+    <GenerateSBOM>true</GenerateSBOM>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
@@ -57,6 +59,8 @@
   </ItemGroup>
 
   <ItemGroup Label="CodeGenerators">
+    <PackageReference Include="Microsoft.Sbom.Targets" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
     <PackageReference Include="PolySharp" PrivateAssets="all" />
     <PackageReference Include="Qowaiv.Diagnostics.Contracts" PrivateAssets="all" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="../../library.props"/>
+  <Import Project="../../library.props" />
 
   <ItemGroup>
     <ProjectReference Include="../AssertNet.Core/AssertNet.Core.csproj" />
