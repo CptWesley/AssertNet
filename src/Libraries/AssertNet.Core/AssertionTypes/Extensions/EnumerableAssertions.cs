@@ -931,4 +931,11 @@ public static class EnumerableAssertions
     /// <returns>A new assertion for a projected version of the target enumerable.</returns>
     public static IAssertion<IEnumerable<TOut>> Select<TIn, TOut>(this IAssertion<IEnumerable<TIn>> assertion, Func<TIn, TOut> selector)
         => new Assertion<IEnumerable<TOut>>(assertion.FailureHandler, assertion.Subject.Select(selector));
+
+    /// <summary>
+    /// Creates a new assertion for a filtered version of the target enumerable.
+    /// </summary>
+    /// <returns>A new assertion for a filtered version of the target enumerable.</returns>
+    public static IAssertion<IEnumerable<TElement>> OfType<TElement>(this IAssertion<IEnumerable> assertion)
+        => new Assertion<IEnumerable<TElement>>(assertion.FailureHandler, assertion.Subject.OfType<TElement>());
 }
