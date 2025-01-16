@@ -39,7 +39,7 @@ public static class AssertionsTests
     {
         Assertion assertion = Asserts.That(true);
         Assert.NotNull(assertion);
-        Assert.IsType<BooleanAssertion>(assertion);
+        Assert.IsType<SingleAssertion<bool>>(assertion);
     }
 
     /// <summary>
@@ -83,6 +83,6 @@ public static class AssertionsTests
     {
         Assertion assertion = Asserts.That(new object());
         Assert.NotNull(assertion);
-        Assert.IsType<SingleAssertion>(assertion);
+        Assert.IsType<SingleAssertion<object?>>(assertion);
     }
 }
