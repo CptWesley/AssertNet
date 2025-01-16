@@ -1,3 +1,5 @@
+using AssertNet.AssertionTypes;
+using AssertNet.FailureHandlers;
 using Moq;
 
 namespace AssertNet.Moq.Mocks;
@@ -26,58 +28,58 @@ public sealed class SetPropertyInvocationAssertion<T> : InvocationAssertion<T>
     public System.Action<T> Expression { get; }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> Never(string? message = null)
+    public override IAssertion<Mock<T>> Never(string? message = null)
     {
         Target.VerifySet(Expression, Times.Never(), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> Once(string? message = null)
+    public override IAssertion<Mock<T>> Once(string? message = null)
     {
         Target.VerifySet(Expression, Times.Once(), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> AtLeastOnce(string? message = null)
+    public override IAssertion<Mock<T>> AtLeastOnce(string? message = null)
     {
         Target.VerifySet(Expression, Times.AtLeastOnce(), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> AtMostOnce(string? message = null)
+    public override IAssertion<Mock<T>> AtMostOnce(string? message = null)
     {
         Target.VerifySet(Expression, Times.AtMostOnce(), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> AtLeast(int count, string? message = null)
+    public override IAssertion<Mock<T>> AtLeast(int count, string? message = null)
     {
         Target.VerifySet(Expression, Times.AtLeast(count), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> AtMost(int count, string? message = null)
+    public override IAssertion<Mock<T>> AtMost(int count, string? message = null)
     {
         Target.VerifySet(Expression, Times.AtMost(count), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> Exactly(int count, string? message = null)
+    public override IAssertion<Mock<T>> Exactly(int count, string? message = null)
     {
         Target.VerifySet(Expression, Times.Exactly(count), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> Between(int minimum, int maximum, string? message = null)
+    public override IAssertion<Mock<T>> Between(int minimum, int maximum, string? message = null)
     {
         Target.VerifySet(Expression, Times.Between(minimum, maximum, global::Moq.Range.Inclusive), message);
-        return new MockAssertion<T>(Target);
+        return new Assertion<Mock<T>>(FailureHandlerFactory.Create(), Target);
     }
 }
