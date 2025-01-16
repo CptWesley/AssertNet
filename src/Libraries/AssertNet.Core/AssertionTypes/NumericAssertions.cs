@@ -8,6 +8,9 @@ namespace AssertNet.Core.AssertionTypes;
 public static class NumericAssertions
 {
     /// <summary>Ensures that the number under test is a finite number.</summary>
+    /// <typeparam name="TAssert">
+    /// The type of the assertion.
+    /// </typeparam>
     /// <typeparam name="TNumber">
     /// The type of the number.
     /// </typeparam>
@@ -18,7 +21,9 @@ public static class NumericAssertions
     /// The assertion message.
     /// </param>
     [FluentSyntax]
-    public static Assertion<TNumber> IsFinite<TNumber>(this Assertion<TNumber> assertion, string? message = null) where TNumber : struct, INumber<TNumber>
+    public static TAssert IsFinite<TAssert, TNumber>(this TAssert assertion, string? message = null)
+        where TAssert : Assertion<TNumber>
+        where TNumber : struct, INumber<TNumber>
     {
         if (!TNumber.IsFinite(assertion.Subject))
         {
