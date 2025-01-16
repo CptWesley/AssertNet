@@ -72,7 +72,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(Array.Empty<int>());
         Assert.NotNull(assertion);
-        Assert.IsType<EnumerableAssertion<int>>(assertion);
+        Assert.IsType<Assertion<int[]>>(assertion);
     }
 
     /// <summary>

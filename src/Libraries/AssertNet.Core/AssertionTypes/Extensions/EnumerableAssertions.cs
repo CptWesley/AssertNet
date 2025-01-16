@@ -73,7 +73,7 @@ public static class EnumerableAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     public static TAssert IsNullOrEmpty<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : IAssertion<IEnumerable>
+        where TAssert : IAssertion<IEnumerable?>
     {
         if (assertion.Subject is { } && assertion.Subject.Any())
         {
@@ -93,7 +93,7 @@ public static class EnumerableAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     public static TAssert IsNotNullOrEmpty<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : IAssertion<IEnumerable>
+        where TAssert : IAssertion<IEnumerable?>
     {
         if (assertion.Subject is null || !assertion.Subject.Any())
         {

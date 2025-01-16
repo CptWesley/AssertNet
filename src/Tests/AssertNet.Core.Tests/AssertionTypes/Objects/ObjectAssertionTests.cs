@@ -21,7 +21,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     protected ObjectAssertionTests(T2 subject)
     {
         FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = CreateAssertion(subject);
+        Assertion = (T1)(object)CreateAssertion(subject);
     }
 
     /// <summary>
@@ -40,8 +40,8 @@ public abstract class ObjectAssertionTests<T1, T2>
     /// </value>
     protected Mock<IFailureHandler> FailureHandler { get; set; }
 
-    public T1 CreateAssertion(T2 subject)
-        => (T1)(object)new Assertion<T2>(FailureHandler.Object, subject);
+    public IAssertion<TSubject> CreateAssertion<TSubject>(TSubject subject)
+        => new Assertion<TSubject>(FailureHandler.Object, subject);
 
     /// <summary>
     /// Checks that there are no failures if the objects are equal.

@@ -30,14 +30,6 @@ public static class Assertions
     public static DoubleAssertion That(this AssertionBuilder _, double value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>
-    /// Makes an assertion about an enumerable.
-    /// </summary>
-    /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
-    /// <param name="enumerable">Enumerable under test.</param>
-    /// <returns>Assertion about an enumerable.</returns>
-    public static EnumerableAssertion<T> That<T>(this AssertionBuilder _, IEnumerable<T> enumerable) => new(FailureHandlerFactory.Create(), enumerable);
-
-    /// <summary>
     /// Makes an assertion about an object.
     /// </summary>
     /// <param name="value">Object under test.</param>
@@ -68,15 +60,6 @@ public static class Assertions
     /// <returns>Assertion about a numeric value.</returns>
     [Obsolete("Use Asserts.That instead.")]
     public static DoubleAssertion AssertThat(double value) => new DoubleAssertion(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
-    /// Makes an assertion about an enumerable.
-    /// </summary>
-    /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
-    /// <param name="enumerable">Enumerable under test.</param>
-    /// <returns>Assertion about an enumerable.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static EnumerableAssertion<T> AssertThat<T>(IEnumerable<T> enumerable) => new EnumerableAssertion<T>(FailureHandlerFactory.Create(), enumerable);
 
     /// <summary>
     /// Makes an assertion about an object.

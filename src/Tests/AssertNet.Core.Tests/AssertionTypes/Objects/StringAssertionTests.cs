@@ -392,7 +392,7 @@ public class AssertionTests : ObjectAssertionTests<Assertion<string>, string?>
     [Fact]
     public void IsNullOrEmptyNullPassTest()
     {
-        CreateAssertion(null).IsNullOrEmpty();
+        CreateAssertion<string?>(null).IsNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -432,7 +432,7 @@ public class AssertionTests : ObjectAssertionTests<Assertion<string>, string?>
     [Fact]
     public void IsNullOrNotEmptyNullFailTest()
     {
-        CreateAssertion(null).IsNotNullOrEmpty();
+        CreateAssertion<string?>(null).IsNotNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
