@@ -1,4 +1,5 @@
 using AssertNet.Core.AssertionTypes;
+using AssertNet.Core.AssertionTypes.Extensions;
 
 namespace AssertNet;
 
@@ -27,13 +28,6 @@ public static class Assertions
     /// <param name="value">Numeric value under test.</param>
     /// <returns>Assertion about a numeric value.</returns>
     public static DoubleAssertion That(this AssertionBuilder _, double value) => new(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
-    /// Makes an assertion about a string.
-    /// </summary>
-    /// <param name="value">String under test.</param>
-    /// <returns>Assertion about a string.</returns>
-    public static StringAssertion That(this AssertionBuilder _, string value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>
     /// Makes an assertion about an enumerable.
@@ -74,14 +68,6 @@ public static class Assertions
     /// <returns>Assertion about a numeric value.</returns>
     [Obsolete("Use Asserts.That instead.")]
     public static DoubleAssertion AssertThat(double value) => new DoubleAssertion(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
-    /// Makes an assertion about a string.
-    /// </summary>
-    /// <param name="value">String under test.</param>
-    /// <returns>Assertion about a string.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static StringAssertion AssertThat(string value) => new StringAssertion(FailureHandlerFactory.Create(), value);
 
     /// <summary>
     /// Makes an assertion about an enumerable.

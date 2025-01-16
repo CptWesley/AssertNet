@@ -12,13 +12,25 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 public abstract class ObjectAssertionTests<T1, T2>
     where T1 : Assertion<T1, T2>
 {
+    protected ObjectAssertionTests()
+    {
+        Assertion = null!;
+        FailureHandler = null!;
+    }
+
+    protected ObjectAssertionTests(T2 subject)
+    {
+        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
+        Assertion = CreateAssertion(subject);
+    }
+
     /// <summary>
     /// Gets or sets the assertion under test.
     /// </summary>
     /// <value>
     /// The assertion under test.
     /// </value>
-    protected Assertion<T1, T2> Assertion { get; set; } = null!;
+    protected T1 Assertion { get; set; }
 
     /// <summary>
     /// Gets or sets the failure handler.
@@ -26,7 +38,10 @@ public abstract class ObjectAssertionTests<T1, T2>
     /// <value>
     /// The failure handler.
     /// </value>
-    protected Mock<IFailureHandler> FailureHandler { get; set; } = null!;
+    protected Mock<IFailureHandler> FailureHandler { get; set; }
+
+    public T1 CreateAssertion(T2 subject)
+        => (T1)(object)new SimpleAssertion<T2>(FailureHandler.Object, subject);
 
     /// <summary>
     /// Checks that there are no failures if the objects are equal.

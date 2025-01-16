@@ -1,24 +1,22 @@
-using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes;
+using AssertNet.Core.AssertionTypes.Extensions;
 using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="StringAssertion"/> class.
+/// Test class for the <see cref="Assertion"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string?>
+public class AssertionTests : ObjectAssertionTests<SimpleAssertion<string>, string?>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="StringAssertionTests"/> class.
+    /// Initializes a new instance of the <see cref="AssertionTests"/> class.
     /// </summary>
-    public StringAssertionTests()
+    public AssertionTests()
+        : base("threhterj")
     {
-        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new StringAssertion(FailureHandler.Object, "threhterj");
     }
-
-    private StringAssertion StringAssertion => (StringAssertion)Assertion;
 
     /// <summary>
     /// Checks that the assertion passes if the value is equal to the given value while ignoring cases.
@@ -26,7 +24,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsEqualToIgnoringCasePassTest()
     {
-        StringAssertion.IsEqualToIgnoringCase("Threhterj");
+        Assertion.IsEqualToIgnoringCase("Threhterj");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -36,7 +34,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsEqualToIgnoringCaseFailTest()
     {
-        StringAssertion.IsEqualToIgnoringCase("fdsdFSD");
+        Assertion.IsEqualToIgnoringCase("fdsdFSD");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -46,7 +44,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNotEqualToIgnoringCasePassTest()
     {
-        StringAssertion.IsNotEqualToIgnoringCase("rey");
+        Assertion.IsNotEqualToIgnoringCase("rey");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -56,7 +54,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNotEqualToIgnoringCaseFailTest()
     {
-        StringAssertion.IsNotEqualToIgnoringCase("ThrehteRj");
+        Assertion.IsNotEqualToIgnoringCase("ThrehteRj");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -66,7 +64,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void ContainsPassTest()
     {
-        StringAssertion.Contains("t");
+        Assertion.Contains("t");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -76,7 +74,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void ContainsFailTest()
     {
-        StringAssertion.Contains("T");
+        Assertion.Contains("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -86,7 +84,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotContainPassTest()
     {
-        StringAssertion.DoesNotContain("T");
+        Assertion.DoesNotContain("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -96,7 +94,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotContainFailTest()
     {
-        StringAssertion.DoesNotContain("t");
+        Assertion.DoesNotContain("t");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -106,7 +104,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void ContainsPatternPassTest()
     {
-        StringAssertion.ContainsPattern("[a-zA-Z]+");
+        Assertion.ContainsPattern("[a-zA-Z]+");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -116,7 +114,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void ContainsPatternFailTest()
     {
-        StringAssertion.ContainsPattern("[0-9]+");
+        Assertion.ContainsPattern("[0-9]+");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -126,7 +124,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotContainPatternPassTest()
     {
-        StringAssertion.DoesNotContainPattern("[0-9]+");
+        Assertion.DoesNotContainPattern("[0-9]+");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -136,7 +134,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotContainPatternFailTest()
     {
-        StringAssertion.DoesNotContainPattern("[a-zA-Z]+");
+        Assertion.DoesNotContainPattern("[a-zA-Z]+");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -146,7 +144,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void ContainsIgnoringCasePassTest()
     {
-        StringAssertion.ContainsIgnoringCase("T");
+        Assertion.ContainsIgnoringCase("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -156,7 +154,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void ContainsIgnoringCaseFailTest()
     {
-        StringAssertion.ContainsIgnoringCase("5ft5fre453f34");
+        Assertion.ContainsIgnoringCase("5ft5fre453f34");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -166,7 +164,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotContainIgnoringCasePassTest()
     {
-        StringAssertion.DoesNotContainIgnoringCase("f457h905f435nh9mfht5");
+        Assertion.DoesNotContainIgnoringCase("f457h905f435nh9mfht5");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -176,7 +174,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotContainIgnoringCaseFailTest()
     {
-        StringAssertion.DoesNotContainIgnoringCase("T");
+        Assertion.DoesNotContainIgnoringCase("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -186,7 +184,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void StartsWithPassTest()
     {
-        StringAssertion.StartsWith("t");
+        Assertion.StartsWith("t");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -196,7 +194,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void StartsWithFailTest()
     {
-        StringAssertion.StartsWith("T");
+        Assertion.StartsWith("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -206,7 +204,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotStartWithPassTest()
     {
-        StringAssertion.DoesNotStartWith("T");
+        Assertion.DoesNotStartWith("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -216,7 +214,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotStartWithFailTest()
     {
-        StringAssertion.DoesNotStartWith("t");
+        Assertion.DoesNotStartWith("t");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -226,7 +224,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void StartsWithIgnoringCasePassTest()
     {
-        StringAssertion.StartsWithIgnoringCase("T");
+        Assertion.StartsWithIgnoringCase("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -236,7 +234,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void StartsWithIgnoringCaseFailTest()
     {
-        StringAssertion.StartsWithIgnoringCase("5ft5fre453f34");
+        Assertion.StartsWithIgnoringCase("5ft5fre453f34");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -246,7 +244,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotStartWithIgnoringCasePassTest()
     {
-        StringAssertion.DoesNotStartWithIgnoringCase("f457h905f435nh9mfht5");
+        Assertion.DoesNotStartWithIgnoringCase("f457h905f435nh9mfht5");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -256,7 +254,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotStartWithIgnoringCaseFailTest()
     {
-        StringAssertion.DoesNotStartWithIgnoringCase("T");
+        Assertion.DoesNotStartWithIgnoringCase("T");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -266,7 +264,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void EndsWithPassTest()
     {
-        StringAssertion.EndsWith("j");
+        Assertion.EndsWith("j");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -276,7 +274,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void EndsWithFailTest()
     {
-        StringAssertion.EndsWith("J");
+        Assertion.EndsWith("J");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -286,7 +284,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotEndWithPassTest()
     {
-        StringAssertion.DoesNotEndWith("J");
+        Assertion.DoesNotEndWith("J");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -296,7 +294,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotEndWithFailTest()
     {
-        StringAssertion.DoesNotEndWith("j");
+        Assertion.DoesNotEndWith("j");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -306,7 +304,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void EndsWithIgnoringCasePassTest()
     {
-        StringAssertion.EndsWithIgnoringCase("J");
+        Assertion.EndsWithIgnoringCase("J");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -316,7 +314,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void EndsWithIgnoringCaseFailTest()
     {
-        StringAssertion.EndsWithIgnoringCase("6435f");
+        Assertion.EndsWithIgnoringCase("6435f");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -326,7 +324,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotEndWithIgnoringCasePassTest()
     {
-        StringAssertion.DoesNotEndWithIgnoringCase("4356f4356r");
+        Assertion.DoesNotEndWithIgnoringCase("4356f4356r");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -336,7 +334,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void DoesNotEndWithIgnoringCaseFailTest()
     {
-        StringAssertion.DoesNotEndWithIgnoringCase("J");
+        Assertion.DoesNotEndWithIgnoringCase("J");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -346,7 +344,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsEmptyPassTest()
     {
-        new StringAssertion(FailureHandler.Object, string.Empty).IsEmpty();
+        CreateAssertion(string.Empty).IsEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -356,7 +354,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsEmptyFailTest()
     {
-        StringAssertion.IsEmpty();
+        Assertion.IsEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -366,7 +364,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNotEmptyPassTest()
     {
-        StringAssertion.IsNotEmpty();
+        Assertion.IsNotEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -376,7 +374,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNotEmptyFailTest()
     {
-        new StringAssertion(FailureHandler.Object, string.Empty).IsNotEmpty();
+        CreateAssertion(string.Empty).IsNotEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -386,7 +384,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNullOrEmptyEmptyPassTest()
     {
-        new StringAssertion(FailureHandler.Object, string.Empty).IsNullOrEmpty();
+        CreateAssertion(string.Empty).IsNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -396,7 +394,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNullOrEmptyNullPassTest()
     {
-        new StringAssertion(FailureHandler.Object, null).IsNullOrEmpty();
+        CreateAssertion(null).IsNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -406,7 +404,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNullOrEmptyFailTest()
     {
-        StringAssertion.IsNullOrEmpty();
+        Assertion.IsNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -416,7 +414,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNullOrNotEmptyPassTest()
     {
-        StringAssertion.IsNotNullOrEmpty();
+        Assertion.IsNotNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -426,7 +424,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNullOrNotEmptyEmptyFailTest()
     {
-        new StringAssertion(FailureHandler.Object, string.Empty).IsNotNullOrEmpty();
+        CreateAssertion(string.Empty).IsNotNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -436,7 +434,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void IsNullOrNotEmptyNullFailTest()
     {
-        new StringAssertion(FailureHandler.Object, null).IsNotNullOrEmpty();
+        CreateAssertion(null).IsNotNullOrEmpty();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -446,7 +444,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void HasSizePassTest()
     {
-        new StringAssertion(FailureHandler.Object, "abc").HasSize(3);
+        CreateAssertion("abc").HasSize(3);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -456,7 +454,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void HasSizeFailTest()
     {
-        new StringAssertion(FailureHandler.Object, "ab").HasSize(3);
+        CreateAssertion("ab").HasSize(3);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -466,7 +464,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void HasAtLeastSizePassTest()
     {
-        new StringAssertion(FailureHandler.Object, "abcd").HasAtLeastSize(2);
+        CreateAssertion("abcd").HasAtLeastSize(2);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -476,7 +474,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void HasAtLeastSizeFailTest()
     {
-        new StringAssertion(FailureHandler.Object, "c").HasAtLeastSize(10);
+        CreateAssertion("c").HasAtLeastSize(10);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 
@@ -486,7 +484,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void HasAtMostSizePassTest()
     {
-        new StringAssertion(FailureHandler.Object, "4534").HasAtMostSize(4);
+        CreateAssertion("4534").HasAtMostSize(4);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -496,7 +494,7 @@ public class StringAssertionTests : ObjectAssertionTests<StringAssertion, string
     [Fact]
     public void HasAtMostSizeFailTest()
     {
-        new StringAssertion(FailureHandler.Object, "ab").HasAtMostSize(1);
+        CreateAssertion("ab").HasAtMostSize(1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.AtLeastOnce());
     }
 }

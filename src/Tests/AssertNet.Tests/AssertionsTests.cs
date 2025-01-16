@@ -1,4 +1,5 @@
 using AssertNet.Core.AssertionTypes;
+using AssertNet.Core.AssertionTypes.Extensions;
 using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.AssertionTypes.Void;
 
@@ -61,7 +62,7 @@ public static class AssertionsTests
     {
         Assertion assertion = Asserts.That(string.Empty);
         Assert.NotNull(assertion);
-        Assert.IsType<StringAssertion>(assertion);
+        Assert.IsType<SimpleAssertion<string>>(assertion);
     }
 
     /// <summary>
