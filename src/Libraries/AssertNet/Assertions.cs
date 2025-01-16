@@ -9,13 +9,6 @@ namespace AssertNet;
 public static class Assertions
 {
     /// <summary>
-    /// Makes an assertion about a void action.
-    /// </summary>
-    /// <param name="action">Void action under test.</param>
-    /// <returns>Assertion about a void action.</returns>
-    public static VoidAssertion That(this AssertionBuilder _, Action action) => new(FailureHandlerFactory.Create(), action);
-
-    /// <summary>
     /// Makes an assertion about a numeric value.
     /// </summary>
     /// <param name="value">Numeric value under test.</param>
@@ -29,14 +22,6 @@ public static class Assertions
     /// <returns>Assertion about an object.</returns>
     [OverloadResolutionPriority(-100)]
     public static Assertion<T> That<T>(this AssertionBuilder _, T value) => new(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
-    /// Makes an assertion about a void action.
-    /// </summary>
-    /// <param name="action">Void action under test.</param>
-    /// <returns>Assertion about a void action.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static VoidAssertion AssertThat(Action action) => new VoidAssertion(FailureHandlerFactory.Create(), action);
 
     /// <summary>
     /// Makes an assertion about a numeric value.

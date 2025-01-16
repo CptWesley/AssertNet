@@ -17,7 +17,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(() => { });
         Assert.NotNull(assertion);
-        Assert.IsType<VoidAssertion>(assertion);
+        Assert.IsType<Assertion<Action>>(assertion);
     }
 
     /// <summary>

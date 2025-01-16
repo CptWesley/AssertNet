@@ -6,4 +6,8 @@
     <PackageId>AssertNet.Core</PackageId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="AssertionTypes\Void\" />
+  </ItemGroup>
+
 </Project>
