@@ -1,5 +1,4 @@
 using AssertNet.AssertionTypes;
-using AssertNet.AssertionTypes.Objects;
 
 namespace AssertNet;
 
@@ -13,6 +12,7 @@ public static class Assertions
     /// </summary>
     /// <param name="value">Numeric value under test.</param>
     /// <returns>Assertion about a numeric value.</returns>
+    [Pure]
     public static DoubleAssertion That(this AssertionBuilder _, double value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>
@@ -21,6 +21,7 @@ public static class Assertions
     /// <param name="value">Object under test.</param>
     /// <returns>Assertion about an object.</returns>
     [OverloadResolutionPriority(-100)]
+    [Pure]
     public static Assertion<T> That<T>(this AssertionBuilder _, T value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>

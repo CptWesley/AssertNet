@@ -11,9 +11,11 @@ public static class FailureHandlerFactory
     /// Creates a <see cref="IFailureHandler"/> instance based on the avaiable testing frameworks.
     /// </summary>
     /// <returns>A new <see cref="IFailureHandler"/> instance.</returns>
+    [Pure]
     public static IFailureHandler Create()
         => lazyHandler.Value;
 
+    [Pure]
     private static IFailureHandler CreateInternal()
     {
         var types = typeof(FailureHandlerFactory).Assembly.GetTypes()

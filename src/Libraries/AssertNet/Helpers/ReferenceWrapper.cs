@@ -18,10 +18,12 @@ internal struct ReferenceWrapper : IEquatable<ReferenceWrapper>
     internal object Target { get; }
 
     /// <inheritdoc/>
+    [Pure]
     public bool Equals(ReferenceWrapper other)
         => ReferenceEquals(Target, other.Target);
 
     /// <inheritdoc/>
+    [Pure]
     public override bool Equals(object obj)
     {
         if (obj is ReferenceWrapper other)
@@ -33,6 +35,7 @@ internal struct ReferenceWrapper : IEquatable<ReferenceWrapper>
     }
 
     /// <inheritdoc/>
+    [Pure]
     public override int GetHashCode()
         => RuntimeHelpers.GetHashCode(Target);
 }

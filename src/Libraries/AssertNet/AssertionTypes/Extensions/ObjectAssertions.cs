@@ -13,6 +13,7 @@ public static class ObjectAssertions
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsEqualTo<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -34,6 +35,7 @@ public static class ObjectAssertions
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotEqualTo<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -55,6 +57,7 @@ public static class ObjectAssertions
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsEquivalentTo<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -76,6 +79,7 @@ public static class ObjectAssertions
     /// <param name="other">The other object to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotEquivalentTo<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -97,6 +101,7 @@ public static class ObjectAssertions
     /// <param name="other">The other to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsSameAs<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -121,6 +126,7 @@ public static class ObjectAssertions
     /// <param name="other">The other to compare with.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotSameAs<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -144,6 +150,7 @@ public static class ObjectAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNull<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion
     {
@@ -164,6 +171,7 @@ public static class ObjectAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotNull<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion
     {
@@ -185,6 +193,7 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<T> IsInstanceOf<T>(this IAssertion assertion, string? message = null)
     {
         var t = typeof(T);
@@ -221,6 +230,7 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
         where TAssert : IAssertion
     {
@@ -252,6 +262,7 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion IsNotInstanceOf<T>(this IAssertion assertion, string? message = null)
         => assertion.IsNotInstanceOf(typeof(T), message);
 
@@ -261,6 +272,7 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
         where TAssert : IAssertion
     {
@@ -282,6 +294,7 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<T> IsExactlyInstanceOf<T>(this IAssertion assertion, string? message = null)
     {
         var t = typeof(T);
@@ -318,6 +331,7 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsExactlyInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
         where TAssert : IAssertion
     {
@@ -349,6 +363,7 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion IsNotExactlyInstanceOf<T>(this IAssertion assertion, string? message = null)
         => assertion.IsNotExactlyInstanceOf(typeof(T), message);
 
@@ -358,6 +373,7 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotExactlyInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
         where TAssert : IAssertion
     {
@@ -379,6 +395,7 @@ public static class ObjectAssertions
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsIn<TAssert>(this TAssert assertion, IEnumerable enumerable, string? message = null)
         where TAssert : IAssertion
     {
@@ -400,6 +417,7 @@ public static class ObjectAssertions
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotIn<TAssert>(this TAssert assertion, IEnumerable enumerable, string? message = null)
         where TAssert : IAssertion
     {
@@ -421,6 +439,7 @@ public static class ObjectAssertions
     /// <param name="condition">The condition which needs to hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<TSubject> Satisfies<TSubject>(this IAssertion<TSubject> assertion, Func<TSubject, bool> condition, string? message = null)
     {
         if (!condition.Invoke(assertion.Subject!))
@@ -441,6 +460,7 @@ public static class ObjectAssertions
     /// <param name="condition">The condition which may not hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<TSubject> DoesNotSatisfy<TSubject>(this IAssertion<TSubject> assertion, Func<TSubject, bool> condition, string? message = null)
     {
         if (condition.Invoke(assertion.Subject!))
@@ -461,6 +481,7 @@ public static class ObjectAssertions
     /// <param name="hashCode">The expected hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert HasHashCode<TAssert>(this TAssert assertion, int hashCode, string? message = null)
         where TAssert : IAssertion
     {
@@ -492,6 +513,7 @@ public static class ObjectAssertions
     /// <param name="hashCode">The forbidden hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotHaveHashCode<TAssert>(this TAssert assertion, int hashCode, string? message = null)
         where TAssert : IAssertion
     {
@@ -513,6 +535,7 @@ public static class ObjectAssertions
     /// <param name="other">The other object which should have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert HasSameHashCodeAs<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -556,6 +579,7 @@ public static class ObjectAssertions
     /// <param name="other">The other object which may not have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotHaveSameHashCodeAs<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
@@ -585,6 +609,7 @@ public static class ObjectAssertions
     /// <param name="str">The expected ToString() result.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ToStringYields<TAssert>(this TAssert assertion, string? str, string? message = null)
         where TAssert : IAssertion
     {

@@ -5,7 +5,6 @@ namespace AssertNet;
 /// <summary>
 /// Class representing assertions made on collection objects.
 /// </summary>
-/// <typeparam name="TElement">Element type of the enumerable.</typeparam>
 /// <seealso cref="Assertion{TAssert, TTarget}" />
 public static class EnumerableAssertions
 {
@@ -14,6 +13,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsEmpty<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -42,6 +42,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotEmpty<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -71,6 +72,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNullOrEmpty<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<IEnumerable?>
     {
@@ -91,6 +93,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert IsNotNullOrEmpty<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<IEnumerable?>
     {
@@ -112,6 +115,7 @@ public static class EnumerableAssertions
     /// <param name="size">The size the enumerable should have.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert HasSize<TAssert>(this TAssert assertion, int size, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -146,6 +150,7 @@ public static class EnumerableAssertions
     /// <param name="size">The size the enumerable should have.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert HasAtLeastSize<TAssert>(this TAssert assertion, int size, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -180,6 +185,7 @@ public static class EnumerableAssertions
     /// <param name="size">The size the enumerable should have.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert HasAtMostSize<TAssert>(this TAssert assertion, int size, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -213,6 +219,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert Contains<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.Contains(values, message: null);
@@ -223,6 +230,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert Contains<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -257,6 +265,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContain<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.DoesNotContain(values, message: null);
@@ -267,6 +276,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContain<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -295,6 +305,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsOnly<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.ContainsOnly(values, message: null);
@@ -305,6 +316,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsOnly<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -338,6 +350,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainOnly<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.DoesNotContainOnly(values, message: null);
@@ -348,6 +361,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainOnly<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -375,6 +389,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsExactly<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.ContainsExactly(values, message: null);
@@ -385,6 +400,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsExactly<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -415,6 +431,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainExactly<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.DoesNotContainExactly(values, message: null);
@@ -425,6 +442,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainExactly<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -449,6 +467,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsExactlyInAnyOrder<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.ContainsExactlyInAnyOrder(values, message: null);
@@ -459,6 +478,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsExactlyInAnyOrder<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -515,6 +535,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainExactlyInAnyOrder<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.DoesNotContainExactlyInAnyOrder(values, message: null);
@@ -525,6 +546,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainExactlyInAnyOrder<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -563,6 +585,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsSequence<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.ContainsSequence(values, message: null);
@@ -573,6 +596,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsSequence<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -615,6 +639,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainSequence<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.DoesNotContainSequence(values, message: null);
@@ -625,6 +650,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainSequence<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -660,6 +686,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsInterleavedSequence<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.ContainsInterleavedSequence(values, message: null);
@@ -670,6 +697,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsInterleavedSequence<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -713,6 +741,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="values">The values to check for.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainInterleavedSequence<TAssert, TElement>(this TAssert assertion, params IEnumerable<TElement> values)
         where TAssert : IAssertion<IEnumerable<TElement>>
         => assertion.DoesNotContainInterleavedSequence(values, message: null);
@@ -723,6 +752,7 @@ public static class EnumerableAssertions
     /// <param name="values">The values to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainInterleavedSequence<TAssert, TElement>(this TAssert assertion, IEnumerable<TElement> values, string? message = null)
         where TAssert : IAssertion<IEnumerable<TElement>>
     {
@@ -763,6 +793,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert ContainsNull<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -796,6 +827,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotContainNull<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<IEnumerable>
     {
@@ -824,6 +856,7 @@ public static class EnumerableAssertions
     /// <param name="condition">The condition which needs to hold for all elements.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<IEnumerable<TElement>> AllSatisfy<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition, string? message = null)
     {
         if (assertion.Subject is null)
@@ -858,6 +891,7 @@ public static class EnumerableAssertions
     /// <param name="condition">The condition which needs to hold for some element.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<IEnumerable<TElement>> SomeSatisfy<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition, string? message = null)
     {
         if (assertion.Subject is null)
@@ -891,6 +925,7 @@ public static class EnumerableAssertions
     /// <param name="condition">The condition which may not hold for each element.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<IEnumerable<TElement>> NoneSatisfy<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition, string? message = null)
     {
         if (assertion.Subject is null)
@@ -918,6 +953,7 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="condition">The condition to filter on.</param>
     /// <returns>A new assertion for a filtered version of the target enumerable.</returns>
+    [Assertion]
     public static IAssertion<IEnumerable<TElement>> Where<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition)
         => new Assertion<IEnumerable<TElement>>(assertion.FailureHandler, assertion.Subject.Where(condition));
 
@@ -928,6 +964,7 @@ public static class EnumerableAssertions
     /// <typeparam name="TOut">The output type of the projection.</typeparam>
     /// <param name="selector">The selector for the projection.</param>
     /// <returns>A new assertion for a projected version of the target enumerable.</returns>
+    [Assertion]
     public static IAssertion<IEnumerable<TOut>> Select<TIn, TOut>(this IAssertion<IEnumerable<TIn>> assertion, Func<TIn, TOut> selector)
         => new Assertion<IEnumerable<TOut>>(assertion.FailureHandler, assertion.Subject.Select(selector));
 
@@ -935,6 +972,7 @@ public static class EnumerableAssertions
     /// Creates a new assertion for a filtered version of the target enumerable.
     /// </summary>
     /// <returns>A new assertion for a filtered version of the target enumerable.</returns>
+    [Assertion]
     public static IAssertion<IEnumerable<TElement>> OfType<TElement>(this IAssertion<IEnumerable> assertion)
         => new Assertion<IEnumerable<TElement>>(assertion.FailureHandler, assertion.Subject.OfType<TElement>());
 }

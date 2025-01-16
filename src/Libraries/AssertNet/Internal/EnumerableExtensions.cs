@@ -2,6 +2,7 @@ namespace AssertNet.Internal;
 
 internal static class EnumerableExtensions
 {
+    [Pure]
     public static IEnumerable<object?> AsGeneric(this IEnumerable enumerable)
     {
         foreach (var item in enumerable)
@@ -10,6 +11,7 @@ internal static class EnumerableExtensions
         }
     }
 
+    [Pure]
     public static int Count(this IEnumerable enumerable)
     {
         if (enumerable is ICollection collection)
@@ -25,6 +27,7 @@ internal static class EnumerableExtensions
         return Enumerable.Count(enumerable.AsGeneric());
     }
 
+    [Pure]
     public static bool Any(this IEnumerable enumerable)
     {
         if (enumerable is ICollection collection)

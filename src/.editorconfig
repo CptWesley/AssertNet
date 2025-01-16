@@ -53,6 +53,7 @@ dotnet_diagnostic.CA2254.severity = warning     # Template should be a static ex
 dotnet_diagnostic.CA1860.severity = none        #  Prefer comparing 'Length' to 0 rather than using 'Any()'
 
 dotnet_diagnostic.QW0001.severity = none        # Use a testable Time Provider
+dotnet_diagnostic.QW0003.severity = warning     # Decorate pure functions
 dotnet_diagnostic.QW0005.severity = none        # Seal class or make explicity inheritable
 
 dotnet_diagnostic.S100.severity  = none         # Properties should be named in PascalCase

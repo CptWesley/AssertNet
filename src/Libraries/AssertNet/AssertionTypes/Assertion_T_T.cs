@@ -30,18 +30,22 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     public IFailureHandler FailureHandler { get; }
 
     /// <inheritdoc cref="ObjectAssertions.IsNotInstanceOf{TAssert}(TAssert, Type, string?)" />
+    [Assertion]
     public TAssert IsNotInstanceOf<T>(string? message = null)
         => (TAssert)ObjectAssertions.IsNotInstanceOf<T>(this, message);
 
     /// <inheritdoc cref="ObjectAssertions.IsNotExactlyInstanceOf{TAssert}(TAssert, Type, string?)" />
+    [Assertion]
     public TAssert IsNotExactlyInstanceOf<T>(string? message = null)
         => (TAssert)ObjectAssertions.IsNotExactlyInstanceOf<T>(this, message);
 
     /// <inheritdoc cref="ObjectAssertions.Satisfies{TSubject}(IAssertion{TSubject}, Func{TSubject, bool}, string?)" />
+    [Assertion]
     public TAssert Satisfies(Func<TSubject, bool> condition, string? message = null)
         => (TAssert)ObjectAssertions.Satisfies(this, condition, message);
 
     /// <inheritdoc cref="ObjectAssertions.DoesNotSatisfy{TSubject}(IAssertion{TSubject}, Func{TSubject, bool}, string?)" />
+    [Assertion]
     public TAssert DoesNotSatisfy(Func<TSubject, bool> condition, string? message = null)
         => (TAssert)ObjectAssertions.DoesNotSatisfy(this, condition, message);
 }

@@ -15,6 +15,7 @@ public static class BooleanAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert IsTrue<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<bool>
     {
@@ -37,6 +38,7 @@ public static class BooleanAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert IsFalse<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<bool>
     {
