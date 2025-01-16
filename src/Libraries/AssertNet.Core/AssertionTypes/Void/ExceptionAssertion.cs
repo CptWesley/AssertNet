@@ -5,7 +5,7 @@ namespace AssertNet.Core.AssertionTypes.Void;
 /// </summary>
 /// <seealso cref="Assertion" />
 [SuppressMessage("Globalization", "CA1307", Justification = "Build target netstandard2.0 does not support suggested function.")]
-public class ExceptionAssertion : ObjectAssertion<ExceptionAssertion, Exception>
+public class ExceptionAssertion : Assertion<ExceptionAssertion, Exception>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionAssertion"/> class.

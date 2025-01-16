@@ -3,8 +3,8 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// <summary>
 /// Class representing assertions made on boolean items.
 /// </summary>
-/// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
-public class BooleanAssertion : ObjectAssertion<BooleanAssertion, bool>
+/// <seealso cref="Assertion{TAssert, TTarget}" />
+public class BooleanAssertion : Assertion<BooleanAssertion, bool>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanAssertion"/> class.

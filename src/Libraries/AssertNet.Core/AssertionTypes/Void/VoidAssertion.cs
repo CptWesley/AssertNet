@@ -5,7 +5,7 @@ namespace AssertNet.Core.AssertionTypes.Void;
 /// </summary>
 /// <seealso cref="Assertion" />
 [SuppressMessage("Design", "CA1031", Justification = "Needed for the library functionality.")]
-public class VoidAssertion : ObjectAssertion<VoidAssertion, Action>
+public class VoidAssertion : Assertion<VoidAssertion, Action>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="VoidAssertion"/> class.

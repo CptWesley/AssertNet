@@ -6,8 +6,8 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// Class representing assertions made on collection objects.
 /// </summary>
 /// <typeparam name="TElement">Element type of the enumerable.</typeparam>
-/// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
-public class EnumerableAssertion<TElement> : ObjectAssertion<EnumerableAssertion<TElement>, IEnumerable<TElement>>
+/// <seealso cref="Assertion{TAssert, TTarget}" />
+public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElement>, IEnumerable<TElement>>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="EnumerableAssertion{TElement}"/> class.

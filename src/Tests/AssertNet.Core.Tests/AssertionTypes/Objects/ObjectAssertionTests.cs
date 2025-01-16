@@ -1,16 +1,16 @@
-using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="ObjectAssertion{TAssert, TTarget}"/> class.
+/// Test class for the <see cref="Assertion{TAssert, TTarget}"/> class.
 /// </summary>
 /// <typeparam name="T1">Type of the assertion.</typeparam>
 /// <typeparam name="T2">Type of the object under test.</typeparam>
 [Mutable]
 public abstract class ObjectAssertionTests<T1, T2>
-    where T1 : ObjectAssertion<T1, T2>
+    where T1 : Assertion<T1, T2>
 {
     /// <summary>
     /// Gets or sets the assertion under test.
@@ -18,7 +18,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     /// <value>
     /// The assertion under test.
     /// </value>
-    protected ObjectAssertion<T1, T2> Assertion { get; set; } = null!;
+    protected Assertion<T1, T2> Assertion { get; set; } = null!;
 
     /// <summary>
     /// Gets or sets the failure handler.

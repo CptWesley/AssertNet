@@ -3,9 +3,9 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// <summary>
 /// Class representing assertions made about strings.
 /// </summary>
-/// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
+/// <seealso cref="Assertion{TAssert, TTarget}" />
 [SuppressMessage("Globalization", "CA1307", Justification = "Build target netstandard2.0 does not support suggested function and invariants are already being used.")]
-public class StringAssertion : ObjectAssertion<StringAssertion, string?>
+public class StringAssertion : Assertion<StringAssertion, string?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="StringAssertion"/> class.

@@ -3,8 +3,8 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// <summary>
 /// Class representing assertions made about doubles (and other numeric values).
 /// </summary>
-/// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
-public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
+/// <seealso cref="Assertion{TAssert, TTarget}" />
+public class DoubleAssertion : Assertion<DoubleAssertion, double>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="DoubleAssertion"/> class.

@@ -3,8 +3,8 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// <summary>
 /// Class representing assertions made on single objects.
 /// </summary>
-/// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
-public class SingleAssertion : ObjectAssertion<SingleAssertion, object?>
+/// <seealso cref="Assertion{TAssert, TTarget}" />
+public class SingleAssertion : Assertion<SingleAssertion, object?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SingleAssertion"/> class.

@@ -1,4 +1,4 @@
-namespace AssertNet.Core.AssertionTypes.Objects;
+namespace AssertNet.Core.AssertionTypes;
 
 /// <summary>
 /// Abstract class representing assertions of objects.
@@ -6,15 +6,15 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// <typeparam name="TAssert">Derived type of the assertion.</typeparam>
 /// <typeparam name="TSubject">Type of the object under test.</typeparam>
 /// <seealso cref="Assertion" />
-public class ObjectAssertion<TAssert, TSubject> : Assertion<TSubject>
+public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     where TAssert : Assertion
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ObjectAssertion{TAssert, TTarget}"/> class.
+    /// Initializes a new instance of the <see cref="Assertion{TAssert, TTarget}"/> class.
     /// </summary>
     /// <param name="target">The object which is under test.</param>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
-    public ObjectAssertion(IFailureHandler failureHandler, TSubject target)
+    public Assertion(IFailureHandler failureHandler, TSubject target)
         : base(failureHandler, target)
     {
     }
@@ -109,7 +109,7 @@ public class ObjectAssertion<TAssert, TSubject> : Assertion<TSubject>
     {
         var isValueType = Subject?.GetType().IsValueType ?? false;
 
-        if ((isValueType && !Equals(Subject, other)) || (!isValueType && !ReferenceEquals(Subject, other)))
+        if (isValueType && !Equals(Subject, other) || !isValueType && !ReferenceEquals(Subject, other))
         {
             Fail(new FailureBuilder("IsSameAs()")
                 .Append(message)
@@ -131,7 +131,7 @@ public class ObjectAssertion<TAssert, TSubject> : Assertion<TSubject>
     {
         var isValueType = Subject?.GetType().IsValueType ?? false;
 
-        if ((isValueType && Equals(Subject, other)) || (!isValueType && ReferenceEquals(Subject, other)))
+        if (isValueType && Equals(Subject, other) || !isValueType && ReferenceEquals(Subject, other))
         {
             Fail(new FailureBuilder("IsNotSameAs()")
                 .Append(message)
