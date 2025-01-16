@@ -25,7 +25,7 @@ public static class EquivalencyHelper
 
         if (that is string || type.IsPrimitive)
         {
-            return that.Equals(other);
+            return EqualityHelper.Equals(that, other);
         }
 
         if (type != other.GetType())
