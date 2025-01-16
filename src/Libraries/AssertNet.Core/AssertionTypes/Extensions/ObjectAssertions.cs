@@ -372,25 +372,26 @@ public static class ObjectAssertions
 
         return assertion;
     }
-/*
+
     /// <summary>
     /// Checks if the object under test is in an enumerable.
     /// </summary>
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsIn(IEnumerable enumerable, string? message = null)
+    public static TAssert IsIn<TAssert>(this TAssert assertion, IEnumerable enumerable, string? message = null)
+        where TAssert : IAssertion
     {
-        if (!enumerable.Cast<object?>().Contains(Subject))
+        if (!enumerable.AsGeneric().Contains(assertion.Subject))
         {
-            this.Fail(new FailureBuilder("IsIn()")
+            assertion.Fail(new FailureBuilder("IsIn()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be in", enumerable)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -399,20 +400,21 @@ public static class ObjectAssertions
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNotIn(IEnumerable enumerable, string? message = null)
+    public static TAssert IsNotIn<TAssert>(this TAssert assertion, IEnumerable enumerable, string? message = null)
+        where TAssert : IAssertion
     {
-        if (enumerable.Cast<object?>().Contains(Subject))
+        if (enumerable.AsGeneric().Contains(assertion.Subject))
         {
-            this.Fail(new FailureBuilder("IsNotIn()")
+            assertion.Fail(new FailureBuilder("IsNotIn()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to be in", enumerable)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
-
+/*
     /// <summary>
     /// Checks that an object satisfies a condition.
     /// </summary>

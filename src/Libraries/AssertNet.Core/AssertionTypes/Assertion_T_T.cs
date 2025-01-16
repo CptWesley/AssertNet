@@ -38,46 +38,6 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
         => (TAssert)ObjectAssertions.IsNotExactlyInstanceOf<T>(this, message);
 
     /// <summary>
-    /// Checks if the object under test is in an enumerable.
-    /// </summary>
-    /// <param name="enumerable">The enumerable to check in.</param>
-    /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>The current assertion.</returns>
-    public TAssert IsIn(IEnumerable enumerable, string? message = null)
-    {
-        if (!enumerable.Cast<object?>().Contains(Subject))
-        {
-            this.Fail(new FailureBuilder("IsIn()")
-                .Append(message)
-                .Append("Expecting", Subject)
-                .Append("To be in", enumerable)
-                .Finish());
-        }
-
-        return (TAssert)(object)this;
-    }
-
-    /// <summary>
-    /// Checks if the object under test is not in an enumerable.
-    /// </summary>
-    /// <param name="enumerable">The enumerable to check in.</param>
-    /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>The current assertion.</returns>
-    public TAssert IsNotIn(IEnumerable enumerable, string? message = null)
-    {
-        if (enumerable.Cast<object?>().Contains(Subject))
-        {
-            this.Fail(new FailureBuilder("IsNotIn()")
-                .Append(message)
-                .Append("Expecting", Subject)
-                .Append("Not to be in", enumerable)
-                .Finish());
-        }
-
-        return (TAssert)(object)this;
-    }
-
-    /// <summary>
     /// Checks that an object satisfies a condition.
     /// </summary>
     /// <param name="condition">The condition which needs to hold for the object.</param>
