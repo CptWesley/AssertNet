@@ -7,7 +7,7 @@ namespace AssertNet.Core.AssertionTypes;
 /// <typeparam name="TSubject">Type of the object under test.</typeparam>
 /// <seealso cref="IAssertion" />
 public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
-    where TAssert : IAssertion
+    where TAssert : Assertion<TAssert, TSubject>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Assertion{TAssert, TTarget}"/> class.
