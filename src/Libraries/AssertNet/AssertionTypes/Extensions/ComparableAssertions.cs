@@ -25,7 +25,7 @@ public static class ComparableAssertions
     /// </typeparam>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsGreaterThan<TAssert, TSubject>(TAssert assertion, TSubject other, string? message = null)
+    public static TAssert IsGreaterThan<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
         where TAssert : IAssertion<TSubject>
         where TSubject : IComparable<TSubject>
     {
@@ -61,7 +61,7 @@ public static class ComparableAssertions
     /// </typeparam>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsGreaterThanOrEqualTo<TAssert, TSubject>(TAssert assertion, TSubject other, string? message = null)
+    public static TAssert IsGreaterThanOrEqualTo<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
         where TAssert : IAssertion<TSubject>
         where TSubject : IComparable<TSubject>
     {
@@ -97,7 +97,7 @@ public static class ComparableAssertions
     /// </typeparam>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsLesserThan<TAssert, TSubject>(TAssert assertion, TSubject other, string? message = null)
+    public static TAssert IsLesserThan<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
         where TAssert : IAssertion<TSubject>
         where TSubject : IComparable<TSubject>
     {
@@ -133,7 +133,7 @@ public static class ComparableAssertions
     /// </typeparam>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsLesserThanOrEqualTo<TAssert, TSubject>(TAssert assertion, TSubject other, string? message = null)
+    public static TAssert IsLesserThanOrEqualTo<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
         where TAssert : IAssertion<TSubject>
         where TSubject : IComparable<TSubject>
     {
