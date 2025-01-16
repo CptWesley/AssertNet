@@ -3,8 +3,8 @@ namespace AssertNet.Core.AssertionTypes.Objects;
 /// <summary>
 /// Class representing assertions made about doubles (and other numeric values).
 /// </summary>
-/// <seealso cref="ObjectAssertion{TAssert, TTarget}" />
-public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
+/// <seealso cref="Assertion{TAssert, TTarget}" />
+public class DoubleAssertion : Assertion<DoubleAssertion, double>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="DoubleAssertion"/> class.
@@ -24,11 +24,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsGreaterThan(double other, string? message = null)
     {
-        if (Target <= other)
+        if (Subject <= other)
         {
-            Fail(new FailureBuilder("IsGreaterThan()")
+            this.Fail(new FailureBuilder("IsGreaterThan()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be greater than", other)
                 .Finish());
         }
@@ -44,11 +44,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsGreaterThanOrEqualTo(double other, string? message = null)
     {
-        if (Target < other)
+        if (Subject < other)
         {
-            Fail(new FailureBuilder("IsGreaterThanOrEqualTo()")
+            this.Fail(new FailureBuilder("IsGreaterThanOrEqualTo()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", other)
                 .Finish());
         }
@@ -64,11 +64,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsLesserThan(double other, string? message = null)
     {
-        if (Target >= other)
+        if (Subject >= other)
         {
-            Fail(new FailureBuilder("IsLesserThan()")
+            this.Fail(new FailureBuilder("IsLesserThan()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be lesser than", other)
                 .Finish());
         }
@@ -84,11 +84,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsLesserThanOrEqualTo(double other, string? message = null)
     {
-        if (Target > other)
+        if (Subject > other)
         {
-            Fail(new FailureBuilder("IsLesserThanOrEqualTo()")
+            this.Fail(new FailureBuilder("IsLesserThanOrEqualTo()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be lesser than or equal to", other)
                 .Finish());
         }
@@ -104,12 +104,12 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     public DoubleAssertion IsZero(string? message = null)
     {
 #pragma warning disable S1244 // Intentionally comparing to exactly zero.
-        if (Target != 0)
+        if (Subject != 0)
 #pragma warning restore S1244
         {
-            Fail(new FailureBuilder("IsZero()")
+            this.Fail(new FailureBuilder("IsZero()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be equal to", 0)
                 .Finish());
         }
@@ -124,11 +124,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsPositive(string? message = null)
     {
-        if (Target <= 0)
+        if (Subject <= 0)
         {
-            Fail(new FailureBuilder("IsPositive()")
+            this.Fail(new FailureBuilder("IsPositive()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be greater than", 0)
                 .Finish());
         }
@@ -143,11 +143,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsPositiveOrZero(string? message = null)
     {
-        if (Target < 0)
+        if (Subject < 0)
         {
-            Fail(new FailureBuilder("IsPositiveOrZero()")
+            this.Fail(new FailureBuilder("IsPositiveOrZero()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", 0)
                 .Finish());
         }
@@ -162,11 +162,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsNegative(string? message = null)
     {
-        if (Target >= 0)
+        if (Subject >= 0)
         {
-            Fail(new FailureBuilder("IsNegative()")
+            this.Fail(new FailureBuilder("IsNegative()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be lesser than", 0)
                 .Finish());
         }
@@ -181,11 +181,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsNegativeOrZero(string? message = null)
     {
-        if (Target > 0)
+        if (Subject > 0)
         {
-            Fail(new FailureBuilder("IsNegativeOrZero()")
+            this.Fail(new FailureBuilder("IsNegativeOrZero()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be lesser than or equal to", 0)
                 .Finish());
         }
@@ -208,11 +208,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
             throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
         }
 
-        if (Target < minimum || Target > maximum)
+        if (Subject < minimum || Subject > maximum)
         {
-            Fail(new FailureBuilder("IsInRange()")
+            this.Fail(new FailureBuilder("IsInRange()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", minimum)
                 .Append("And lesser than or equal to", maximum)
                 .Finish());
@@ -236,11 +236,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
             throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
         }
 
-        if (Target >= minimum && Target <= maximum)
+        if (Subject >= minimum && Subject <= maximum)
         {
-            Fail(new FailureBuilder("IsNotInRange()")
+            this.Fail(new FailureBuilder("IsNotInRange()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be lesser than", minimum)
                 .Append("Or greater than", maximum)
                 .Finish());
@@ -266,11 +266,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsEqualTo(double other, double margin, string? message = null)
     {
-        if (Target < other - margin || Target > other + margin)
+        if (Subject < other - margin || Subject > other + margin)
         {
-            Fail(new FailureBuilder("IsEqualTo()")
+            this.Fail(new FailureBuilder("IsEqualTo()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", other - margin)
                 .Append("And lesser than or equal to", other + margin)
                 .Finish());
@@ -296,11 +296,11 @@ public class DoubleAssertion : ObjectAssertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     public DoubleAssertion IsNotEqualTo(double other, double margin, string? message = null)
     {
-        if (Target >= other - margin && Target <= other + margin)
+        if (Subject >= other - margin && Subject <= other + margin)
         {
-            Fail(new FailureBuilder("IsNotEqualTo()")
+            this.Fail(new FailureBuilder("IsNotEqualTo()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be lesser than", other - margin)
                 .Append("Or greater than", other + margin)
                 .Finish());

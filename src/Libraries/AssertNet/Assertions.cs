@@ -1,3 +1,6 @@
+using AssertNet.Core.AssertionTypes;
+using AssertNet.Core.AssertionTypes.Objects;
+
 namespace AssertNet;
 
 /// <summary>
@@ -20,13 +23,6 @@ public static class Assertions
     public static ExceptionAssertion That(this AssertionBuilder _, Exception exception) => new(FailureHandlerFactory.Create(), exception);
 
     /// <summary>
-    /// Makes an assertion about a boolean value.
-    /// </summary>
-    /// <param name="value">Boolean value under test.</param>
-    /// <returns>Assertion about a boolean value.</returns>
-    public static BooleanAssertion That(this AssertionBuilder _, bool value) => new(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
     /// Makes an assertion about a numeric value.
     /// </summary>
     /// <param name="value">Numeric value under test.</param>
@@ -34,26 +30,12 @@ public static class Assertions
     public static DoubleAssertion That(this AssertionBuilder _, double value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>
-    /// Makes an assertion about a string.
-    /// </summary>
-    /// <param name="value">String under test.</param>
-    /// <returns>Assertion about a string.</returns>
-    public static StringAssertion That(this AssertionBuilder _, string value) => new(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
-    /// Makes an assertion about an enumerable.
-    /// </summary>
-    /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
-    /// <param name="enumerable">Enumerable under test.</param>
-    /// <returns>Assertion about an enumerable.</returns>
-    public static EnumerableAssertion<T> That<T>(this AssertionBuilder _, IEnumerable<T> enumerable) => new(FailureHandlerFactory.Create(), enumerable);
-
-    /// <summary>
     /// Makes an assertion about an object.
     /// </summary>
     /// <param name="value">Object under test.</param>
     /// <returns>Assertion about an object.</returns>
-    public static SingleAssertion That(this AssertionBuilder _, object value) => new(FailureHandlerFactory.Create(), value);
+    [OverloadResolutionPriority(-100)]
+    public static Assertion<T> That<T>(this AssertionBuilder _, T value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>
     /// Makes an assertion about a void action.
@@ -72,14 +54,6 @@ public static class Assertions
     public static ExceptionAssertion AssertThat(Exception exception) => new ExceptionAssertion(FailureHandlerFactory.Create(), exception);
 
     /// <summary>
-    /// Makes an assertion about a boolean value.
-    /// </summary>
-    /// <param name="value">Boolean value under test.</param>
-    /// <returns>Assertion about a boolean value.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static BooleanAssertion AssertThat(bool value) => new BooleanAssertion(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
     /// Makes an assertion about a numeric value.
     /// </summary>
     /// <param name="value">Numeric value under test.</param>
@@ -88,27 +62,11 @@ public static class Assertions
     public static DoubleAssertion AssertThat(double value) => new DoubleAssertion(FailureHandlerFactory.Create(), value);
 
     /// <summary>
-    /// Makes an assertion about a string.
-    /// </summary>
-    /// <param name="value">String under test.</param>
-    /// <returns>Assertion about a string.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static StringAssertion AssertThat(string value) => new StringAssertion(FailureHandlerFactory.Create(), value);
-
-    /// <summary>
-    /// Makes an assertion about an enumerable.
-    /// </summary>
-    /// <typeparam name="T">Type of the elements in the enumerable.</typeparam>
-    /// <param name="enumerable">Enumerable under test.</param>
-    /// <returns>Assertion about an enumerable.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static EnumerableAssertion<T> AssertThat<T>(IEnumerable<T> enumerable) => new EnumerableAssertion<T>(FailureHandlerFactory.Create(), enumerable);
-
-    /// <summary>
     /// Makes an assertion about an object.
     /// </summary>
     /// <param name="value">Object under test.</param>
     /// <returns>Assertion about an object.</returns>
     [Obsolete("Use Asserts.That instead.")]
-    public static SingleAssertion AssertThat(object value) => new SingleAssertion(FailureHandlerFactory.Create(), value);
+    [OverloadResolutionPriority(-100)]
+    public static Assertion<T> AssertThat<T>(T value) => new Assertion<T>(FailureHandlerFactory.Create(), value);
 }

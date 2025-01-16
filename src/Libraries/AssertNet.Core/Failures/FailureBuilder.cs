@@ -57,6 +57,10 @@ public class FailureBuilder
         return this;
     }
 
+    /// <inheritdoc cref="AppendEnumerable{T}(string, IEnumerable{T})" />
+    public FailureBuilder AppendEnumerable(string objectName, IEnumerable enumerable)
+        => AppendEnumerable(objectName, enumerable.AsGeneric());
+
     /// <summary>
     /// Finishes the FailureBuilder instance.
     /// </summary>

@@ -27,7 +27,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
         Exception e = new Mock<Exception>(MockBehavior.Loose).Object;
         ExceptionAssertion assertion = new ExceptionAssertion(FailureHandler.Object, e);
         Assert.Same(FailureHandler.Object, assertion.FailureHandler);
-        Assert.Same(e, assertion.Target);
+        Assert.Same(e, assertion.Subject);
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
             FailureHandler.Object,
             new Exception(string.Empty, inner)).WithInnerException();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
-        Assert.Same(inner, assertion.Target);
+        Assert.Same(inner, assertion.Subject);
     }
 
     /// <summary>
@@ -132,7 +132,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
             FailureHandler.Object,
             new Exception(string.Empty, inner)).WithInnerException<ArgumentException>();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
-        Assert.Same(inner, assertion.Target);
+        Assert.Same(inner, assertion.Subject);
     }
 
     /// <summary>

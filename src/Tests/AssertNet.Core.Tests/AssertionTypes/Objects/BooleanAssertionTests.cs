@@ -1,21 +1,20 @@
-using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="BooleanAssertion"/> class.
+/// Test class for the <see cref="IAssertion{bool}"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{T1, T2}" />
-public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool>
+public class BooleanAssertionTests : ObjectAssertionTests<Assertion<bool>, bool>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanAssertionTests"/> class.
     /// </summary>
     public BooleanAssertionTests()
+        : base(true)
     {
-        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new BooleanAssertion(FailureHandler.Object, true);
     }
 
     /// <summary>
@@ -24,7 +23,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool
     [Fact]
     public void IsTruePassTest()
     {
-        new BooleanAssertion(FailureHandler.Object, true).IsTrue();
+        CreateAssertion(true).IsTrue();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -34,7 +33,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool
     [Fact]
     public void IsTrueFailTest()
     {
-        new BooleanAssertion(FailureHandler.Object, false).IsTrue();
+        CreateAssertion(false).IsTrue();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -44,7 +43,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool
     [Fact]
     public void IsFalsePassTest()
     {
-        new BooleanAssertion(FailureHandler.Object, false).IsFalse();
+        CreateAssertion(false).IsFalse();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -54,7 +53,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<BooleanAssertion, bool
     [Fact]
     public void IsFalseFailTest()
     {
-        new BooleanAssertion(FailureHandler.Object, true).IsFalse();
+        CreateAssertion(true).IsFalse();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 }

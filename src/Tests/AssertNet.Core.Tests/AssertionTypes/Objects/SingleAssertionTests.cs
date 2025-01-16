@@ -1,4 +1,4 @@
-using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
@@ -6,7 +6,7 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 /// <summary>
 /// Test class for the <see cref="SingleAssertion"/> class.
 /// </summary>
-public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object?>
+public class SingleAssertionTests : ObjectAssertionTests<Assertion<object?>, object?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SingleAssertionTests"/> class.
@@ -14,7 +14,7 @@ public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object
     public SingleAssertionTests()
     {
         FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new SingleAssertion(FailureHandler.Object, "bery43566435fgdtfg");
+        Assertion = new Assertion<object?>(FailureHandler.Object, "bery43566435fgdtfg");
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object
     [Fact]
     public void IsNotNullFailTest()
     {
-        Assertion = new SingleAssertion(FailureHandler.Object, null);
+        Assertion = new Assertion<object?>(FailureHandler.Object, null);
         Assertion.IsNotNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
@@ -34,7 +34,7 @@ public class SingleAssertionTests : ObjectAssertionTests<SingleAssertion, object
     [Fact]
     public void IsNullPassTest()
     {
-        Assertion = new SingleAssertion(FailureHandler.Object, null);
+        Assertion = new Assertion<object?>(FailureHandler.Object, null);
         Assertion.IsNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
