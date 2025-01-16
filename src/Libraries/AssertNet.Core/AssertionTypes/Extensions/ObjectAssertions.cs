@@ -138,24 +138,25 @@ public static class ObjectAssertions
 
         return assertion;
     }
-/*
+
     /// <summary>
     /// Checks whether this instance is null.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNull(string? message = null)
+    public static TAssert IsNull<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is not null)
+        if (assertion.Subject is not null)
         {
-            this.Fail(new FailureBuilder("IsNull()")
+            assertion.Fail(new FailureBuilder("IsNull()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append<object>("To be", null)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -163,18 +164,19 @@ public static class ObjectAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNotNull(string? message = null)
+    public static TAssert IsNotNull<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("IsNotNull()")
+            assertion.Fail(new FailureBuilder("IsNotNull()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append<object>("Not to be", null)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -183,7 +185,35 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsInstanceOf<T>(string? message = null) => IsInstanceOf(typeof(T), message);
+    public static IAssertion<T> IsInstanceOf<T>(this IAssertion assertion, string? message = null)
+    {
+        var t = typeof(T);
+
+        if (assertion.Subject is null)
+        {
+            assertion.Fail(new FailureBuilder("IsInstanceOf()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be an instance of", t)
+                .Append("But is null")
+                .Finish());
+            return new Assertion<T>(assertion.FailureHandler, default!);
+        }
+        else if (assertion.Subject is not T subject)
+        {
+            assertion.Fail(new FailureBuilder("IsInstanceOf()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be an instance of", t)
+                .Append("But is an instance of", assertion.Subject.GetType())
+                .Finish());
+            return new Assertion<T>(assertion.FailureHandler, default!);
+        }
+        else
+        {
+            return new Assertion<T>(assertion.FailureHandler, subject);
+        }
+    }
 
     /// <summary>
     /// Checks if the object under test is an instance of a certain type.
@@ -191,28 +221,29 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsInstanceOf(Type t, string? message = null)
+    public static TAssert IsInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("IsInstanceOf()")
+            assertion.Fail(new FailureBuilder("IsInstanceOf()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be an instance of", t)
                 .Append("But is null")
                 .Finish());
         }
-        else if (!Subject.GetType().IsSubclassOf(t) && Subject.GetType() != t)
+        else if (!assertion.Subject.GetType().IsSubclassOf(t) && assertion.Subject.GetType() != t)
         {
-            this.Fail(new FailureBuilder("IsInstanceOf()")
+            assertion.Fail(new FailureBuilder("IsInstanceOf()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be an instance of", t)
-                .Append("But is an instance of", Subject.GetType())
+                .Append("But is an instance of", assertion.Subject.GetType())
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -221,7 +252,8 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNotInstanceOf<T>(string? message = null) => IsNotInstanceOf(typeof(T), message);
+    public static IAssertion IsNotInstanceOf<T>(this IAssertion assertion, string? message = null)
+        => assertion.IsNotInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is not an instance of a certain type.
@@ -229,18 +261,19 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNotInstanceOf(Type t, string? message = null)
+    public static TAssert IsNotInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is { } && (Subject.GetType().IsSubclassOf(t) || Subject.GetType() == t))
+        if (assertion.Subject is { } && (assertion.Subject.GetType().IsSubclassOf(t) || assertion.Subject.GetType() == t))
         {
-            this.Fail(new FailureBuilder("IsNotInstanceOf()")
+            assertion.Fail(new FailureBuilder("IsNotInstanceOf()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to be an instance of", t)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -249,7 +282,35 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsExactlyInstanceOf<T>(string? message = null) => IsExactlyInstanceOf(typeof(T), message);
+    public static IAssertion<T> IsExactlyInstanceOf<T>(this IAssertion assertion, string? message = null)
+    {
+        var t = typeof(T);
+
+        if (assertion.Subject is null)
+        {
+            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be an exact instance of", t)
+                .Append("But is null")
+                .Finish());
+            return new Assertion<T>(assertion.FailureHandler, default!);
+        }
+        else if (assertion.Subject.GetType() != t)
+        {
+            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be an exact instance of", t)
+                .Append("But is an instance of", assertion.Subject.GetType())
+                .Finish());
+            return new Assertion<T>(assertion.FailureHandler, default!);
+        }
+        else
+        {
+            return new Assertion<T>(assertion.FailureHandler, (T)assertion.Subject);
+        }
+    }
 
     /// <summary>
     /// Checks if the object under test is exactly an instance of a certain type.
@@ -257,28 +318,29 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsExactlyInstanceOf(Type t, string? message = null)
+    public static TAssert IsExactlyInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be an exact instance of", t)
                 .Append("But is null")
                 .Finish());
         }
-        else if (Subject.GetType() != t)
+        else if (assertion.Subject.GetType() != t)
         {
-            this.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be an exact instance of", t)
-                .Append("But is an instance of", Subject.GetType())
+                .Append("But is an instance of", assertion.Subject.GetType())
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -287,7 +349,8 @@ public static class ObjectAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNotExactlyInstanceOf<T>(string? message = null) => IsNotExactlyInstanceOf(typeof(T), message);
+    public static IAssertion IsNotExactlyInstanceOf<T>(this IAssertion assertion, string? message = null)
+        => assertion.IsNotExactlyInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is not exactly an instance of a certain type.
@@ -295,20 +358,21 @@ public static class ObjectAssertions
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert IsNotExactlyInstanceOf(Type t, string? message = null)
+    public static TAssert IsNotExactlyInstanceOf<TAssert>(this TAssert assertion, Type t, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is { } && Subject.GetType() == t)
+        if (assertion.Subject is { } && assertion.Subject.GetType() == t)
         {
-            this.Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
+            assertion.Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to be an exact instance of", t)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
-
+/*
     /// <summary>
     /// Checks if the object under test is in an enumerable.
     /// </summary>
