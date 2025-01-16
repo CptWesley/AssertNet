@@ -414,25 +414,25 @@ public static class ObjectAssertions
 
         return assertion;
     }
-/*
+
     /// <summary>
     /// Checks that an object satisfies a condition.
     /// </summary>
     /// <param name="condition">The condition which needs to hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert Satisfies(Func<TSubject, bool> condition, string? message = null)
+    public static IAssertion<TSubject> Satisfies<TSubject>(this IAssertion<TSubject> assertion, Func<TSubject, bool> condition, string? message = null)
     {
-        if (!condition.Invoke(Subject!))
+        if (!condition.Invoke(assertion.Subject!))
         {
-            this.Fail(new FailureBuilder("Satisfies()")
+            assertion.Fail(new FailureBuilder("Satisfies()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To satisfy", condition)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -441,18 +441,18 @@ public static class ObjectAssertions
     /// <param name="condition">The condition which may not hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert DoesNotSatisfy(Func<TSubject, bool> condition, string? message = null)
+    public static IAssertion<TSubject> DoesNotSatisfy<TSubject>(this IAssertion<TSubject> assertion, Func<TSubject, bool> condition, string? message = null)
     {
-        if (condition.Invoke(Subject!))
+        if (condition.Invoke(assertion.Subject!))
         {
-            this.Fail(new FailureBuilder("DoesNotSatisfy()")
+            assertion.Fail(new FailureBuilder("DoesNotSatisfy()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to satisfy", condition)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -461,28 +461,29 @@ public static class ObjectAssertions
     /// <param name="hashCode">The expected hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert HasHashCode(int hashCode, string? message = null)
+    public static TAssert HasHashCode<TAssert>(this TAssert assertion, int hashCode, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("HasHashCode()")
+            assertion.Fail(new FailureBuilder("HasHashCode()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have the hash code", hashCode)
                 .Append("But is null")
                 .Finish());
         }
-        else if (Subject.GetHashCode() != hashCode)
+        else if (assertion.Subject.GetHashCode() != hashCode)
         {
-            this.Fail(new FailureBuilder("HasHashCode()")
+            assertion.Fail(new FailureBuilder("HasHashCode()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have the hash code", hashCode)
-                .Append("But has hash code", Subject.GetHashCode())
+                .Append("But has hash code", assertion.Subject.GetHashCode())
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -491,18 +492,19 @@ public static class ObjectAssertions
     /// <param name="hashCode">The forbidden hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert DoesNotHaveHashCode(int hashCode, string? message = null)
+    public static TAssert DoesNotHaveHashCode<TAssert>(this TAssert assertion, int hashCode, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is { } && Subject.GetHashCode() == hashCode)
+        if (assertion.Subject is { } && assertion.Subject.GetHashCode() == hashCode)
         {
-            this.Fail(new FailureBuilder("DoesNotHaveHashCode()")
+            assertion.Fail(new FailureBuilder("DoesNotHaveHashCode()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to have the hash code", hashCode)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -511,15 +513,16 @@ public static class ObjectAssertions
     /// <param name="other">The other object which should have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert HasSameHashCodeAs(object? other, string? message = null)
+    public static TAssert HasSameHashCodeAs<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
             if (other is not null)
             {
-                this.Fail(new FailureBuilder("HasSameHashCodeAs()")
+                assertion.Fail(new FailureBuilder("HasSameHashCodeAs()")
                     .Append(message)
-                    .Append("Expecting", Subject)
+                    .Append("Expecting", assertion.Subject)
                     .Append("To have the hash code", other.GetHashCode())
                     .Append("But is null")
                     .Finish());
@@ -527,24 +530,24 @@ public static class ObjectAssertions
         }
         else if (other is null)
         {
-            this.Fail(new FailureBuilder("HasSameHashCodeAs()")
+            assertion.Fail(new FailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be null")
-                .Append("But has hash code", Subject.GetHashCode())
+                .Append("But has hash code", assertion.Subject.GetHashCode())
                 .Finish());
         }
-        else if (Subject.GetHashCode() != other.GetHashCode())
+        else if (assertion.Subject.GetHashCode() != other.GetHashCode())
         {
-            this.Fail(new FailureBuilder("HasSameHashCodeAs()")
+            assertion.Fail(new FailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have the hash code", other.GetHashCode())
-                .Append("But has hash code", Subject.GetHashCode())
+                .Append("But has hash code", assertion.Subject.GetHashCode())
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -553,26 +556,27 @@ public static class ObjectAssertions
     /// <param name="other">The other object which may not have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert DoesNotHaveSameHashCodeAs(object? other, string? message = null)
+    public static TAssert DoesNotHaveSameHashCodeAs<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null && other is null)
+        if (assertion.Subject is null && other is null)
         {
-            this.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+            assertion.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to be null")
                 .Finish());
         }
-        else if (Subject is { } && other is { } && Subject.GetHashCode() == other.GetHashCode())
+        else if (assertion.Subject is { } && other is { } && assertion.Subject.GetHashCode() == other.GetHashCode())
         {
-            this.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+            assertion.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("Not to have the hash code", other.GetHashCode())
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
 
     /// <summary>
@@ -581,28 +585,28 @@ public static class ObjectAssertions
     /// <param name="str">The expected ToString() result.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert ToStringYields(string? str, string? message = null)
+    public static TAssert ToStringYields<TAssert>(this TAssert assertion, string? str, string? message = null)
+        where TAssert : IAssertion
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("ToStringYields()")
+            assertion.Fail(new FailureBuilder("ToStringYields()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be represented as", str)
                 .Append("But is null")
                 .Finish());
         }
-        else if (Subject.ToString() is { } other && !Equals(other, str))
+        else if (assertion.Subject.ToString() is { } other && !Equals(other, str))
         {
-            this.Fail(new FailureBuilder("ToStringYields()")
+            assertion.Fail(new FailureBuilder("ToStringYields()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be represented as", str)
                 .Append("But is represented as", other)
                 .Finish());
         }
 
-        return (TAssert)(object)this;
+        return assertion;
     }
-*/
 }
