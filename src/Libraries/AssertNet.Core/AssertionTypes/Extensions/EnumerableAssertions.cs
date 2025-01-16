@@ -819,40 +819,38 @@ public static class EnumerableAssertions
         return assertion;
     }
 
-    /*
-
     /// <summary>
     /// Checks that a condition holds for all elements in an enumerable.
     /// </summary>
     /// <param name="condition">The condition which needs to hold for all elements.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert AllSatisfy(Func<TElement, bool> condition, string? message = null)
+    public static IAssertion<IEnumerable<TElement>> AllSatisfy<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition, string? message = null)
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("AllSatisfy()")
+            assertion.Fail(new FailureBuilder("AllSatisfy()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To all satisfy", condition)
                 .Append("But is null")
                 .Finish());
-            return this;
+            return assertion;
         }
 
-        IEnumerable<TElement> failed = Subject.Where(x => !condition.Invoke(x));
+        var failed = assertion.Subject.Where(x => !condition.Invoke(x));
 
         if (failed.Any())
         {
-            this.Fail(new FailureBuilder("AllSatisfy()")
+            assertion.Fail(new FailureBuilder("AllSatisfy()")
                 .Append(message)
-                .AppendEnumerable("Expecting", Subject)
+                .AppendEnumerable("Expecting", assertion.Subject)
                 .Append("To all satisfy", condition)
                 .AppendEnumerable("But did not hold for", failed)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -861,31 +859,31 @@ public static class EnumerableAssertions
     /// <param name="condition">The condition which needs to hold for some element.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert SomeSatisfy(Func<TElement, bool> condition, string? message = null)
+    public static IAssertion<IEnumerable<TElement>> SomeSatisfy<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition, string? message = null)
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("SomeSatisfy()")
+            assertion.Fail(new FailureBuilder("SomeSatisfy()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have any element satisfying", condition)
                 .Append("But is null")
                 .Finish());
-            return this;
+            return assertion;
         }
 
-        IEnumerable<TElement> holds = Subject.Where(condition);
+        IEnumerable<TElement> holds = assertion.Subject.Where(condition);
 
         if (!holds.Any())
         {
-            this.Fail(new FailureBuilder("SomeSatisfy()")
+            assertion.Fail(new FailureBuilder("SomeSatisfy()")
                 .Append(message)
-                .AppendEnumerable("Expecting", Subject)
+                .AppendEnumerable("Expecting", assertion.Subject)
                 .Append("To have any element satisfying", condition)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -894,26 +892,26 @@ public static class EnumerableAssertions
     /// <param name="condition">The condition which may not hold for each element.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert NoneSatisfy(Func<TElement, bool> condition, string? message = null)
+    public static IAssertion<IEnumerable<TElement>> NoneSatisfy<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition, string? message = null)
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            return this;
+            return assertion;
         }
 
-        IEnumerable<TElement> holds = Subject.Where(condition);
+        IEnumerable<TElement> holds = assertion.Subject.Where(condition);
 
         if (holds.Any())
         {
-            this.Fail(new FailureBuilder("NoneSatisfy()")
+            assertion.Fail(new FailureBuilder("NoneSatisfy()")
                 .Append(message)
-                .AppendEnumerable("Expecting", Subject)
+                .AppendEnumerable("Expecting", assertion.Subject)
                 .Append("Not to have elements satisfying", condition)
                 .AppendEnumerable("But found", holds)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -921,14 +919,16 @@ public static class EnumerableAssertions
     /// </summary>
     /// <param name="condition">The condition to filter on.</param>
     /// <returns>A new assertion for a filtered version of the target enumerable.</returns>
-    public static TAssert Where(Func<TElement, bool> condition) => new EnumerableAssertion<TElement>(FailureHandler, Subject.Where(condition));
+    public static IAssertion<IEnumerable<TElement>> Where<TElement>(this IAssertion<IEnumerable<TElement>> assertion, Func<TElement, bool> condition)
+        => new Assertion<IEnumerable<TElement>>(assertion.FailureHandler, assertion.Subject.Where(condition));
 
     /// <summary>
     /// Creates a new assertion for a projected version of the target enumerable.
     /// </summary>
-    /// <typeparam name="T">The output type of the projection.</typeparam>
+    /// <typeparam name="TIn">The input type of the projection.</typeparam>
+    /// <typeparam name="TOut">The output type of the projection.</typeparam>
     /// <param name="selector">The selector for the projection.</param>
     /// <returns>A new assertion for a projected version of the target enumerable.</returns>
-    public EnumerableAssertions<T> Select<T>(Func<TElement, T> selector) => new EnumerableAssertion<T>(FailureHandler, Subject.Select(selector));
-*/
+    public static IAssertion<IEnumerable<TOut>> Select<TIn, TOut>(this IAssertion<IEnumerable<TIn>> assertion, Func<TIn, TOut> selector)
+        => new Assertion<IEnumerable<TOut>>(assertion.FailureHandler, assertion.Subject.Select(selector));
 }

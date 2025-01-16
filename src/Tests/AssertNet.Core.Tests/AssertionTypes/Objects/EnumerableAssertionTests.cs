@@ -509,8 +509,8 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void WhereTest()
     {
-        EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
-        EnumerableAssertion<int> newAssertion = originalAssertion.Where(x => x > 2);
+        var originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
+        var newAssertion = originalAssertion.Where(x => x > 2);
         Assert.Equal(2, newAssertion.Subject.Count());
         Assert.Contains(3, newAssertion.Subject);
         Assert.Contains(4, newAssertion.Subject);
@@ -522,8 +522,8 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     [Fact]
     public void SelectTest()
     {
-        EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
-        EnumerableAssertion<int> newAssertion = originalAssertion.Select(x => x + 1);
+        var originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
+        var newAssertion = originalAssertion.Select(x => x + 1);
         Assert.Equal(4, newAssertion.Subject.Count());
         Assert.Contains(2, newAssertion.Subject);
         Assert.Contains(3, newAssertion.Subject);
