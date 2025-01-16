@@ -119,7 +119,7 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsAnyExceptionPassTest()
     {
-        ExceptionAssertion result = new VoidAssertion(_handler.Object, () => throw new Exception()).ThrowsException();
+        var result = new VoidAssertion(_handler.Object, () => throw new Exception()).ThrowsException();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
         Assert.NotNull(result);
     }
@@ -130,9 +130,8 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsAnyExceptionFailTest()
     {
-        ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsException();
+        new VoidAssertion(_handler.Object, DoNothing).ThrowsException();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(result);
     }
 
     /// <summary>
@@ -141,7 +140,7 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsSpecificExceptionPassTest()
     {
-        ExceptionAssertion result = new VoidAssertion(
+        var result = new VoidAssertion(
             _handler.Object,
             () => throw new ArgumentException(string.Empty)).ThrowsException<ArgumentException>();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
@@ -154,11 +153,10 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsSpecificExceptionWrongFailTest()
     {
-        ExceptionAssertion result = new VoidAssertion(
+        new VoidAssertion(
             _handler.Object,
             () => throw new Exception()).ThrowsException<ArgumentException>();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(result);
     }
 
     /// <summary>
@@ -167,9 +165,8 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsSpecificExceptionFailTest()
     {
-        ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsException<ArgumentException>();
+        new VoidAssertion(_handler.Object, DoNothing).ThrowsException<ArgumentException>();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(result);
     }
 
     /// <summary>
@@ -178,7 +175,7 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsExactlyExceptionPassTest()
     {
-        ExceptionAssertion result = new VoidAssertion(
+        var result = new VoidAssertion(
             _handler.Object,
             () => throw new ArgumentException(string.Empty)).ThrowsExactlyException<ArgumentException>();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
@@ -191,11 +188,10 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsExactlyExceptionWrongFailTest()
     {
-        ExceptionAssertion result = new VoidAssertion(
+        new VoidAssertion(
             _handler.Object,
             () => throw new ArgumentException(string.Empty)).ThrowsExactlyException<Exception>();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(result);
     }
 
     /// <summary>
@@ -204,9 +200,8 @@ public class VoidAssertionTests
     [Fact]
     public void ThrowsExactlyExceptionFailTest()
     {
-        ExceptionAssertion result = new VoidAssertion(_handler.Object, DoNothing).ThrowsExactlyException<ArgumentException>();
+        new VoidAssertion(_handler.Object, DoNothing).ThrowsExactlyException<ArgumentException>();
         _handler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(result);
     }
 
     /// <summary>

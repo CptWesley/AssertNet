@@ -28,7 +28,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(new Exception());
         Assert.NotNull(assertion);
-        Assert.IsType<ExceptionAssertion>(assertion);
+        Assert.IsType<Assertion<Exception>>(assertion);
     }
 
     /// <summary>

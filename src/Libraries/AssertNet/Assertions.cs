@@ -16,13 +16,6 @@ public static class Assertions
     public static VoidAssertion That(this AssertionBuilder _, Action action) => new(FailureHandlerFactory.Create(), action);
 
     /// <summary>
-    /// Makes an assertion about an exception.
-    /// </summary>
-    /// <param name="exception">Exception under test.</param>
-    /// <returns>Assertion about an exception.</returns>
-    public static ExceptionAssertion That(this AssertionBuilder _, Exception exception) => new(FailureHandlerFactory.Create(), exception);
-
-    /// <summary>
     /// Makes an assertion about a numeric value.
     /// </summary>
     /// <param name="value">Numeric value under test.</param>
@@ -44,14 +37,6 @@ public static class Assertions
     /// <returns>Assertion about a void action.</returns>
     [Obsolete("Use Asserts.That instead.")]
     public static VoidAssertion AssertThat(Action action) => new VoidAssertion(FailureHandlerFactory.Create(), action);
-
-    /// <summary>
-    /// Makes an assertion about an exception.
-    /// </summary>
-    /// <param name="exception">Exception under test.</param>
-    /// <returns>Assertion about an exception.</returns>
-    [Obsolete("Use Asserts.That instead.")]
-    public static ExceptionAssertion AssertThat(Exception exception) => new ExceptionAssertion(FailureHandlerFactory.Create(), exception);
 
     /// <summary>
     /// Makes an assertion about a numeric value.
