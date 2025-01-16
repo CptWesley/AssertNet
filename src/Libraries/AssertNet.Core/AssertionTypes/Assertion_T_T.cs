@@ -5,19 +5,29 @@ namespace AssertNet.Core.AssertionTypes;
 /// </summary>
 /// <typeparam name="TAssert">Derived type of the assertion.</typeparam>
 /// <typeparam name="TSubject">Type of the object under test.</typeparam>
-/// <seealso cref="Assertion" />
-public class Assertion<TAssert, TSubject> : Assertion<TSubject>
-    where TAssert : Assertion
+/// <seealso cref="IAssertion" />
+public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
+    where TAssert : IAssertion
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="Assertion{TAssert, TTarget}"/> class.
     /// </summary>
-    /// <param name="target">The object which is under test.</param>
+    /// <param name="subject">The object which is under test.</param>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
-    public Assertion(IFailureHandler failureHandler, TSubject target)
-        : base(failureHandler, target)
+    public Assertion(IFailureHandler failureHandler, TSubject subject)
     {
+        FailureHandler = failureHandler;
+        Subject = subject;
     }
+
+    /// <inheritdoc />
+    public TSubject Subject { get; }
+
+    /// <inheritdoc />
+    object? IAssertion.Subject => Subject;
+
+    /// <inheritdoc />
+    public IFailureHandler FailureHandler { get; }
 
     /// <summary>
     /// Checks whether the object under test is equal to another object.
@@ -29,7 +39,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (!Equals(Subject, other))
         {
-            Fail(new FailureBuilder("IsEqualTo()")
+            this.Fail(new FailureBuilder("IsEqualTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be equal to", other)
@@ -49,7 +59,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Equals(Subject, other))
         {
-            Fail(new FailureBuilder("IsNotEqualTo()")
+            this.Fail(new FailureBuilder("IsNotEqualTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be equal to", other)
@@ -69,7 +79,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (!EquivalencyHelper.AreEquivalent(Subject, other))
         {
-            Fail(new FailureBuilder("IsEquivalentTo()")
+            this.Fail(new FailureBuilder("IsEquivalentTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be equivalent to", other)
@@ -89,7 +99,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (EquivalencyHelper.AreEquivalent(Subject, other))
         {
-            Fail(new FailureBuilder("IsNotEquivalentTo()")
+            this.Fail(new FailureBuilder("IsNotEquivalentTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be equivalent to", other)
@@ -111,7 +121,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
 
         if (isValueType && !Equals(Subject, other) || !isValueType && !ReferenceEquals(Subject, other))
         {
-            Fail(new FailureBuilder("IsSameAs()")
+            this.Fail(new FailureBuilder("IsSameAs()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be the same object as", other)
@@ -133,7 +143,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
 
         if (isValueType && Equals(Subject, other) || !isValueType && ReferenceEquals(Subject, other))
         {
-            Fail(new FailureBuilder("IsNotSameAs()")
+            this.Fail(new FailureBuilder("IsNotSameAs()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be the same object as", other)
@@ -152,7 +162,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is not null)
         {
-            Fail(new FailureBuilder("IsNull()")
+            this.Fail(new FailureBuilder("IsNull()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append<object>("To be", null)
@@ -171,7 +181,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("IsNotNull()")
+            this.Fail(new FailureBuilder("IsNotNull()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append<object>("Not to be", null)
@@ -199,7 +209,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("IsInstanceOf()")
+            this.Fail(new FailureBuilder("IsInstanceOf()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be an instance of", t)
@@ -208,7 +218,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (!Subject.GetType().IsSubclassOf(t) && Subject.GetType() != t)
         {
-            Fail(new FailureBuilder("IsInstanceOf()")
+            this.Fail(new FailureBuilder("IsInstanceOf()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be an instance of", t)
@@ -237,7 +247,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is { } && (Subject.GetType().IsSubclassOf(t) || Subject.GetType() == t))
         {
-            Fail(new FailureBuilder("IsNotInstanceOf()")
+            this.Fail(new FailureBuilder("IsNotInstanceOf()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be an instance of", t)
@@ -265,7 +275,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            this.Fail(new FailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be an exact instance of", t)
@@ -274,7 +284,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (Subject.GetType() != t)
         {
-            Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            this.Fail(new FailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be an exact instance of", t)
@@ -303,7 +313,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is { } && Subject.GetType() == t)
         {
-            Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
+            this.Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be an exact instance of", t)
@@ -323,7 +333,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (!enumerable.Cast<object?>().Contains(Subject))
         {
-            Fail(new FailureBuilder("IsIn()")
+            this.Fail(new FailureBuilder("IsIn()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be in", enumerable)
@@ -343,7 +353,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (enumerable.Cast<object?>().Contains(Subject))
         {
-            Fail(new FailureBuilder("IsNotIn()")
+            this.Fail(new FailureBuilder("IsNotIn()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be in", enumerable)
@@ -363,7 +373,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (!condition.Invoke(Subject!))
         {
-            Fail(new FailureBuilder("Satisfies()")
+            this.Fail(new FailureBuilder("Satisfies()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To satisfy", condition)
@@ -383,7 +393,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (condition.Invoke(Subject!))
         {
-            Fail(new FailureBuilder("DoesNotSatisfy()")
+            this.Fail(new FailureBuilder("DoesNotSatisfy()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to satisfy", condition)
@@ -403,7 +413,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("HasHashCode()")
+            this.Fail(new FailureBuilder("HasHashCode()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have the hash code", hashCode)
@@ -412,7 +422,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (Subject.GetHashCode() != hashCode)
         {
-            Fail(new FailureBuilder("HasHashCode()")
+            this.Fail(new FailureBuilder("HasHashCode()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have the hash code", hashCode)
@@ -433,7 +443,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is { } && Subject.GetHashCode() == hashCode)
         {
-            Fail(new FailureBuilder("DoesNotHaveHashCode()")
+            this.Fail(new FailureBuilder("DoesNotHaveHashCode()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to have the hash code", hashCode)
@@ -455,7 +465,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         {
             if (other is not null)
             {
-                Fail(new FailureBuilder("HasSameHashCodeAs()")
+                this.Fail(new FailureBuilder("HasSameHashCodeAs()")
                     .Append(message)
                     .Append("Expecting", Subject)
                     .Append("To have the hash code", other.GetHashCode())
@@ -465,7 +475,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (other is null)
         {
-            Fail(new FailureBuilder("HasSameHashCodeAs()")
+            this.Fail(new FailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be null")
@@ -474,7 +484,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (Subject.GetHashCode() != other.GetHashCode())
         {
-            Fail(new FailureBuilder("HasSameHashCodeAs()")
+            this.Fail(new FailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have the hash code", other.GetHashCode())
@@ -495,7 +505,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is null && other is null)
         {
-            Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+            this.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be null")
@@ -503,7 +513,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (Subject is { } && other is { } && Subject.GetHashCode() == other.GetHashCode())
         {
-            Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+            this.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to have the hash code", other.GetHashCode())
@@ -523,7 +533,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("ToStringYields()")
+            this.Fail(new FailureBuilder("ToStringYields()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be represented as", str)
@@ -532,7 +542,7 @@ public class Assertion<TAssert, TSubject> : Assertion<TSubject>
         }
         else if (Subject.ToString() is { } other && !Equals(other, str))
         {
-            Fail(new FailureBuilder("ToStringYields()")
+            this.Fail(new FailureBuilder("ToStringYields()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be represented as", str)

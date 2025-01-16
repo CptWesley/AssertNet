@@ -3,7 +3,7 @@ namespace AssertNet.Core.AssertionTypes.Void;
 /// <summary>
 /// Class representing assertions made on actions.
 /// </summary>
-/// <seealso cref="Assertion" />
+/// <seealso cref="IAssertion" />
 [SuppressMessage("Design", "CA1031", Justification = "Needed for the library functionality.")]
 public class VoidAssertion : Assertion<VoidAssertion, Action>
 {
@@ -39,7 +39,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
         }
         catch (Exception e)
         {
-            Fail(new FailureBuilder("DoesNotThrowException()")
+            this.Fail(new FailureBuilder("DoesNotThrowException()")
                 .Append(message)
                 .Append("Expecting", Action)
                 .Append("Not to throw an exception")
@@ -75,7 +75,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
         {
             if (e.GetType().IsSubclassOf(t) || e.GetType() == t)
             {
-                Fail(new FailureBuilder("DoesNotThrowException()")
+                this.Fail(new FailureBuilder("DoesNotThrowException()")
                     .Append(message)
                     .Append("Expecting", Action)
                     .Append("Not to throw an exception of type", t)
@@ -112,7 +112,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
         {
             if (e.GetType() == t)
             {
-                Fail(new FailureBuilder("DoesNotThrowExactlyException()")
+                this.Fail(new FailureBuilder("DoesNotThrowExactlyException()")
                     .Append(message)
                     .Append("Expecting", Action)
                     .Append("Not to throw an exception exactly of type", t)
@@ -140,7 +140,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
             return new ExceptionAssertion(FailureHandler, e);
         }
 
-        Fail(new FailureBuilder("ThrowsException()")
+        this.Fail(new FailureBuilder("ThrowsException()")
                 .Append(message)
                 .Append("Expecting", Action)
                 .Append("To throw an exception, but nothing was thrown")
@@ -178,21 +178,21 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
             }
             else
             {
-                Fail(new FailureBuilder("ThrowsException()")
-                .Append(message)
-                .Append("Expecting", Action)
-                .Append("To throw an exception of type", t)
-                .Append("But threw", e)
-                .Finish());
+                this.Fail(new FailureBuilder("ThrowsException()")
+                    .Append(message)
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception of type", t)
+                    .Append("But threw", e)
+                    .Finish());
                 return null;
             }
         }
 
-        Fail(new FailureBuilder("ThrowsException()")
-                .Append(message)
-                .Append("Expecting", Action)
-                .Append("To throw an exception of type", t)
-                .Finish());
+        this.Fail(new FailureBuilder("ThrowsException()")
+            .Append(message)
+            .Append("Expecting", Action)
+            .Append("To throw an exception of type", t)
+            .Finish());
 
         return null;
     }
@@ -226,21 +226,21 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
             }
             else
             {
-                Fail(new FailureBuilder("ThrowsExactlyException()")
-                .Append(message)
-                .Append("Expecting", Action)
-                .Append("To throw an exception exactly of type", t)
-                .Append("But threw", e)
-                .Finish());
+                this.Fail(new FailureBuilder("ThrowsExactlyException()")
+                    .Append(message)
+                    .Append("Expecting", Action)
+                    .Append("To throw an exception exactly of type", t)
+                    .Append("But threw", e)
+                    .Finish());
                 return null;
             }
         }
 
-        Fail(new FailureBuilder("ThrowsExactlyException()")
-                .Append(message)
-                .Append("Expecting", Action)
-                .Append("To throw an exception exactly of type", t)
-                .Finish());
+        this.Fail(new FailureBuilder("ThrowsExactlyException()")
+            .Append(message)
+            .Append("Expecting", Action)
+            .Append("To throw an exception exactly of type", t)
+            .Finish());
 
         return null;
     }

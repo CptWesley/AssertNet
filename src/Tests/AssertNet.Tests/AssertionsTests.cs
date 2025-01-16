@@ -16,7 +16,7 @@ public static class AssertionsTests
     [Fact]
     public static void VoidAssertionTest()
     {
-        Assertion assertion = Asserts.That(() => { });
+        IAssertion assertion = Asserts.That(() => { });
         Assert.NotNull(assertion);
         Assert.IsType<VoidAssertion>(assertion);
     }
@@ -27,7 +27,7 @@ public static class AssertionsTests
     [Fact]
     public static void ExceptionAssertionTest()
     {
-        Assertion assertion = Asserts.That(new Exception());
+        IAssertion assertion = Asserts.That(new Exception());
         Assert.NotNull(assertion);
         Assert.IsType<ExceptionAssertion>(assertion);
     }
@@ -38,9 +38,9 @@ public static class AssertionsTests
     [Fact]
     public static void BooleanAssertionTest()
     {
-        Assertion assertion = Asserts.That(true);
+        IAssertion assertion = Asserts.That(true);
         Assert.NotNull(assertion);
-        Assert.IsType<SimpleAssertion<bool>>(assertion);
+        Assert.IsType<Assertion<bool>>(assertion);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public static class AssertionsTests
     [Fact]
     public static void DoubleAssertionTest()
     {
-        Assertion assertion = Asserts.That(4.5);
+        IAssertion assertion = Asserts.That(4.5);
         Assert.NotNull(assertion);
         Assert.IsType<DoubleAssertion>(assertion);
     }
@@ -60,9 +60,9 @@ public static class AssertionsTests
     [Fact]
     public static void StringAssertionTest()
     {
-        Assertion assertion = Asserts.That(string.Empty);
+        IAssertion assertion = Asserts.That(string.Empty);
         Assert.NotNull(assertion);
-        Assert.IsType<SimpleAssertion<string>>(assertion);
+        Assert.IsType<Assertion<string>>(assertion);
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public static class AssertionsTests
     [Fact]
     public static void CollectionAssertionTest()
     {
-        Assertion assertion = Asserts.That(Array.Empty<int>());
+        IAssertion assertion = Asserts.That(Array.Empty<int>());
         Assert.NotNull(assertion);
         Assert.IsType<EnumerableAssertion<int>>(assertion);
     }
@@ -82,8 +82,8 @@ public static class AssertionsTests
     [Fact]
     public static void SingleAssertionTest()
     {
-        Assertion assertion = Asserts.That(new object());
+        IAssertion assertion = Asserts.That(new object());
         Assert.NotNull(assertion);
-        Assert.IsType<SimpleAssertion<object?>>(assertion);
+        Assert.IsType<Assertion<object?>>(assertion);
     }
 }

@@ -26,7 +26,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject <= other)
         {
-            Fail(new FailureBuilder("IsGreaterThan()")
+            this.Fail(new FailureBuilder("IsGreaterThan()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be greater than", other)
@@ -46,7 +46,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject < other)
         {
-            Fail(new FailureBuilder("IsGreaterThanOrEqualTo()")
+            this.Fail(new FailureBuilder("IsGreaterThanOrEqualTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", other)
@@ -66,7 +66,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject >= other)
         {
-            Fail(new FailureBuilder("IsLesserThan()")
+            this.Fail(new FailureBuilder("IsLesserThan()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be lesser than", other)
@@ -86,7 +86,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject > other)
         {
-            Fail(new FailureBuilder("IsLesserThanOrEqualTo()")
+            this.Fail(new FailureBuilder("IsLesserThanOrEqualTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be lesser than or equal to", other)
@@ -107,7 +107,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
         if (Subject != 0)
 #pragma warning restore S1244
         {
-            Fail(new FailureBuilder("IsZero()")
+            this.Fail(new FailureBuilder("IsZero()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be equal to", 0)
@@ -126,7 +126,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject <= 0)
         {
-            Fail(new FailureBuilder("IsPositive()")
+            this.Fail(new FailureBuilder("IsPositive()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be greater than", 0)
@@ -145,7 +145,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject < 0)
         {
-            Fail(new FailureBuilder("IsPositiveOrZero()")
+            this.Fail(new FailureBuilder("IsPositiveOrZero()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", 0)
@@ -164,7 +164,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject >= 0)
         {
-            Fail(new FailureBuilder("IsNegative()")
+            this.Fail(new FailureBuilder("IsNegative()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be lesser than", 0)
@@ -183,7 +183,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject > 0)
         {
-            Fail(new FailureBuilder("IsNegativeOrZero()")
+            this.Fail(new FailureBuilder("IsNegativeOrZero()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be lesser than or equal to", 0)
@@ -210,7 +210,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
 
         if (Subject < minimum || Subject > maximum)
         {
-            Fail(new FailureBuilder("IsInRange()")
+            this.Fail(new FailureBuilder("IsInRange()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", minimum)
@@ -238,7 +238,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
 
         if (Subject >= minimum && Subject <= maximum)
         {
-            Fail(new FailureBuilder("IsNotInRange()")
+            this.Fail(new FailureBuilder("IsNotInRange()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be lesser than", minimum)
@@ -268,7 +268,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject < other - margin || Subject > other + margin)
         {
-            Fail(new FailureBuilder("IsEqualTo()")
+            this.Fail(new FailureBuilder("IsEqualTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be greater than or equal to", other - margin)
@@ -298,7 +298,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     {
         if (Subject >= other - margin && Subject <= other + margin)
         {
-            Fail(new FailureBuilder("IsNotEqualTo()")
+            this.Fail(new FailureBuilder("IsNotEqualTo()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be lesser than", other - margin)

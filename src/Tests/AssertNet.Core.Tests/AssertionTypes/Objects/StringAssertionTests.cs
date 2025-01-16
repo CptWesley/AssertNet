@@ -5,10 +5,10 @@ using AssertNet.Core.Failures;
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="Assertion"/> class.
+/// Test class for the <see cref="IAssertion"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class AssertionTests : ObjectAssertionTests<SimpleAssertion<string>, string?>
+public class AssertionTests : ObjectAssertionTests<Assertion<string>, string?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="AssertionTests"/> class.

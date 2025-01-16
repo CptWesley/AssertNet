@@ -4,10 +4,10 @@ using AssertNet.Core.Failures;
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="Assertion{bool}"/> class.
+/// Test class for the <see cref="IAssertion{bool}"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{T1, T2}" />
-public class BooleanAssertionTests : ObjectAssertionTests<SimpleAssertion<bool>, bool>
+public class BooleanAssertionTests : ObjectAssertionTests<Assertion<bool>, bool>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanAssertionTests"/> class.

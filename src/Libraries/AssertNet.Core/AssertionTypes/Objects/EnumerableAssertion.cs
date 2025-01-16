@@ -28,7 +28,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("IsEmpty()")
+            this.Fail(new FailureBuilder("IsEmpty()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To be empty, but is null")
@@ -36,7 +36,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         }
         else if (Subject.Any())
         {
-            Fail(new FailureBuilder("IsEmpty()")
+            this.Fail(new FailureBuilder("IsEmpty()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To be empty, but contains", Subject)
@@ -55,7 +55,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("IsNotEmpty()")
+            this.Fail(new FailureBuilder("IsNotEmpty()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be empty, but is null")
@@ -63,7 +63,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         }
         else if (!Subject.Any())
         {
-            Fail(new FailureBuilder("IsNotEmpty()")
+            this.Fail(new FailureBuilder("IsNotEmpty()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be empty")
@@ -82,7 +82,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is { } && Subject.Any())
         {
-            Fail(new FailureBuilder("IsNullOrEmpty()")
+            this.Fail(new FailureBuilder("IsNullOrEmpty()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To be null or empty, but contains", Subject)
@@ -101,7 +101,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null || !Subject.Any())
         {
-            Fail(new FailureBuilder("IsNotNullOrEmpty()")
+            this.Fail(new FailureBuilder("IsNotNullOrEmpty()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("Not to be null or empty")
@@ -121,7 +121,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("HasSize()")
+            this.Fail(new FailureBuilder("HasSize()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have a size of", size)
@@ -133,7 +133,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         int realSize = Subject.Count();
         if (realSize != size)
         {
-            Fail(new FailureBuilder("HasSize()")
+            this.Fail(new FailureBuilder("HasSize()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have a size of", size)
@@ -154,7 +154,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("HasAtLeastSize()")
+            this.Fail(new FailureBuilder("HasAtLeastSize()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have at least a size of", size)
@@ -166,7 +166,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         int realSize = Subject.Count();
         if (realSize < size)
         {
-            Fail(new FailureBuilder("HasAtLeastSize()")
+            this.Fail(new FailureBuilder("HasAtLeastSize()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have at least a size of", size)
@@ -187,7 +187,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("HasAtMostSize()")
+            this.Fail(new FailureBuilder("HasAtMostSize()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have at most a size of", size)
@@ -199,7 +199,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         int realSize = Subject.Count();
         if (realSize > size)
         {
-            Fail(new FailureBuilder("HasAtMostSize()")
+            this.Fail(new FailureBuilder("HasAtMostSize()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have at most a size of", size)
@@ -227,7 +227,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("Contains()")
+            this.Fail(new FailureBuilder("Contains()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To contain", values)
@@ -240,7 +240,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (difference.Any())
         {
-            Fail(new FailureBuilder("Contains()")
+            this.Fail(new FailureBuilder("Contains()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("To contain", values)
@@ -275,7 +275,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (intersection.Any())
         {
-            Fail(new FailureBuilder("DoesNotContain()")
+            this.Fail(new FailureBuilder("DoesNotContain()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("Not to contain", values)
@@ -303,7 +303,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("DoesNotContain()")
+            this.Fail(new FailureBuilder("DoesNotContain()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("Not to contain", values)
@@ -315,7 +315,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (difference.Any())
         {
-            Fail(new FailureBuilder("ContainsOnly()")
+            this.Fail(new FailureBuilder("ContainsOnly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("To only contain", values)
@@ -350,7 +350,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (!difference.Any())
         {
-            Fail(new FailureBuilder("DoesNotContainOnly()")
+            this.Fail(new FailureBuilder("DoesNotContainOnly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("To contain other elements besides", values)
@@ -377,7 +377,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("ContainsExactly()")
+            this.Fail(new FailureBuilder("ContainsExactly()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To contain exactly", values)
@@ -387,7 +387,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         }
         else if (!Subject.SequenceEqual(values))
         {
-            Fail(new FailureBuilder("ContainsExactly()")
+            this.Fail(new FailureBuilder("ContainsExactly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("To contain exactly", values)
@@ -418,7 +418,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         }
         else if (Subject.SequenceEqual(values))
         {
-            Fail(new FailureBuilder("DoesNotContainExactly()")
+            this.Fail(new FailureBuilder("DoesNotContainExactly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("Not to contain exactly", values)
@@ -445,7 +445,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("ContainsExactlyInAnyOrder()")
+            this.Fail(new FailureBuilder("ContainsExactlyInAnyOrder()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To contain exactly in any order", values)
@@ -485,7 +485,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
                 failureBuilder.AppendEnumerable("But found excess", targetList);
             }
 
-            Fail(failureBuilder.Finish());
+            this.Fail(failureBuilder.Finish());
         }
 
         return this;
@@ -526,7 +526,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (!valuesList.Any() && !targetList.Any())
         {
-            Fail(new FailureBuilder("DoesNotContainExactlyInAnyOrder()")
+            this.Fail(new FailureBuilder("DoesNotContainExactlyInAnyOrder()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("Not to contain exactly in any order", values)
@@ -553,7 +553,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("ContainsSequence()")
+            this.Fail(new FailureBuilder("ContainsSequence()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To contain the sequence", values)
@@ -576,7 +576,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
             }
         }
 
-        Fail(new FailureBuilder("ContainsSequence()")
+        this.Fail(new FailureBuilder("ContainsSequence()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("To contain the sequence", values)
@@ -610,7 +610,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
         {
             if (!it.MoveNext())
             {
-                Fail(new FailureBuilder("DoesNotContainSequence()")
+                this.Fail(new FailureBuilder("DoesNotContainSequence()")
                     .Append(message)
                     .AppendEnumerable("Expecting", Subject)
                     .AppendEnumerable("Not to contain the sequence", values)
@@ -644,7 +644,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("ContainsInterleavedSequence()")
+            this.Fail(new FailureBuilder("ContainsInterleavedSequence()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .AppendEnumerable("To contain the interleaved sequence", values)
@@ -668,7 +668,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
             }
         }
 
-        Fail(new FailureBuilder("ContainsInterleavedSequence()")
+        this.Fail(new FailureBuilder("ContainsInterleavedSequence()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("To contain the interleaved sequence", values)
@@ -714,7 +714,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (failed)
         {
-            Fail(new FailureBuilder("DoesNotContainInterleavedSequence()")
+            this.Fail(new FailureBuilder("DoesNotContainInterleavedSequence()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .AppendEnumerable("Not to contain the interleaved sequence", values)
@@ -733,7 +733,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("ContainsNull()")
+            this.Fail(new FailureBuilder("ContainsNull()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append<object>("To contain", null)
@@ -746,7 +746,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (!nulls.Any())
         {
-            Fail(new FailureBuilder("ContainsNull()")
+            this.Fail(new FailureBuilder("ContainsNull()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .Append<object>("To contain", null)
@@ -772,7 +772,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (nulls.Any())
         {
-            Fail(new FailureBuilder("DoesNotContainNull()")
+            this.Fail(new FailureBuilder("DoesNotContainNull()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .Append<object>("Not to contain", null)
@@ -792,7 +792,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("AllSatisfy()")
+            this.Fail(new FailureBuilder("AllSatisfy()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To all satisfy", condition)
@@ -805,7 +805,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (failed.Any())
         {
-            Fail(new FailureBuilder("AllSatisfy()")
+            this.Fail(new FailureBuilder("AllSatisfy()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .Append("To all satisfy", condition)
@@ -826,7 +826,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
     {
         if (Subject is null)
         {
-            Fail(new FailureBuilder("SomeSatisfy()")
+            this.Fail(new FailureBuilder("SomeSatisfy()")
                 .Append(message)
                 .Append("Expecting", Subject)
                 .Append("To have any element satisfying", condition)
@@ -839,7 +839,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (!holds.Any())
         {
-            Fail(new FailureBuilder("SomeSatisfy()")
+            this.Fail(new FailureBuilder("SomeSatisfy()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .Append("To have any element satisfying", condition)
@@ -866,7 +866,7 @@ public class EnumerableAssertion<TElement> : Assertion<EnumerableAssertion<TElem
 
         if (holds.Any())
         {
-            Fail(new FailureBuilder("NoneSatisfy()")
+            this.Fail(new FailureBuilder("NoneSatisfy()")
                 .Append(message)
                 .AppendEnumerable("Expecting", Subject)
                 .Append("Not to have elements satisfying", condition)

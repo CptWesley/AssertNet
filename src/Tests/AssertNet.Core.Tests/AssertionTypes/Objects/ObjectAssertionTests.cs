@@ -41,7 +41,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     protected Mock<IFailureHandler> FailureHandler { get; set; }
 
     public T1 CreateAssertion(T2 subject)
-        => (T1)(object)new SimpleAssertion<T2>(FailureHandler.Object, subject);
+        => (T1)(object)new Assertion<T2>(FailureHandler.Object, subject);
 
     /// <summary>
     /// Checks that there are no failures if the objects are equal.

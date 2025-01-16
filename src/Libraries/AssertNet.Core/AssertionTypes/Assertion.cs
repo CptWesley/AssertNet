@@ -1,41 +1,19 @@
 namespace AssertNet.Core.AssertionTypes;
 
 /// <summary>
-/// Abstract class representing assertions.
+/// Class representing assertions made on single objects.
 /// </summary>
-public class Assertion
+/// <typeparam name="TSubject">The type of the object under test.</typeparam>
+/// <seealso cref="Assertion{TAssert, TSubject}" />
+public sealed class Assertion<TSubject> : Assertion<Assertion<TSubject>, TSubject>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Assertion"/> class.
+    /// Initializes a new instance of the <see cref="Assertion{TSubject}"/> class.
     /// </summary>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
     /// <param name="subject">The object which is under test.</param>
-    protected Assertion(IFailureHandler failureHandler, object? subject)
+    public Assertion(IFailureHandler failureHandler, TSubject subject)
+        : base(failureHandler, subject)
     {
-        FailureHandler = failureHandler;
-        Subject = subject;
-    }
-
-    /// <summary>
-    /// Gets the object under test.
-    /// </summary>
-    /// <value>
-    /// The object under test.
-    /// </value>
-    public object? Subject { get; }
-
-    /// <summary>
-    /// Gets the failure handler of the assertion.
-    /// </summary>
-    public IFailureHandler FailureHandler { get; }
-
-    /// <summary>
-    /// Fails an assertion with a specific message.
-    /// </summary>
-    /// <param name="message">The message to fail with.</param>
-    [DoesNotReturn]
-    public void Fail(string message)
-    {
-        FailureHandler.Fail(message);
     }
 }

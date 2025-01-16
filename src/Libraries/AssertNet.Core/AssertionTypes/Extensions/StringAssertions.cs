@@ -15,7 +15,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsEqualToIgnoringCase<TAssert>(this TAssert assertion, string? other, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (!string.Equals(assertion.Subject, other, StringComparison.OrdinalIgnoreCase))
         {
@@ -38,7 +38,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsNotEqualToIgnoringCase<TAssert>(this TAssert assertion, string other, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (string.Equals(assertion.Subject, other, StringComparison.OrdinalIgnoreCase))
         {
@@ -61,7 +61,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert Contains<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || !assertion.Subject.Contains(substring))
         {
@@ -84,7 +84,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotContain<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && assertion.Subject.Contains(substring))
         {
@@ -107,7 +107,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert ContainsIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || assertion.Subject.IndexOf(substring, StringComparison.OrdinalIgnoreCase) < 0)
         {
@@ -130,7 +130,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotContainIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && assertion.Subject.IndexOf(substring, StringComparison.OrdinalIgnoreCase) >= 0)
         {
@@ -153,7 +153,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert ContainsPattern<TAssert>(this TAssert assertion, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (!Regex.IsMatch(assertion.Subject, pattern))
         {
@@ -176,7 +176,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotContainPattern<TAssert>(this TAssert assertion, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && Regex.IsMatch(assertion.Subject, pattern))
         {
@@ -199,7 +199,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert StartsWith<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || !assertion.Subject.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
@@ -222,7 +222,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotStartWith<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && assertion.Subject.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
@@ -245,7 +245,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert StartsWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || !assertion.Subject.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
@@ -268,7 +268,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotStartWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && assertion.Subject.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
@@ -291,7 +291,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert EndsWith<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || !assertion.Subject.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
@@ -314,7 +314,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotEndWith<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && assertion.Subject.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
@@ -337,7 +337,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert EndsWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || !assertion.Subject.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
@@ -360,7 +360,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert DoesNotEndWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is { } && assertion.Subject.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
@@ -382,7 +382,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsEmpty<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || assertion.Subject.Length > 0)
         {
@@ -404,7 +404,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsNotEmpty<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null || assertion.Subject.Length <= 0)
         {
@@ -426,7 +426,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsNullOrEmpty<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (!string.IsNullOrEmpty(assertion.Subject))
         {
@@ -448,7 +448,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsNotNullOrEmpty<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (string.IsNullOrEmpty(assertion.Subject))
         {
@@ -471,7 +471,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert HasSize<TAssert>(this TAssert assertion, int size, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null)
         {
@@ -504,7 +504,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert HasAtLeastSize<TAssert>(this TAssert assertion, int size, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null)
         {
@@ -537,7 +537,7 @@ public static class StringAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert HasAtMostSize<TAssert>(this TAssert assertion, int size, string? message = null)
-        where TAssert : Assertion<string>
+        where TAssert : IAssertion<string>
     {
         if (assertion.Subject is null)
         {

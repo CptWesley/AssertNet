@@ -16,7 +16,7 @@ public static class BooleanAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsTrue<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : Assertion<bool>
+        where TAssert : IAssertion<bool>
     {
         if (!assertion.Subject)
         {
@@ -38,7 +38,7 @@ public static class BooleanAssertions
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
     public static TAssert IsFalse<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : Assertion<bool>
+        where TAssert : IAssertion<bool>
     {
         if (assertion.Subject)
         {
