@@ -107,39 +107,38 @@ public static class EnumerableAssertions
         return assertion;
     }
 
-/*
-
     /// <summary>
     /// Checks if the enumerable has a certain size.
     /// </summary>
     /// <param name="size">The size the enumerable should have.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert HasSize(int size, string? message = null)
+    public static TAssert HasSize<TAssert>(this TAssert assertion, int size, string? message = null)
+        where TAssert : IAssertion<IEnumerable>
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("HasSize()")
+            assertion.Fail(new FailureBuilder("HasSize()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have a size of", size)
                 .Append("But is null")
                 .Finish());
-            return this;
+            return assertion;
         }
 
-        int realSize = Subject.Count();
+        int realSize = assertion.Subject.Count();
         if (realSize != size)
         {
-            this.Fail(new FailureBuilder("HasSize()")
+            assertion.Fail(new FailureBuilder("HasSize()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have a size of", size)
                 .Append("But has a size of", realSize)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -148,31 +147,32 @@ public static class EnumerableAssertions
     /// <param name="size">The size the enumerable should have.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert HasAtLeastSize(int size, string? message = null)
+    public static TAssert HasAtLeastSize<TAssert>(this TAssert assertion, int size, string? message = null)
+        where TAssert : IAssertion<IEnumerable>
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("HasAtLeastSize()")
+            assertion.Fail(new FailureBuilder("HasAtLeastSize()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have at least a size of", size)
                 .Append("But is null")
                 .Finish());
-            return this;
+            return assertion;
         }
 
-        int realSize = Subject.Count();
+        int realSize = assertion.Subject.Count();
         if (realSize < size)
         {
-            this.Fail(new FailureBuilder("HasAtLeastSize()")
+            assertion.Fail(new FailureBuilder("HasAtLeastSize()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have at least a size of", size)
                 .Append("But has a size of", realSize)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -181,32 +181,35 @@ public static class EnumerableAssertions
     /// <param name="size">The size the enumerable should have.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public static TAssert HasAtMostSize(int size, string? message = null)
+    public static TAssert HasAtMostSize<TAssert>(this TAssert assertion, int size, string? message = null)
+        where TAssert : IAssertion<IEnumerable>
     {
-        if (Subject is null)
+        if (assertion.Subject is null)
         {
-            this.Fail(new FailureBuilder("HasAtMostSize()")
+            assertion.Fail(new FailureBuilder("HasAtMostSize()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have at most a size of", size)
                 .Append("But is null")
                 .Finish());
-            return this;
+            return assertion;
         }
 
-        int realSize = Subject.Count();
+        int realSize = assertion.Subject.Count();
         if (realSize > size)
         {
-            this.Fail(new FailureBuilder("HasAtMostSize()")
+            assertion.Fail(new FailureBuilder("HasAtMostSize()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To have at most a size of", size)
                 .Append("But has a size of", realSize)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
+
+    /*
 
     /// <summary>
     /// Checks if the enumerable contains the values.

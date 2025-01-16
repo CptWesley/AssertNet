@@ -17,6 +17,11 @@ internal static class EnumerableExtensions
             return collection.Count;
         }
 
+        if (enumerable is string str)
+        {
+            return str.Length;
+        }
+
         return Enumerable.Count(enumerable.AsGeneric());
     }
 
@@ -25,6 +30,11 @@ internal static class EnumerableExtensions
         if (enumerable is ICollection collection)
         {
             return collection.Count > 0;
+        }
+
+        if (enumerable is string str)
+        {
+            return str.Length > 0;
         }
 
         return Enumerable.Any(enumerable.AsGeneric());
