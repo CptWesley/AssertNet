@@ -6,8 +6,4 @@
     <PackageId>AssertNet</PackageId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../AssertNet.Core/AssertNet.Core.csproj" />
-  </ItemGroup>
-
 </Project>

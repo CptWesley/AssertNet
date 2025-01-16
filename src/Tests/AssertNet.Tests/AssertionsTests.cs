@@ -1,8 +1,8 @@
-using AssertNet.Core.AssertionTypes;
-using AssertNet.Core.AssertionTypes.Objects;
-using AssertNet.Core.AssertionTypes.Void;
+using AssertNet.AssertionTypes;
+using AssertNet.AssertionTypes.Objects;
+using AssertNet.AssertionTypes.Void;
 
-namespace AssertNet.Xunit.Tests;
+namespace AssertNet.Tests;
 
 /// <summary>
 /// Test class for the <see cref="Assertions"/> class.

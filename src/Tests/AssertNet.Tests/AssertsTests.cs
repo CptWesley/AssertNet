@@ -1,7 +1,7 @@
 /*
 
-using AssertNet.Core.AssertionTypes;
-using AssertNet.Core.Failures;
+using AssertNet.AssertionTypes;
+using AssertNet.Failures;
 using AssertNet.FailureHandlers;
 using System.Numerics;
 using static AssertNet.AssertionBuilder;
