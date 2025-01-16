@@ -1,40 +1,150 @@
-namespace AssertNet.Core.AssertionTypes;
+using AssertNet.Core.AssertionTypes;
+
+namespace AssertNet;
 
 /// <summary>
 /// Abstract class representing assertions of objects.
 /// </summary>
-/// <typeparam name="TAssert">Derived type of the assertion.</typeparam>
-/// <typeparam name="TSubject">Type of the object under test.</typeparam>
-/// <seealso cref="IAssertion" />
-public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
-    where TAssert : Assertion<TAssert, TSubject>
+public static class ObjectAssertions
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Assertion{TAssert, TTarget}"/> class.
+    /// Checks whether the object under test is equal to another object.
     /// </summary>
-    /// <param name="subject">The object which is under test.</param>
-    /// <param name="failureHandler">The failure handler of the assertion.</param>
-    public Assertion(IFailureHandler failureHandler, TSubject subject)
+    /// <param name="other">The other object to compare with.</param>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public static TAssert IsEqualTo<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
     {
-        FailureHandler = failureHandler;
-        Subject = subject;
+        if (!Equals(assertion.Subject, other))
+        {
+            assertion.Fail(new FailureBuilder("IsEqualTo()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be equal to", other)
+                .Finish());
+        }
+
+        return assertion;
     }
 
-    /// <inheritdoc />
-    public TSubject Subject { get; }
+    /// <summary>
+    /// Checks whether the object under test is not equal to another object.
+    /// </summary>
+    /// <param name="other">The other object to compare with.</param>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public static TAssert IsNotEqualTo<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
+    {
+        if (Equals(assertion.Subject, other))
+        {
+            assertion.Fail(new FailureBuilder("IsNotEqualTo()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("Not to be equal to", other)
+                .Finish());
+        }
 
-    /// <inheritdoc />
-    object? IAssertion.Subject => Subject;
+        return assertion;
+    }
 
-    /// <inheritdoc />
-    public IFailureHandler FailureHandler { get; }
+    /// <summary>
+    /// Checks whether the object under test is equivalent to another object.
+    /// </summary>
+    /// <param name="other">The other object to compare with.</param>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public static TAssert IsEquivalentTo<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
+    {
+        if (!EquivalencyHelper.AreEquivalent(assertion.Subject, other))
+        {
+            assertion.Fail(new FailureBuilder("IsEquivalentTo()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be equivalent to", other)
+                .Finish());
+        }
 
+        return assertion;
+    }
+
+    /// <summary>
+    /// Checks whether the object under test is not equivalent to another object.
+    /// </summary>
+    /// <param name="other">The other object to compare with.</param>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public static TAssert IsNotEquivalentTo<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
+    {
+        if (EquivalencyHelper.AreEquivalent(assertion.Subject, other))
+        {
+            assertion.Fail(new FailureBuilder("IsNotEquivalentTo()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("Not to be equivalent to", other)
+                .Finish());
+        }
+
+        return assertion;
+    }
+
+    /// <summary>
+    /// Checks whether the object under test is the same as another object.
+    /// </summary>
+    /// <param name="other">The other to compare with.</param>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public static TAssert IsSameAs<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
+    {
+        var isValueType = assertion.Subject?.GetType().IsValueType ?? false;
+
+        if ((isValueType && !Equals(assertion.Subject, other))
+        || (!isValueType && !ReferenceEquals(assertion.Subject, other)))
+        {
+            assertion.Fail(new FailureBuilder("IsSameAs()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be the same object as", other)
+                .Finish());
+        }
+
+        return assertion;
+    }
+
+    /// <summary>
+    /// Checks whether the object under test is not the same as another object.
+    /// </summary>
+    /// <param name="other">The other to compare with.</param>
+    /// <param name="message">Custom message for the assertion failure.</param>
+    /// <returns>The current assertion.</returns>
+    public static TAssert IsNotSameAs<TAssert>(this TAssert assertion, object? other, string? message = null)
+        where TAssert : IAssertion
+    {
+        var isValueType = assertion.Subject?.GetType().IsValueType ?? false;
+
+        if ((isValueType && Equals(assertion.Subject, other))
+        || (!isValueType && ReferenceEquals(assertion.Subject, other)))
+        {
+            assertion.Fail(new FailureBuilder("IsNotSameAs()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("Not to be the same object as", other)
+                .Finish());
+        }
+
+        return assertion;
+    }
+/*
     /// <summary>
     /// Checks whether this instance is null.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNull(string? message = null)
+    public static TAssert IsNull(string? message = null)
     {
         if (Subject is not null)
         {
@@ -53,7 +163,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotNull(string? message = null)
+    public static TAssert IsNotNull(string? message = null)
     {
         if (Subject is null)
         {
@@ -73,7 +183,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsInstanceOf<T>(string? message = null) => IsInstanceOf(typeof(T), message);
+    public static TAssert IsInstanceOf<T>(string? message = null) => IsInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is an instance of a certain type.
@@ -81,7 +191,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsInstanceOf(Type t, string? message = null)
+    public static TAssert IsInstanceOf(Type t, string? message = null)
     {
         if (Subject is null)
         {
@@ -111,7 +221,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotInstanceOf<T>(string? message = null) => IsNotInstanceOf(typeof(T), message);
+    public static TAssert IsNotInstanceOf<T>(string? message = null) => IsNotInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is not an instance of a certain type.
@@ -119,7 +229,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotInstanceOf(Type t, string? message = null)
+    public static TAssert IsNotInstanceOf(Type t, string? message = null)
     {
         if (Subject is { } && (Subject.GetType().IsSubclassOf(t) || Subject.GetType() == t))
         {
@@ -139,7 +249,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsExactlyInstanceOf<T>(string? message = null) => IsExactlyInstanceOf(typeof(T), message);
+    public static TAssert IsExactlyInstanceOf<T>(string? message = null) => IsExactlyInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is exactly an instance of a certain type.
@@ -147,7 +257,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsExactlyInstanceOf(Type t, string? message = null)
+    public static TAssert IsExactlyInstanceOf(Type t, string? message = null)
     {
         if (Subject is null)
         {
@@ -177,7 +287,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type to check for.</typeparam>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotExactlyInstanceOf<T>(string? message = null) => IsNotExactlyInstanceOf(typeof(T), message);
+    public static TAssert IsNotExactlyInstanceOf<T>(string? message = null) => IsNotExactlyInstanceOf(typeof(T), message);
 
     /// <summary>
     /// Checks if the object under test is not exactly an instance of a certain type.
@@ -185,7 +295,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="t">Type to check for.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotExactlyInstanceOf(Type t, string? message = null)
+    public static TAssert IsNotExactlyInstanceOf(Type t, string? message = null)
     {
         if (Subject is { } && Subject.GetType() == t)
         {
@@ -205,7 +315,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsIn(IEnumerable enumerable, string? message = null)
+    public static TAssert IsIn(IEnumerable enumerable, string? message = null)
     {
         if (!enumerable.Cast<object?>().Contains(Subject))
         {
@@ -225,7 +335,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="enumerable">The enumerable to check in.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert IsNotIn(IEnumerable enumerable, string? message = null)
+    public static TAssert IsNotIn(IEnumerable enumerable, string? message = null)
     {
         if (enumerable.Cast<object?>().Contains(Subject))
         {
@@ -245,7 +355,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="condition">The condition which needs to hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert Satisfies(Func<TSubject, bool> condition, string? message = null)
+    public static TAssert Satisfies(Func<TSubject, bool> condition, string? message = null)
     {
         if (!condition.Invoke(Subject!))
         {
@@ -265,7 +375,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="condition">The condition which may not hold for the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert DoesNotSatisfy(Func<TSubject, bool> condition, string? message = null)
+    public static TAssert DoesNotSatisfy(Func<TSubject, bool> condition, string? message = null)
     {
         if (condition.Invoke(Subject!))
         {
@@ -285,7 +395,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="hashCode">The expected hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert HasHashCode(int hashCode, string? message = null)
+    public static TAssert HasHashCode(int hashCode, string? message = null)
     {
         if (Subject is null)
         {
@@ -315,7 +425,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="hashCode">The forbidden hash code of the object.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert DoesNotHaveHashCode(int hashCode, string? message = null)
+    public static TAssert DoesNotHaveHashCode(int hashCode, string? message = null)
     {
         if (Subject is { } && Subject.GetHashCode() == hashCode)
         {
@@ -335,7 +445,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="other">The other object which should have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert HasSameHashCodeAs(object? other, string? message = null)
+    public static TAssert HasSameHashCodeAs(object? other, string? message = null)
     {
         if (Subject is null)
         {
@@ -377,7 +487,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="other">The other object which may not have the same hash code.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert DoesNotHaveSameHashCodeAs(object? other, string? message = null)
+    public static TAssert DoesNotHaveSameHashCodeAs(object? other, string? message = null)
     {
         if (Subject is null && other is null)
         {
@@ -405,7 +515,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// <param name="str">The expected ToString() result.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
-    public TAssert ToStringYields(string? str, string? message = null)
+    public static TAssert ToStringYields(string? str, string? message = null)
     {
         if (Subject is null)
         {
@@ -428,4 +538,5 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
 
         return (TAssert)(object)this;
     }
+*/
 }

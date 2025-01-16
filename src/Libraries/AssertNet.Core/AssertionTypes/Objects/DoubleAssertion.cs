@@ -250,14 +250,6 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     }
 
     /// <summary>
-    /// Checks whether the double under test is equal to another double.
-    /// </summary>
-    /// <param name="other">The other double to compare with.</param>
-    /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsEqualTo(double other, string? message = null) => base.IsEqualTo(other, message);
-
-    /// <summary>
     /// Checks whether the double under test is equal to another double within a certain margin.
     /// </summary>
     /// <param name="other">The other double to compare with.</param>
@@ -278,14 +270,6 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
 
         return this;
     }
-
-    /// <summary>
-    /// Checks whether the double under test is not equal to another double.
-    /// </summary>
-    /// <param name="other">The other double to compare with.</param>
-    /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>The current assertion.</returns>
-    public DoubleAssertion IsNotEqualTo(double other, string? message = null) => base.IsNotEqualTo(other, message);
 
     /// <summary>
     /// Checks whether the double under test is not equal to another double within a certain margin.
