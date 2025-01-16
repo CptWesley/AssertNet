@@ -45,7 +45,7 @@ public class SetPropertyInvocationAssertionTests
     [Fact]
     public void NeverPassTest()
     {
-        Assert.Same(_target, _assertion.Never().Target);
+        Assert.Same(_target, _assertion.Never().Subject);
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public class SetPropertyInvocationAssertionTests
     public void OncePassTest()
     {
         _target.Object.Number = 443;
-        Assert.Same(_target, _assertion.Once().Target);
+        Assert.Same(_target, _assertion.Once().Subject);
     }
 
     /// <summary>
@@ -88,9 +88,9 @@ public class SetPropertyInvocationAssertionTests
     {
         Assert.Throws<MockException>(() => _assertion.AtLeastOnce());
         _target.Object.Number = 56454;
-        Assert.Same(_target, _assertion.AtLeastOnce().Target);
+        Assert.Same(_target, _assertion.AtLeastOnce().Subject);
         _target.Object.Number = 324432;
-        Assert.Same(_target, _assertion.AtLeastOnce().Target);
+        Assert.Same(_target, _assertion.AtLeastOnce().Subject);
     }
 
     /// <summary>
@@ -99,9 +99,9 @@ public class SetPropertyInvocationAssertionTests
     [Fact]
     public void AtMostOnce()
     {
-        Assert.Same(_target, _assertion.AtMostOnce().Target);
+        Assert.Same(_target, _assertion.AtMostOnce().Subject);
         _target.Object.Number = 11;
-        Assert.Same(_target, _assertion.AtMostOnce().Target);
+        Assert.Same(_target, _assertion.AtMostOnce().Subject);
         _target.Object.Number = 23;
         Assert.Throws<MockException>(() => _assertion.AtMostOnce());
     }
@@ -114,9 +114,9 @@ public class SetPropertyInvocationAssertionTests
     {
         Assert.Throws<MockException>(() => _assertion.AtLeast(1));
         _target.Object.Number = 38;
-        Assert.Same(_target, _assertion.AtLeast(1).Target);
+        Assert.Same(_target, _assertion.AtLeast(1).Subject);
         _target.Object.Number = 27;
-        Assert.Same(_target, _assertion.AtLeast(1).Target);
+        Assert.Same(_target, _assertion.AtLeast(1).Subject);
     }
 
     /// <summary>
@@ -125,11 +125,11 @@ public class SetPropertyInvocationAssertionTests
     [Fact]
     public void AtMostTest()
     {
-        Assert.Same(_target, _assertion.AtMost(2).Target);
+        Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.Number = 34765;
-        Assert.Same(_target, _assertion.AtMost(2).Target);
+        Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.Number = 345435;
-        Assert.Same(_target, _assertion.AtMost(2).Target);
+        Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.Number = 3457457;
         Assert.Throws<MockException>(() => _assertion.AtMost(2));
     }
@@ -144,7 +144,7 @@ public class SetPropertyInvocationAssertionTests
         _target.Object.Number = 23;
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
         _target.Object.Number = 6455436;
-        Assert.Same(_target, _assertion.Exactly(2).Target);
+        Assert.Same(_target, _assertion.Exactly(2).Subject);
         _target.Object.Number = 435;
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
     }
@@ -157,9 +157,9 @@ public class SetPropertyInvocationAssertionTests
     {
         Assert.Throws<MockException>(() => _assertion.Between(1, 2));
         _target.Object.Number = 42345;
-        Assert.Same(_target, _assertion.Between(1, 2).Target);
+        Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _target.Object.Number = 345;
-        Assert.Same(_target, _assertion.Between(1, 2).Target);
+        Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _target.Object.Number = 3456543;
         Assert.Throws<MockException>(() => _assertion.Between(1, 2));
     }

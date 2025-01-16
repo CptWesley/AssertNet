@@ -17,6 +17,6 @@ public static class AssertionsTests
         Mock<object> target = new Mock<object>();
         MockAssertion<object> assertion = Asserts.That(target);
         Assert.NotNull(assertion);
-        Assert.Same(target, assertion.Target);
+        Assert.Same(target, assertion.Subject);
     }
 }

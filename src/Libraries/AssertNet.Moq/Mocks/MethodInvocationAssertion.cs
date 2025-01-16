@@ -8,7 +8,7 @@ namespace AssertNet.Moq.Mocks;
 /// </summary>
 /// <typeparam name="T">Type of the object being mocked.</typeparam>
 /// <typeparam name="TProperty">Return type of the method.</typeparam>
-public class MethodInvocationAssertion<T, TProperty> : InvocationAssertion<T>
+public sealed class MethodInvocationAssertion<T, TProperty> : InvocationAssertion<T>
     where T : class
 {
     /// <summary>

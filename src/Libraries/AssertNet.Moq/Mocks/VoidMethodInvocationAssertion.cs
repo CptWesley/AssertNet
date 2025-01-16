@@ -7,7 +7,7 @@ namespace AssertNet.Moq.Mocks;
 /// Class representing assertions made about method invocations.
 /// </summary>
 /// <typeparam name="T">Type of the object being mocked.</typeparam>
-public class VoidMethodInvocationAssertion<T> : InvocationAssertion<T>
+public sealed class VoidMethodInvocationAssertion<T> : InvocationAssertion<T>
     where T : class
 {
     /// <summary>

@@ -46,7 +46,7 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void NeverPassTest()
     {
-        Assert.Same(_target, _assertion.Never().Target);
+        Assert.Same(_target, _assertion.Never().Subject);
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public class VoidMethodInvocationAssertionTests
     public void OncePassTest()
     {
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.Once().Target);
+        Assert.Same(_target, _assertion.Once().Subject);
     }
 
     /// <summary>
@@ -89,9 +89,9 @@ public class VoidMethodInvocationAssertionTests
     {
         Assert.Throws<MockException>(() => _assertion.AtLeastOnce());
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtLeastOnce().Target);
+        Assert.Same(_target, _assertion.AtLeastOnce().Subject);
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtLeastOnce().Target);
+        Assert.Same(_target, _assertion.AtLeastOnce().Subject);
     }
 
     /// <summary>
@@ -100,9 +100,9 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void AtMostOnce()
     {
-        Assert.Same(_target, _assertion.AtMostOnce().Target);
+        Assert.Same(_target, _assertion.AtMostOnce().Subject);
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtMostOnce().Target);
+        Assert.Same(_target, _assertion.AtMostOnce().Subject);
         _target.Object.GetInt();
         Assert.Throws<MockException>(() => _assertion.AtMostOnce());
     }
@@ -115,9 +115,9 @@ public class VoidMethodInvocationAssertionTests
     {
         Assert.Throws<MockException>(() => _assertion.AtLeast(1));
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtLeast(1).Target);
+        Assert.Same(_target, _assertion.AtLeast(1).Subject);
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtLeast(1).Target);
+        Assert.Same(_target, _assertion.AtLeast(1).Subject);
     }
 
     /// <summary>
@@ -126,11 +126,11 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void AtMostTest()
     {
-        Assert.Same(_target, _assertion.AtMost(2).Target);
+        Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtMost(2).Target);
+        Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.AtMost(2).Target);
+        Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.GetInt();
         Assert.Throws<MockException>(() => _assertion.AtMost(2));
     }
@@ -145,7 +145,7 @@ public class VoidMethodInvocationAssertionTests
         _target.Object.GetInt();
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.Exactly(2).Target);
+        Assert.Same(_target, _assertion.Exactly(2).Subject);
         _target.Object.GetInt();
         Assert.Throws<MockException>(() => _assertion.Exactly(2));
     }
@@ -158,9 +158,9 @@ public class VoidMethodInvocationAssertionTests
     {
         Assert.Throws<MockException>(() => _assertion.Between(1, 2));
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.Between(1, 2).Target);
+        Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _target.Object.GetInt();
-        Assert.Same(_target, _assertion.Between(1, 2).Target);
+        Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _target.Object.GetInt();
         Assert.Throws<MockException>(() => _assertion.Between(1, 2));
     }

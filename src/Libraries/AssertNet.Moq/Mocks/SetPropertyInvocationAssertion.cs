@@ -6,7 +6,7 @@ namespace AssertNet.Moq.Mocks;
 /// Class representing assertions made about property setters.
 /// </summary>
 /// <typeparam name="T">Type of the object being mocked.</typeparam>
-public class SetPropertyInvocationAssertion<T> : InvocationAssertion<T>
+public sealed class SetPropertyInvocationAssertion<T> : InvocationAssertion<T>
     where T : class
 {
     /// <summary>

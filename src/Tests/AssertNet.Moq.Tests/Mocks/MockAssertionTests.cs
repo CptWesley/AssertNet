@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using AssertNet.Core.AssertionTypes;
 using AssertNet.Moq.Mocks;
 
 namespace AssertNet.Moq.Tests.Mocks;
@@ -26,7 +27,7 @@ public class MockAssertionTests
     [Fact]
     public void TargetTest()
     {
-        Assert.Same(_target, _assertion.Target);
+        Assert.Same(_target, _assertion.Subject);
     }
 
     /// <summary>
@@ -77,6 +78,6 @@ public class MockAssertionTests
     [Fact]
     public void HasNotPerformedOtherInvocationsTest()
     {
-        Assert.Same(_target, _assertion.HasNotPerformedOtherInvocations().Target);
+        Assert.Same(_target, _assertion.HasNotPerformedOtherInvocations().Subject);
     }
 }

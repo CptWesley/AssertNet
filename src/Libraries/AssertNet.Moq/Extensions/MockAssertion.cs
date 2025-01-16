@@ -1,38 +1,24 @@
 using System.Linq.Expressions;
+using AssertNet.Core.AssertionTypes;
+using AssertNet.Moq.Mocks;
 using Moq;
 
-namespace AssertNet.Moq.Mocks;
+namespace AssertNet;
 
 /// <summary>
 /// Class representing assertions made about mocks.
 /// </summary>
 /// <typeparam name="T">Type of the object being mocked.</typeparam>
-public class MockAssertion<T>
-    where T : class
+public static class MoqMockAssertions
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="MockAssertion{T}"/> class.
-    /// </summary>
-    /// <param name="target">The mock under test.</param>
-    public MockAssertion(Mock<T> target)
-    {
-        Target = target;
-    }
-
-    /// <summary>
-    /// Gets the mock under test.
-    /// </summary>
-    /// <value>
-    /// The mock under test.
-    /// </value>
-    public Mock<T> Target { get; }
-
     /// <summary>
     /// Starts an assertion about an invocation.
     /// </summary>
     /// <param name="expression">The expression.</param>
     /// <returns>An assertion about an invocation.</returns>
-    public InvocationAssertion<T> HasInvoked(Expression<Action<T>> expression) => new VoidMethodInvocationAssertion<T>(Target, expression);
+    public static InvocationAssertion<T> HasInvoked<T>(this IAssertion<Mock<T>> assertion, Expression<Action<T>> expression)
+        where T : class
+        => new VoidMethodInvocationAssertion<T>(assertion.Subject, expression);
 
     /// <summary>
     /// Starts an assertion about a property get expression.
@@ -40,22 +26,27 @@ public class MockAssertion<T>
     /// <typeparam name="TProperty">The type of the property.</typeparam>
     /// <param name="expression">The expression of getting the property.</param>
     /// <returns>An assertion about the property get expression.</returns>
-    public InvocationAssertion<T> HasInvoked<TProperty>(Expression<Func<T, TProperty>> expression) => new MethodInvocationAssertion<T, TProperty>(Target, expression);
+    public static InvocationAssertion<T> HasInvoked<T, TProperty>(this IAssertion<Mock<T>> assertion, Expression<Func<T, TProperty>> expression)
+        where T : class
+        => new MethodInvocationAssertion<T, TProperty>(assertion.Subject, expression);
 
     /// <summary>
     /// Starts an assertion about a property set expression.
     /// </summary>
     /// <param name="expression">The set expression.</param>
     /// <returns>An assertion about the property set expression.</returns>
-    public InvocationAssertion<T> HasAssigned(Action<T> expression) => new SetPropertyInvocationAssertion<T>(Target, expression);
+    public static InvocationAssertion<T> HasAssigned<T>(this IAssertion<Mock<T>> assertion, Action<T> expression)
+        where T : class
+        => new SetPropertyInvocationAssertion<T>(assertion.Subject, expression);
 
     /// <summary>
     /// Determines whether the target mock has not performed any other unverified invocations.
     /// </summary>
     /// <returns>The current mock assertion.</returns>
-    public MockAssertion<T> HasNotPerformedOtherInvocations()
+    public static IAssertion<Mock<T>> HasNotPerformedOtherInvocations<T>(this IAssertion<Mock<T>> assertion)
+        where T : class
     {
-        Target.VerifyNoOtherCalls();
-        return this;
+        assertion.Subject.VerifyNoOtherCalls();
+        return assertion;
     }
 }
