@@ -1,3 +1,5 @@
+using AssertNet.Core.AssertionTypes;
+
 namespace AssertNet;
 
 /// <summary>
@@ -47,7 +49,7 @@ public static class Assertions
     /// <param name="value">Object under test.</param>
     /// <returns>Assertion about an object.</returns>
     [OverloadResolutionPriority(-100)]
-    public static SingleAssertion<T> That<T>(this AssertionBuilder _, T value) => new(FailureHandlerFactory.Create(), value);
+    public static SimpleAssertion<T> That<T>(this AssertionBuilder _, T value) => new(FailureHandlerFactory.Create(), value);
 
     /// <summary>
     /// Makes an assertion about a void action.
@@ -97,5 +99,5 @@ public static class Assertions
     /// <returns>Assertion about an object.</returns>
     [Obsolete("Use Asserts.That instead.")]
     [OverloadResolutionPriority(-100)]
-    public static SingleAssertion<T> AssertThat<T>(T value) => new SingleAssertion<T>(FailureHandlerFactory.Create(), value);
+    public static SimpleAssertion<T> AssertThat<T>(T value) => new SimpleAssertion<T>(FailureHandlerFactory.Create(), value);
 }

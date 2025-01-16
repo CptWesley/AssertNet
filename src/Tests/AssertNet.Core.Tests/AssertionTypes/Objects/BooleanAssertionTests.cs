@@ -1,4 +1,4 @@
-using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
@@ -7,7 +7,7 @@ namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 /// Test class for the <see cref="BooleanAssertion"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{T1, T2}" />
-public class BooleanAssertionTests : ObjectAssertionTests<SingleAssertion<bool>, bool>
+public class BooleanAssertionTests : ObjectAssertionTests<SimpleAssertion<bool>, bool>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanAssertionTests"/> class.
@@ -15,7 +15,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<SingleAssertion<bool>,
     public BooleanAssertionTests()
     {
         FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new SingleAssertion<bool>(FailureHandler.Object, true);
+        Assertion = new SimpleAssertion<bool>(FailureHandler.Object, true);
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<SingleAssertion<bool>,
     [Fact]
     public void IsTruePassTest()
     {
-        new SingleAssertion<bool>(FailureHandler.Object, true).IsTrue();
+        new SimpleAssertion<bool>(FailureHandler.Object, true).IsTrue();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -34,7 +34,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<SingleAssertion<bool>,
     [Fact]
     public void IsTrueFailTest()
     {
-        new SingleAssertion<bool>(FailureHandler.Object, false).IsTrue();
+        new SimpleAssertion<bool>(FailureHandler.Object, false).IsTrue();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -44,7 +44,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<SingleAssertion<bool>,
     [Fact]
     public void IsFalsePassTest()
     {
-        new SingleAssertion<bool>(FailureHandler.Object, false).IsFalse();
+        new SimpleAssertion<bool>(FailureHandler.Object, false).IsFalse();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -54,7 +54,7 @@ public class BooleanAssertionTests : ObjectAssertionTests<SingleAssertion<bool>,
     [Fact]
     public void IsFalseFailTest()
     {
-        new SingleAssertion<bool>(FailureHandler.Object, true).IsFalse();
+        new SimpleAssertion<bool>(FailureHandler.Object, true).IsFalse();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 }
