@@ -16,7 +16,7 @@ public static class ObjectAssertions
     public static TAssert IsEqualTo<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
-        if (!Equals(assertion.Subject, other))
+        if (!EqualityHelper.Equals(assertion.Subject, other))
         {
             assertion.Fail(new FailureBuilder("IsEqualTo()")
                 .Append(message)
@@ -37,7 +37,7 @@ public static class ObjectAssertions
     public static TAssert IsNotEqualTo<TAssert>(this TAssert assertion, object? other, string? message = null)
         where TAssert : IAssertion
     {
-        if (Equals(assertion.Subject, other))
+        if (EqualityHelper.Equals(assertion.Subject, other))
         {
             assertion.Fail(new FailureBuilder("IsNotEqualTo()")
                 .Append(message)
@@ -102,7 +102,7 @@ public static class ObjectAssertions
     {
         var isValueType = assertion.Subject?.GetType().IsValueType ?? false;
 
-        if ((isValueType && !Equals(assertion.Subject, other))
+        if ((isValueType && !EqualityHelper.Equals(assertion.Subject, other))
         || (!isValueType && !ReferenceEquals(assertion.Subject, other)))
         {
             assertion.Fail(new FailureBuilder("IsSameAs()")
@@ -126,7 +126,7 @@ public static class ObjectAssertions
     {
         var isValueType = assertion.Subject?.GetType().IsValueType ?? false;
 
-        if ((isValueType && Equals(assertion.Subject, other))
+        if ((isValueType && EqualityHelper.Equals(assertion.Subject, other))
         || (!isValueType && ReferenceEquals(assertion.Subject, other)))
         {
             assertion.Fail(new FailureBuilder("IsNotSameAs()")

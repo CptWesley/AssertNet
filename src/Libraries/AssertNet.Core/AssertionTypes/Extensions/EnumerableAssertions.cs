@@ -595,7 +595,7 @@ public static class EnumerableAssertions
                 return assertion;
             }
 
-            if (!Equals(el, it.Current))
+            if (!EqualityHelper.Equals(el, it.Current))
             {
                 it.Reset();
             }
@@ -646,7 +646,7 @@ public static class EnumerableAssertions
                 return assertion;
             }
 
-            if (!Equals(el, it.Current))
+            if (!EqualityHelper.Equals(el, it.Current))
             {
                 it.Reset();
             }
@@ -693,7 +693,7 @@ public static class EnumerableAssertions
 
         foreach (TElement el in assertion.Subject)
         {
-            if (Equals(el, it.Current) && !it.MoveNext())
+            if (EqualityHelper.Equals(el, it.Current) && !it.MoveNext())
             {
                 return assertion;
             }
@@ -738,7 +738,7 @@ public static class EnumerableAssertions
         {
             foreach (TElement el in assertion.Subject)
             {
-                if (Equals(el, it.Current) && !it.MoveNext())
+                if (EqualityHelper.Equals(el, it.Current) && !it.MoveNext())
                 {
                     failed = true;
                     break;

@@ -416,7 +416,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
                 .Append("But is null")
                 .Finish());
         }
-        else if (Subject.ToString() is { } other && !Equals(other, str))
+        else if (Subject.ToString() is { } other && !EqualityHelper.Equals(other, str))
         {
             this.Fail(new FailureBuilder("ToStringYields()")
                 .Append(message)
