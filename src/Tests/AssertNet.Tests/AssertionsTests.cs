@@ -1,6 +1,5 @@
 using AssertNet.AssertionTypes;
 using AssertNet.AssertionTypes.Objects;
-using AssertNet.AssertionTypes.Void;
 
 namespace AssertNet.Tests;
 

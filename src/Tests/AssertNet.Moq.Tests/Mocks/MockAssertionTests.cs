@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
-using AssertNet.Core.AssertionTypes;
+using AssertNet.AssertionTypes;
+using AssertNet.FailureHandlers;
 using AssertNet.Moq.Mocks;
 
 namespace AssertNet.Moq.Tests.Mocks;
@@ -9,7 +10,7 @@ namespace AssertNet.Moq.Tests.Mocks;
 /// </summary>
 public class MockAssertionTests
 {
-    private readonly MockAssertion<IMockable> _assertion;
+    private readonly Assertion<Mock<IMockable>> _assertion;
     private readonly Mock<IMockable> _target;
 
     /// <summary>
@@ -18,7 +19,7 @@ public class MockAssertionTests
     public MockAssertionTests()
     {
         _target = new Mock<IMockable>(MockBehavior.Loose);
-        _assertion = new MockAssertion<IMockable>(_target);
+        _assertion = new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target);
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using AssertNet.AssertionTypes;
 using Moq;
 
 namespace AssertNet.Moq.Mocks;
@@ -28,28 +29,28 @@ public sealed class MethodInvocationAssertion<T, TProperty> : InvocationAssertio
     public Expression<System.Func<T, TProperty>> Expression { get; }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> Never(string? message = null)
+    public override IAssertion<Mock<T>> Never(string? message = null)
     {
         Target.Verify(Expression, Times.Never(), message);
         return new MockAssertion<T>(Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> Once(string? message = null)
+    public override IAssertion<Mock<T>> Once(string? message = null)
     {
         Target.Verify(Expression, Times.Once(), message);
         return new MockAssertion<T>(Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> AtLeastOnce(string? message = null)
+    public override IAssertion<Mock<T>> AtLeastOnce(string? message = null)
     {
         Target.Verify(Expression, Times.AtLeastOnce(), message);
         return new MockAssertion<T>(Target);
     }
 
     /// <inheritdoc/>
-    public override MockAssertion<T> AtMostOnce(string? message = null)
+    public override IAssertion<Mock<T>> AtMostOnce(string? message = null)
     {
         Target.Verify(Expression, Times.AtMostOnce(), message);
         return new MockAssertion<T>(Target);

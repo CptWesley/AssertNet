@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using AssertNet.Core.AssertionTypes;
+using AssertNet.AssertionTypes;
 using AssertNet.Moq.Mocks;
 using Moq;
 

@@ -1,3 +1,4 @@
+using AssertNet.AssertionTypes;
 using Moq;
 
 namespace AssertNet.Moq.Mocks;
@@ -28,28 +29,28 @@ public abstract class InvocationAssertion<T>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> Never(string? message = null);
+    public abstract IAssertion<Mock<T>> Never(string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked once.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> Once(string? message = null);
+    public abstract IAssertion<Mock<T>> Once(string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked at least once.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> AtLeastOnce(string? message = null);
+    public abstract IAssertion<Mock<T>> AtLeastOnce(string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked at most once.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> AtMostOnce(string? message = null);
+    public abstract IAssertion<Mock<T>> AtMostOnce(string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked at least the given amount of times.
@@ -57,7 +58,7 @@ public abstract class InvocationAssertion<T>
     /// <param name="count">The minimum amount of invocations.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> AtLeast(int count, string? message = null);
+    public abstract IAssertion<Mock<T>> AtLeast(int count, string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked at most the given amount of times.
@@ -65,7 +66,7 @@ public abstract class InvocationAssertion<T>
     /// <param name="count">The maximum amount of invocations.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> AtMost(int count, string? message = null);
+    public abstract IAssertion<Mock<T>> AtMost(int count, string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked exactly the given amount of times.
@@ -73,7 +74,7 @@ public abstract class InvocationAssertion<T>
     /// <param name="count">The exact amount of invocations.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> Exactly(int count, string? message = null);
+    public abstract IAssertion<Mock<T>> Exactly(int count, string? message = null);
 
     /// <summary>
     /// Asserts that the expression was invoked a number of times in a certain range.
@@ -82,5 +83,5 @@ public abstract class InvocationAssertion<T>
     /// <param name="maximum">The maximum amount of invocations.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An assertion on the mock we were making an assertion about.</returns>
-    public abstract MockAssertion<T> Between(int minimum, int maximum, string? message = null);
+    public abstract IAssertion<Mock<T>> Between(int minimum, int maximum, string? message = null);
 }
