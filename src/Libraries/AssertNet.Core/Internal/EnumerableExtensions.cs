@@ -2,7 +2,7 @@ namespace AssertNet.Core.Internal;
 
 internal static class EnumerableExtensions
 {
-    public static IEnumerable<object> AsGeneric(this IEnumerable enumerable)
+    public static IEnumerable<object?> AsGeneric(this IEnumerable enumerable)
     {
         foreach (var item in enumerable)
         {
