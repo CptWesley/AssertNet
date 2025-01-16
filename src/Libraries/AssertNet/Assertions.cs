@@ -1,5 +1,5 @@
-using AssertNet.Core.AssertionTypes;
-using AssertNet.Core.AssertionTypes.Objects;
+using AssertNet.AssertionTypes;
+using AssertNet.AssertionTypes.Objects;
 
 namespace AssertNet;
 

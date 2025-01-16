@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core", "Libraries\AssertNet.Core\AssertNet.Core.csproj", "{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Core.Tests", "Tests\AssertNet.Core.Tests\AssertNet.Core.Tests.csproj", "{764543CD-C418-4B8E-A697-96EE4BD5BEBE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Xunit", "Tests\AssertNet.Tests.Xunit\AssertNet.Tests.Xunit.csproj", "{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssertNet.Tests.Nunit", "Tests\AssertNet.Tests.Nunit\AssertNet.Tests.Nunit.csproj", "{281C91C5-D1F0-41B1-9C8E-DC241B883333}"
@@ -48,14 +44,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389}.Release|Any CPU.Build.0 = Release|Any CPU
-		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{764543CD-C418-4B8E-A697-96EE4BD5BEBE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,8 +81,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E11FD51D-4FB6-48D7-9AB2-73DDCA61F389} = {E75DD6AB-5E41-44D9-BE42-D6FA4609C0EA}
-		{764543CD-C418-4B8E-A697-96EE4BD5BEBE} = {F45DB523-682E-49EB-B71A-002C2636D042}
 		{37BD9BF9-1CBE-47AE-BD71-9E242278AF1D} = {F45DB523-682E-49EB-B71A-002C2636D042}
 		{281C91C5-D1F0-41B1-9C8E-DC241B883333} = {F45DB523-682E-49EB-B71A-002C2636D042}
 		{C5B219D2-BC15-4A8A-BA61-D4433B3AB80E} = {F45DB523-682E-49EB-B71A-002C2636D042}

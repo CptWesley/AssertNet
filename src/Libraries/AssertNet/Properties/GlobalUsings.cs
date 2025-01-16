@@ -1,4 +1,5 @@
-global using AssertNet.Core.AssertionTypes.Objects;
-global using AssertNet.Core.AssertionTypes.Void;
-global using AssertNet.Core.Failures;
+global using AssertNet.AssertionTypes.Objects;
+global using AssertNet.Failures;
+global using AssertNet.Helpers;
+global using AssertNet.Internal;
 global using AssertNet.FailureHandlers;

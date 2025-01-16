@@ -1,4 +1,4 @@
-using AssertNet.Core.Failures;
+using AssertNet.Failures;
 using AssertNet.FailureHandlers;
 
 namespace AssertNet.Tests.Xunit.FailureHandlers;
