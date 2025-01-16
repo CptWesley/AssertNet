@@ -11,6 +11,7 @@ public static class ActionAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotThrowException<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<Action>
     {
@@ -37,6 +38,7 @@ public static class ActionAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type of the exception which may not be thrown.</typeparam>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<Action> DoesNotThrowException<T>(this IAssertion<Action> assertion, string? message = null)
         where T : Exception
     {
@@ -66,6 +68,7 @@ public static class ActionAssertions
     /// <param name="t">Type of the exception which may not be thrown.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotThrowException<TAssert>(this TAssert assertion, Type t, string? message = null)
         where TAssert : IAssertion<Action>
     {
@@ -95,6 +98,7 @@ public static class ActionAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type of the exception which may not be thrown.</typeparam>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static IAssertion<Action> DoesNotThrowExactlyException<T>(this IAssertion<Action> assertion, string? message = null)
         where T : Exception
     {
@@ -124,6 +128,7 @@ public static class ActionAssertions
     /// <param name="t">Type of the exception which may not be thrown.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert DoesNotThrowExactlyException<TAssert>(this TAssert assertion, Type t, string? message = null)
         where TAssert : IAssertion<Action>
     {
@@ -152,6 +157,7 @@ public static class ActionAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the thrown exception.</returns>
+    [Assertion]
     public static IAssertion<Exception> ThrowsException(this IAssertion<Action> assertion, string? message = null)
     {
         try
@@ -178,6 +184,7 @@ public static class ActionAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Exception type to expect.</typeparam>
     /// <returns>An exception assertion for the thrown exception.</returns>
+    [Assertion]
     public static IAssertion<T> ThrowsException<T>(this IAssertion<Action> assertion, string? message = null)
         where T : Exception
     {
@@ -215,6 +222,7 @@ public static class ActionAssertions
     /// <param name="t">Exception type to expect.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the thrown exception.</returns>
+    [Assertion]
     public static IAssertion<Exception> ThrowsException(this IAssertion<Action> assertion, Type t, string? message = null)
     {
         try
@@ -254,6 +262,7 @@ public static class ActionAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Exception type to expect.</typeparam>
     /// <returns>An exception assertion for the thrown exception.</returns>
+    [Assertion]
     public static IAssertion<T> ThrowsExactlyException<T>(this IAssertion<Action> assertion, string? message = null)
         where T : Exception
     {
@@ -293,6 +302,7 @@ public static class ActionAssertions
     /// <param name="t">Exception type to expect.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the thrown exception.</returns>
+    [Assertion]
     public static IAssertion<Exception> ThrowsExactlyException(this IAssertion<Action> assertion, Type t, string? message = null)
     {
         try

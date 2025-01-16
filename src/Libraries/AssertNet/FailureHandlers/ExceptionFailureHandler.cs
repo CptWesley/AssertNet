@@ -27,6 +27,7 @@ public abstract class ExceptionFailureHandler : IFailureHandler
         }
     }
 
+    [Pure]
     private static Func<string, Exception> GenerateCreationFunction(Type? type)
     {
         if (type is null)
@@ -62,6 +63,7 @@ public abstract class ExceptionFailureHandler : IFailureHandler
         => throw createException(message);
 
     /// <inheritdoc/>
+    [Pure]
     public bool IsAvailable()
         => createException != defaultCreateException;
 

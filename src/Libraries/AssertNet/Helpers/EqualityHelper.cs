@@ -10,6 +10,7 @@ namespace AssertNet.Helpers;
 public static class EqualityHelper
 {
     /// <inheritdoc cref="object.Equals(object, object)" />
+    [Pure]
     public static new bool Equals(object? objA, object? objB)
         => (objA, objB) switch
         {
@@ -205,6 +206,7 @@ public static class EqualityHelper
         }
     }
 
+    [Pure]
     private static bool EqualsDecimal(float f, decimal d)
     {
         const float decimalMin = (float)decimal.MinValue;
@@ -218,6 +220,7 @@ public static class EqualityHelper
         return (decimal)f == d;
     }
 
+    [Pure]
     private static bool EqualsDecimal(double f, decimal d)
     {
         const double decimalMin = (double)decimal.MinValue;

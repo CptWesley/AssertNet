@@ -22,6 +22,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be greater than.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsGreaterThan(double other, string? message = null)
     {
         if (Subject <= other)
@@ -42,6 +43,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be greater than or equal to.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsGreaterThanOrEqualTo(double other, string? message = null)
     {
         if (Subject < other)
@@ -62,6 +64,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be lesser than.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsLesserThan(double other, string? message = null)
     {
         if (Subject >= other)
@@ -82,6 +85,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="other">Value which the double should be lesser than or equal to.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsLesserThanOrEqualTo(double other, string? message = null)
     {
         if (Subject > other)
@@ -101,6 +105,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsZero(string? message = null)
     {
 #pragma warning disable S1244 // Intentionally comparing to exactly zero.
@@ -122,6 +127,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsPositive(string? message = null)
     {
         if (Subject <= 0)
@@ -141,6 +147,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsPositiveOrZero(string? message = null)
     {
         if (Subject < 0)
@@ -160,6 +167,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsNegative(string? message = null)
     {
         if (Subject >= 0)
@@ -179,6 +187,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsNegativeOrZero(string? message = null)
     {
         if (Subject > 0)
@@ -201,6 +210,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
+    [Assertion]
     public DoubleAssertion IsInRange(double minimum, double maximum, string? message = null)
     {
         if (maximum <= minimum)
@@ -229,6 +239,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
+    [Assertion]
     public DoubleAssertion IsNotInRange(double minimum, double maximum, string? message = null)
     {
         if (maximum <= minimum)
@@ -256,6 +267,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="margin">The margin to still identify another double as equal.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsEqualTo(double other, double margin, string? message = null)
     {
         if (Subject < other - margin || Subject > other + margin)
@@ -278,6 +290,7 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="margin">The margin to still identify another double as equal.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public DoubleAssertion IsNotEqualTo(double other, double margin, string? message = null)
     {
         if (Subject >= other - margin && Subject <= other + margin)

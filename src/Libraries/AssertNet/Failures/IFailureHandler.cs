@@ -9,6 +9,7 @@ public interface IFailureHandler
     /// Determines whether this instance is available.
     /// </summary>
     /// <returns><c>true</c> if this instance is available; otherwise, <c>false</c>.</returns>
+    [Pure]
     bool IsAvailable();
 
     /// <summary>

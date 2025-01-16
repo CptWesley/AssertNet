@@ -11,9 +11,11 @@ public static class EquivalencyHelper
     /// <param name="that">The object to check for.</param>
     /// <param name="other">The object to check with.</param>
     /// <returns>True if internally equal, false otherwise.</returns>
+    [Pure]
     public static bool AreEquivalent(object? that, object? other)
-        => AreEquivalent(that, other, new Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>>());
+        => AreEquivalent(that, other, []);
 
+    [Pure]
     private static bool AreEquivalent(this object? that, object? other, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
         if (that is null || other is null)
@@ -52,6 +54,7 @@ public static class EquivalencyHelper
         return ObjectEquals(that, other, comparisons);
     }
 
+    [Pure]
     private static bool ArrayEquals(Array that, Array other, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
         if (that.Length != other.Length)
@@ -77,6 +80,7 @@ public static class EquivalencyHelper
         return true;
     }
 
+    [Pure]
     private static bool ObjectEquals(object that, object other, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
         Type type = that.GetType();
@@ -93,6 +97,7 @@ public static class EquivalencyHelper
         return true;
     }
 
+    [Pure]
     private static bool EqualsForType(object that, object other, Type type, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
 #pragma warning disable S3011 // Intentionally accessing private fields.

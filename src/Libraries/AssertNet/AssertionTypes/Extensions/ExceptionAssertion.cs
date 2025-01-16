@@ -1,5 +1,4 @@
 using AssertNet.AssertionTypes;
-using System.Reflection;
 
 namespace AssertNet;
 
@@ -14,6 +13,7 @@ public static class ExceptionAssertions
     /// <param name="message">The message which the exception should have.</param>
     /// <param name="customMessage">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert WithMessage<TAssert>(this TAssert assertion, string message, string? customMessage = null)
         where TAssert : IAssertion<Exception>
     {
@@ -46,6 +46,7 @@ public static class ExceptionAssertions
     /// <param name="message">Part of the message which the exception should have.</param>
     /// <param name="customMessage">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert WithMessageContaining<TAssert>(this TAssert assertion, string message, string? customMessage = null)
         where TAssert : IAssertion<Exception>
     {
@@ -76,6 +77,7 @@ public static class ExceptionAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
+    [Assertion]
     public static TAssert WithNoInnerException<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<Exception>
     {
@@ -106,6 +108,7 @@ public static class ExceptionAssertions
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the inner exception.</returns>
+    [Assertion]
     public static IAssertion<Exception> WithInnerException(this IAssertion<Exception> assertion, string? message = null)
     {
         if (assertion.Subject is null)
@@ -134,6 +137,7 @@ public static class ExceptionAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Type of the inner exception.</typeparam>
     /// <returns>An exception assertion for the inner exception.</returns>
+    [Assertion]
     public static IAssertion<TInnerException> WithInnerException<TInnerException>(this IAssertion<Exception> assertion, string? message = null)
         where TInnerException : Exception
     {

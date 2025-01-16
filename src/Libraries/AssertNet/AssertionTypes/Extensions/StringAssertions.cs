@@ -16,6 +16,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert IsEqualToIgnoringCase<TAssert>(this TAssert assertion, string? other, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -39,6 +40,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert IsNotEqualToIgnoringCase<TAssert>(this TAssert assertion, string other, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -62,6 +64,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert Contains<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -85,6 +88,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotContain<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -108,6 +112,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert ContainsIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -131,6 +136,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotContainIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -154,6 +160,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert ContainsPattern<TAssert>(this TAssert assertion, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -177,6 +184,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotContainPattern<TAssert>(this TAssert assertion, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -200,6 +208,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert StartsWith<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -223,6 +232,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotStartWith<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -246,6 +256,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert StartsWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -269,6 +280,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotStartWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -292,6 +304,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert EndsWith<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -315,6 +328,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotEndWith<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -338,6 +352,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert EndsWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {
@@ -361,6 +376,7 @@ public static class StringAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="TAssert">The type of assertion.</typeparam>
     /// <returns>The updated assertion chain.</returns>
+    [Assertion]
     public static TAssert DoesNotEndWithIgnoringCase<TAssert>(this TAssert assertion, string substring, string? message = null)
         where TAssert : IAssertion<string>
     {

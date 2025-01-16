@@ -12,6 +12,7 @@ public class FallbackFailureHandler : IFailureHandler
         => throw new AssertionFailedException(message);
 
     /// <inheritdoc/>
+    [Pure]
     public bool IsAvailable()
         => true;
 }
