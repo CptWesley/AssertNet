@@ -34,7 +34,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsEqualToTrueTest()
     {
-        Assertion.IsEqualTo(Assertion.Target);
+        Assertion.IsEqualTo(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -54,7 +54,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsEquivalentToTrueTest()
     {
-        Assertion.IsEquivalentTo(Assertion.Target);
+        Assertion.IsEquivalentTo(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -84,7 +84,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsNotEqualToFalseTest()
     {
-        Assertion.IsNotEqualTo(Assertion.Target);
+        Assertion.IsNotEqualTo(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -94,7 +94,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsSameAsTrueTest()
     {
-        Assertion.IsSameAs(Assertion.Target);
+        Assertion.IsSameAs(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -124,7 +124,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsNotSameAsFalseTest()
     {
-        Assertion.IsNotSameAs(Assertion.Target);
+        Assertion.IsNotSameAs(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -164,7 +164,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsInstanceOfPassSameTest()
     {
-        Assertion.IsInstanceOf(Assertion.Target!.GetType());
+        Assertion.IsInstanceOf(Assertion.Subject!.GetType());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -204,7 +204,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsNotInstanceOfFailSameTest()
     {
-        Assertion.IsNotInstanceOf(Assertion.Target!.GetType());
+        Assertion.IsNotInstanceOf(Assertion.Subject!.GetType());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -234,7 +234,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsInPassTest()
     {
-        Assertion.IsIn(new object[] { 1, 2, Assertion.Target!, 3 });
+        Assertion.IsIn(new object[] { 1, 2, Assertion.Subject!, 3 });
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -264,7 +264,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void IsNotInFailTest()
     {
-        Assertion.IsNotIn(new object[] { 1, 2, Assertion.Target!, 3 });
+        Assertion.IsNotIn(new object[] { 1, 2, Assertion.Subject!, 3 });
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -314,7 +314,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void HasHashCodePassTest()
     {
-        Assertion.HasHashCode(Assertion.Target!.GetHashCode());
+        Assertion.HasHashCode(Assertion.Subject!.GetHashCode());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -324,7 +324,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void HasHashCodeFailTest()
     {
-        Assertion.HasHashCode(Assertion.Target!.GetHashCode() + 1);
+        Assertion.HasHashCode(Assertion.Subject!.GetHashCode() + 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -334,7 +334,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveHashCodePassTest()
     {
-        Assertion.DoesNotHaveHashCode(Assertion.Target!.GetHashCode() - 1);
+        Assertion.DoesNotHaveHashCode(Assertion.Subject!.GetHashCode() - 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -344,7 +344,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveHashCodeFailTest()
     {
-        Assertion.DoesNotHaveHashCode(Assertion.Target!.GetHashCode());
+        Assertion.DoesNotHaveHashCode(Assertion.Subject!.GetHashCode());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -354,7 +354,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void HasSameHashCodeAsPassTest()
     {
-        Assertion.HasSameHashCodeAs(Assertion.Target);
+        Assertion.HasSameHashCodeAs(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -374,7 +374,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveSameHashCodeAsPassTest()
     {
-        Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target!.GetHashCode() - 1);
+        Assertion.DoesNotHaveSameHashCodeAs(Assertion.Subject!.GetHashCode() - 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -384,7 +384,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void DoesNotHaveSameHashCodeAsFailTest()
     {
-        Assertion.DoesNotHaveSameHashCodeAs(Assertion.Target);
+        Assertion.DoesNotHaveSameHashCodeAs(Assertion.Subject);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -394,7 +394,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void ToStringYieldsPassTest()
     {
-        Assertion.ToStringYields(Assertion.Target!.ToString());
+        Assertion.ToStringYields(Assertion.Subject!.ToString());
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -404,7 +404,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     [Fact]
     public void ToStringYieldsFailTest()
     {
-        Assertion.ToStringYields(Assertion.Target + "ft2gr");
+        Assertion.ToStringYields(Assertion.Subject + "ft2gr");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 }

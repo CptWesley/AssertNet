@@ -23,11 +23,11 @@ public class BooleanAssertion : ObjectAssertion<BooleanAssertion, bool>
     /// <returns>The current assertion.</returns>
     public BooleanAssertion IsTrue(string? message = null)
     {
-        if (!Target)
+        if (!Subject)
         {
             Fail(new FailureBuilder("IsTrue()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be equal to", true)
                 .Finish());
         }
@@ -42,11 +42,11 @@ public class BooleanAssertion : ObjectAssertion<BooleanAssertion, bool>
     /// <returns>The current assertion.</returns>
     public BooleanAssertion IsFalse(string? message = null)
     {
-        if (Target)
+        if (Subject)
         {
             Fail(new FailureBuilder("IsFalse()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be equal to", false)
                 .Finish());
         }

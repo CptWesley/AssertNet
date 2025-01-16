@@ -511,9 +511,9 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     {
         EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
         EnumerableAssertion<int> newAssertion = originalAssertion.Where(x => x > 2);
-        Assert.Equal(2, newAssertion.Target.Count());
-        Assert.Contains(3, newAssertion.Target);
-        Assert.Contains(4, newAssertion.Target);
+        Assert.Equal(2, newAssertion.Subject.Count());
+        Assert.Contains(3, newAssertion.Subject);
+        Assert.Contains(4, newAssertion.Subject);
     }
 
     /// <summary>
@@ -524,10 +524,10 @@ public class EnumerableAssertionTests : ObjectAssertionTests<EnumerableAssertion
     {
         EnumerableAssertion<int> originalAssertion = new EnumerableAssertion<int>(FailureHandler.Object, [1, 2, 3, 4]);
         EnumerableAssertion<int> newAssertion = originalAssertion.Select(x => x + 1);
-        Assert.Equal(4, newAssertion.Target.Count());
-        Assert.Contains(2, newAssertion.Target);
-        Assert.Contains(3, newAssertion.Target);
-        Assert.Contains(4, newAssertion.Target);
-        Assert.Contains(5, newAssertion.Target);
+        Assert.Equal(4, newAssertion.Subject.Count());
+        Assert.Contains(2, newAssertion.Subject);
+        Assert.Contains(3, newAssertion.Subject);
+        Assert.Contains(4, newAssertion.Subject);
+        Assert.Contains(5, newAssertion.Subject);
     }
 }

@@ -5,7 +5,7 @@ namespace AssertNet.Core.AssertionTypes.Void;
 /// </summary>
 /// <seealso cref="Assertion" />
 [SuppressMessage("Design", "CA1031", Justification = "Needed for the library functionality.")]
-public class VoidAssertion : Assertion
+public class VoidAssertion : ObjectAssertion<VoidAssertion, Action>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="VoidAssertion"/> class.
@@ -13,7 +13,7 @@ public class VoidAssertion : Assertion
     /// <param name="failureHandler">The failure handler of the assertion.</param>
     /// <param name="action">The action under test.</param>
     public VoidAssertion(IFailureHandler failureHandler, Action action)
-        : base(failureHandler)
+        : base(failureHandler, action)
     {
         Action = action;
     }

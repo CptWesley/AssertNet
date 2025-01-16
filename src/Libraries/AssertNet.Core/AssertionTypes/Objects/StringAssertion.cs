@@ -25,11 +25,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsEqualToIgnoringCase(string? other, string? message = null)
     {
-        if (!string.Equals(Target, other, StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(Subject, other, StringComparison.OrdinalIgnoreCase))
         {
             Fail(new FailureBuilder("IsEqualToIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be equal to while ignoring cases", other)
                 .Finish());
         }
@@ -45,11 +45,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsNotEqualToIgnoringCase(string other, string? message = null)
     {
-        if (string.Equals(Target, other, StringComparison.OrdinalIgnoreCase))
+        if (string.Equals(Subject, other, StringComparison.OrdinalIgnoreCase))
         {
             Fail(new FailureBuilder("IsNotEqualToIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to be equal to while ignoring cases", other)
                 .Finish());
         }
@@ -65,11 +65,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion Contains(string substring, string? message = null)
     {
-        if (Target is null || !Target.Contains(substring))
+        if (Subject is null || !Subject.Contains(substring))
         {
             Fail(new FailureBuilder("Contains()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To contain", substring)
                 .Finish());
         }
@@ -85,11 +85,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotContain(string substring, string? message = null)
     {
-        if (Target is { } && Target.Contains(substring))
+        if (Subject is { } && Subject.Contains(substring))
         {
             Fail(new FailureBuilder("DoesNotContain()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to contain", substring)
                 .Finish());
         }
@@ -105,11 +105,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion ContainsIgnoringCase(string substring, string? message = null)
     {
-        if (Target is null || Target.IndexOf(substring, StringComparison.OrdinalIgnoreCase) < 0)
+        if (Subject is null || Subject.IndexOf(substring, StringComparison.OrdinalIgnoreCase) < 0)
         {
             Fail(new FailureBuilder("ContainsIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To contain ignoring case", substring)
                 .Finish());
         }
@@ -125,11 +125,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotContainIgnoringCase(string substring, string? message = null)
     {
-        if (Target is { } && Target.IndexOf(substring, StringComparison.OrdinalIgnoreCase) >= 0)
+        if (Subject is { } && Subject.IndexOf(substring, StringComparison.OrdinalIgnoreCase) >= 0)
         {
             Fail(new FailureBuilder("DoesNotContainIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to contain ignoring case", substring)
                 .Finish());
         }
@@ -145,11 +145,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion ContainsPattern(string pattern, string? message = null)
     {
-        if (!Regex.IsMatch(Target, pattern))
+        if (!Regex.IsMatch(Subject, pattern))
         {
             Fail(new FailureBuilder("ContainsPattern()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To contain the pattern", pattern)
                 .Finish());
         }
@@ -165,11 +165,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotContainPattern(string pattern, string? message = null)
     {
-        if (Target is { } && Regex.IsMatch(Target, pattern))
+        if (Subject is { } && Regex.IsMatch(Subject, pattern))
         {
             Fail(new FailureBuilder("DoesNotContainPattern()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to contain the pattern", pattern)
                 .Finish());
         }
@@ -185,11 +185,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion StartsWith(string substring, string? message = null)
     {
-        if (Target is null || !Target.StartsWith(substring, false, CultureInfo.InvariantCulture))
+        if (Subject is null || !Subject.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("StartsWith()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To start with", substring)
                 .Finish());
         }
@@ -205,11 +205,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotStartWith(string substring, string? message = null)
     {
-        if (Target is { } && Target.StartsWith(substring, false, CultureInfo.InvariantCulture))
+        if (Subject is { } && Subject.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotStartWith()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to start with", substring)
                 .Finish());
         }
@@ -225,11 +225,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion StartsWithIgnoringCase(string substring, string? message = null)
     {
-        if (Target is null || !Target.StartsWith(substring, true, CultureInfo.InvariantCulture))
+        if (Subject is null || !Subject.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("StartsWithIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To start with ignoring case", substring)
                 .Finish());
         }
@@ -245,11 +245,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotStartWithIgnoringCase(string substring, string? message = null)
     {
-        if (Target is { } && Target.StartsWith(substring, true, CultureInfo.InvariantCulture))
+        if (Subject is { } && Subject.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotStartWithIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to start with ignoring case", substring)
                 .Finish());
         }
@@ -265,11 +265,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion EndsWith(string substring, string? message = null)
     {
-        if (Target is null || !Target.EndsWith(substring, false, CultureInfo.InvariantCulture))
+        if (Subject is null || !Subject.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("EndsWith()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To end with", substring)
                 .Finish());
         }
@@ -285,11 +285,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotEndWith(string substring, string? message = null)
     {
-        if (Target is { } && Target.EndsWith(substring, false, CultureInfo.InvariantCulture))
+        if (Subject is { } && Subject.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotEndWith()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to end with", substring)
                 .Finish());
         }
@@ -305,11 +305,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion EndsWithIgnoringCase(string substring, string? message = null)
     {
-        if (Target is null || !Target.EndsWith(substring, true, CultureInfo.InvariantCulture))
+        if (Subject is null || !Subject.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("EndsWithIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To end with ignoring case", substring)
                 .Finish());
         }
@@ -325,11 +325,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion DoesNotEndWithIgnoringCase(string substring, string? message = null)
     {
-        if (Target is { } && Target.EndsWith(substring, true, CultureInfo.InvariantCulture))
+        if (Subject is { } && Subject.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
             Fail(new FailureBuilder("DoesNotEndWithIgnoringCase()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to end with ignoring case", substring)
                 .Finish());
         }
@@ -344,11 +344,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsEmpty(string? message = null)
     {
-        if (Target is null || Target.Length > 0)
+        if (Subject is null || Subject.Length > 0)
         {
             Fail(new FailureBuilder("IsEmpty()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be empty")
                 .Finish());
         }
@@ -363,11 +363,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsNotEmpty(string? message = null)
     {
-        if (Target is null || Target.Length <= 0)
+        if (Subject is null || Subject.Length <= 0)
         {
             Fail(new FailureBuilder("IsNotEmpty()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to be empty")
                 .Finish());
         }
@@ -382,11 +382,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsNullOrEmpty(string? message = null)
     {
-        if (!string.IsNullOrEmpty(Target))
+        if (!string.IsNullOrEmpty(Subject))
         {
             Fail(new FailureBuilder("IsNullOrEmpty()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To be null or empty")
                 .Finish());
         }
@@ -401,11 +401,11 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion IsNotNullOrEmpty(string? message = null)
     {
-        if (string.IsNullOrEmpty(Target))
+        if (string.IsNullOrEmpty(Subject))
         {
             Fail(new FailureBuilder("IsNotNullOrEmpty()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("Not to be null or empty")
                 .Finish());
         }
@@ -421,22 +421,22 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion HasSize(int size, string? message = null)
     {
-        if (Target is null)
+        if (Subject is null)
         {
             Fail(new FailureBuilder("HasSize()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To have a length of", size)
                 .Append("But is null")
                 .Finish());
         }
-        else if (Target.Length != size)
+        else if (Subject.Length != size)
         {
             Fail(new FailureBuilder("HasSize()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To have a length of", size)
-                .Append("But has a length of", Target.Length)
+                .Append("But has a length of", Subject.Length)
                 .Finish());
         }
 
@@ -451,22 +451,22 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion HasAtLeastSize(int size, string? message = null)
     {
-        if (Target is null)
+        if (Subject is null)
         {
             Fail(new FailureBuilder("HasAtLeastSize()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To have at least a length of", size)
                 .Append("But is null")
                 .Finish());
         }
-        else if (Target.Length < size)
+        else if (Subject.Length < size)
         {
             Fail(new FailureBuilder("HasAtLeastSize()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To have at least a length of", size)
-                .Append("But has length of", Target.Length)
+                .Append("But has length of", Subject.Length)
                 .Finish());
         }
 
@@ -481,22 +481,22 @@ public class StringAssertion : ObjectAssertion<StringAssertion, string?>
     /// <returns>The current assertion.</returns>
     public StringAssertion HasAtMostSize(int size, string? message = null)
     {
-        if (Target is null)
+        if (Subject is null)
         {
             Fail(new FailureBuilder("HasAtMostSize()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To have at most a length of", size)
                 .Append("But is null")
                 .Finish());
         }
-        else if (Target.Length > size)
+        else if (Subject.Length > size)
         {
             Fail(new FailureBuilder("HasAtMostSize()")
                 .Append(message)
-                .Append("Expecting", Target)
+                .Append("Expecting", Subject)
                 .Append("To have at most a length of", size)
-                .Append("But has length of", Target.Length)
+                .Append("But has length of", Subject.Length)
                 .Finish());
         }
 

@@ -29,7 +29,8 @@ file static class AssertionExtensions
     }
 }
 
-file sealed class NumberAssertion<TNumber>(IFailureHandler failureHandler, TNumber value) : Assertion(failureHandler) where TNumber : struct, INumber<TNumber>
+file sealed class NumberAssertion<TNumber>(IFailureHandler failureHandler, TNumber value)
+    : Assertion(failureHandler, value) where TNumber : struct, INumber<TNumber>
 {
     public void IsEven()
     {
