@@ -1,5 +1,4 @@
 using AssertNet.Core.AssertionTypes;
-using System.Xml.Linq;
 
 namespace AssertNet;
 

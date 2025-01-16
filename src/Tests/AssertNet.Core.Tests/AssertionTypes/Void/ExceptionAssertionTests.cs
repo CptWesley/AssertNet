@@ -1,3 +1,4 @@
+using AssertNet.Core.AssertionTypes;
 using AssertNet.Core.AssertionTypes.Void;
 using AssertNet.Core.Failures;
 using AssertNet.Core.Tests.AssertionTypes.Objects;
@@ -7,15 +8,14 @@ namespace AssertNet.Core.Tests.AssertionTypes.Void;
 /// <summary>
 /// Test class for the <see cref="ExceptionAssertion"/> class.
 /// </summary>
-public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, Exception>
+public class ExceptionAssertionTests : ObjectAssertionTests<Assertion<Exception>, Exception>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ExceptionAssertionTests"/> class.
     /// </summary>
     public ExceptionAssertionTests()
+        : base(new Exception())
     {
-        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new ExceptionAssertion(FailureHandler.Object, new Exception());
     }
 
     /// <summary>
@@ -24,8 +24,8 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void ConstructorTest()
     {
-        Exception e = new Mock<Exception>(MockBehavior.Loose).Object;
-        ExceptionAssertion assertion = new ExceptionAssertion(FailureHandler.Object, e);
+        var e = new Mock<Exception>(MockBehavior.Loose).Object;
+        var assertion = new Assertion<Exception>(FailureHandler.Object, e);
         Assert.Same(FailureHandler.Object, assertion.FailureHandler);
         Assert.Same(e, assertion.Subject);
     }
@@ -37,7 +37,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     public void WithMessagePassTest()
     {
         string msg = "t2fdres4";
-        new ExceptionAssertion(FailureHandler.Object, new Exception(msg)).WithMessage(msg);
+        new Assertion<Exception>(FailureHandler.Object, new Exception(msg)).WithMessage(msg);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -48,7 +48,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     public void WithMessageFailTest()
     {
         string msg = "4356543rf";
-        new ExceptionAssertion(FailureHandler.Object, new Exception()).WithMessage(msg);
+        new Assertion<Exception>(FailureHandler.Object, new Exception()).WithMessage(msg);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -58,7 +58,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithMessageContainingPassTest()
     {
-        new ExceptionAssertion(FailureHandler.Object, new Exception("abcd")).WithMessageContaining("c");
+        new Assertion<Exception>(FailureHandler.Object, new Exception("abcd")).WithMessageContaining("c");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -68,7 +68,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithMessageContainingFailTest()
     {
-        new ExceptionAssertion(FailureHandler.Object, new Exception("b")).WithMessageContaining("a");
+        new Assertion<Exception>(FailureHandler.Object, new Exception("b")).WithMessageContaining("a");
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -78,7 +78,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithNoInnerExceptionPassTest()
     {
-        new ExceptionAssertion(FailureHandler.Object, new Exception()).WithNoInnerException();
+        new Assertion<Exception>(FailureHandler.Object, new Exception()).WithNoInnerException();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -88,7 +88,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithNoInnerExceptionFailTest()
     {
-        new ExceptionAssertion(
+        new Assertion<Exception>(
             FailureHandler.Object,
             new Exception(string.Empty, new Exception())).WithNoInnerException();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
@@ -100,8 +100,8 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithInnerExceptionPassTest()
     {
-        Exception inner = new Exception();
-        ExceptionAssertion assertion = new ExceptionAssertion(
+        var inner = new Exception();
+        var assertion = new Assertion<Exception>(
             FailureHandler.Object,
             new Exception(string.Empty, inner)).WithInnerException();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
@@ -114,7 +114,7 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithInnerExceptionFailTest()
     {
-        new ExceptionAssertion(
+        new Assertion<Exception>(
             FailureHandler.Object,
             new Exception(string.Empty)).WithInnerException();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
@@ -127,8 +127,8 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithInnerExceptionSpecificPassTest()
     {
-        ArgumentException inner = new ArgumentException(string.Empty);
-        ExceptionAssertion assertion = new ExceptionAssertion(
+        var inner = new ArgumentException(string.Empty);
+        var assertion = new Assertion<Exception>(
             FailureHandler.Object,
             new Exception(string.Empty, inner)).WithInnerException<ArgumentException>();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
@@ -142,11 +142,10 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithInnerExceptionSpecificNoneFailTest()
     {
-        ExceptionAssertion assertion = new ExceptionAssertion(
+        var assertion = new Assertion<Exception>(
             FailureHandler.Object,
             new Exception(string.Empty)).WithInnerException<ArgumentException>();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(assertion);
     }
 
     /// <summary>
@@ -156,11 +155,10 @@ public class ExceptionAssertionTests : ObjectAssertionTests<ExceptionAssertion, 
     [Fact]
     public void WithInnerExceptionSpecificWrongFailTest()
     {
-        Exception inner = new Exception();
-        ExceptionAssertion assertion = new ExceptionAssertion(
+        var inner = new Exception();
+        var assertion = new Assertion<Exception>(
             FailureHandler.Object,
             new Exception(string.Empty, inner)).WithInnerException<ArgumentException>();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
-        Assert.Null(assertion);
     }
 }

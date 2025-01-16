@@ -129,7 +129,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the thrown exception.</returns>
-    public ExceptionAssertion ThrowsException(string? message = null)
+    public IAssertion<Exception> ThrowsException(string? message = null)
     {
         try
         {
@@ -137,7 +137,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
         }
         catch (Exception e)
         {
-            return new ExceptionAssertion(FailureHandler, e);
+            return new Assertion<Exception>(FailureHandler, e);
         }
 
         this.Fail(new FailureBuilder("ThrowsException()")
@@ -146,7 +146,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
                 .Append("To throw an exception, but nothing was thrown")
                 .Finish());
 
-        return null;
+        return new Assertion<Exception>(FailureHandler, null!);
     }
 
     /// <summary>
@@ -155,8 +155,36 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Exception type to expect.</typeparam>
     /// <returns>An exception assertion for the thrown exception.</returns>
-    public ExceptionAssertion ThrowsException<T>(string? message = null)
-        where T : Exception => ThrowsException(typeof(T), message);
+    public IAssertion<T> ThrowsException<T>(string? message = null)
+        where T : Exception
+    {
+        try
+        {
+            Action.Invoke();
+        }
+        catch (T e)
+        {
+            return new Assertion<T>(FailureHandler, e);
+        }
+        catch (Exception e)
+        {
+            this.Fail(new FailureBuilder("ThrowsException()")
+                .Append(message)
+                .Append("Expecting", Action)
+                .Append("To throw an exception of type", typeof(T))
+                .Append("But threw", e)
+                .Finish());
+            return new Assertion<T>(FailureHandler, null!);
+        }
+
+        this.Fail(new FailureBuilder("ThrowsException()")
+            .Append(message)
+            .Append("Expecting", Action)
+            .Append("To throw an exception of type", typeof(T))
+            .Finish());
+
+        return new Assertion<T>(FailureHandler, null!);
+    }
 
     /// <summary>
     /// Assert that the action throws a specific exception.
@@ -164,7 +192,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
     /// <param name="t">Exception type to expect.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the thrown exception.</returns>
-    public ExceptionAssertion ThrowsException(Type t, string? message = null)
+    public IAssertion<Exception> ThrowsException(Type t, string? message = null)
     {
         try
         {
@@ -174,7 +202,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
         {
             if (e.GetType().IsSubclassOf(t) || e.GetType() == t)
             {
-                return new ExceptionAssertion(FailureHandler, e);
+                return new Assertion<Exception>(FailureHandler, e);
             }
             else
             {
@@ -184,7 +212,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
                     .Append("To throw an exception of type", t)
                     .Append("But threw", e)
                     .Finish());
-                return null;
+                return new Assertion<Exception>(FailureHandler, null!);
             }
         }
 
@@ -194,7 +222,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
             .Append("To throw an exception of type", t)
             .Finish());
 
-        return null;
+        return new Assertion<Exception>(FailureHandler, null!);
     }
 
     /// <summary>
@@ -203,8 +231,38 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <typeparam name="T">Exception type to expect.</typeparam>
     /// <returns>An exception assertion for the thrown exception.</returns>
-    public ExceptionAssertion ThrowsExactlyException<T>(string? message = null)
-        where T : Exception => ThrowsExactlyException(typeof(T), message);
+    public IAssertion<T> ThrowsExactlyException<T>(string? message = null)
+        where T : Exception
+    {
+        try
+        {
+            Action.Invoke();
+        }
+        catch (T e) when (e.GetType() == typeof(T))
+        {
+            return new Assertion<T>(FailureHandler, e);
+        }
+        catch (Exception e)
+        {
+            this.Fail(new FailureBuilder("ThrowsExactlyException()")
+                .Append(message)
+                .Append("Expecting", Action)
+                .Append("To throw an exception exactly of type", typeof(T))
+                .Append("But threw", e)
+                .Finish());
+
+            return new Assertion<T>(FailureHandler, null!);
+        }
+
+        this.Fail(new FailureBuilder("ThrowsExactlyException()")
+            .Append(message)
+            .Append("Expecting", Action)
+            .Append("To throw an exception exactly of type", typeof(T))
+            .Append("But no exception was thrown")
+            .Finish());
+
+        return new Assertion<T>(FailureHandler, null!);
+    }
 
     /// <summary>
     /// Assert that the action throws exactly a specific exception.
@@ -212,7 +270,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
     /// <param name="t">Exception type to expect.</param>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>An exception assertion for the thrown exception.</returns>
-    public ExceptionAssertion ThrowsExactlyException(Type t, string? message = null)
+    public IAssertion<Exception> ThrowsExactlyException(Type t, string? message = null)
     {
         try
         {
@@ -222,7 +280,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
         {
             if (e.GetType() == t)
             {
-                return new ExceptionAssertion(FailureHandler, e);
+                return new Assertion<Exception>(FailureHandler, e);
             }
             else
             {
@@ -232,7 +290,7 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
                     .Append("To throw an exception exactly of type", t)
                     .Append("But threw", e)
                     .Finish());
-                return null;
+                return new Assertion<Exception>(FailureHandler, null!);
             }
         }
 
@@ -240,8 +298,9 @@ public class VoidAssertion : Assertion<VoidAssertion, Action>
             .Append(message)
             .Append("Expecting", Action)
             .Append("To throw an exception exactly of type", t)
+            .Append("But no exception was thrown")
             .Finish());
 
-        return null;
+        return new Assertion<Exception>(FailureHandler, null!);
     }
 }
