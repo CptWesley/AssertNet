@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="../../library.props" />
-
-  <PropertyGroup>
-    <PackageId>AssertNet.Core</PackageId>
-  </PropertyGroup>
-
-</Project>
