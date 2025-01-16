@@ -1,5 +1,4 @@
 using AssertNet.Core.AssertionTypes;
-using AssertNet.Core.AssertionTypes.Extensions;
 using AssertNet.Core.AssertionTypes.Objects;
 using AssertNet.Core.AssertionTypes.Void;
 

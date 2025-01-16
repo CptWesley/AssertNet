@@ -1,6 +1,4 @@
 using AssertNet.Core.AssertionTypes;
-using AssertNet.Core.AssertionTypes.Extensions;
-using AssertNet.Core.Failures;
 
 namespace AssertNet.Core.Tests.AssertionTypes.Objects;
 

@@ -1,4 +1,6 @@
-namespace AssertNet.Core.AssertionTypes.Extensions;
+using AssertNet.Core.AssertionTypes;
+
+namespace AssertNet;
 
 /// <summary>
 /// Class representing assertions made about strings.
@@ -374,6 +376,7 @@ public static class StringAssertions
         return assertion;
     }
 
+    /*
     /// <summary>
     /// Checks if the string is empty.
     /// </summary>
@@ -461,6 +464,7 @@ public static class StringAssertions
 
         return assertion;
     }
+    */
 
     /// <summary>
     /// Checks if the string has a certain size.
