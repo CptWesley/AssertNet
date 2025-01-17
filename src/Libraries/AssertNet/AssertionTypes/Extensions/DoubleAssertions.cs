@@ -126,7 +126,7 @@ public static class DoubleAssertions
     {
         if (assertion.Subject < other - margin || assertion.Subject > other + margin)
         {
-            assertion.Fail(new FailureBuilder("IsEqualTo()")
+            assertion.Fail(new FailureBuilder("IsApproximately()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", other - margin)
@@ -150,7 +150,7 @@ public static class DoubleAssertions
     {
         if (assertion.Subject >= other - margin && assertion.Subject <= other + margin)
         {
-            assertion.Fail(new FailureBuilder("IsNotEqualTo()")
+            assertion.Fail(new FailureBuilder("IsNotApproximately()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be lesser than", other - margin)
