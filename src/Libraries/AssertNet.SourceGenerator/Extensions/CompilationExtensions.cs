@@ -112,6 +112,10 @@ public static class CompilationExtensions
             SpecialType.System_Decimal => true,
             SpecialType.System_IntPtr => true,
             SpecialType.System_UIntPtr => true,
-            _ => false,
+            _ => type.ToString() switch
+            {
+                "System.Numerics.BigInteger" => true,
+                _ => false,
+            },
         };
 }
