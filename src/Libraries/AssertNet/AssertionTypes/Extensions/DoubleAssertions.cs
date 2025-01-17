@@ -13,29 +13,6 @@ public static partial class DoubleAssertions
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsPositiveOrZero<TAssert>(this TAssert assertion, string? message = null)
-        where TAssert : IAssertion<double>
-    {
-
-
-        if (assertion.Subject < 0)
-        {
-            assertion.Fail(new FailureBuilder("IsPositiveOrZero()")
-                .Append(message)
-                .Append("Expecting", assertion.Subject)
-                .Append("To be greater than or equal to", 0)
-                .Finish());
-        }
-
-        return assertion;
-    }
-
-    /// <summary>
-    /// Asserts if a double is greater than or equal to zero.
-    /// </summary>
-    /// <param name="message">Custom message for the assertion failure.</param>
-    /// <returns>The current assertion.</returns>
-    [Assertion]
     public static TAssert IsNegativeOrZero<TAssert>(this TAssert assertion, string? message = null)
         where TAssert : IAssertion<double>
     {

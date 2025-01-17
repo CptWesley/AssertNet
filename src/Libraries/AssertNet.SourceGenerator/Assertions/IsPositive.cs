@@ -3,8 +3,17 @@ namespace AssertNet.SourceGenerator.Assertions;
 /// <summary>
 /// Generates the IsPositive assertion.
 /// </summary>
-internal sealed class IsPositive() : StaticBooleanMethodAssertion("IsPositive")
+internal sealed class IsPositive : Assertion
 {
+    private static readonly IsPositiveOrZero IsPositiveOrZero = new();
+    private static readonly IsZero IsZero = new();
+
+    /// <inheritdoc />
+    [Pure]
+    public override bool Applies(ITypeSymbol type)
+        => IsPositiveOrZero.IsApplicableFor(type)
+        && IsZero.IsApplicableFor(type);
+
     /// <inheritdoc />
     [Pure]
     public override string GetCode(string name)
@@ -18,7 +27,7 @@ internal sealed class IsPositive() : StaticBooleanMethodAssertion("IsPositive")
         public static TAssert IsPositive<TAssert>(this TAssert assertion, global::System.String? message = null)
             where TAssert : global::AssertNet.AssertionTypes.IAssertion<{name}>
         {{
-            if (!{name}.IsPositive(assertion.Subject))
+            if (!{name}.IsPositive(assertion.Subject) || {name}.IsZero(assertion.Subject))
             {{
                 assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsPositive()"")
                      .Append(message)
@@ -39,7 +48,7 @@ internal sealed class IsPositive() : StaticBooleanMethodAssertion("IsPositive")
         public static TAssert IsNotPositive<TAssert>(this TAssert assertion, global::System.String? message = null)
             where TAssert : global::AssertNet.AssertionTypes.IAssertion<{name}>
         {{
-            if ({name}.IsPositive(assertion.Subject))
+            if ({name}.IsPositive(assertion.Subject) && !{name}.IsZero(assertion.Subject))
             {{
                 assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotPositive()"")
                      .Append(message)
