@@ -1,7 +1,7 @@
 namespace AssertNet.AssertionTypes;
 
 /// <summary>
-/// Class representing assertions made about doubles (and other numeric values).
+/// Class representing assertions made about <see cref="double"/>s.
 /// </summary>
 /// <seealso cref="Assertion{TAssert, TTarget}" />
 [GenerateAssertionsFor<double>]
