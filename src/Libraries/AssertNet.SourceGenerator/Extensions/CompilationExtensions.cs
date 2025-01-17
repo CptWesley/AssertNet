@@ -118,4 +118,78 @@ public static class CompilationExtensions
                 _ => false,
             },
         };
+
+    /// <summary>
+    /// Checks if the type defines the given arithmetic operator.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <param name="op">The operator name.</param>
+    /// <param name="arity">The operator arity.</param>
+    /// <param name="specialType">The special return type if any.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool DefinesOperator(this ITypeSymbol type, string op, int arity, SpecialType? specialType = null)
+        => type.GetMembers()
+        .OfType<IMethodSymbol>()
+        .Where(m => m.Name == op || m.Name.EndsWith($".{op}"))
+        .Where(m => m.IsStatic)
+        .Where(m => m.Arity == 0)
+        .Where(m => m.Parameters.Length == arity)
+        .Where(m => m.Parameters.All(p => SymbolEqualityComparer.Default.Equals(p.Type, type)))
+        .Any(m =>
+        {
+            if (specialType is { } st)
+            {
+                return m.ReturnType.SpecialType == st;
+            }
+            else
+            {
+                return SymbolEqualityComparer.Default.Equals(m.ReturnType, type);
+            }
+        });
+
+    /// <summary>
+    /// Checks if the type defines the addition operator.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool DefinesAddition(this ITypeSymbol type)
+        => type.DefinesOperator("op_Addition", 2);
+
+    /// <summary>
+    /// Checks if the type defines the subtraction operator.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool DefinesSubtraction(this ITypeSymbol type)
+        => type.DefinesOperator("op_Subtraction", 2);
+
+    /// <summary>
+    /// Checks if the type defines the subtraction operator.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool DefinesGreaterThan(this ITypeSymbol type)
+        => type.DefinesOperator("op_GreaterThan", 2, SpecialType.System_Boolean);
+
+    /// <summary>
+    /// Checks if the type defines the subtraction operator.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool DefinesLessThan(this ITypeSymbol type)
+        => type.DefinesOperator("op_LessThan", 2, SpecialType.System_Boolean);
+
+    /// <summary>
+    /// Checks if the type defines the minus operator.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool DefinesMinus(this ITypeSymbol type)
+        => type.DefinesOperator("op_UnaryNegation", 1);
 }

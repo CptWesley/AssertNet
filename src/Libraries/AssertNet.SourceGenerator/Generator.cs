@@ -151,6 +151,12 @@ internal sealed class Generator : IIncrementalGenerator
                 sb.AppendLine($"// - {member} ({member.Name} // {member.GetType()})");
             }
         }
+
+        sb.AppendLine();
+        sb.AppendLine($"// DefinesAddition: {type.DefinesAddition()}");
+        sb.AppendLine($"// DefinesSubtraction: {type.DefinesSubtraction()}");
+        sb.AppendLine($"// DefinesLessThan: {type.DefinesLessThan()}");
+        sb.AppendLine($"// DefinesGreaterThan: {type.DefinesGreaterThan()}");
     }
 
     [Pure]
