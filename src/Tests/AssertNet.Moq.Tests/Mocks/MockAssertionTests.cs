@@ -6,7 +6,7 @@ using AssertNet.Moq.Mocks;
 namespace AssertNet.Moq.Tests.Mocks;
 
 /// <summary>
-/// Test class for the <see cref="MockAssertion{T}"/> class.
+/// Test class for the mocks.
 /// </summary>
 public class MockAssertionTests
 {
