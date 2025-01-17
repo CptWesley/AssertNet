@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="../../sourcegenerator.props" />
+
+  <PropertyGroup>
+    <PackageId>AssertNet.SourceGenerator</PackageId>
+  </PropertyGroup>
+
+</Project>

@@ -64,8 +64,8 @@ public static class EquivalencyHelper
 
         for (int i = 0; i < that.Length; ++i)
         {
-            object thatCur = that.GetValue(i);
-            object otherCur = other.GetValue(i);
+            var thatCur = that.GetValue(i);
+            var otherCur = other.GetValue(i);
             if (thatCur == null && otherCur == null)
             {
                 continue;
@@ -83,7 +83,7 @@ public static class EquivalencyHelper
     [Pure]
     private static bool ObjectEquals(object that, object other, Dictionary<ReferenceWrapper, HashSet<ReferenceWrapper>> comparisons)
     {
-        Type type = that.GetType();
+        var type = that.GetType();
         while (type != null)
         {
             if (!EqualsForType(that, other, type, comparisons))

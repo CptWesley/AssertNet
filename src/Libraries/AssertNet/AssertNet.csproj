@@ -6,4 +6,8 @@
     <PackageId>AssertNet</PackageId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../AssertNet.SourceGenerator/AssertNet.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
 </Project>
