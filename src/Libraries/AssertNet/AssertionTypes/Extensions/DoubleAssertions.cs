@@ -1,41 +1,32 @@
-namespace AssertNet.AssertionTypes.Objects;
+namespace AssertNet.AssertionTypes;
 
 /// <summary>
 /// Class representing assertions made about doubles (and other numeric values).
 /// </summary>
 /// <seealso cref="Assertion{TAssert, TTarget}" />
-public class DoubleAssertion : Assertion<DoubleAssertion, double>
+public static class DoubleAssertions
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DoubleAssertion"/> class.
-    /// </summary>
-    /// <param name="failureHandler">The failure handler of the assertion.</param>
-    /// <param name="target">The object which is under test.</param>
-    public DoubleAssertion(IFailureHandler failureHandler, double target)
-        : base(failureHandler, target)
-    {
-    }
-
     /// <summary>
     /// Asserts if a double is equal to zero.
     /// </summary>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsZero(string? message = null)
+    public static TAssert IsZero<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion<double>
     {
 #pragma warning disable S1244 // Intentionally comparing to exactly zero.
-        if (Subject != 0)
+        if (assertion.Subject != 0)
 #pragma warning restore S1244
         {
-            this.Fail(new FailureBuilder("IsZero()")
+            assertion.Fail(new FailureBuilder("IsZero()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be equal to", 0)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -44,18 +35,19 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsPositive(string? message = null)
+    public static TAssert IsPositive<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion<double>
     {
-        if (Subject <= 0)
+        if (assertion.Subject <= 0)
         {
-            this.Fail(new FailureBuilder("IsPositive()")
+            assertion.Fail(new FailureBuilder("IsPositive()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be greater than", 0)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -64,18 +56,19 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsPositiveOrZero(string? message = null)
+    public static TAssert IsPositiveOrZero<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion<double>
     {
-        if (Subject < 0)
+        if (assertion.Subject < 0)
         {
-            this.Fail(new FailureBuilder("IsPositiveOrZero()")
+            assertion.Fail(new FailureBuilder("IsPositiveOrZero()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", 0)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -84,18 +77,19 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsNegative(string? message = null)
+    public static TAssert IsNegative<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion<double>
     {
-        if (Subject >= 0)
+        if (assertion.Subject >= 0)
         {
-            this.Fail(new FailureBuilder("IsNegative()")
+            assertion.Fail(new FailureBuilder("IsNegative()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be lesser than", 0)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -104,18 +98,19 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsNegativeOrZero(string? message = null)
+    public static TAssert IsNegativeOrZero<TAssert>(this TAssert assertion, string? message = null)
+        where TAssert : IAssertion<double>
     {
-        if (Subject > 0)
+        if (assertion.Subject > 0)
         {
-            this.Fail(new FailureBuilder("IsNegativeOrZero()")
+            assertion.Fail(new FailureBuilder("IsNegativeOrZero()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be lesser than or equal to", 0)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -127,24 +122,25 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
     [Assertion]
-    public DoubleAssertion IsInRange(double minimum, double maximum, string? message = null)
+    public static TAssert IsInRange<TAssert>(this TAssert assertion, double minimum, double maximum, string? message = null)
+        where TAssert : IAssertion<double>
     {
         if (maximum <= minimum)
         {
             throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
         }
 
-        if (Subject < minimum || Subject > maximum)
+        if (assertion.Subject < minimum || assertion.Subject > maximum)
         {
-            this.Fail(new FailureBuilder("IsInRange()")
+            assertion.Fail(new FailureBuilder("IsInRange()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", minimum)
                 .Append("And lesser than or equal to", maximum)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -156,24 +152,25 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <returns>The current assertion.</returns>
     /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
     [Assertion]
-    public DoubleAssertion IsNotInRange(double minimum, double maximum, string? message = null)
+    public static TAssert IsNotInRange<TAssert>(this TAssert assertion, double minimum, double maximum, string? message = null)
+        where TAssert : IAssertion<double>
     {
         if (maximum <= minimum)
         {
             throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
         }
 
-        if (Subject >= minimum && Subject <= maximum)
+        if (assertion.Subject >= minimum && assertion.Subject <= maximum)
         {
-            this.Fail(new FailureBuilder("IsNotInRange()")
+            assertion.Fail(new FailureBuilder("IsNotInRange()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be lesser than", minimum)
                 .Append("Or greater than", maximum)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -184,19 +181,20 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsEqualTo(double other, double margin, string? message = null)
+    public static TAssert IsApproximately<TAssert>(this TAssert assertion, double other, double margin, string? message = null)
+        where TAssert : IAssertion<double>
     {
-        if (Subject < other - margin || Subject > other + margin)
+        if (assertion.Subject < other - margin || assertion.Subject > other + margin)
         {
-            this.Fail(new FailureBuilder("IsEqualTo()")
+            assertion.Fail(new FailureBuilder("IsEqualTo()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", other - margin)
                 .Append("And lesser than or equal to", other + margin)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 
     /// <summary>
@@ -207,18 +205,19 @@ public class DoubleAssertion : Assertion<DoubleAssertion, double>
     /// <param name="message">Custom message for the assertion failure.</param>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public DoubleAssertion IsNotEqualTo(double other, double margin, string? message = null)
+    public static TAssert IsNotApproximately<TAssert>(this TAssert assertion, double other, double margin, string? message = null)
+        where TAssert : IAssertion<double>
     {
-        if (Subject >= other - margin && Subject <= other + margin)
+        if (assertion.Subject >= other - margin && assertion.Subject <= other + margin)
         {
-            this.Fail(new FailureBuilder("IsNotEqualTo()")
+            assertion.Fail(new FailureBuilder("IsNotEqualTo()")
                 .Append(message)
-                .Append("Expecting", Subject)
+                .Append("Expecting", assertion.Subject)
                 .Append("To be lesser than", other - margin)
                 .Append("Or greater than", other + margin)
                 .Finish());
         }
 
-        return this;
+        return assertion;
     }
 }

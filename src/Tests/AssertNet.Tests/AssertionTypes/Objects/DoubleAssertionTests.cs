@@ -1,30 +1,20 @@
-using AssertNet.AssertionTypes.Objects;
-using AssertNet.Failures;
+using AssertNet.AssertionTypes;
 
 namespace AssertNet.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="DoubleAssertion"/> class.
+/// Test class for the <see cref="Assertion{Double}"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double>
+public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, double>
 {
-    /// <summary>
-    /// Initializes a new instance of the <see cref="DoubleAssertionTests"/> class.
-    /// </summary>
-    public DoubleAssertionTests()
-    {
-        FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new DoubleAssertion(FailureHandler.Object, 500);
-    }
-
     /// <summary>
     /// Checks that the assertion passes if the value is equal to 0.
     /// </summary>
     [Fact]
     public void IsZeroPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsZero();
+        CreateAssertion(0d).IsZero();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -34,7 +24,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsZeroFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 1).IsZero();
+        CreateAssertion(1d).IsZero();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -44,7 +34,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsPositivePassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 1).IsPositive();
+        CreateAssertion(1d).IsPositive();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -54,7 +44,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsPositiveFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsPositive();
+        CreateAssertion(0d).IsPositive();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -64,7 +54,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsPositiveOrZeroPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsPositiveOrZero();
+        CreateAssertion(0d).IsPositiveOrZero();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -74,7 +64,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsPositiveOrZeroFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, -1).IsPositiveOrZero();
+        CreateAssertion(-1d).IsPositiveOrZero();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -84,7 +74,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNegativePassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, -1).IsNegative();
+        CreateAssertion(-1d).IsNegative();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -94,7 +84,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNegativeFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsNegative();
+        CreateAssertion(0d).IsNegative();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -104,7 +94,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNegativeOrZeroPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsNegativeOrZero();
+        CreateAssertion(0d).IsNegativeOrZero();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -114,7 +104,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNegativeOrZeroFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 1).IsNegativeOrZero();
+        CreateAssertion(1d).IsNegativeOrZero();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -124,7 +114,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsInRangePassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 9).IsInRange(8, 10);
+        CreateAssertion(9d).IsInRange(8, 10);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -134,7 +124,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsInRangeExceptionTest()
     {
-        Assert.Throws<ArgumentException>(() => new DoubleAssertion(FailureHandler.Object, 0).IsInRange(10, 8));
+        Assert.Throws<ArgumentException>(() => CreateAssertion(0d).IsInRange(10, 8));
     }
 
     /// <summary>
@@ -143,7 +133,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsInRangeLowFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 3).IsInRange(5, 6);
+        CreateAssertion(3d).IsInRange(5, 6);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -153,7 +143,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsInRangeHighFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 4).IsInRange(2, 3);
+        CreateAssertion(4d).IsInRange(2, 3);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -163,7 +153,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNotInRangeLowPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 6).IsNotInRange(8, 10);
+        CreateAssertion(6d).IsNotInRange(8, 10);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -173,7 +163,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNotInRangeHighPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 5).IsNotInRange(3, 4);
+        CreateAssertion(5d).IsNotInRange(3, 4);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -183,7 +173,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNotInRangeExceptionTest()
     {
-        Assert.Throws<ArgumentException>(() => new DoubleAssertion(FailureHandler.Object, 0).IsNotInRange(10, 8));
+        Assert.Throws<ArgumentException>(() => CreateAssertion(0d).IsNotInRange(10, 8));
     }
 
     /// <summary>
@@ -192,7 +182,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsNotInRangeFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 5).IsNotInRange(0, 10);
+        CreateAssertion(5d).IsNotInRange(0, 10);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -202,7 +192,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualToDoublePassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 20).IsEqualTo(20);
+        CreateAssertion(20d).IsEqualTo(20);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -212,7 +202,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualToDoubleFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsEqualTo(1);
+        CreateAssertion(0d).IsEqualTo(1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -222,7 +212,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualToMarginPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 21).IsEqualTo(20, 5);
+        CreateAssertion(21d).IsApproximately(20, 5);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -232,7 +222,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualToMarginFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 5).IsEqualTo(1, 1);
+        CreateAssertion(5d).IsApproximately(1, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -242,7 +232,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualNotToDoublePassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsNotEqualTo(1);
+        CreateAssertion(0d).IsNotEqualTo(1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -252,7 +242,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualNotToDoubleFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 3).IsNotEqualTo(3);
+        CreateAssertion(3d).IsNotEqualTo(3);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -262,7 +252,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualNotToMarginPassTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 0).IsNotEqualTo(10, 5);
+        CreateAssertion(0d).IsNotApproximately(10, 5);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -272,7 +262,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<DoubleAssertion, double
     [Fact]
     public void IsEqualNotToMarginFailTest()
     {
-        new DoubleAssertion(FailureHandler.Object, 3).IsNotEqualTo(4, 1);
+        CreateAssertion(3d).IsNotApproximately(4, 1);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 }
