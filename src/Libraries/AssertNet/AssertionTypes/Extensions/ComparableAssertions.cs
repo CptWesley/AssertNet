@@ -148,4 +148,96 @@ public static class ComparableAssertions
 
         return assertion;
     }
+
+    /// <summary>
+    /// Asserts if a double is within a certain range.
+    /// </summary>
+    /// <param name="assertion">
+    /// The value under test to assert on.
+    /// </param>
+    /// <param name="minimum">
+    /// Lower bound of the range the value should be in.
+    /// </param>
+    /// <param name="maximum">
+    /// Upper bound of the range the value should be in.
+    /// </param>
+    /// <param name="message">
+    /// Custom message for the assertion failure.
+    /// </param>
+    /// <typeparam name="TAssert">
+    /// The type of the assertion.
+    /// </typeparam>
+    /// <typeparam name="TSubject">
+    /// The type of the subject.
+    /// </typeparam>
+    /// <returns>The current assertion.</returns>
+    /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
+    [Assertion]
+    public static TAssert IsInRange<TAssert, TSubject>(this TAssert assertion, TSubject minimum, TSubject maximum, string? message = null)
+        where TAssert : IAssertion<TSubject>
+        where TSubject : IComparable<TSubject>
+    {
+        if (maximum.CompareTo(minimum) <= 0)
+        {
+            throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
+        }
+
+        if (assertion.Subject.CompareTo(minimum) < 0 || assertion.Subject.CompareTo(maximum) > 0)
+        {
+            assertion.Fail(new FailureBuilder("IsInRange()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be greater than or equal to", minimum)
+                .Append("And lesser than or equal to", maximum)
+                .Finish());
+        }
+
+        return assertion;
+    }
+
+    /// <summary>
+    /// Asserts if a double is outside a certain range.
+    /// </summary>
+    /// <param name="assertion">
+    /// The value under test to assert on.
+    /// </param>
+    /// <param name="minimum">
+    /// Lower bound of the range the value may not be in.
+    /// </param>
+    /// <param name="maximum">
+    /// Upper bound of the range the value may not be in.
+    /// </param>
+    /// <param name="message">
+    /// Custom message for the assertion failure.
+    /// </param>
+    /// <typeparam name="TAssert">
+    /// The type of the assertion.
+    /// </typeparam>
+    /// <typeparam name="TSubject">
+    /// The type of the subject.
+    /// </typeparam>
+    /// <returns>The current assertion.</returns>
+    /// <exception cref="ArgumentException">Thrown if the maximum is larger or equal to the minimum.</exception>
+    [Assertion]
+    public static TAssert IsNotInRange<TAssert, TSubject>(this TAssert assertion, TSubject minimum, TSubject maximum, string? message = null)
+        where TAssert : IAssertion<TSubject>
+        where TSubject : IComparable<TSubject>
+    {
+        if (maximum.CompareTo(minimum) <= 0)
+        {
+            throw new ArgumentException($"Value for 'minimum' ({minimum}) should be lower than the value for 'maximum' ({maximum}).");
+        }
+
+        if (assertion.Subject.CompareTo(minimum) >= 0 && assertion.Subject.CompareTo(maximum) <= 0)
+        {
+            assertion.Fail(new FailureBuilder("IsNotInRange()")
+                .Append(message)
+                .Append("Expecting", assertion.Subject)
+                .Append("To be lesser than", minimum)
+                .Append("Or greater than", maximum)
+                .Finish());
+        }
+
+        return assertion;
+    }
 }

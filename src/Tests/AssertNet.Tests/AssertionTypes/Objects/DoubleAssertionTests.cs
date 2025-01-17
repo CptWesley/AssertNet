@@ -6,7 +6,7 @@ namespace AssertNet.Tests.AssertionTypes.Objects;
 /// Test class for the <see cref="Assertion{Double}"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, double>
+public class DoubleAssertionTests() : ObjectAssertionTests<Assertion<double>, double>(42)
 {
     /// <summary>
     /// Checks that the assertion passes if the value is equal to 0.
@@ -114,7 +114,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsInRangePassTest()
     {
-        CreateAssertion(9d).IsInRange(8, 10);
+        CreateAssertion(9d).IsInRange(8d, 10d);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -124,7 +124,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsInRangeExceptionTest()
     {
-        Assert.Throws<ArgumentException>(() => CreateAssertion(0d).IsInRange(10, 8));
+        Assert.Throws<ArgumentException>(() => CreateAssertion(0d).IsInRange(10d, 8d));
     }
 
     /// <summary>
@@ -133,7 +133,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsInRangeLowFailTest()
     {
-        CreateAssertion(3d).IsInRange(5, 6);
+        CreateAssertion(3d).IsInRange(5d, 6d);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -143,7 +143,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsInRangeHighFailTest()
     {
-        CreateAssertion(4d).IsInRange(2, 3);
+        CreateAssertion(4d).IsInRange(2d, 3d);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
@@ -153,7 +153,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsNotInRangeLowPassTest()
     {
-        CreateAssertion(6d).IsNotInRange(8, 10);
+        CreateAssertion(6d).IsNotInRange(8d, 10d);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -163,7 +163,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsNotInRangeHighPassTest()
     {
-        CreateAssertion(5d).IsNotInRange(3, 4);
+        CreateAssertion(5d).IsNotInRange(3d, 4d);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }
 
@@ -173,7 +173,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsNotInRangeExceptionTest()
     {
-        Assert.Throws<ArgumentException>(() => CreateAssertion(0d).IsNotInRange(10, 8));
+        Assert.Throws<ArgumentException>(() => CreateAssertion(0d).IsNotInRange(10d, 8d));
     }
 
     /// <summary>
@@ -182,7 +182,7 @@ public class DoubleAssertionTests : ObjectAssertionTests<Assertion<double>, doub
     [Fact]
     public void IsNotInRangeFailTest()
     {
-        CreateAssertion(5d).IsNotInRange(0, 10);
+        CreateAssertion(5d).IsNotInRange(0d, 10d);
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
 
