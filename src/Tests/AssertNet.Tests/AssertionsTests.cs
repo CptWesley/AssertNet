@@ -1,5 +1,4 @@
 using AssertNet.AssertionTypes;
-using AssertNet.AssertionTypes.Objects;
 
 namespace AssertNet.Tests;
 
@@ -49,7 +48,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(4.5);
         Assert.NotNull(assertion);
-        Assert.IsType<DoubleAssertion>(assertion);
+        Assert.IsType<Assertion<double>>(assertion);
     }
 
     /// <summary>
