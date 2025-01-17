@@ -138,25 +138,6 @@ internal sealed class Generator : IIncrementalGenerator
             var code = assertion.GetCode(name);
             sb.AppendLine(code);
         }
-
-        sb.AppendLine($"// {GetSafeName(type)}");
-        foreach (var member in type.GetMembers())
-        {
-            if (member is IMethodSymbol method)
-            {
-                sb.AppendLine($"// - {member} ({method.Name} // {method.ReturnType} // {method.MethodKind} // {member.GetType()})");
-            }
-            else
-            {
-                sb.AppendLine($"// - {member} ({member.Name} // {member.GetType()})");
-            }
-        }
-
-        sb.AppendLine();
-        sb.AppendLine($"// DefinesAddition: {type.DefinesAddition()}");
-        sb.AppendLine($"// DefinesSubtraction: {type.DefinesSubtraction()}");
-        sb.AppendLine($"// DefinesLessThan: {type.DefinesLessThan()}");
-        sb.AppendLine($"// DefinesGreaterThan: {type.DefinesGreaterThan()}");
     }
 
     [Pure]
