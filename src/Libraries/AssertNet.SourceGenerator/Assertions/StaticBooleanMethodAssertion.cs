@@ -16,7 +16,7 @@ internal abstract class StaticBooleanMethodAssertion(string name) : Assertion
     public override bool Applies(ITypeSymbol type, IMethodSymbol method)
         => method.IsStatic
         && method.Parameters.Length == 1
-        && (method.Name == Name || method.Name.EndsWith($".{Name}"))
+        && method.Name == Name
         && method.ReturnType.SpecialType is SpecialType.System_Boolean
         && SymbolEqualityComparer.Default.Equals(method.Parameters[0].Type, type);
 }
