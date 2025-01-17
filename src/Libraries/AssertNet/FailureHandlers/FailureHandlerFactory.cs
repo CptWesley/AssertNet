@@ -22,7 +22,7 @@ public static class FailureHandlerFactory
             .Where(t => typeof(IFailureHandler).IsAssignableFrom(t) && !t.IsAbstract && t != typeof(FallbackFailureHandler));
         foreach (Type type in types)
         {
-            var handler = (IFailureHandler)Activator.CreateInstance(type);
+            var handler = (IFailureHandler)Activator.CreateInstance(type)!;
 
             if (handler.IsAvailable())
             {

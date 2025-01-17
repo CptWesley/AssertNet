@@ -45,7 +45,7 @@
     <IsTestProject>false</IsTestProject>
     <GenerateSBOM>true</GenerateSBOM>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net7.0</TargetFrameworks>
   </PropertyGroup>
 
   <PropertyGroup>

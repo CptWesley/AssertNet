@@ -12,6 +12,7 @@ public static class Assertions
     /// </summary>
     /// <param name="value">Numeric value under test.</param>
     /// <returns>Assertion about a numeric value.</returns>
+    //[OverloadResolutionPriority(1)]
     [Pure]
     public static DoubleAssertion That(this AssertionBuilder _, double value) => new(FailureHandlerFactory.Create(), value);
 
@@ -20,7 +21,7 @@ public static class Assertions
     /// </summary>
     /// <param name="value">Object under test.</param>
     /// <returns>Assertion about an object.</returns>
-    [OverloadResolutionPriority(-100)]
+    [OverloadResolutionPriority(0)]
     [Pure]
     public static Assertion<T> That<T>(this AssertionBuilder _, T value) => new(FailureHandlerFactory.Create(), value);
 
