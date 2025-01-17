@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="../../Libraries/AssertNet/AssertNet.csproj" />
-    <ProjectReference Include="../../Libraries/AssertNet.Core/AssertNet.Core.csproj" />
   </ItemGroup>
 
 </Project>
