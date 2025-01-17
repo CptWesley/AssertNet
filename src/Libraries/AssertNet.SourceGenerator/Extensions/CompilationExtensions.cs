@@ -89,4 +89,29 @@ public static class CompilationExtensions
             }
         }
     }
+
+    /// <summary>
+    /// Determines if something is a numeric type.
+    /// </summary>
+    /// <param name="type">The type.</param>
+    /// <returns>True/false.</returns>
+    [Pure]
+    public static bool IsNumericType(this ITypeSymbol type)
+        => type.SpecialType switch
+        {
+            SpecialType.System_Byte => true,
+            SpecialType.System_SByte => true,
+            SpecialType.System_UInt16 => true,
+            SpecialType.System_Int16 => true,
+            SpecialType.System_UInt32 => true,
+            SpecialType.System_Int32 => true,
+            SpecialType.System_UInt64 => true,
+            SpecialType.System_Int64 => true,
+            SpecialType.System_Single => true,
+            SpecialType.System_Double => true,
+            SpecialType.System_Decimal => true,
+            SpecialType.System_IntPtr => true,
+            SpecialType.System_UIntPtr => true,
+            _ => false,
+        };
 }
