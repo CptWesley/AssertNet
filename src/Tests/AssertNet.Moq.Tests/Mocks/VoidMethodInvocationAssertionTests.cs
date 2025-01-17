@@ -1,5 +1,8 @@
 using System.Linq.Expressions;
+using AssertNet.AssertionTypes;
+using AssertNet.FailureHandlers;
 using AssertNet.Moq.Mocks;
+using Xunit.Sdk;
 
 namespace AssertNet.Moq.Tests.Mocks;
 
@@ -19,7 +22,9 @@ public class VoidMethodInvocationAssertionTests
     {
         _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.GetInt();
-        _assertion = new VoidMethodInvocationAssertion<IMockable>(_target, _expression);
+        _assertion = new VoidMethodInvocationAssertion<IMockable>(
+            new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
+            _expression);
     }
 
     /// <summary>
@@ -28,7 +33,7 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void TargetTest()
     {
-        Assert.Same(_target, _assertion.Target);
+        Assert.Same(_target, _assertion.Subject);
     }
 
     /// <summary>
@@ -56,7 +61,7 @@ public class VoidMethodInvocationAssertionTests
     public void NeverFailTest()
     {
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.Never());
+        Assert.Throws<XunitException>(() => _assertion.Never());
     }
 
     /// <summary>
@@ -75,10 +80,10 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void OnceFailTest()
     {
-        Assert.Throws<MockException>(() => _assertion.Once());
+        Assert.Throws<XunitException>(() => _assertion.Once());
         _target.Object.GetInt();
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.Once());
+        Assert.Throws<XunitException>(() => _assertion.Once());
     }
 
     /// <summary>
@@ -87,7 +92,7 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void AtLeastOnceTest()
     {
-        Assert.Throws<MockException>(() => _assertion.AtLeastOnce());
+        Assert.Throws<XunitException>(() => _assertion.AtLeastOnce());
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.AtLeastOnce().Subject);
         _target.Object.GetInt();
@@ -104,7 +109,7 @@ public class VoidMethodInvocationAssertionTests
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.AtMostOnce().Subject);
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.AtMostOnce());
+        Assert.Throws<XunitException>(() => _assertion.AtMostOnce());
     }
 
     /// <summary>
@@ -113,7 +118,7 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void AtLeastTest()
     {
-        Assert.Throws<MockException>(() => _assertion.AtLeast(1));
+        Assert.Throws<XunitException>(() => _assertion.AtLeast(1));
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.AtLeast(1).Subject);
         _target.Object.GetInt();
@@ -132,7 +137,7 @@ public class VoidMethodInvocationAssertionTests
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.AtMost(2).Subject);
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.AtMost(2));
+        Assert.Throws<XunitException>(() => _assertion.AtMost(2));
     }
 
     /// <summary>
@@ -141,13 +146,13 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void ExactlyTest()
     {
-        Assert.Throws<MockException>(() => _assertion.Exactly(2));
+        Assert.Throws<XunitException>(() => _assertion.Exactly(2));
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.Exactly(2));
+        Assert.Throws<XunitException>(() => _assertion.Exactly(2));
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.Exactly(2).Subject);
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.Exactly(2));
+        Assert.Throws<XunitException>(() => _assertion.Exactly(2));
     }
 
     /// <summary>
@@ -156,12 +161,12 @@ public class VoidMethodInvocationAssertionTests
     [Fact]
     public void BetweenTest()
     {
-        Assert.Throws<MockException>(() => _assertion.Between(1, 2));
+        Assert.Throws<XunitException>(() => _assertion.Between(1, 2));
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _target.Object.GetInt();
         Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _target.Object.GetInt();
-        Assert.Throws<MockException>(() => _assertion.Between(1, 2));
+        Assert.Throws<XunitException>(() => _assertion.Between(1, 2));
     }
 }

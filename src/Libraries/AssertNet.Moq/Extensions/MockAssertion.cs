@@ -18,7 +18,7 @@ public static class MoqMockAssertions
     /// <returns>An assertion about an invocation.</returns>
     public static InvocationAssertion<T> HasInvoked<T>(this IAssertion<Mock<T>> assertion, Expression<Action<T>> expression)
         where T : class
-        => new VoidMethodInvocationAssertion<T>(assertion.Subject, expression);
+        => new VoidMethodInvocationAssertion<T>(assertion, expression);
 
     /// <summary>
     /// Starts an assertion about a property get expression.
@@ -28,7 +28,7 @@ public static class MoqMockAssertions
     /// <returns>An assertion about the property get expression.</returns>
     public static InvocationAssertion<T> HasInvoked<T, TProperty>(this IAssertion<Mock<T>> assertion, Expression<Func<T, TProperty>> expression)
         where T : class
-        => new MethodInvocationAssertion<T, TProperty>(assertion.Subject, expression);
+        => new MethodInvocationAssertion<T, TProperty>(assertion, expression);
 
     /// <summary>
     /// Starts an assertion about a property set expression.
@@ -37,7 +37,7 @@ public static class MoqMockAssertions
     /// <returns>An assertion about the property set expression.</returns>
     public static InvocationAssertion<T> HasAssigned<T>(this IAssertion<Mock<T>> assertion, Action<T> expression)
         where T : class
-        => new SetPropertyInvocationAssertion<T>(assertion.Subject, expression);
+        => new SetPropertyInvocationAssertion<T>(assertion, expression);
 
     /// <summary>
     /// Determines whether the target mock has not performed any other unverified invocations.

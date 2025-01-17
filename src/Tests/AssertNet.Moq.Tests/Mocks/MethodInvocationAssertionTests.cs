@@ -1,5 +1,8 @@
 using System.Linq.Expressions;
+using AssertNet.AssertionTypes;
+using AssertNet.FailureHandlers;
 using AssertNet.Moq.Mocks;
+using Xunit.Sdk;
 
 namespace AssertNet.Moq.Tests.Mocks;
 
@@ -19,7 +22,9 @@ public class MethodInvocationAssertionTests
     {
         _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.Number;
-        _assertion = new MethodInvocationAssertion<IMockable, int>(_target, _expression);
+        _assertion = new MethodInvocationAssertion<IMockable, int>(
+            new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
+            _expression);
     }
 
     /// <summary>
@@ -28,7 +33,7 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void TargetTest()
     {
-        Assert.Same(_target, _assertion.Target);
+        Assert.Same(_target, _assertion.Subject);
     }
 
     /// <summary>
@@ -56,7 +61,7 @@ public class MethodInvocationAssertionTests
     public void NeverFailTest()
     {
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.Never());
+        Assert.Throws<XunitException>(() => _assertion.Never());
     }
 
     /// <summary>
@@ -75,10 +80,10 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void OnceFailTest()
     {
-        Assert.Throws<MockException>(() => _assertion.Once());
+        Assert.Throws<XunitException>(() => _assertion.Once());
         _ = _target.Object.Number;
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.Once());
+        Assert.Throws<XunitException>(() => _assertion.Once());
     }
 
     /// <summary>
@@ -87,7 +92,7 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void AtLeastOnceTest()
     {
-        Assert.Throws<MockException>(() => _assertion.AtLeastOnce());
+        Assert.Throws<XunitException>(() => _assertion.AtLeastOnce());
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtLeastOnce().Subject);
         _ = _target.Object.Number;
@@ -104,7 +109,7 @@ public class MethodInvocationAssertionTests
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtMostOnce().Subject);
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.AtMostOnce());
+        Assert.Throws<XunitException>(() => _assertion.AtMostOnce());
     }
 
     /// <summary>
@@ -113,7 +118,7 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void AtLeastTest()
     {
-        Assert.Throws<MockException>(() => _assertion.AtLeast(1));
+        Assert.Throws<XunitException>(() => _assertion.AtLeast(1));
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtLeast(1).Subject);
         _ = _target.Object.Number;
@@ -132,7 +137,7 @@ public class MethodInvocationAssertionTests
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.AtMost(2).Subject);
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.AtMost(2));
+        Assert.Throws<XunitException>(() => _assertion.AtMost(2));
     }
 
     /// <summary>
@@ -141,13 +146,13 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void ExactlyTest()
     {
-        Assert.Throws<MockException>(() => _assertion.Exactly(2));
+        Assert.Throws<XunitException>(() => _assertion.Exactly(2));
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.Exactly(2));
+        Assert.Throws<XunitException>(() => _assertion.Exactly(2));
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Exactly(2).Subject);
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.Exactly(2));
+        Assert.Throws<XunitException>(() => _assertion.Exactly(2));
     }
 
     /// <summary>
@@ -156,12 +161,12 @@ public class MethodInvocationAssertionTests
     [Fact]
     public void BetweenTest()
     {
-        Assert.Throws<MockException>(() => _assertion.Between(1, 2));
+        Assert.Throws<XunitException>(() => _assertion.Between(1, 2));
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _ = _target.Object.Number;
         Assert.Same(_target, _assertion.Between(1, 2).Subject);
         _ = _target.Object.Number;
-        Assert.Throws<MockException>(() => _assertion.Between(1, 2));
+        Assert.Throws<XunitException>(() => _assertion.Between(1, 2));
     }
 }

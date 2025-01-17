@@ -41,7 +41,7 @@ public class MockAssertionTests
         InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
         Assert.NotNull(assertion);
         Assert.IsType<VoidMethodInvocationAssertion<IMockable>>(assertion);
-        Assert.Same(_target, assertion.Target);
+        Assert.Same(_target, assertion.Subject);
         Assert.Same(expression, ((VoidMethodInvocationAssertion<IMockable>)assertion).Expression);
     }
 
@@ -55,7 +55,7 @@ public class MockAssertionTests
         InvocationAssertion<IMockable> assertion = _assertion.HasInvoked(expression);
         Assert.NotNull(assertion);
         Assert.IsType<MethodInvocationAssertion<IMockable, int>>(assertion);
-        Assert.Same(_target, assertion.Target);
+        Assert.Same(_target, assertion.Subject);
         Assert.Same(expression, ((MethodInvocationAssertion<IMockable, int>)assertion).Expression);
     }
 
@@ -69,7 +69,7 @@ public class MockAssertionTests
         InvocationAssertion<IMockable> assertion = _assertion.HasAssigned(expression);
         Assert.NotNull(assertion);
         Assert.IsType<SetPropertyInvocationAssertion<IMockable>>(assertion);
-        Assert.Same(_target, assertion.Target);
+        Assert.Same(_target, assertion.Subject);
         Assert.Same(expression, ((SetPropertyInvocationAssertion<IMockable>)assertion).Expression);
     }
 
