@@ -1,9 +1,9 @@
-﻿namespace AssertNet.SourceGenerator.Assertions;
+namespace AssertNet.SourceGenerator.Assertions;
 
 /// <summary>
 /// Generates the IsFalse assertion.
 /// </summary>
-public sealed class IsFalse : Assertion
+internal sealed class IsFalse : Assertion
 {
     /// <inheritdoc />
     [Pure]
@@ -37,7 +37,7 @@ public sealed class IsFalse : Assertion
         {{
             if (assertion.Subject)
             {{
-                assertion.FailureHandler.Fail(new AssertNet.Failures.FailureBuilder(""IsFalse()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsFalse()"")
                     .Append(message)
                     .Append(""Expecting"", assertion.Subject)
                     .Append(""To be equal to"", false)

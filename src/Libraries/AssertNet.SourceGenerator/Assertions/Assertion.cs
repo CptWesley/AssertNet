@@ -3,7 +3,7 @@ namespace AssertNet.SourceGenerator.Assertions;
 /// <summary>
 /// Base class for all assertions.
 /// </summary>
-public abstract class Assertion
+internal abstract class Assertion
 {
     /// <summary>
     /// All assertions.
@@ -32,6 +32,19 @@ public abstract class Assertion
     /// <summary>
     /// Checks if assertion applies to <paramref name="method"/>.
     /// </summary>
+    /// <param name="type">The type to check for.</param>
+    /// <param name="method">The method to check for.</param>
+    /// <returns>
+    /// <see langword="true"/> if applies;
+    /// <see langword="false"/> otherwise.
+    /// </returns>
+    [Pure]
+    public virtual bool Applies(ITypeSymbol type, IMethodSymbol method)
+        => false;
+
+    /// <summary>
+    /// Checks if assertion applies to <paramref name="method"/>.
+    /// </summary>
     /// <param name="method">The method to check for.</param>
     /// <returns>
     /// <see langword="true"/> if applies;
@@ -39,6 +52,19 @@ public abstract class Assertion
     /// </returns>
     [Pure]
     public virtual bool Applies(IMethodSymbol method)
+        => false;
+
+    /// <summary>
+    /// Checks if assertion applies to <paramref name="member"/>.
+    /// </summary>
+    /// <param name="type">The type to check for.</param>
+    /// <param name="member">The member to check for.</param>
+    /// <returns>
+    /// <see langword="true"/> if applies;
+    /// <see langword="false"/> otherwise.
+    /// </returns>
+    [Pure]
+    public virtual bool Applies(ITypeSymbol type, ISymbol member)
         => false;
 
     /// <summary>
@@ -71,12 +97,12 @@ public abstract class Assertion
 
         foreach (var member in type.GetMembers())
         {
-            if (member is IMethodSymbol method && Applies(method))
+            if (member is IMethodSymbol method && (Applies(type, method) || Applies(method)))
             {
                 return true;
             }
 
-            if (Applies(member))
+            if (Applies(type, member) || Applies(member))
             {
                 return true;
             }

@@ -1,9 +1,9 @@
-﻿namespace AssertNet.SourceGenerator.Assertions;
+namespace AssertNet.SourceGenerator.Assertions;
 
 /// <summary>
 /// Generates the IsTrue assertion.
 /// </summary>
-public sealed class IsTrue : Assertion
+internal sealed class IsTrue : Assertion
 {
     /// <inheritdoc />
     [Pure]
@@ -41,7 +41,7 @@ public sealed class IsTrue : Assertion
             }}
             else
             {{
-                assertion.FailureHandler.Fail(new AssertNet.Failures.FailureBuilder(""IsTrue()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsTrue()"")
                     .Append(message)
                     .Append(""Expecting"", assertion.Subject)
                     .Append(""To be equal to"", true)
