@@ -69,7 +69,7 @@ public class DoubleAssertionTests() : ObjectAssertionTests<Assertion<double>, do
     }
 
     /// <summary>
-    /// Checks that the assertion passes if the value is lesser than 0.
+    /// Checks that the assertion passes if the value is less than 0.
     /// </summary>
     [Fact]
     public void IsNegativePassTest()
@@ -79,7 +79,7 @@ public class DoubleAssertionTests() : ObjectAssertionTests<Assertion<double>, do
     }
 
     /// <summary>
-    /// Checks that the assertion fails if the value is not lesser than 0.
+    /// Checks that the assertion fails if the value is not less than 0.
     /// </summary>
     [Fact]
     public void IsNegativeFailTest()
@@ -89,7 +89,7 @@ public class DoubleAssertionTests() : ObjectAssertionTests<Assertion<double>, do
     }
 
     /// <summary>
-    /// Checks that the assertion passes if the value is lesser than or equal to 0.
+    /// Checks that the assertion passes if the value is less than or equal to 0.
     /// </summary>
     [Fact]
     public void IsNegativeOrZeroPassTest()
@@ -99,7 +99,7 @@ public class DoubleAssertionTests() : ObjectAssertionTests<Assertion<double>, do
     }
 
     /// <summary>
-    /// Checks that the assertion fails if the value is not lesser than or equal to 0.
+    /// Checks that the assertion fails if the value is not less than or equal to 0.
     /// </summary>
     [Fact]
     public void IsNegativeOrZeroFailTest()

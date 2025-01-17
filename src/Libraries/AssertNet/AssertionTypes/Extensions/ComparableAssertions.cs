@@ -78,13 +78,13 @@ public static class ComparableAssertions
     }
 
     /// <summary>
-    /// Asserts if the asserted value is lesser than the value under test.
+    /// Asserts if the asserted value is less than the value under test.
     /// </summary>
     /// <param name="assertion">
     /// The value under test to assert on.
     /// </param>
     /// <param name="other">
-    /// Value which should be lesser than the value under test.
+    /// Value which should be less than the value under test.
     /// </param>
     /// <param name="message">
     /// Custom message for the assertion failure.
@@ -97,16 +97,16 @@ public static class ComparableAssertions
     /// </typeparam>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsLesserThan<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
+    public static TAssert IsLessThan<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
         where TAssert : IAssertion<TSubject>
         where TSubject : IComparable<TSubject>
     {
         if (assertion.Subject.CompareTo(other) >= 0)
         {
-            assertion.Fail(new FailureBuilder("IsLesserThan()")
+            assertion.Fail(new FailureBuilder("IsLessThan()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
-                .Append("To be lesser than", other)
+                .Append("To be less than", other)
                 .Finish());
         }
 
@@ -114,13 +114,13 @@ public static class ComparableAssertions
     }
 
     /// <summary>
-    /// Asserts if the asserted value is lesser than or equal to the value under test.
+    /// Asserts if the asserted value is less than or equal to the value under test.
     /// </summary>
     /// <param name="assertion">
     /// The value under test to assert on.
     /// </param>
     /// <param name="other">
-    /// Value which should be lesser than or equal to the value under test.
+    /// Value which should be less than or equal to the value under test.
     /// </param>
     /// <param name="message">
     /// Custom message for the assertion failure.
@@ -133,16 +133,16 @@ public static class ComparableAssertions
     /// </typeparam>
     /// <returns>The current assertion.</returns>
     [Assertion]
-    public static TAssert IsLesserThanOrEqualTo<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
+    public static TAssert IsLessThanOrEqualTo<TAssert, TSubject>(this TAssert assertion, TSubject other, string? message = null)
         where TAssert : IAssertion<TSubject>
         where TSubject : IComparable<TSubject>
     {
         if (assertion.Subject.CompareTo(other) > 0)
         {
-            assertion.Fail(new FailureBuilder("IsLesserThanOrEqualTo()")
+            assertion.Fail(new FailureBuilder("IsLessThanOrEqualTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
-                .Append("To be lesser than or equal to", other)
+                .Append("To be less than or equal to", other)
                 .Finish());
         }
 
@@ -188,7 +188,7 @@ public static class ComparableAssertions
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", minimum)
-                .Append("And lesser than or equal to", maximum)
+                .Append("And less than or equal to", maximum)
                 .Finish());
         }
 
@@ -233,7 +233,7 @@ public static class ComparableAssertions
             assertion.Fail(new FailureBuilder("IsNotInRange()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
-                .Append("To be lesser than", minimum)
+                .Append("To be less than", minimum)
                 .Append("Or greater than", maximum)
                 .Finish());
         }
