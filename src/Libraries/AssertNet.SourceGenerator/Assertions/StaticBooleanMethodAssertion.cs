@@ -1,4 +1,4 @@
-﻿namespace AssertNet.SourceGenerator.Assertions;
+namespace AssertNet.SourceGenerator.Assertions;
 
 /// <summary>
 /// Base class for assertions of static boolean methods.
@@ -15,9 +15,8 @@ internal abstract class StaticBooleanMethodAssertion(string name) : Assertion
     [Pure]
     public override bool Applies(ITypeSymbol type, IMethodSymbol method)
         => method.IsStatic
-        && method.Arity == 0
         && method.Parameters.Length == 1
-        && method.Name == Name
+        && (method.Name == Name || method.Name.EndsWith($".{Name}"))
         && method.ReturnType.SpecialType is SpecialType.System_Boolean
         && SymbolEqualityComparer.Default.Equals(method.Parameters[0].Type, type);
 }
