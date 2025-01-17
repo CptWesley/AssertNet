@@ -1,4 +1,4 @@
-﻿namespace AssertNet.SourceGenerator.Assertions;
+namespace AssertNet.SourceGenerator.Assertions;
 
 /// <summary>
 /// Generates the IsZero assertion.
@@ -39,7 +39,7 @@ internal sealed class IsZero() : StaticBooleanMethodAssertion("IsZero")
         public static TAssert IsNotZero<TAssert>(this TAssert assertion, global::System.String? message = null)
             where TAssert : global::AssertNet.AssertionTypes.IAssertion<{name}>
         {{
-            if ({name}.IsPositive(assertion.Subject))
+            if ({name}.IsZero(assertion.Subject))
             {{
                 assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotZero()"")
                      .Append(message)
