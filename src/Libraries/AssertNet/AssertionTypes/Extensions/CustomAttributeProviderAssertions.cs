@@ -25,7 +25,7 @@ public static class CustomAttributeProviderAssertions
         where TAssert : IAssertion<TSubject>
         where TSubject : ICustomAttributeProvider
     {
-        if (!assertion.Subject.GetCustomAttributes(true).Any(a => a.GetType() == attribute))
+        if (!assertion.Subject.GetCustomAttributes(attribute, true).Any())
         {
             assertion.Fail(new FailureBuilder("IsDecoratedWith()")
                 .Append(message)

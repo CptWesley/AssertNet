@@ -21,9 +21,11 @@ public class IsDecoratedWith
         [Fact]
         public void Decorated_subject()
         {
-            var member = typeof(Parent).GetMethod(nameof(Parent.ToString));
-            //var assertion = Asserts.That(member);
-            //.IsDecoratedWith(typeof(PureAttribute)));
+            var member = typeof(Parent).GetMethod(nameof(Parent.ToString))!;
+            IAssertion<MemberInfo> assertion = Asserts.That(member);
+
+            CustomAttributeProviderAssertions.IsDecoratedWith<IAssertion<MemberInfo>, MemberInfo>(assertion, typeof(PureAttribute));
+            //assertion.IsDecoratedWith(typeof(PureAttribute), "");
         }
     }
 }
