@@ -1,4 +1,5 @@
 using AssertNet.AssertionTypes;
+using AssertNet.SourceGenerator;
 using System.Numerics;
 
 namespace AssertNet;
@@ -6,6 +7,18 @@ namespace AssertNet;
 /// <summary>
 /// Provides assertions related to numbers.
 /// </summary>
+[GenerateAssertionsFor<byte>]
+[GenerateAssertionsFor<sbyte>]
+[GenerateAssertionsFor<ushort>]
+[GenerateAssertionsFor<short>]
+[GenerateAssertionsFor<uint>]
+[GenerateAssertionsFor<int>]
+[GenerateAssertionsFor<ulong>]
+[GenerateAssertionsFor<long>]
+[GenerateAssertionsFor<BigInteger>]
+[GenerateAssertionsFor<float>]
+[GenerateAssertionsFor<double>]
+[GenerateAssertionsFor<decimal>]
 public static partial class NumericAssertions
 {
 #if NET7_0_OR_GREATER
