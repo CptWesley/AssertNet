@@ -7,19 +7,7 @@ namespace AssertNet;
 /// <summary>
 /// Provides assertions related to numbers.
 /// </summary>
-[GenerateAssertionsFor<byte>]
-[GenerateAssertionsFor<sbyte>]
-[GenerateAssertionsFor<ushort>]
-[GenerateAssertionsFor<short>]
-[GenerateAssertionsFor<uint>]
-[GenerateAssertionsFor<int>]
-[GenerateAssertionsFor<ulong>]
-[GenerateAssertionsFor<long>]
-[GenerateAssertionsFor<BigInteger>]
-[GenerateAssertionsFor<float>]
-[GenerateAssertionsFor<double>]
-[GenerateAssertionsFor<decimal>]
-public static partial class NumericAssertions
+public static class NumericAssertions
 {
 #if NET7_0_OR_GREATER
     /// <summary>Ensures that the number under test is a finite number.</summary>

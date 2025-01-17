@@ -4,7 +4,7 @@ namespace AssertNet.SourceGenerator;
 /// Indicates assertions should be generated for the given type.
 /// </summary>
 /// <param name="type">The type for which assertions should be generated.</param>
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 [Inheritable]
 public class GenerateAssertionsForAttribute(Type type) : Attribute
 {
@@ -18,5 +18,5 @@ public class GenerateAssertionsForAttribute(Type type) : Attribute
 /// Indicates assertions should be generated for the given type.
 /// </summary>
 /// <typeparam name="T">The type for which assertions should be generated.</typeparam>
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public sealed class GenerateAssertionsForAttribute<T>() : GenerateAssertionsForAttribute(typeof(T));

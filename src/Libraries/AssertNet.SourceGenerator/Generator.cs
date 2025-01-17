@@ -1,3 +1,5 @@
+using AssertNet.SourceGenerator.Assertions;
+
 namespace AssertNet.SourceGenerator;
 
 /// <summary>
@@ -131,14 +133,10 @@ internal sealed class Generator : IIncrementalGenerator
     {
         var name = GetSafeName(type);
 
-        if (HasTrueOperator(type))
+        foreach (var assertion in Assertion.All.Where(a => a.IsApplicableFor(type)))
         {
-            sb.AppendLine(GetIsTrueAssertion(name));
-        }
-
-        if (HasFalseOperator(type))
-        {
-            sb.AppendLine(GetIsFalseAssertion(name));
+            var code = assertion.GetCode(name);
+            sb.AppendLine(code);
         }
 
         sb.AppendLine($"// {GetSafeName(type)}");
@@ -179,97 +177,4 @@ internal sealed class Generator : IIncrementalGenerator
             SpecialType.None => $"global::{type}",
             _ => type.ToString(),
         };
-
-    [Pure]
-    private static bool HasTrueOperator(ITypeSymbol type)
-    {
-        if (type.SpecialType is SpecialType.System_Boolean)
-        {
-            return true;
-        }
-
-        return type
-            .GetMembers()
-            .OfType<IMethodSymbol>()
-            .Any(m => m.MethodKind is MethodKind.UserDefinedOperator
-                   && m.Name is "op_True"
-                   && m.IsStatic
-                   && m.Arity == 0
-                   && m.Parameters.Length == 1
-                   && m.ReturnType.SpecialType is SpecialType.System_Boolean);
-    }
-
-    [Pure]
-    private static bool HasFalseOperator(ITypeSymbol type)
-    {
-        if (type.SpecialType is SpecialType.System_Boolean)
-        {
-            return true;
-        }
-
-        return type
-            .GetMembers()
-            .OfType<IMethodSymbol>()
-            .Any(m => m.MethodKind is MethodKind.UserDefinedOperator
-                   && m.Name is "op_False"
-                   && m.IsStatic
-                   && m.Arity == 0
-                   && m.Parameters.Length == 1
-                   && m.ReturnType.SpecialType is SpecialType.System_Boolean);
-    }
-
-    [Pure]
-    private static string GetIsTrueAssertion(string name)
-        => @$"
-        /// <summary>
-        /// Asserts that the boolean value is true.
-        /// </summary>
-        /// <param name=""assertion"">The initial assertion chain.</param>
-        /// <param name=""message"">Custom message for the assertion failure.</param>
-        /// <typeparam name=""TAssert"">The type of assertion.</typeparam>
-        /// <returns>The updated assertion chain.</returns>
-        [Assertion]
-        public static TAssert IsTrue<TAssert>(this TAssert assertion, global::System.String? message = null)
-            where TAssert : global::AssertNet.AssertionTypes.IAssertion<{name}>
-        {{
-            if (assertion.Subject)
-            {{
-                return assertion;
-            }}
-            else
-            {{
-                assertion.FailureHandler.Fail(new AssertNet.Failures.FailureBuilder(""IsTrue()"")
-                    .Append(message)
-                    .Append(""Expecting"", assertion.Subject)
-                    .Append(""To be equal to"", true)
-                    .Finish());
-                return assertion;
-            }}
-        }}";
-
-    [Pure]
-    private static string GetIsFalseAssertion(string name)
-        => @$"
-        /// <summary>
-        /// Asserts that the boolean value is false.
-        /// </summary>
-        /// <param name=""assertion"">The initial assertion chain.</param>
-        /// <param name=""message"">Custom message for the assertion failure.</param>
-        /// <typeparam name=""TAssert"">The type of assertion.</typeparam>
-        /// <returns>The updated assertion chain.</returns>
-        [Assertion]
-        public static TAssert IsFalse<TAssert>(this TAssert assertion, global::System.String? message = null)
-            where TAssert : global::AssertNet.AssertionTypes.IAssertion<{name}>
-        {{
-            if (assertion.Subject)
-            {{
-                assertion.FailureHandler.Fail(new AssertNet.Failures.FailureBuilder(""IsFalse()"")
-                    .Append(message)
-                    .Append(""Expecting"", assertion.Subject)
-                    .Append(""To be equal to"", false)
-                    .Finish());
-            }}
-
-            return assertion;
-        }}";
 }

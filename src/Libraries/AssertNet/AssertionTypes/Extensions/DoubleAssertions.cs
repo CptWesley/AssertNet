@@ -4,7 +4,8 @@ namespace AssertNet.AssertionTypes;
 /// Class representing assertions made about doubles (and other numeric values).
 /// </summary>
 /// <seealso cref="Assertion{TAssert, TTarget}" />
-public static class DoubleAssertions
+[GenerateAssertionsFor<double>]
+public static partial class DoubleAssertions
 {
     /// <summary>
     /// Asserts if a double is equal to zero.
