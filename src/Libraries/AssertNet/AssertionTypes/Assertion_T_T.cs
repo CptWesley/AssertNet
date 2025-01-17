@@ -6,7 +6,7 @@ namespace AssertNet.AssertionTypes;
 /// <typeparam name="TAssert">Derived type of the assertion.</typeparam>
 /// <typeparam name="TSubject">Type of the object under test.</typeparam>
 /// <seealso cref="IAssertion" />
-public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
+public abstract class Assertion<TAssert, TSubject> : IAssertion<TAssert, TSubject>
     where TAssert : Assertion<TAssert, TSubject>
 {
     /// <summary>
@@ -14,7 +14,7 @@ public class Assertion<TAssert, TSubject> : IAssertion<TSubject>
     /// </summary>
     /// <param name="subject">The object which is under test.</param>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
-    public Assertion(IFailureHandler failureHandler, TSubject subject)
+    protected Assertion(IFailureHandler failureHandler, TSubject subject)
     {
         FailureHandler = failureHandler;
         Subject = subject;

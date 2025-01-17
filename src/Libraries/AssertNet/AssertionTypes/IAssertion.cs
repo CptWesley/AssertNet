@@ -1,7 +1,7 @@
 namespace AssertNet.AssertionTypes;
 
 /// <summary>
-/// Abstract class representing assertions.
+/// Interface representing assertions.
 /// </summary>
 public interface IAssertion
 {
@@ -17,17 +17,4 @@ public interface IAssertion
     /// Gets the failure handler of the assertion.
     /// </summary>
     public IFailureHandler FailureHandler { get; }
-}
-
-public static class AssertionExtensions
-{
-    /// <summary>
-    /// Fails an assertion with a specific message.
-    /// </summary>
-    /// <param name="message">The message to fail with.</param>
-    [DoesNotReturn]
-    public static void Fail(this IAssertion assertion, string message)
-    {
-        assertion.FailureHandler.Fail(message);
-    }
 }
