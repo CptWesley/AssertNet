@@ -128,7 +128,7 @@ public static class ExceptionAssertions
                 .Finish());
         }
 
-        return new Assertion<Exception>(assertion.FailureHandler, assertion.Subject.InnerException);
+        return new Assertion<Exception>(assertion.FailureHandler, assertion.Subject.InnerException, null);
     }
 
     /// <summary>
@@ -173,6 +173,6 @@ public static class ExceptionAssertions
             inner = inner2;
         }
 
-        return new Assertion<TInnerException>(assertion.FailureHandler, inner);
+        return new Assertion<TInnerException>(assertion.FailureHandler, inner, null);
     }
 }

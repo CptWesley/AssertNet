@@ -3,6 +3,7 @@ namespace AssertNet.Failures;
 /// <summary>
 /// Class representing an assertion failure text.
 /// </summary>
+[Obsolete("Use FailureMessageBuilder instead.")]
 public class FailureBuilder
 {
     private readonly StringBuilder _builder;

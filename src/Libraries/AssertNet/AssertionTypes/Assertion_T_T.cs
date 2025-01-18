@@ -12,12 +12,14 @@ public abstract class Assertion<TAssert, TSubject> : IAssertion<TAssert, TSubjec
     /// <summary>
     /// Initializes a new instance of the <see cref="Assertion{TAssert, TTarget}"/> class.
     /// </summary>
-    /// <param name="subject">The object which is under test.</param>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
-    protected Assertion(IFailureHandler failureHandler, TSubject subject)
+    /// <param name="subject">The object which is under test.</param>
+    /// <param name="expression">The expression string of the subject, if available.</param>
+    protected Assertion(IFailureHandler failureHandler, TSubject subject, string? expression)
     {
         FailureHandler = failureHandler;
         Subject = subject;
+        Expression = expression;
     }
 
     /// <inheritdoc />
@@ -25,6 +27,9 @@ public abstract class Assertion<TAssert, TSubject> : IAssertion<TAssert, TSubjec
 
     /// <inheritdoc />
     object? IAssertion.Subject => Subject;
+
+    /// <inheritdoc />
+    public string? Expression { get; }
 
     /// <inheritdoc />
     public IFailureHandler FailureHandler { get; }

@@ -17,5 +17,8 @@ public class Asserts_That
     public void is_extendable()
     {
         Asserts.That(6.0).IsFinite();
+
+
+        Asserts.That(42.ToString()).IsEqualToIgnoringCase("foo");
     }
 }

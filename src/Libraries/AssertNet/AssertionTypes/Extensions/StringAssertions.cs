@@ -20,14 +20,10 @@ public static class StringAssertions
     public static TAssert IsEqualToIgnoringCase<TAssert>(this TAssert assertion, string? other, string? message = null)
         where TAssert : IAssertion<string>
     {
-        if (!string.Equals(assertion.Subject, other, StringComparison.OrdinalIgnoreCase))
-        {
-            assertion.Fail(new FailureBuilder("IsEqualToIgnoringCase()")
-                .Append(message)
-                .Append("Expecting", assertion.Subject)
-                .Append("To be equal to while ignoring cases", other)
-                .Finish());
-        }
+        assertion
+            .Expecting("To be equal to while ignoring cases", other)
+            .WithMessage(message)
+            .FailWhen(!string.Equals(assertion.Subject, other, StringComparison.OrdinalIgnoreCase));
 
         return assertion;
     }
