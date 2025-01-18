@@ -38,7 +38,7 @@ public static class StringAssertions
     {
         if (string.Equals(assertion.Subject, other, StringComparison.OrdinalIgnoreCase))
         {
-            assertion.Fail(new FailureBuilder("IsNotEqualToIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotEqualToIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be equal to while ignoring cases", other)
@@ -62,7 +62,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is null || !assertion.Subject.Contains(substring))
         {
-            assertion.Fail(new FailureBuilder("Contains()")
+            assertion.Fail(new LegacyFailureBuilder("Contains()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To contain", substring)
@@ -86,7 +86,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.Contains(substring))
         {
-            assertion.Fail(new FailureBuilder("DoesNotContain()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContain()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to contain", substring)
@@ -110,7 +110,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is null || assertion.Subject.IndexOf(substring, StringComparison.OrdinalIgnoreCase) < 0)
         {
-            assertion.Fail(new FailureBuilder("ContainsIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To contain ignoring case", substring)
@@ -134,7 +134,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.IndexOf(substring, StringComparison.OrdinalIgnoreCase) >= 0)
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to contain ignoring case", substring)
@@ -158,7 +158,7 @@ public static class StringAssertions
     {
         if (!Regex.IsMatch(assertion.Subject, pattern))
         {
-            assertion.Fail(new FailureBuilder("ContainsPattern()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsPattern()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To contain the pattern", pattern)
@@ -182,7 +182,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && Regex.IsMatch(assertion.Subject, pattern))
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainPattern()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainPattern()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to contain the pattern", pattern)
@@ -206,7 +206,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is null || !assertion.Subject.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("StartsWith()")
+            assertion.Fail(new LegacyFailureBuilder("StartsWith()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To start with", substring)
@@ -230,7 +230,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.StartsWith(substring, false, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("DoesNotStartWith()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotStartWith()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to start with", substring)
@@ -254,7 +254,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is null || !assertion.Subject.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("StartsWithIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("StartsWithIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To start with ignoring case", substring)
@@ -278,7 +278,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.StartsWith(substring, true, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("DoesNotStartWithIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotStartWithIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to start with ignoring case", substring)
@@ -302,7 +302,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is null || !assertion.Subject.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("EndsWith()")
+            assertion.Fail(new LegacyFailureBuilder("EndsWith()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To end with", substring)
@@ -326,7 +326,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.EndsWith(substring, false, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("DoesNotEndWith()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotEndWith()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to end with", substring)
@@ -350,7 +350,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is null || !assertion.Subject.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("EndsWithIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("EndsWithIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To end with ignoring case", substring)
@@ -374,7 +374,7 @@ public static class StringAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.EndsWith(substring, true, CultureInfo.InvariantCulture))
         {
-            assertion.Fail(new FailureBuilder("DoesNotEndWithIgnoringCase()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotEndWithIgnoringCase()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to end with ignoring case", substring)

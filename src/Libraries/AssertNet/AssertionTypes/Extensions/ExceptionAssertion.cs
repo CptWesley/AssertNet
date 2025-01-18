@@ -19,7 +19,7 @@ public static class ExceptionAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("WithMessage()")
+            assertion.Fail(new LegacyFailureBuilder("WithMessage()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have the message", message)
@@ -28,7 +28,7 @@ public static class ExceptionAssertions
         }
         else if (assertion.Subject.Message != message)
         {
-            assertion.Fail(new FailureBuilder("WithMessage()")
+            assertion.Fail(new LegacyFailureBuilder("WithMessage()")
                 .Append(customMessage)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have the message", message)
@@ -52,7 +52,7 @@ public static class ExceptionAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("WithMessageContaining()")
+            assertion.Fail(new LegacyFailureBuilder("WithMessageContaining()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have a message containing", message)
@@ -61,7 +61,7 @@ public static class ExceptionAssertions
         }
         else if (assertion.Subject.Message?.Contains(message) is not true)
         {
-            assertion.Fail(new FailureBuilder("WithMessageContaining()")
+            assertion.Fail(new LegacyFailureBuilder("WithMessageContaining()")
                 .Append(customMessage)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have a message containing", message)
@@ -83,7 +83,7 @@ public static class ExceptionAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("WithNoInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithNoInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To not have an inner exception")
@@ -92,7 +92,7 @@ public static class ExceptionAssertions
         }
         else if (assertion.Subject.InnerException != null)
         {
-            assertion.Fail(new FailureBuilder("WithNoInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithNoInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To not have an inner exception")
@@ -113,7 +113,7 @@ public static class ExceptionAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("WithInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have an inner exception, but is null")
@@ -121,7 +121,7 @@ public static class ExceptionAssertions
         }
         else if (assertion.Subject.InnerException is null)
         {
-            assertion.Fail(new FailureBuilder("WithInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have an inner exception, but has none")
@@ -145,7 +145,7 @@ public static class ExceptionAssertions
 
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("WithInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have an inner exception, but is null")
@@ -153,7 +153,7 @@ public static class ExceptionAssertions
         }
         else if (assertion.Subject.InnerException == null)
         {
-            assertion.Fail(new FailureBuilder("WithInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have an inner exception, but has none")
@@ -161,7 +161,7 @@ public static class ExceptionAssertions
         }
         else if (assertion.Subject.InnerException is not TInnerException inner2)
         {
-            assertion.Fail(new FailureBuilder("WithInnerException()")
+            assertion.Fail(new LegacyFailureBuilder("WithInnerException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have an inner exception of type", typeof(TInnerException))

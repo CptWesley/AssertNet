@@ -1,77 +1,177 @@
+using AssertNet.AssertionTypes;
+
 namespace AssertNet.Failures;
 
 /// <summary>
-/// Class representing an assertion failure text.
+/// A builder for failure messages.
 /// </summary>
-[Obsolete("Use FailureMessageBuilder instead.")]
-public class FailureBuilder
+/// <typeparam name="TAssert">The assertion type.</typeparam>
+[Mutable]
+public sealed class FailureBuilder<TAssert>
+    where TAssert : IAssertion
 {
-    private readonly StringBuilder _builder;
+    private readonly TAssert assertion;
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="FailureBuilder"/> class.
+    /// Initializes a new instance of the <see cref="FailureBuilder{TAssert}"/> class.
     /// </summary>
-    /// <param name="name">The name of the assertion which failed.</param>
-    public FailureBuilder(string name)
+    /// <param name="assertion">The wrapped assertion.</param>
+    internal FailureBuilder(TAssert assertion)
     {
-        _builder = new StringBuilder($"{name} Assertion failure");
+        this.assertion = assertion;
     }
 
     /// <summary>
-    /// Appends an object line.
+    /// The name of the assertion being performed.
     /// </summary>
-    /// <typeparam name="T">Type of the object to append.</typeparam>
-    /// <param name="objectName">Name of the object.</param>
-    /// <param name="part">The object.</param>
-    /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
+    public string? Assertion { get; set; }
+
+    /// <summary>
+    /// The user-supplied additional message.
+    /// </summary>
+    public string? Message { get; set; }
+
+    /// <summary>
+    /// The expectation explanation.
+    /// </summary>
+    public string? Expectation { get; set; }
+
+    /// <summary>
+    /// The optional explanation argument.
+    /// </summary>
+    public object? ExpectationArgument { get; set; }
+
+    /// <summary>
+    /// Sets the <see cref="Assertion"/> property.
+    /// </summary>
+    /// <param name="assertion">The new value.</param>
+    /// <returns>The updated builder instance.</returns>
     [FluentSyntax]
-    public FailureBuilder Append<T>(string objectName, T? part)
+    public FailureBuilder<TAssert> WithAssertion(string? assertion)
     {
-        _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}{StringOf(part)}");
+        this.Assertion = assertion;
         return this;
     }
 
     /// <summary>
-    /// Appends the specified line.
+    /// Sets the <see cref="Message"/> property.
     /// </summary>
-    /// <param name="line">The line.</param>
-    /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
+    /// <param name="message">The new value.</param>
+    /// <returns>The updated builder instance.</returns>
     [FluentSyntax]
-    public FailureBuilder Append(string? line)
+    public FailureBuilder<TAssert> WithMessage(string? message)
     {
-        if (line != null)
+        this.Message = message;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the <see cref="ExpectationArgument"/> property.
+    /// </summary>
+    /// <param name="expectationArgument">The new value.</param>
+    /// <returns>The updated builder instance.</returns>
+    [FluentSyntax]
+    public FailureBuilder<TAssert> WithExpectationArgument(object? expectationArgument)
+    {
+        this.ExpectationArgument = expectationArgument;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the <see cref="Expectation"/> property.
+    /// </summary>
+    /// <param name="expectation">The new value.</param>
+    /// <returns>The updated builder instance.</returns>
+    [FluentSyntax]
+    public FailureBuilder<TAssert> WithExpectation(string? expectation)
+    {
+        this.Expectation = expectation;
+        return this;
+    }
+
+    /// <summary>
+    /// Sets the <see cref="Expectation"/> and <see cref="ExpectationArgument"/> properties.
+    /// </summary>
+    /// <param name="expectation">The new <see cref="Expectation"/> value.</param>
+    /// <param name="expectationArgument">The new <see cref="ExpectationArgument"/> value.</param>
+    /// <returns>The updated builder instance.</returns>
+    [FluentSyntax]
+    public FailureBuilder<TAssert> WithExpectation(string? expectation, object? expectationArgument)
+        => WithExpectation(expectation)
+        .WithExpectationArgument(expectationArgument);
+
+    /// <summary>
+    /// Triggers the failure if the given <paramref name="condition"/> is <see langword="true"/>.
+    /// </summary>
+    /// <param name="condition">The condition to check.</param>
+    /// <returns>The original wrapped assertion.</returns>
+#if NET7_0_OR_GREATER
+    [StackTraceHidden]
+#endif
+    [FluentSyntax]
+    public TAssert FailWhen(bool condition)
+    {
+        if (condition)
         {
-            _builder.Append($"{Environment.NewLine}{line}");
+            var msg = ToString();
+            assertion.FailureHandler.Fail(msg);
         }
 
-        return this;
+        return assertion;
     }
 
-    /// <summary>
-    /// Appends an enumerable line.
-    /// </summary>
-    /// <typeparam name="T">Type of the enumerable.</typeparam>
-    /// <param name="objectName">Name of the enumerable.</param>
-    /// <param name="enumerable">The enumerable.</param>
-    /// <returns>The current <see cref="FailureBuilder"/> instance.</returns>
-    [FluentSyntax]
-    public FailureBuilder AppendEnumerable<T>(string objectName, IEnumerable<T> enumerable)
-    {
-        _builder.Append($"{Environment.NewLine}{objectName}:{Environment.NewLine}[{string.Join(", ", enumerable.Select(StringOf))}]");
-        return this;
-    }
-
-    /// <inheritdoc cref="AppendEnumerable{T}(string, IEnumerable{T})" />
-    [FluentSyntax]
-    public FailureBuilder AppendEnumerable(string objectName, IEnumerable enumerable)
-        => AppendEnumerable(objectName, enumerable.AsGeneric());
-
-    /// <summary>
-    /// Finishes the FailureBuilder instance.
-    /// </summary>
-    /// <returns>The assertion error message created.</returns>
+    /// <inheritdoc />
     [Pure]
-    public string Finish() => _builder.ToString();
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+
+        if (Assertion is { Length: > 0 })
+        {
+            sb.Append(Assertion).Append(' ');
+        }
+
+        sb.AppendLine("Assertion failure");
+
+        if (Message is { Length: > 0 })
+        {
+            sb.AppendLine(Message);
+        }
+
+        sb.AppendLine("Expecting:");
+
+        var subjectString = StringOf(assertion.Subject);
+
+        if (assertion.Expression is { Length: > 0 } && assertion.Expression != subjectString)
+        {
+            sb.Append(assertion.Expression).Append(" (").Append(subjectString).AppendLine(")");
+        }
+        else
+        {
+            sb.AppendLine(subjectString);
+        }
+
+        if (Expectation is { Length: > 0 })
+        {
+            if (ExpectationArgument is { })
+            {
+                sb.Append(Expectation).AppendLine(":");
+                sb.AppendLine(StringOf(ExpectationArgument));
+            }
+            else
+            {
+                sb.AppendLine(Expectation);
+            }
+        }
+
+        // Trim the last whitespaces.
+        while (sb.Length > 0 && sb[sb.Length - 1] is '\r' or '\n')
+        {
+            sb.Length--;
+        }
+
+        return sb.ToString();
+    }
 
     /// <summary>
     /// Gets the string version of an object.

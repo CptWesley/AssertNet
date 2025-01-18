@@ -31,7 +31,7 @@ internal sealed class IsApproximately() : Assertion
         {{
             if (assertion.Subject < other - margin || assertion.Subject > other + margin)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsApproximately()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsApproximately()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be greater than or equal to"", other - margin)
@@ -55,7 +55,7 @@ internal sealed class IsApproximately() : Assertion
         {{
             if (!(assertion.Subject < other - margin || assertion.Subject > other + margin))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotApproximately()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotApproximately()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be less than"", other - margin)

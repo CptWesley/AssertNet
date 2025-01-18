@@ -20,7 +20,7 @@ internal sealed class IsPositiveOrZero() : StaticBooleanMethodAssertion("IsPosit
         {{
             if (!{name}.IsPositive(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsPositive()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsPositive()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be a positive number or zero"")
@@ -41,7 +41,7 @@ internal sealed class IsPositiveOrZero() : StaticBooleanMethodAssertion("IsPosit
         {{
             if ({name}.IsPositive(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotPositive()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotPositive()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be a positive number or zero"")

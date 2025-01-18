@@ -27,7 +27,7 @@ internal sealed class IsZeroAlt : Assertion
         {{
             if (assertion.Subject != 0)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsZero()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsZero()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be zero"")
@@ -48,7 +48,7 @@ internal sealed class IsZeroAlt : Assertion
         {{
             if (assertion.Subject == 0)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotZero()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotZero()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be zero"")

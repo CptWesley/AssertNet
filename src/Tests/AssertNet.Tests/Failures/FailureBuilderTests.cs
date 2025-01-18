@@ -4,20 +4,20 @@ using static System.Environment;
 namespace AssertNet.Tests.Failures;
 
 /// <summary>
-/// Test class for the <see cref="FailureBuilder"/> class.
+/// Test class for the <see cref="LegacyFailureBuilder"/> class.
 /// </summary>
 public class FailureBuilderTests
 {
     private const string Name = "4fhhnf74m80,h";
 
-    private readonly FailureBuilder _builder;
+    private readonly LegacyFailureBuilder _builder;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="FailureBuilderTests"/> class.
     /// </summary>
     public FailureBuilderTests()
     {
-        _builder = new FailureBuilder(Name);
+        _builder = new LegacyFailureBuilder(Name);
     }
 
     /// <summary>

@@ -20,7 +20,7 @@ internal sealed class IsNaN() : StaticBooleanMethodAssertion("IsNaN")
         {{
             if (!{name}.IsNaN(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNaN()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNaN()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be not-a-number (NaN)"")
@@ -41,7 +41,7 @@ internal sealed class IsNaN() : StaticBooleanMethodAssertion("IsNaN")
         {{
             if ({name}.IsNaN(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotNaN()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotNaN()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be non-a-number (NaN)"")

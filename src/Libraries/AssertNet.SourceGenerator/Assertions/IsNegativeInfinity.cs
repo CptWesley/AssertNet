@@ -20,7 +20,7 @@ internal sealed class IsNegativeInfinity() : StaticBooleanMethodAssertion("IsNeg
         {{
             if (!{name}.IsNegativeInfinity(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNegativeInfinity()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNegativeInfinity()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be negative infinity"")
@@ -41,7 +41,7 @@ internal sealed class IsNegativeInfinity() : StaticBooleanMethodAssertion("IsNeg
         {{
             if ({name}.IsNegativeInfinity(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotNegativeInfinity()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotNegativeInfinity()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be negative infinity"")

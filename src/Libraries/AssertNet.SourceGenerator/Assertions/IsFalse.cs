@@ -37,7 +37,7 @@ internal sealed class IsFalse : Assertion
         {{
             if (assertion.Subject)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsFalse()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsFalse()"")
                     .Append(message)
                     .Append(""Expecting"", assertion.Subject)
                     .Append(""To be equal to"", false)

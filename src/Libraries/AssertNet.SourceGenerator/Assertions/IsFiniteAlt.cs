@@ -31,7 +31,7 @@ internal sealed class IsFiniteAlt() : Assertion
         {{
             if ({name}.IsInfinity(assertion.Subject) || {name}.IsNaN(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsFinite()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsFinite()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be a finite number"")
@@ -52,7 +52,7 @@ internal sealed class IsFiniteAlt() : Assertion
         {{
             if (!{name}.IsInfinity(assertion.Subject) && !{name}.IsNaN(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotFinite()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotFinite()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be a finite number"")
