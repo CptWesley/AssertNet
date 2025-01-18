@@ -14,6 +14,11 @@ public interface IAssertion
     public object? Subject { get; }
 
     /// <summary>
+    /// The subject expression string if available.
+    /// </summary>
+    public string? Expression { get; }
+
+    /// <summary>
     /// Gets the failure handler of the assertion.
     /// </summary>
     public IFailureHandler FailureHandler { get; }

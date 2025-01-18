@@ -31,7 +31,7 @@ public static class ComparableAssertions
     {
         if (assertion.Subject.CompareTo(other) <= 0)
         {
-            assertion.Fail(new FailureBuilder("IsGreaterThan()")
+            assertion.Fail(new LegacyFailureBuilder("IsGreaterThan()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be greater than", other)
@@ -67,7 +67,7 @@ public static class ComparableAssertions
     {
         if (assertion.Subject.CompareTo(other) < 0)
         {
-            assertion.Fail(new FailureBuilder("IsGreaterThanOrEqualTo()")
+            assertion.Fail(new LegacyFailureBuilder("IsGreaterThanOrEqualTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", other)
@@ -103,7 +103,7 @@ public static class ComparableAssertions
     {
         if (assertion.Subject.CompareTo(other) >= 0)
         {
-            assertion.Fail(new FailureBuilder("IsLessThan()")
+            assertion.Fail(new LegacyFailureBuilder("IsLessThan()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be less than", other)
@@ -139,7 +139,7 @@ public static class ComparableAssertions
     {
         if (assertion.Subject.CompareTo(other) > 0)
         {
-            assertion.Fail(new FailureBuilder("IsLessThanOrEqualTo()")
+            assertion.Fail(new LegacyFailureBuilder("IsLessThanOrEqualTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be less than or equal to", other)
@@ -184,7 +184,7 @@ public static class ComparableAssertions
 
         if (assertion.Subject.CompareTo(minimum) < 0 || assertion.Subject.CompareTo(maximum) > 0)
         {
-            assertion.Fail(new FailureBuilder("IsInRange()")
+            assertion.Fail(new LegacyFailureBuilder("IsInRange()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be greater than or equal to", minimum)
@@ -230,7 +230,7 @@ public static class ComparableAssertions
 
         if (assertion.Subject.CompareTo(minimum) >= 0 && assertion.Subject.CompareTo(maximum) <= 0)
         {
-            assertion.Fail(new FailureBuilder("IsNotInRange()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotInRange()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be less than", minimum)

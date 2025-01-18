@@ -23,7 +23,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsFinite(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsFinite()")
+            assertion.Fail(new LegacyFailureBuilder("IsFinite()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be a finite number")
@@ -46,7 +46,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsFinite(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotFinite()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotFinite()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be a finite number")
@@ -69,7 +69,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsInfinity(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsInfinity()")
+            assertion.Fail(new LegacyFailureBuilder("IsInfinity()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be infinity")
@@ -92,7 +92,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsInfinity(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotInfinity()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotInfinity()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be infinity")
@@ -115,7 +115,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsPositiveInfinity(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsPositiveInfinity()")
+            assertion.Fail(new LegacyFailureBuilder("IsPositiveInfinity()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be positive infinity")
@@ -138,7 +138,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsPositiveInfinity(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotPositiveInfinity()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotPositiveInfinity()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be positive infinity")
@@ -161,7 +161,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsNegativeInfinity(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNegativeInfinity()")
+            assertion.Fail(new LegacyFailureBuilder("IsNegativeInfinity()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be negative infinity")
@@ -184,7 +184,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsNegativeInfinity(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotNegativeInfinity()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotNegativeInfinity()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be negative infinity")
@@ -207,7 +207,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsNaN(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNaN()")
+            assertion.Fail(new LegacyFailureBuilder("IsNaN()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be not-a-number (NaN)")
@@ -230,7 +230,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsNaN(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotNaN()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotNaN()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be not-a-number (NaN)")
@@ -253,7 +253,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsZero(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsZero()")
+            assertion.Fail(new LegacyFailureBuilder("IsZero()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be zero")
@@ -276,7 +276,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsZero(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotZero()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotZero()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be zero")
@@ -299,7 +299,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsPositive(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsPositiveOrZero()")
+            assertion.Fail(new LegacyFailureBuilder("IsPositiveOrZero()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be positive or zero")
@@ -322,7 +322,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsPositive(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotPositiveOrZero()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotPositiveOrZero()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be positive or zero")
@@ -345,7 +345,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsPositive(assertion.Subject) || TNumber.IsZero(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsPositive()")
+            assertion.Fail(new LegacyFailureBuilder("IsPositive()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be positive")
@@ -368,7 +368,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsPositive(assertion.Subject) && !TNumber.IsZero(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotPositive()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotPositive()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be positive")
@@ -391,7 +391,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsNegative(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNegative()")
+            assertion.Fail(new LegacyFailureBuilder("IsNegative()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be negative")
@@ -414,7 +414,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsNegative(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotNegative()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotNegative()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be negative")
@@ -437,7 +437,7 @@ public static class NumberAssertions
     {
         if (!TNumber.IsNegative(assertion.Subject) && !TNumber.IsZero(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNegativeOrZero()")
+            assertion.Fail(new LegacyFailureBuilder("IsNegativeOrZero()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be negative or zero")
@@ -460,7 +460,7 @@ public static class NumberAssertions
     {
         if (TNumber.IsNegative(assertion.Subject) || TNumber.IsZero(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotNegativeOrZero()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotNegativeOrZero()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To not be negative or zero")
@@ -485,7 +485,7 @@ public static class NumberAssertions
     {
         if (assertion.Subject < other - margin || assertion.Subject > other + margin)
         {
-            assertion.FailureHandler.Fail(new FailureBuilder("IsApproximately()")
+            assertion.FailureHandler.Fail(new LegacyFailureBuilder("IsApproximately()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be greater than or equal to", other - margin)
@@ -511,7 +511,7 @@ public static class NumberAssertions
     {
         if (!(assertion.Subject < other - margin || assertion.Subject > other + margin))
         {
-            assertion.FailureHandler.Fail(new FailureBuilder("IsNotApproximately()")
+            assertion.FailureHandler.Fail(new LegacyFailureBuilder("IsNotApproximately()")
                  .Append(message)
                  .Append("Expecting", assertion.Subject)
                  .Append("To be less than", other - margin)

@@ -30,7 +30,7 @@ internal sealed class IsPositiveAltWithoutZero : Assertion
         {{
             if (!{name}.IsPositive(assertion.Subject) || assertion.Subject == 0)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsPositive()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsPositive()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be a positive number"")
@@ -51,7 +51,7 @@ internal sealed class IsPositiveAltWithoutZero : Assertion
         {{
             if ({name}.IsPositive(assertion.Subject) && assertion.Subject != 0)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotPositive()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotPositive()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be a positive number"")

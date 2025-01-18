@@ -19,7 +19,7 @@ public static class ObjectAssertions
     {
         if (!EqualityHelper.Equals(assertion.Subject, other))
         {
-            assertion.Fail(new FailureBuilder("IsEqualTo()")
+            assertion.Fail(new LegacyFailureBuilder("IsEqualTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be equal to", other)
@@ -41,7 +41,7 @@ public static class ObjectAssertions
     {
         if (EqualityHelper.Equals(assertion.Subject, other))
         {
-            assertion.Fail(new FailureBuilder("IsNotEqualTo()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotEqualTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be equal to", other)
@@ -63,7 +63,7 @@ public static class ObjectAssertions
     {
         if (!EquivalencyHelper.AreEquivalent(assertion.Subject, other))
         {
-            assertion.Fail(new FailureBuilder("IsEquivalentTo()")
+            assertion.Fail(new LegacyFailureBuilder("IsEquivalentTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be equivalent to", other)
@@ -85,7 +85,7 @@ public static class ObjectAssertions
     {
         if (EquivalencyHelper.AreEquivalent(assertion.Subject, other))
         {
-            assertion.Fail(new FailureBuilder("IsNotEquivalentTo()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotEquivalentTo()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be equivalent to", other)
@@ -110,7 +110,7 @@ public static class ObjectAssertions
         if ((isValueType && !EqualityHelper.Equals(assertion.Subject, other))
         || (!isValueType && !ReferenceEquals(assertion.Subject, other)))
         {
-            assertion.Fail(new FailureBuilder("IsSameAs()")
+            assertion.Fail(new LegacyFailureBuilder("IsSameAs()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be the same object as", other)
@@ -135,7 +135,7 @@ public static class ObjectAssertions
         if ((isValueType && EqualityHelper.Equals(assertion.Subject, other))
         || (!isValueType && ReferenceEquals(assertion.Subject, other)))
         {
-            assertion.Fail(new FailureBuilder("IsNotSameAs()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotSameAs()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be the same object as", other)
@@ -156,7 +156,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is not null)
         {
-            assertion.Fail(new FailureBuilder("IsNull()")
+            assertion.Fail(new LegacyFailureBuilder("IsNull()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append<object>("To be", null)
@@ -177,7 +177,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsNotNull()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotNull()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append<object>("Not to be", null)
@@ -200,7 +200,7 @@ public static class ObjectAssertions
 
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an instance of", t)
@@ -210,7 +210,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject is not T subject)
         {
-            assertion.Fail(new FailureBuilder("IsInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an instance of", t)
@@ -236,7 +236,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an instance of", t)
@@ -245,7 +245,7 @@ public static class ObjectAssertions
         }
         else if (!assertion.Subject.GetType().IsSubclassOf(t) && assertion.Subject.GetType() != t)
         {
-            assertion.Fail(new FailureBuilder("IsInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an instance of", t)
@@ -278,7 +278,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is { } && (assertion.Subject.GetType().IsSubclassOf(t) || assertion.Subject.GetType() == t))
         {
-            assertion.Fail(new FailureBuilder("IsNotInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be an instance of", t)
@@ -301,7 +301,7 @@ public static class ObjectAssertions
 
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an exact instance of", t)
@@ -311,7 +311,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject.GetType() != t)
         {
-            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an exact instance of", t)
@@ -337,7 +337,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an exact instance of", t)
@@ -346,7 +346,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject.GetType() != t)
         {
-            assertion.Fail(new FailureBuilder("IsExactlyInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be an exact instance of", t)
@@ -379,7 +379,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.GetType() == t)
         {
-            assertion.Fail(new FailureBuilder("IsNotExactlyInstanceOf()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotExactlyInstanceOf()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be an exact instance of", t)
@@ -401,7 +401,7 @@ public static class ObjectAssertions
     {
         if (!enumerable.AsGeneric().Contains(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsIn()")
+            assertion.Fail(new LegacyFailureBuilder("IsIn()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be in", enumerable)
@@ -423,7 +423,7 @@ public static class ObjectAssertions
     {
         if (enumerable.AsGeneric().Contains(assertion.Subject))
         {
-            assertion.Fail(new FailureBuilder("IsNotIn()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotIn()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be in", enumerable)
@@ -444,7 +444,7 @@ public static class ObjectAssertions
     {
         if (!condition.Invoke(assertion.Subject!))
         {
-            assertion.Fail(new FailureBuilder("Satisfies()")
+            assertion.Fail(new LegacyFailureBuilder("Satisfies()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To satisfy", condition)
@@ -465,7 +465,7 @@ public static class ObjectAssertions
     {
         if (condition.Invoke(assertion.Subject!))
         {
-            assertion.Fail(new FailureBuilder("DoesNotSatisfy()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotSatisfy()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to satisfy", condition)
@@ -487,7 +487,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("HasHashCode()")
+            assertion.Fail(new LegacyFailureBuilder("HasHashCode()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have the hash code", hashCode)
@@ -496,7 +496,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject.GetHashCode() != hashCode)
         {
-            assertion.Fail(new FailureBuilder("HasHashCode()")
+            assertion.Fail(new LegacyFailureBuilder("HasHashCode()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have the hash code", hashCode)
@@ -519,7 +519,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.GetHashCode() == hashCode)
         {
-            assertion.Fail(new FailureBuilder("DoesNotHaveHashCode()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotHaveHashCode()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to have the hash code", hashCode)
@@ -543,7 +543,7 @@ public static class ObjectAssertions
         {
             if (other is not null)
             {
-                assertion.Fail(new FailureBuilder("HasSameHashCodeAs()")
+                assertion.Fail(new LegacyFailureBuilder("HasSameHashCodeAs()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("To have the hash code", other.GetHashCode())
@@ -553,7 +553,7 @@ public static class ObjectAssertions
         }
         else if (other is null)
         {
-            assertion.Fail(new FailureBuilder("HasSameHashCodeAs()")
+            assertion.Fail(new LegacyFailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be null")
@@ -562,7 +562,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject.GetHashCode() != other.GetHashCode())
         {
-            assertion.Fail(new FailureBuilder("HasSameHashCodeAs()")
+            assertion.Fail(new LegacyFailureBuilder("HasSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have the hash code", other.GetHashCode())
@@ -585,7 +585,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is null && other is null)
         {
-            assertion.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be null")
@@ -593,7 +593,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject is { } && other is { } && assertion.Subject.GetHashCode() == other.GetHashCode())
         {
-            assertion.Fail(new FailureBuilder("DoesNotHaveSameHashCodeAs()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotHaveSameHashCodeAs()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to have the hash code", other.GetHashCode())
@@ -615,7 +615,7 @@ public static class ObjectAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("ToStringYields()")
+            assertion.Fail(new LegacyFailureBuilder("ToStringYields()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be represented as", str)
@@ -624,7 +624,7 @@ public static class ObjectAssertions
         }
         else if (assertion.Subject.ToString() is { } other && !Equals(other, str))
         {
-            assertion.Fail(new FailureBuilder("ToStringYields()")
+            assertion.Fail(new LegacyFailureBuilder("ToStringYields()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be represented as", str)

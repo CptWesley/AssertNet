@@ -19,7 +19,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsEmpty()")
+            assertion.Fail(new LegacyFailureBuilder("IsEmpty()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To be empty, but is null")
@@ -27,7 +27,7 @@ public static class EnumerableAssertions
         }
         else if (assertion.Subject.Any())
         {
-            assertion.Fail(new FailureBuilder("IsEmpty()")
+            assertion.Fail(new LegacyFailureBuilder("IsEmpty()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To be empty, but contains", assertion.Subject)
@@ -48,7 +48,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("IsNotEmpty()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotEmpty()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be empty, but is null")
@@ -57,7 +57,7 @@ public static class EnumerableAssertions
         }
         else if (!assertion.Subject.Any())
         {
-            assertion.Fail(new FailureBuilder("IsNotEmpty()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotEmpty()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be empty")
@@ -78,7 +78,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is { } && assertion.Subject.Any())
         {
-            assertion.Fail(new FailureBuilder("IsNullOrEmpty()")
+            assertion.Fail(new LegacyFailureBuilder("IsNullOrEmpty()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To be null or empty, but contains", assertion.Subject)
@@ -99,7 +99,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null || !assertion.Subject.Any())
         {
-            assertion.Fail(new FailureBuilder("IsNotNullOrEmpty()")
+            assertion.Fail(new LegacyFailureBuilder("IsNotNullOrEmpty()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to be null or empty")
@@ -121,7 +121,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("HasSize()")
+            assertion.Fail(new LegacyFailureBuilder("HasSize()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have a size of", size)
@@ -133,7 +133,7 @@ public static class EnumerableAssertions
         int realSize = assertion.Subject.Count();
         if (realSize != size)
         {
-            assertion.Fail(new FailureBuilder("HasSize()")
+            assertion.Fail(new LegacyFailureBuilder("HasSize()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have a size of", size)
@@ -156,7 +156,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("HasAtLeastSize()")
+            assertion.Fail(new LegacyFailureBuilder("HasAtLeastSize()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have at least a size of", size)
@@ -168,7 +168,7 @@ public static class EnumerableAssertions
         int realSize = assertion.Subject.Count();
         if (realSize < size)
         {
-            assertion.Fail(new FailureBuilder("HasAtLeastSize()")
+            assertion.Fail(new LegacyFailureBuilder("HasAtLeastSize()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have at least a size of", size)
@@ -191,7 +191,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("HasAtMostSize()")
+            assertion.Fail(new LegacyFailureBuilder("HasAtMostSize()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have at most a size of", size)
@@ -203,7 +203,7 @@ public static class EnumerableAssertions
         int realSize = assertion.Subject.Count();
         if (realSize > size)
         {
-            assertion.Fail(new FailureBuilder("HasAtMostSize()")
+            assertion.Fail(new LegacyFailureBuilder("HasAtMostSize()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have at most a size of", size)
@@ -236,7 +236,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("Contains()")
+            assertion.Fail(new LegacyFailureBuilder("Contains()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain", values)
@@ -249,7 +249,7 @@ public static class EnumerableAssertions
 
         if (difference.Any())
         {
-            assertion.Fail(new FailureBuilder("Contains()")
+            assertion.Fail(new LegacyFailureBuilder("Contains()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain", values)
@@ -289,7 +289,7 @@ public static class EnumerableAssertions
 
         if (intersection.Any())
         {
-            assertion.Fail(new FailureBuilder("DoesNotContain()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContain()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("Not to contain", values)
@@ -322,7 +322,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("DoesNotContain()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContain()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("Not to contain", values)
@@ -334,7 +334,7 @@ public static class EnumerableAssertions
 
         if (difference.Any())
         {
-            assertion.Fail(new FailureBuilder("ContainsOnly()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsOnly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("To only contain", values)
@@ -374,7 +374,7 @@ public static class EnumerableAssertions
 
         if (!difference.Any())
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainOnly()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainOnly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain other elements besides", values)
@@ -406,7 +406,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("ContainsExactly()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsExactly()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain exactly", values)
@@ -416,7 +416,7 @@ public static class EnumerableAssertions
         }
         else if (!assertion.Subject.SequenceEqual(values))
         {
-            assertion.Fail(new FailureBuilder("ContainsExactly()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsExactly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain exactly", values)
@@ -452,7 +452,7 @@ public static class EnumerableAssertions
         }
         else if (assertion.Subject.SequenceEqual(values))
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainExactly()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainExactly()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("Not to contain exactly", values)
@@ -484,7 +484,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("ContainsExactlyInAnyOrder()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsExactlyInAnyOrder()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain exactly in any order", values)
@@ -496,7 +496,7 @@ public static class EnumerableAssertions
         List<TElement> valuesList = values.ToList();
         List<TElement> targetList = assertion.Subject.ToList();
 
-        FailureBuilder failureBuilder = new FailureBuilder("ContainsExactlyInAnyOrder()")
+        LegacyFailureBuilder failureBuilder = new LegacyFailureBuilder("ContainsExactlyInAnyOrder()")
             .Append(message);
 
         for (int i = valuesList.Count - 1; i >= 0; --i)
@@ -570,7 +570,7 @@ public static class EnumerableAssertions
 
         if (!valuesList.Any() && !targetList.Any())
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainExactlyInAnyOrder()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainExactlyInAnyOrder()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("Not to contain exactly in any order", values)
@@ -602,7 +602,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("ContainsSequence()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsSequence()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain the sequence", values)
@@ -625,7 +625,7 @@ public static class EnumerableAssertions
             }
         }
 
-        assertion.Fail(new FailureBuilder("ContainsSequence()")
+        assertion.Fail(new LegacyFailureBuilder("ContainsSequence()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain the sequence", values)
@@ -664,7 +664,7 @@ public static class EnumerableAssertions
         {
             if (!it.MoveNext())
             {
-                assertion.Fail(new FailureBuilder("DoesNotContainSequence()")
+                assertion.Fail(new LegacyFailureBuilder("DoesNotContainSequence()")
                     .Append(message)
                     .AppendEnumerable("Expecting", assertion.Subject)
                     .AppendEnumerable("Not to contain the sequence", values)
@@ -703,7 +703,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("ContainsInterleavedSequence()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsInterleavedSequence()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain the interleaved sequence", values)
@@ -727,7 +727,7 @@ public static class EnumerableAssertions
             }
         }
 
-        assertion.Fail(new FailureBuilder("ContainsInterleavedSequence()")
+        assertion.Fail(new LegacyFailureBuilder("ContainsInterleavedSequence()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("To contain the interleaved sequence", values)
@@ -778,7 +778,7 @@ public static class EnumerableAssertions
 
         if (failed)
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainInterleavedSequence()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainInterleavedSequence()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .AppendEnumerable("Not to contain the interleaved sequence", values)
@@ -799,7 +799,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("ContainsNull()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsNull()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append<object>("To contain", null)
@@ -812,7 +812,7 @@ public static class EnumerableAssertions
 
         if (!nulls.Any())
         {
-            assertion.Fail(new FailureBuilder("ContainsNull()")
+            assertion.Fail(new LegacyFailureBuilder("ContainsNull()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .Append<object>("To contain", null)
@@ -840,7 +840,7 @@ public static class EnumerableAssertions
 
         if (nulls.Any())
         {
-            assertion.Fail(new FailureBuilder("DoesNotContainNull()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotContainNull()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .Append<object>("Not to contain", null)
@@ -861,7 +861,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("AllSatisfy()")
+            assertion.Fail(new LegacyFailureBuilder("AllSatisfy()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To all satisfy", condition)
@@ -874,7 +874,7 @@ public static class EnumerableAssertions
 
         if (failed.Any())
         {
-            assertion.Fail(new FailureBuilder("AllSatisfy()")
+            assertion.Fail(new LegacyFailureBuilder("AllSatisfy()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .Append("To all satisfy", condition)
@@ -896,7 +896,7 @@ public static class EnumerableAssertions
     {
         if (assertion.Subject is null)
         {
-            assertion.Fail(new FailureBuilder("SomeSatisfy()")
+            assertion.Fail(new LegacyFailureBuilder("SomeSatisfy()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To have any element satisfying", condition)
@@ -909,7 +909,7 @@ public static class EnumerableAssertions
 
         if (!holds.Any())
         {
-            assertion.Fail(new FailureBuilder("SomeSatisfy()")
+            assertion.Fail(new LegacyFailureBuilder("SomeSatisfy()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .Append("To have any element satisfying", condition)
@@ -937,7 +937,7 @@ public static class EnumerableAssertions
 
         if (holds.Any())
         {
-            assertion.Fail(new FailureBuilder("NoneSatisfy()")
+            assertion.Fail(new LegacyFailureBuilder("NoneSatisfy()")
                 .Append(message)
                 .AppendEnumerable("Expecting", assertion.Subject)
                 .Append("Not to have elements satisfying", condition)

@@ -1,4 +1,4 @@
-﻿namespace AssertNet.AssertionTypes;
+namespace AssertNet.AssertionTypes;
 
 /// <summary>
 /// Provides extension methods for <see cref="IAssertion"/> implementations.
@@ -14,5 +14,18 @@ public static class AssertionExtensions
     public static void Fail(this IAssertion assertion, string message)
     {
         assertion.FailureHandler.Fail(message);
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    [Pure]
+    public static FailureBuilder<TAssert> Expecting<TAssert>(this TAssert assertion, string expectation, object? expectationArgument = null)
+        where TAssert : IAssertion
+    {
+        var st = new StackTrace();
+        var prev = st.GetFrame(1)?.GetMethod()?.Name + "()";
+
+        return new FailureBuilder<TAssert>(assertion)
+            .WithAssertion(prev)
+            .WithExpectation(expectation, expectationArgument);
     }
 }

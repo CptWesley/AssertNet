@@ -21,7 +21,7 @@ public static class ActionAssertions
         }
         catch (Exception e)
         {
-            assertion.Fail(new FailureBuilder("DoesNotThrowException()")
+            assertion.Fail(new LegacyFailureBuilder("DoesNotThrowException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("Not to throw an exception")
@@ -50,7 +50,7 @@ public static class ActionAssertions
         {
             if (typeof(T).IsAssignableFrom(e.GetType()))
             {
-                assertion.Fail(new FailureBuilder("DoesNotThrowException()")
+                assertion.Fail(new LegacyFailureBuilder("DoesNotThrowException()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("Not to throw an exception of type", typeof(T))
@@ -80,7 +80,7 @@ public static class ActionAssertions
         {
             if (t.IsAssignableFrom(e.GetType()))
             {
-                assertion.Fail(new FailureBuilder("DoesNotThrowException()")
+                assertion.Fail(new LegacyFailureBuilder("DoesNotThrowException()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("Not to throw an exception of type", t)
@@ -110,7 +110,7 @@ public static class ActionAssertions
         {
             if (e.GetType() == typeof(T))
             {
-                assertion.Fail(new FailureBuilder("DoesNotThrowExactlyException()")
+                assertion.Fail(new LegacyFailureBuilder("DoesNotThrowExactlyException()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("Not to throw an exception exactly of type", typeof(T))
@@ -140,7 +140,7 @@ public static class ActionAssertions
         {
             if (e.GetType() == t)
             {
-                assertion.Fail(new FailureBuilder("DoesNotThrowExactlyException()")
+                assertion.Fail(new LegacyFailureBuilder("DoesNotThrowExactlyException()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("Not to throw an exception exactly of type", t)
@@ -169,7 +169,7 @@ public static class ActionAssertions
             return new Assertion<Exception>(assertion.FailureHandler, e);
         }
 
-        assertion.Fail(new FailureBuilder("ThrowsException()")
+        assertion.Fail(new LegacyFailureBuilder("ThrowsException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To throw an exception, but nothing was thrown")
@@ -198,7 +198,7 @@ public static class ActionAssertions
         }
         catch (Exception e)
         {
-            assertion.Fail(new FailureBuilder("ThrowsException()")
+            assertion.Fail(new LegacyFailureBuilder("ThrowsException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To throw an exception of type", typeof(T))
@@ -207,7 +207,7 @@ public static class ActionAssertions
             return new Assertion<T>(assertion.FailureHandler, null!);
         }
 
-        assertion.Fail(new FailureBuilder("ThrowsException()")
+        assertion.Fail(new LegacyFailureBuilder("ThrowsException()")
             .Append(message)
             .Append("Expecting", assertion.Subject)
             .Append("To throw an exception of type", typeof(T))
@@ -237,7 +237,7 @@ public static class ActionAssertions
             }
             else
             {
-                assertion.Fail(new FailureBuilder("ThrowsException()")
+                assertion.Fail(new LegacyFailureBuilder("ThrowsException()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("To throw an exception of type", t)
@@ -247,7 +247,7 @@ public static class ActionAssertions
             }
         }
 
-        assertion.Fail(new FailureBuilder("ThrowsException()")
+        assertion.Fail(new LegacyFailureBuilder("ThrowsException()")
             .Append(message)
             .Append("Expecting", assertion.Subject)
             .Append("To throw an exception of type", t)
@@ -276,7 +276,7 @@ public static class ActionAssertions
         }
         catch (Exception e)
         {
-            assertion.Fail(new FailureBuilder("ThrowsExactlyException()")
+            assertion.Fail(new LegacyFailureBuilder("ThrowsExactlyException()")
                 .Append(message)
                 .Append("Expecting", assertion.Subject)
                 .Append("To throw an exception exactly of type", typeof(T))
@@ -286,7 +286,7 @@ public static class ActionAssertions
             return new Assertion<T>(assertion.FailureHandler, null!);
         }
 
-        assertion.Fail(new FailureBuilder("ThrowsExactlyException()")
+        assertion.Fail(new LegacyFailureBuilder("ThrowsExactlyException()")
             .Append(message)
             .Append("Expecting", assertion.Subject)
             .Append("To throw an exception exactly of type", typeof(T))
@@ -317,7 +317,7 @@ public static class ActionAssertions
             }
             else
             {
-                assertion.Fail(new FailureBuilder("ThrowsExactlyException()")
+                assertion.Fail(new LegacyFailureBuilder("ThrowsExactlyException()")
                     .Append(message)
                     .Append("Expecting", assertion.Subject)
                     .Append("To throw an exception exactly of type", t)
@@ -327,7 +327,7 @@ public static class ActionAssertions
             }
         }
 
-        assertion.Fail(new FailureBuilder("ThrowsExactlyException()")
+        assertion.Fail(new LegacyFailureBuilder("ThrowsExactlyException()")
             .Append(message)
             .Append("Expecting", assertion.Subject)
             .Append("To throw an exception exactly of type", t)

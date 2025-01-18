@@ -20,7 +20,7 @@ internal sealed class IsNegative() : StaticBooleanMethodAssertion("IsNegative")
         {{
             if (!{name}.IsNegative(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNegative()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNegative()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be a negative number"")
@@ -41,7 +41,7 @@ internal sealed class IsNegative() : StaticBooleanMethodAssertion("IsNegative")
         {{
             if ({name}.IsNegative(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotNegative()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotNegative()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be a negative number"")

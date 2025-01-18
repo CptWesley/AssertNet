@@ -30,7 +30,7 @@ internal sealed class IsNegativeOrZeroAltWithoutZero : Assertion
         {{
             if (!{name}.IsNegative(assertion.Subject) && assertion.Subject != 0)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNegativeOrZero()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNegativeOrZero()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be a negative number or zero"")
@@ -51,7 +51,7 @@ internal sealed class IsNegativeOrZeroAltWithoutZero : Assertion
         {{
             if ({name}.IsNegative(assertion.Subject) || assertion.Subject == 0)
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotNegativeOrZero()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotNegativeOrZero()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be a negative number or zero"")

@@ -20,7 +20,7 @@ internal sealed class IsInfinity() : StaticBooleanMethodAssertion("IsInfinity")
         {{
             if (!{name}.IsInfinity(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsInfinity()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsInfinity()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To be infinity"")
@@ -41,7 +41,7 @@ internal sealed class IsInfinity() : StaticBooleanMethodAssertion("IsInfinity")
         {{
             if ({name}.IsInfinity(assertion.Subject))
             {{
-                assertion.FailureHandler.Fail(new global::AssertNet.Failures.FailureBuilder(""IsNotInfinity()"")
+                assertion.FailureHandler.Fail(new global::AssertNet.Failures.LegacyFailureBuilder(""IsNotInfinity()"")
                      .Append(message)
                      .Append(""Expecting"", assertion.Subject)
                      .Append(""To not be infinity"")

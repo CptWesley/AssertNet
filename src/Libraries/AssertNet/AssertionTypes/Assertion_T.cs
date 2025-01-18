@@ -12,8 +12,9 @@ public sealed class Assertion<TSubject> : Assertion<Assertion<TSubject>, TSubjec
     /// </summary>
     /// <param name="failureHandler">The failure handler of the assertion.</param>
     /// <param name="subject">The object which is under test.</param>
-    public Assertion(IFailureHandler failureHandler, TSubject subject)
-        : base(failureHandler, subject)
+    /// <param name="expression">The expression string of the subject, if available.</param>
+    public Assertion(IFailureHandler failureHandler, TSubject subject, [CallerArgumentExpression(nameof(subject))] string? expression = null)
+        : base(failureHandler, subject, expression)
     {
     }
 }
