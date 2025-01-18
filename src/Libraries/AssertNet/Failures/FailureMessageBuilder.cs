@@ -1,14 +1,20 @@
+using AssertNet.AssertionTypes;
+
 namespace AssertNet.Failures;
 
 /// <summary>
 /// A builder for failure messages.
 /// </summary>
 [Mutable]
-public sealed class FailureMessageBuilder
+public sealed class FailureMessageBuilder<TAssert>
+    where TAssert : IAssertion
 {
-    public object? Subject { get; set; }
+    private readonly TAssert assertion;
 
-    public string? Expression { get; set; }
+    internal FailureMessageBuilder(TAssert assertion)
+    {
+        this.assertion = assertion;
+    }
 
     public string? Assertion { get; set; }
 
@@ -19,65 +25,54 @@ public sealed class FailureMessageBuilder
     public object? ExpectationArgument { get; set; }
 
     [FluentSyntax]
-    public FailureMessageBuilder WithSubject(object? subject)
-    {
-        this.Subject = subject;
-        return this;
-    }
-
-    [FluentSyntax]
-    public FailureMessageBuilder WithExpression(string? expression)
-    {
-        this.Expression = expression;
-        return this;
-    }
-
-    [FluentSyntax]
-    public FailureMessageBuilder WithAssertion(string? assertion)
+    public FailureMessageBuilder<TAssert> WithAssertion(string? assertion)
     {
         this.Assertion = assertion;
         return this;
     }
 
     [FluentSyntax]
-    public FailureMessageBuilder WithMessage(string? message)
+    public FailureMessageBuilder<TAssert> WithMessage(string? message)
     {
         this.Message = message;
         return this;
     }
 
     [FluentSyntax]
-    public FailureMessageBuilder WithExpectation(string? expectation)
+    public FailureMessageBuilder<TAssert> WithExpectation(string? expectation)
     {
         this.Expectation = expectation;
         return this;
     }
 
     [FluentSyntax]
-    public FailureMessageBuilder WithExpectationArgument(object? expectationArgument)
+    public FailureMessageBuilder<TAssert> WithExpectationArgument(object? expectationArgument)
     {
         this.ExpectationArgument = expectationArgument;
         return this;
     }
 
     [FluentSyntax]
-    public FailureMessageBuilder WithExpectation(string? expectation, object? expectationArgument)
+    public FailureMessageBuilder<TAssert> WithExpectation(string? expectation, object? expectationArgument)
         => WithExpectation(expectation)
         .WithExpectationArgument(expectationArgument);
 
 #if NET7_0_OR_GREATER
     [StackTraceHidden]
 #endif
-    public void FailWhen(bool condition)
+    [FluentSyntax]
+    public TAssert FailWhen(bool condition)
     {
-        if (!condition)
+        if (condition)
         {
-            return;
+            var msg = ToString();
+            assertion.FailureHandler.Fail(msg);
         }
 
-        FailureHandlerFactory.Create().Fail(ToString());
+        return assertion;
     }
 
+    [Pure]
     public override string ToString()
     {
         var sb = new StringBuilder();
@@ -96,11 +91,11 @@ public sealed class FailureMessageBuilder
 
         sb.AppendLine("Expecting:");
 
-        var subjectString = StringOf(Subject);
+        var subjectString = StringOf(assertion.Subject);
 
-        if (Expression is { Length: > 0 } && Expression != subjectString)
+        if (assertion.Expression is { Length: > 0 } && assertion.Expression != subjectString)
         {
-            sb.Append(Expression).Append(" (").Append(subjectString).AppendLine(")");
+            sb.Append(assertion.Expression).Append(" (").Append(subjectString).AppendLine(")");
         }
         else
         {

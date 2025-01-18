@@ -18,14 +18,13 @@ public static class AssertionExtensions
 
     [MethodImpl(MethodImplOptions.NoInlining)]
     [Pure]
-    public static FailureMessageBuilder Expecting(this IAssertion assertion, string expectation, object? expectationArgument = null)
+    public static FailureMessageBuilder<TAssert> Expecting<TAssert>(this TAssert assertion, string expectation, object? expectationArgument = null)
+        where TAssert : IAssertion
     {
         var st = new StackTrace();
         var prev = st.GetFrame(1)?.GetMethod()?.Name + "()";
 
-        return new FailureMessageBuilder()
-            .WithSubject(assertion.Subject)
-            .WithExpression(assertion.Expression)
+        return new FailureMessageBuilder<TAssert>(assertion)
             .WithAssertion(prev)
             .WithExpectation(expectation, expectationArgument);
     }

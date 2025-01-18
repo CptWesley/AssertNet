@@ -19,14 +19,10 @@ public static class StringAssertions
     [Assertion]
     public static TAssert IsEqualToIgnoringCase<TAssert>(this TAssert assertion, string? other, string? message = null)
         where TAssert : IAssertion<string>
-    {
-        assertion
+        => assertion
             .Expecting("To be equal to while ignoring cases", other)
             .WithMessage(message)
             .FailWhen(!string.Equals(assertion.Subject, other, StringComparison.OrdinalIgnoreCase));
-
-        return assertion;
-    }
 
     /// <summary>
     /// Asserts if a string is not equal to a given other string if cases are ignored.
