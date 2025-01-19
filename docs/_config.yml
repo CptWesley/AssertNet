@@ -13,7 +13,7 @@ plugins:
 - jekyll-include-cache
 - jekyll-sitemap
 
-markdown: kramdown
+markdown: GFM
 highlighter: rouge
 kramdown:
     input: GFM
