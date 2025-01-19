@@ -6,7 +6,7 @@ namespace AssertNet.Tests.AssertionTypes.Objects;
 /// Test class for the <see cref="IAssertion"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class AssertionTests : ObjectAssertionTests<Assertion<string>, string?>
+public class AssertionTests : ObjectAssertionTests<Sut<string>, string?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="AssertionTests"/> class.

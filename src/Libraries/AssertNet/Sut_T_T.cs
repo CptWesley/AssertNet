@@ -2,22 +2,33 @@ using AssertNet.AssertionTypes;
 
 namespace AssertNet;
 
+/// <summary>A wrapper around a system/subject under test (SUT).</summary>
+/// <typeparam name="TAssert">
+/// Derived type of the assertion.
+/// </typeparam>
+/// <typeparam name="TSubject">
+/// The type of the subject under test.
+/// </typeparam>
 /// <summary>
 /// Abstract class representing assertions of objects.
 /// </summary>
-/// <typeparam name="TAssert">Derived type of the assertion.</typeparam>
-/// <typeparam name="TSubject">Type of the object under test.</typeparam>
 /// <seealso cref="IAssertion" />
-public abstract class Assertion<TAssert, TSubject> : IAssertion<TAssert, TSubject>
-    where TAssert : Assertion<TAssert, TSubject>
+public abstract class Sut<TAssert, TSubject> : IAssertion<TAssert, TSubject>
+    where TAssert : Sut<TAssert, TSubject>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Assertion{TAssert, TTarget}"/> class.
+    /// Initializes a new instance of the <see cref="Sut{TAssert, TTarget}"/> class.
     /// </summary>
-    /// <param name="failureHandler">The failure handler of the assertion.</param>
-    /// <param name="subject">The object which is under test.</param>
-    /// <param name="expression">The expression string of the subject, if available.</param>
-    protected Assertion(IFailureHandler failureHandler, TSubject subject, string? expression)
+    /// <param name="failureHandler">
+    /// The failure handler of the assertion.
+    /// </param>
+    /// <param name="subject">
+    /// The system/subject under test.
+    /// </param>
+    /// <param name="expression">
+    /// The expression string of the subject, if available.
+    /// </param>
+    protected Sut(IFailureHandler failureHandler, TSubject subject, string? expression)
     {
         FailureHandler = failureHandler;
         Subject = subject;

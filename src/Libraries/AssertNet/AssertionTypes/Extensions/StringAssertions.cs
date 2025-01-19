@@ -5,7 +5,7 @@ namespace AssertNet;
 /// <summary>
 /// Class representing assertions made about strings.
 /// </summary>
-/// <seealso cref="Assertion{TAssert, TTarget}" />
+/// <seealso cref="Sut{TAssert, TTarget}" />
 public static class StringAssertions
 {
     /// <summary>

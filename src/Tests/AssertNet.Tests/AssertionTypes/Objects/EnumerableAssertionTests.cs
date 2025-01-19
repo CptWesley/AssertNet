@@ -5,7 +5,7 @@ namespace AssertNet.Tests.AssertionTypes.Objects;
 /// <summary>
 /// Test class for the <see cref="Assertion"/> class.
 /// </summary>
-public class EnumerableAssertionTests : ObjectAssertionTests<Assertion<int[]>, int[]>
+public class EnumerableAssertionTests : ObjectAssertionTests<Sut<int[]>, int[]>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="EnumerableAssertionTests"/> class.

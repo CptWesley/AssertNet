@@ -13,7 +13,7 @@ public static class Assertions
     /// <param name="value">Object under test.</param>
     /// <returns>Assertion about an object.</returns>
     [Pure]
-    public static Assertion<T> That<T>(this AssertionBuilder _, T value, [CallerArgumentExpression(nameof(value))] string? exp = null)
+    public static Sut<T> That<T>(this AssertionBuilder _, T value, [CallerArgumentExpression(nameof(value))] string? exp = null)
         => new(FailureHandlerFactory.Create(), value, exp);
 
     /// <summary>
@@ -24,6 +24,6 @@ public static class Assertions
     /// <returns>Assertion about an object.</returns>
     /// <typeparam name="T">The type under test.</typeparam>
     [Pure]
-    public static Assertion<T> AssertThat<T>(T value, [CallerArgumentExpression(nameof(value))] string? exp = null)
-        => new Assertion<T>(FailureHandlerFactory.Create(), value, exp);
+    public static Sut<T> AssertThat<T>(T value, [CallerArgumentExpression(nameof(value))] string? exp = null)
+        => new Sut<T>(FailureHandlerFactory.Create(), value, exp);
 }

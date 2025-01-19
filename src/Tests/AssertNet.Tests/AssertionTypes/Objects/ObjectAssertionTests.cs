@@ -4,13 +4,13 @@ using AssertNet.Failures;
 namespace AssertNet.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="Assertion{TAssert, TTarget}"/> class.
+/// Test class for the <see cref="Sut{TAssert, TTarget}"/> class.
 /// </summary>
 /// <typeparam name="T1">Type of the assertion.</typeparam>
 /// <typeparam name="T2">Type of the object under test.</typeparam>
 [Mutable]
 public abstract class ObjectAssertionTests<T1, T2>
-    where T1 : Assertion<T1, T2>
+    where T1 : Sut<T1, T2>
 {
     protected ObjectAssertionTests()
     {
@@ -41,7 +41,7 @@ public abstract class ObjectAssertionTests<T1, T2>
     protected Mock<IFailureHandler> FailureHandler { get; set; }
 
     public IAssertion<TSubject> CreateAssertion<TSubject>(TSubject subject)
-        => new Assertion<TSubject>(FailureHandler.Object, subject);
+        => new Sut<TSubject>(FailureHandler.Object, subject);
 
     /// <summary>
     /// Checks that there are no failures if the objects are equal.

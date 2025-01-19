@@ -6,7 +6,7 @@ namespace AssertNet.Tests.AssertionTypes.Objects;
 /// <summary>
 /// Test class for the <see cref="SingleAssertion"/> class.
 /// </summary>
-public class SingleAssertionTests : ObjectAssertionTests<Assertion<object?>, object?>
+public class SingleAssertionTests : ObjectAssertionTests<Sut<object?>, object?>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SingleAssertionTests"/> class.
@@ -14,7 +14,7 @@ public class SingleAssertionTests : ObjectAssertionTests<Assertion<object?>, obj
     public SingleAssertionTests()
     {
         FailureHandler = new Mock<IFailureHandler>(MockBehavior.Loose);
-        Assertion = new Assertion<object?>(FailureHandler.Object, "bery43566435fgdtfg");
+        Assertion = new Sut<object?>(FailureHandler.Object, "bery43566435fgdtfg");
     }
 
     /// <summary>
@@ -23,7 +23,7 @@ public class SingleAssertionTests : ObjectAssertionTests<Assertion<object?>, obj
     [Fact]
     public void IsNotNullFailTest()
     {
-        Assertion = new Assertion<object?>(FailureHandler.Object, null);
+        Assertion = new Sut<object?>(FailureHandler.Object, null);
         Assertion.IsNotNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Once());
     }
@@ -34,7 +34,7 @@ public class SingleAssertionTests : ObjectAssertionTests<Assertion<object?>, obj
     [Fact]
     public void IsNullPassTest()
     {
-        Assertion = new Assertion<object?>(FailureHandler.Object, null);
+        Assertion = new Sut<object?>(FailureHandler.Object, null);
         Assertion.IsNull();
         FailureHandler.Verify(x => x.Fail(It.IsAny<string>()), Times.Never());
     }

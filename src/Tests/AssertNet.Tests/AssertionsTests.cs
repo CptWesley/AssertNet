@@ -15,7 +15,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(() => { });
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<Action>>(assertion);
+        Assert.IsType<Sut<Action>>(assertion);
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(new Exception());
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<Exception>>(assertion);
+        Assert.IsType<Sut<Exception>>(assertion);
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(true);
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<bool>>(assertion);
+        Assert.IsType<Sut<bool>>(assertion);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(4.5);
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<double>>(assertion);
+        Assert.IsType<Sut<double>>(assertion);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(string.Empty);
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<string>>(assertion);
+        Assert.IsType<Sut<string>>(assertion);
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(Array.Empty<int>());
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<int[]>>(assertion);
+        Assert.IsType<Sut<int[]>>(assertion);
     }
 
     /// <summary>
@@ -81,6 +81,6 @@ public static class AssertionsTests
     {
         IAssertion assertion = Asserts.That(new object());
         Assert.NotNull(assertion);
-        Assert.IsType<Assertion<object?>>(assertion);
+        Assert.IsType<Sut<object?>>(assertion);
     }
 }

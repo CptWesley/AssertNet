@@ -206,7 +206,7 @@ public static class ObjectAssertions
                 .Append("To be an instance of", t)
                 .Append("But is null")
                 .Finish());
-            return new Assertion<T>(assertion.FailureHandler, default!);
+            return new Sut<T>(assertion.FailureHandler, default!);
         }
         else if (assertion.Subject is not T subject)
         {
@@ -216,11 +216,11 @@ public static class ObjectAssertions
                 .Append("To be an instance of", t)
                 .Append("But is an instance of", assertion.Subject.GetType())
                 .Finish());
-            return new Assertion<T>(assertion.FailureHandler, default!);
+            return new Sut<T>(assertion.FailureHandler, default!);
         }
         else
         {
-            return new Assertion<T>(assertion.FailureHandler, subject);
+            return new Sut<T>(assertion.FailureHandler, subject);
         }
     }
 
@@ -307,7 +307,7 @@ public static class ObjectAssertions
                 .Append("To be an exact instance of", t)
                 .Append("But is null")
                 .Finish());
-            return new Assertion<T>(assertion.FailureHandler, default!);
+            return new Sut<T>(assertion.FailureHandler, default!);
         }
         else if (assertion.Subject.GetType() != t)
         {
@@ -317,11 +317,11 @@ public static class ObjectAssertions
                 .Append("To be an exact instance of", t)
                 .Append("But is an instance of", assertion.Subject.GetType())
                 .Finish());
-            return new Assertion<T>(assertion.FailureHandler, default!);
+            return new Sut<T>(assertion.FailureHandler, default!);
         }
         else
         {
-            return new Assertion<T>(assertion.FailureHandler, (T)assertion.Subject);
+            return new Sut<T>(assertion.FailureHandler, (T)assertion.Subject);
         }
     }
 
