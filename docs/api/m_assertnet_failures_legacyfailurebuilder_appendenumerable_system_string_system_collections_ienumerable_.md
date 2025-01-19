@@ -13,13 +13,13 @@ public AssertNet.Failures.LegacyFailureBuilder AppendEnumerable(System.String ob
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`objectName`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 |`enumerable`|[System.Collections.IEnumerable](https://learn.microsoft.com/en-us/dotnet/api/system.collections.ienumerable)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md)||
 
 ## Available for

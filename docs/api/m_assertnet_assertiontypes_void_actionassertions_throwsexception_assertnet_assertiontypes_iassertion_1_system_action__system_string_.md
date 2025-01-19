@@ -13,13 +13,13 @@ public static AssertNet.AssertionTypes.IAssertion`1<System.Exception> ThrowsExce
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|AssertNet.AssertionTypes.IAssertion`1<System.Action>||
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.AssertionTypes.IAssertion`1<System.Exception>||
 
 ## Available for

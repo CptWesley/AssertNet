@@ -16,13 +16,13 @@ Fails an `assertion` with a specific `message` .
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|[IAssertion](t_assertnet_assertiontypes_iassertion.md)|The assertion to trigger the failure on.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The message to fail with.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

@@ -16,7 +16,7 @@ Ensures that the value under test is not approximately equivalent.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The original assertion chain.|
 |`other`|[System.Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)|The value to compare to.|
 |`margin`|[System.Int64](https://learn.microsoft.com/en-us/dotnet/api/system.int64)|The variance to disallow.|
@@ -24,7 +24,7 @@ Ensures that the value under test is not approximately equivalent.
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The updated assertion chain.|
 
 ## Available for

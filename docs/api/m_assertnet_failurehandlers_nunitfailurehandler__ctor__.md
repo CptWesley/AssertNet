@@ -8,12 +8,12 @@ ancestor: AssertNet
 # NunitFailureHandler()
 
 ```csharp
-public System.Void NunitFailureHandler();
+public NunitFailureHandler();
 ```
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

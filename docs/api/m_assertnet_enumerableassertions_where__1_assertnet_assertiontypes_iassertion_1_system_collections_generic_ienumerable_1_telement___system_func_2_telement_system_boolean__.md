@@ -13,13 +13,13 @@ public static AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.I
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TElement>>||
 |`condition`|[System.Func`2<TElement,System.Boolean>](https://learn.microsoft.com/en-us/dotnet/api/system.func-2<telement,system.boolean>)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TElement>>||
 
 ## Available for

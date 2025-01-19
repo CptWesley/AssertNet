@@ -8,12 +8,12 @@ ancestor: AssertNet
 # FallbackFailureHandler()
 
 ```csharp
-public System.Void FallbackFailureHandler();
+public FallbackFailureHandler();
 ```
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

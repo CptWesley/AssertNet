@@ -16,13 +16,13 @@ Appends an object line.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`objectName`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Name of the object.|
 |`part`|T|The object.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md)|The current [LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md) instance.|
 
 ## Available for

@@ -16,12 +16,12 @@ Sets the P:AssertNet.Failures.FailureBuilder`1.ExpectationArgument property.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`expectationArgument`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)|The new value.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.Failures.FailureBuilder`1<TAssert>|The updated builder instance.|
 
 ## Available for

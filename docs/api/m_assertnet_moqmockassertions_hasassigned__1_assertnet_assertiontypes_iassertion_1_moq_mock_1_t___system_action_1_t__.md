@@ -13,13 +13,13 @@ public static AssertNet.Moq.Mocks.InvocationAssertion`1<T> HasAssigned<T>(Assert
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>>||
 |`expression`|[System.Action`1<T>](https://learn.microsoft.com/en-us/dotnet/api/system.action-1<t>)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.Moq.Mocks.InvocationAssertion`1<T>||
 
 ## Available for

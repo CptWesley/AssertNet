@@ -16,13 +16,13 @@ Asserts that an exception has no inner exception.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

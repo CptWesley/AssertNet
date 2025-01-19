@@ -16,14 +16,14 @@ Checks that the ToString() call returns the given string.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`str`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The expected ToString() result.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

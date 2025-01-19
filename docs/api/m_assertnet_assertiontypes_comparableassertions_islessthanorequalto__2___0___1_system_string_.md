@@ -16,14 +16,14 @@ Asserts if the asserted value is less than or equal to the value under test.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The value under test to assert on.|
 |`other`|TSubject|Value which should be less than or equal to the value under test.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

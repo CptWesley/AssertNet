@@ -16,14 +16,14 @@ Asserts if a string contains a certain substring.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The initial assertion chain.|
 |`substring`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Substring which needs to be contained.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The updated assertion chain.|
 
 ## Available for

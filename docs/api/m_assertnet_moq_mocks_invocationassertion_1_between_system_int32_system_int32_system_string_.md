@@ -16,14 +16,14 @@ Asserts that the expression was invoked a number of times in a certain range.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`minimum`|[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)|The minimum amount of invocations.|
 |`maximum`|[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)|The maximum amount of invocations.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>>|An assertion on the mock we were making an assertion about.|
 
 ## Available for

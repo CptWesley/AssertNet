@@ -8,12 +8,12 @@ ancestor: AssertNet
 # GenerateAssertionsForAttribute()
 
 ```csharp
-public System.Void GenerateAssertionsForAttribute();
+public GenerateAssertionsForAttribute();
 ```
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

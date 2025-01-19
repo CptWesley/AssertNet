@@ -16,12 +16,12 @@ Appends the specified line.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`line`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The line.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md)|The current [LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md) instance.|
 
 ## Available for

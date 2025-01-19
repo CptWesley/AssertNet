@@ -16,7 +16,7 @@ Ensures that the value under test is approximately equivalent.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The original assertion chain.|
 |`other`|[System.SByte](https://learn.microsoft.com/en-us/dotnet/api/system.sbyte)|The value to compare to.|
 |`margin`|[System.SByte](https://learn.microsoft.com/en-us/dotnet/api/system.sbyte)|The variance to allow.|
@@ -24,7 +24,7 @@ Ensures that the value under test is approximately equivalent.
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The updated assertion chain.|
 
 ## Available for

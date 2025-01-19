@@ -16,12 +16,12 @@ Triggers the failure if the given `condition` is `true` .
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`condition`|[System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)|The condition to check.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The original wrapped assertion.|
 
 ## Available for

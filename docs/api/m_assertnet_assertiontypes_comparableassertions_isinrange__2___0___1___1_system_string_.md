@@ -16,7 +16,7 @@ Asserts if a double is within a certain range.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The value under test to assert on.|
 |`minimum`|TSubject|Lower bound of the range the value should be in.|
 |`maximum`|TSubject|Upper bound of the range the value should be in.|
@@ -24,12 +24,12 @@ Asserts if a double is within a certain range.
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 # Exceptions
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.ArgumentException](https://learn.microsoft.com/en-us/dotnet/api/system.argumentexception)|Thrown if the maximum is larger or equal to the minimum.|
 
 ## Available for

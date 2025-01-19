@@ -16,13 +16,13 @@ Checks if two objects are equivalent.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`that`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)|The object to check for.|
 |`other`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)|The object to check with.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)|True if internally equal, false otherwise.|
 
 ## Available for

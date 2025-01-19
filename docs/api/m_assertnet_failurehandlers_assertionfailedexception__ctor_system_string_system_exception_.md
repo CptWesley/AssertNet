@@ -8,18 +8,18 @@ ancestor: AssertNet
 # AssertionFailedException(System.String, System.Exception)
 
 ```csharp
-public System.Void AssertionFailedException(System.String message, System.Exception innerException);
+public AssertionFailedException(System.String message, System.Exception innerException);
 ```
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 |`innerException`|[System.Exception](https://learn.microsoft.com/en-us/dotnet/api/system.exception)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

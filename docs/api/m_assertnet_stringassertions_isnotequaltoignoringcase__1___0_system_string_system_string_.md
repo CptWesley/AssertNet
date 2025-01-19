@@ -16,14 +16,14 @@ Asserts if a string is not equal to a given other string if cases are ignored.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The initial assertion chain.|
 |`other`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The other string to compare with.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The updated assertion chain.|
 
 ## Available for

@@ -8,12 +8,12 @@ ancestor: AssertNet
 # MsTestFailureHandler()
 
 ```csharp
-public System.Void MsTestFailureHandler();
+public MsTestFailureHandler();
 ```
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

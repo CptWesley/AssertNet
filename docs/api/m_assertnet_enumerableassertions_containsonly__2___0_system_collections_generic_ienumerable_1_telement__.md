@@ -13,13 +13,13 @@ public static TAssert ContainsOnly<TAssert, TElement>(TAssert assertion, System.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`values`|[System.Collections.Generic.IEnumerable`1<TElement>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<telement>)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert||
 
 ## Available for

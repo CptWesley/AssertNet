@@ -13,12 +13,12 @@ public static AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.I
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|AssertNet.AssertionTypes.IAssertion`1<System.Collections.IEnumerable>||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TElement>>||
 
 ## Available for

@@ -16,13 +16,13 @@ Checks if the object under test is an instance of a certain type.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|[IAssertion](t_assertnet_assertiontypes_iassertion.md)||
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.AssertionTypes.IAssertion`1<T>|The current assertion.|
 
 ## Available for

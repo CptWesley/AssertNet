@@ -8,17 +8,17 @@ ancestor: AssertNet
 # AssertionFailedException(System.String)
 
 ```csharp
-public System.Void AssertionFailedException(System.String message);
+public AssertionFailedException(System.String message);
 ```
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

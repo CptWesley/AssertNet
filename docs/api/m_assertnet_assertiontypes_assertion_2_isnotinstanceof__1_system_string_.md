@@ -13,12 +13,12 @@ public TAssert IsNotInstanceOf<T>(System.String message);
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert||
 
 ## Available for

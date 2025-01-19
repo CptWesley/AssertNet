@@ -13,7 +13,7 @@ public System.String Finish();
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 
 ## Available for

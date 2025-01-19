@@ -16,14 +16,14 @@ Checks whether the object under test is the same as another object.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`other`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)|The other to compare with.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

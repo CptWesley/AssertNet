@@ -16,13 +16,13 @@ Makes an assertion about an object.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`value`|T|Object under test.|
 |`exp`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The expression under test.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |AssertNet.AssertionTypes.Assertion`1<T>|Assertion about an object.|
 
 ## Available for

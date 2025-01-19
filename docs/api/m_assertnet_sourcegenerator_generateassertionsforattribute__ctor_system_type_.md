@@ -8,17 +8,17 @@ ancestor: AssertNet
 # GenerateAssertionsForAttribute(System.Type)
 
 ```csharp
-public System.Void GenerateAssertionsForAttribute(System.Type type);
+public GenerateAssertionsForAttribute(System.Type type);
 ```
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`type`|[System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

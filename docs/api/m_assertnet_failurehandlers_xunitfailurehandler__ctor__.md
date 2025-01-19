@@ -8,12 +8,12 @@ ancestor: AssertNet
 # XunitFailureHandler()
 
 ```csharp
-public System.Void XunitFailureHandler();
+public XunitFailureHandler();
 ```
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
 
 ## Available for

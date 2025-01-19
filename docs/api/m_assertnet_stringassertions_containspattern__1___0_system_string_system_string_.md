@@ -16,14 +16,14 @@ Determines whether the string under test contains a given pattern.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert|The initial assertion chain.|
 |`pattern`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The pattern to check for.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The updated assertion chain.|
 
 ## Available for

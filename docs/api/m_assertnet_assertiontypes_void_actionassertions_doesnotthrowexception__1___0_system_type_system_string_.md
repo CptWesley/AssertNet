@@ -16,14 +16,14 @@ Assert that the action does not throw an exception of a specific type.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`t`|[System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type)|Type of the exception which may not be thrown.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

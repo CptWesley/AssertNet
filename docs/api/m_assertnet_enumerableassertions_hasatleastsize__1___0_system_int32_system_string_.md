@@ -16,14 +16,14 @@ Checks if the enumerable has at least a certain size.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`size`|[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)|The size the enumerable should have.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

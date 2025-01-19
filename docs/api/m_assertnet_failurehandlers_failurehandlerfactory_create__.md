@@ -13,7 +13,7 @@ public static AssertNet.Failures.IFailureHandler Create();
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |[IFailureHandler](t_assertnet_failures_ifailurehandler.md)||
 
 ## Available for

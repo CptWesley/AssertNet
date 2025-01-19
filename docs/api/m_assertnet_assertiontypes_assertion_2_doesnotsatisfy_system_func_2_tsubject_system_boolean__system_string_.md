@@ -13,13 +13,13 @@ public TAssert DoesNotSatisfy(System.Func`2<TSubject,System.Boolean> condition, 
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`condition`|[System.Func`2<TSubject,System.Boolean>](https://learn.microsoft.com/en-us/dotnet/api/system.func-2<tsubject,system.boolean>)||
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert||
 
 ## Available for

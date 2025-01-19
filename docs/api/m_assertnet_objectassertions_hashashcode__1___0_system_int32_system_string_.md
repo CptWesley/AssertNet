@@ -16,14 +16,14 @@ Checks that an object has a certain hash code.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`hashCode`|[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)|The expected hash code of the object.|
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for

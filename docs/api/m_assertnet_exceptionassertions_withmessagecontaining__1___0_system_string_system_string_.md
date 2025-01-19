@@ -17,14 +17,14 @@ Asserts that an exception has a message containing the given string.
 
 ## Parameters
 |Name|Type|Description|
-|-|-|-|
+|:-|:-|:-|
 |`assertion`|TAssert||
 |`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Part of the message which the exception should have.|
 |`customMessage`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
 
 ## Returns
 |Type|Description|
-|-|-|
+|:-|:-|
 |TAssert|The current assertion.|
 
 ## Available for
