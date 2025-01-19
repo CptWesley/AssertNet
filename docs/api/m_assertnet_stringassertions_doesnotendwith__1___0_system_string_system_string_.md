@@ -15,16 +15,17 @@ public static TAssert DoesNotEndWith<TAssert>(TAssert assertion, System.String s
 Asserts if a string does not end with a certain substring.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert|The initial assertion chain.|
-|`substring`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Substring which the string may not start with.|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
+| Name      | Type                                                                        | Description                                    |
+|:----------|:----------------------------------------------------------------------------|:-----------------------------------------------|
+| assertion | TAssert                                                                     | The initial assertion chain.                   |
+| substring | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | Substring which the string may not start with. |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | Custom message for the assertion failure.      |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert|The updated assertion chain.|
+| Type    | Description                  |
+|:--------|:-----------------------------|
+| TAssert | The updated assertion chain. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

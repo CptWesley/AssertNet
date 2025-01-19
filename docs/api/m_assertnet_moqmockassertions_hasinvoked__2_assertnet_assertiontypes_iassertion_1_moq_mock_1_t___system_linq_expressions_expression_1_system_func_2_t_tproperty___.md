@@ -12,15 +12,16 @@ public static AssertNet.Moq.Mocks.InvocationAssertion`1<T> HasInvoked<T, TProper
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>>||
-|`expression`|[System.Linq.Expressions.Expression`1<System.Func`2<T,TProperty>>](https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1<system.func-2<t,tproperty>>)||
+| Name       | Type                                                                                                                                                                              | Description |
+|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:------------|
+| assertion  | AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>>                                                                                                                              |             |
+| expression | [System.Linq.Expressions.Expression`1<System.Func`2<T,TProperty>>](https://learn.microsoft.com/en-us/dotnet/api/system.linq.expressions.expression-1<system.func-2<t,tproperty>>) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.Moq.Mocks.InvocationAssertion`1<T>||
+| Type                                         | Description |
+|:---------------------------------------------|:------------|
+| AssertNet.Moq.Mocks.InvocationAssertion`1<T> |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

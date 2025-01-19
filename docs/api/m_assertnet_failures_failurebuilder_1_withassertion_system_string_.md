@@ -15,14 +15,15 @@ public AssertNet.Failures.FailureBuilder`1<TAssert> WithAssertion(System.String 
 Sets the P:AssertNet.Failures.FailureBuilder`1.Assertion property.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The new value.|
+| Name      | Type                                                                        | Description    |
+|:----------|:----------------------------------------------------------------------------|:---------------|
+| assertion | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | The new value. |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.Failures.FailureBuilder`1<TAssert>|The updated builder instance.|
+| Type                                         | Description                   |
+|:---------------------------------------------|:------------------------------|
+| AssertNet.Failures.FailureBuilder`1<TAssert> | The updated builder instance. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

@@ -15,16 +15,17 @@ public static AssertNet.AssertionTypes.Assertion`1<T> That<T>(AssertNet.Assertio
 Makes an assertion about an object.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`_`|[AssertionBuilder](t_assertnet_assertionbuilder.md)||
-|`value`|T|Object under test.|
-|`exp`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+| Name  | Type                                                                        | Description        |
+|:------|:----------------------------------------------------------------------------|:-------------------|
+| _     | [AssertionBuilder](t_assertnet_assertionbuilder.md)                         |                    |
+| value | T                                                                           | Object under test. |
+| exp   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) |                    |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.AssertionTypes.Assertion`1<T>|Assertion about an object.|
+| Type                                    | Description                |
+|:----------------------------------------|:---------------------------|
+| AssertNet.AssertionTypes.Assertion`1<T> | Assertion about an object. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

@@ -15,16 +15,17 @@ public static TAssert HasAtLeastSize<TAssert>(TAssert assertion, System.Int32 si
 Checks if the enumerable has at least a certain size.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert||
-|`size`|[System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)|The size the enumerable should have.|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
+| Name      | Type                                                                        | Description                               |
+|:----------|:----------------------------------------------------------------------------|:------------------------------------------|
+| assertion | TAssert                                                                     |                                           |
+| size      | [System.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32)   | The size the enumerable should have.      |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | Custom message for the assertion failure. |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert|The current assertion.|
+| Type    | Description            |
+|:--------|:-----------------------|
+| TAssert | The current assertion. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

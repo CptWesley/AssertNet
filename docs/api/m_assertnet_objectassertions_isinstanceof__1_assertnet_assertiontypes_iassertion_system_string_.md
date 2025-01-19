@@ -15,15 +15,16 @@ public static AssertNet.AssertionTypes.IAssertion`1<T> IsInstanceOf<T>(AssertNet
 Checks if the object under test is an instance of a certain type.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|[IAssertion](t_assertnet_assertiontypes_iassertion.md)||
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
+| Name      | Type                                                                        | Description                               |
+|:----------|:----------------------------------------------------------------------------|:------------------------------------------|
+| assertion | [IAssertion](t_assertnet_assertiontypes_iassertion.md)                      |                                           |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | Custom message for the assertion failure. |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.AssertionTypes.IAssertion`1<T>|The current assertion.|
+| Type                                     | Description            |
+|:-----------------------------------------|:-----------------------|
+| AssertNet.AssertionTypes.IAssertion`1<T> | The current assertion. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

@@ -12,15 +12,16 @@ public static AssertNet.AssertionTypes.IAssertion`1<System.Exception> WithInnerE
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|AssertNet.AssertionTypes.IAssertion`1<System.Exception>||
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+| Name      | Type                                                                        | Description |
+|:----------|:----------------------------------------------------------------------------|:------------|
+| assertion | AssertNet.AssertionTypes.IAssertion`1<System.Exception>                     |             |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.AssertionTypes.IAssertion`1<System.Exception>||
+| Type                                                    | Description |
+|:--------------------------------------------------------|:------------|
+| AssertNet.AssertionTypes.IAssertion`1<System.Exception> |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

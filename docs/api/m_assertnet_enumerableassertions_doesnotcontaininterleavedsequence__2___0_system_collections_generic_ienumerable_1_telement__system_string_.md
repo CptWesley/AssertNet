@@ -12,16 +12,17 @@ public static TAssert DoesNotContainInterleavedSequence<TAssert, TElement>(TAsse
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert||
-|`values`|[System.Collections.Generic.IEnumerable`1<TElement>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<telement>)||
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+| Name      | Type                                                                                                                                                  | Description |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------|:------------|
+| assertion | TAssert                                                                                                                                               |             |
+| values    | [System.Collections.Generic.IEnumerable`1<TElement>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<telement>) |             |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)                                                                           |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert||
+| Type    | Description |
+|:--------|:------------|
+| TAssert |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

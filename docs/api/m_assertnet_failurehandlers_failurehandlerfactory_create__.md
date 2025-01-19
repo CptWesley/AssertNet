@@ -12,9 +12,9 @@ public static AssertNet.Failures.IFailureHandler Create();
 ```
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[IFailureHandler](t_assertnet_failures_ifailurehandler.md)||
+| Type                                                       | Description |
+|:-----------------------------------------------------------|:------------|
+| [IFailureHandler](t_assertnet_failures_ifailurehandler.md) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

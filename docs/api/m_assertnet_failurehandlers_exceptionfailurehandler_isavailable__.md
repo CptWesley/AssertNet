@@ -12,9 +12,9 @@ public System.Boolean IsAvailable();
 ```
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)||
+| Type                                                                          | Description |
+|:------------------------------------------------------------------------------|:------------|
+| [System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

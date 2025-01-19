@@ -15,17 +15,18 @@ public static TAssert IsApproximately<TAssert>(TAssert assertion, System.UInt32 
 Ensures that the value under test is approximately equivalent.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert|The original assertion chain.|
-|`other`|[System.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32)|The value to compare to.|
-|`margin`|[System.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32)|The variance to allow.|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The assertion message.|
+| Name      | Type                                                                        | Description                   |
+|:----------|:----------------------------------------------------------------------------|:------------------------------|
+| assertion | TAssert                                                                     | The original assertion chain. |
+| other     | [System.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32) | The value to compare to.      |
+| margin    | [System.UInt32](https://learn.microsoft.com/en-us/dotnet/api/system.uint32) | The variance to allow.        |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | The assertion message.        |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert|The updated assertion chain.|
+| Type    | Description                  |
+|:--------|:-----------------------------|
+| TAssert | The updated assertion chain. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

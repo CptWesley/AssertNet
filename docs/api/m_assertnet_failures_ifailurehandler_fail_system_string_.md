@@ -15,14 +15,15 @@ public System.Void Fail(System.String message);
 Creates an assertion failure with a certain message.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The message of the assertion failure.|
+| Name    | Type                                                                        | Description                           |
+|:--------|:----------------------------------------------------------------------------|:--------------------------------------|
+| message | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | The message of the assertion failure. |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
+| Type                                                                    | Description |
+|:------------------------------------------------------------------------|:------------|
+| [System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

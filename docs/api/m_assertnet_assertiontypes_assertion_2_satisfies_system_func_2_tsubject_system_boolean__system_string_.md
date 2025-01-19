@@ -12,15 +12,16 @@ public TAssert Satisfies(System.Func`2<TSubject,System.Boolean> condition, Syste
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`condition`|[System.Func`2<TSubject,System.Boolean>](https://learn.microsoft.com/en-us/dotnet/api/system.func-2<tsubject,system.boolean>)||
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+| Name      | Type                                                                                                                          | Description |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------|:------------|
+| condition | [System.Func`2<TSubject,System.Boolean>](https://learn.microsoft.com/en-us/dotnet/api/system.func-2<tsubject,system.boolean>) |             |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)                                                   |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert||
+| Type    | Description |
+|:--------|:------------|
+| TAssert |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

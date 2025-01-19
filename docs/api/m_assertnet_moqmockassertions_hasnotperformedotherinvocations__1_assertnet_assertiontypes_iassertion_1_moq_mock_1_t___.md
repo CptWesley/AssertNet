@@ -12,14 +12,15 @@ public static AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>> HasNotPerform
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>>||
+| Name      | Type                                                 | Description |
+|:----------|:-----------------------------------------------------|:------------|
+| assertion | AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>> |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>>||
+| Type                                                 | Description |
+|:-----------------------------------------------------|:------------|
+| AssertNet.AssertionTypes.IAssertion`1<Moq.Mock`1<T>> |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

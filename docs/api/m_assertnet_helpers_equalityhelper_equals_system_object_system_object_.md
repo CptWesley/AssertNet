@@ -12,15 +12,16 @@ public static System.Boolean Equals(System.Object objA, System.Object objB);
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`objA`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)||
-|`objB`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)||
+| Name | Type                                                                        | Description |
+|:-----|:----------------------------------------------------------------------------|:------------|
+| objA | [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object) |             |
+| objB | [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean)||
+| Type                                                                          | Description |
+|:------------------------------------------------------------------------------|:------------|
+| [System.Boolean](https://learn.microsoft.com/en-us/dotnet/api/system.boolean) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

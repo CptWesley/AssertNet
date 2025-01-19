@@ -12,15 +12,16 @@ public AssertNet.Failures.LegacyFailureBuilder AppendEnumerable<T>(System.String
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`objectName`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
-|`enumerable`|[System.Collections.Generic.IEnumerable`1<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<t>)||
+| Name       | Type                                                                                                                                    | Description |
+|:-----------|:----------------------------------------------------------------------------------------------------------------------------------------|:------------|
+| objectName | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)                                                             |             |
+| enumerable | [System.Collections.Generic.IEnumerable`1<T>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<t>) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md)||
+| Type                                                                 | Description |
+|:---------------------------------------------------------------------|:------------|
+| [LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

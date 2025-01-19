@@ -12,15 +12,16 @@ public static TAssert ContainsExactly<TAssert, TElement>(TAssert assertion, Syst
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert||
-|`values`|[System.Collections.Generic.IEnumerable`1<TElement>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<telement>)||
+| Name      | Type                                                                                                                                                  | Description |
+|:----------|:------------------------------------------------------------------------------------------------------------------------------------------------------|:------------|
+| assertion | TAssert                                                                                                                                               |             |
+| values    | [System.Collections.Generic.IEnumerable`1<TElement>](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.ienumerable-1<telement>) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert||
+| Type    | Description |
+|:--------|:------------|
+| TAssert |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

@@ -12,14 +12,15 @@ public GenerateAssertionsForAttribute(System.Type type);
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`type`|[System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type)||
+| Name | Type                                                                    | Description |
+|:-----|:------------------------------------------------------------------------|:------------|
+| type | [System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
+| Type                                                                    | Description |
+|:------------------------------------------------------------------------|:------------|
+| [System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

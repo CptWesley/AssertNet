@@ -12,14 +12,15 @@ public LegacyFailureBuilder(System.String name);
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`name`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+| Name | Type                                                                        | Description |
+|:-----|:----------------------------------------------------------------------------|:------------|
+| name | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
+| Type                                                                    | Description |
+|:------------------------------------------------------------------------|:------------|
+| [System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

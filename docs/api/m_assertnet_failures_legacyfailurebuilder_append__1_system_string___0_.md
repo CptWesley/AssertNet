@@ -15,15 +15,16 @@ public AssertNet.Failures.LegacyFailureBuilder Append<T>(System.String objectNam
 Appends an object line.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`objectName`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Name of the object.|
-|`part`|T|The object.|
+| Name       | Type                                                                        | Description         |
+|:-----------|:----------------------------------------------------------------------------|:--------------------|
+| objectName | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | Name of the object. |
+| part       | T                                                                           | The object.         |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md)|The current [LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md) instance.|
+| Type                                                                 | Description                                                                                |
+|:---------------------------------------------------------------------|:-------------------------------------------------------------------------------------------|
+| [LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md) | The current [LegacyFailureBuilder](t_assertnet_failures_legacyfailurebuilder.md) instance. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

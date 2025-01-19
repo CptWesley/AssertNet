@@ -15,17 +15,18 @@ public static TAssert IsNotApproximately<TAssert, TNumber>(TAssert assertion, TN
 Ensures that the value under test is not approximately equivalent.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert|The original assertion chain.|
-|`other`|TNumber|The value to compare to.|
-|`margin`|TNumber|The variance to disallow.|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|The assertion message.|
+| Name      | Type                                                                        | Description                   |
+|:----------|:----------------------------------------------------------------------------|:------------------------------|
+| assertion | TAssert                                                                     | The original assertion chain. |
+| other     | TNumber                                                                     | The value to compare to.      |
+| margin    | TNumber                                                                     | The variance to disallow.     |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | The assertion message.        |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert|The updated assertion chain.|
+| Type    | Description                  |
+|:--------|:-----------------------------|
+| TAssert | The updated assertion chain. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

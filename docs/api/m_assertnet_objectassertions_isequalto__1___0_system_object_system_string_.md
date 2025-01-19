@@ -15,16 +15,17 @@ public static TAssert IsEqualTo<TAssert>(TAssert assertion, System.Object other,
 Checks whether the object under test is equal to another object.
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|TAssert||
-|`other`|[System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object)|The other object to compare with.|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)|Custom message for the assertion failure.|
+| Name      | Type                                                                        | Description                               |
+|:----------|:----------------------------------------------------------------------------|:------------------------------------------|
+| assertion | TAssert                                                                     |                                           |
+| other     | [System.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object) | The other object to compare with.         |
+| message   | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) | Custom message for the assertion failure. |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|TAssert|The current assertion.|
+| Type    | Description            |
+|:--------|:-----------------------|
+| TAssert | The current assertion. |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

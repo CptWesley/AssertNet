@@ -12,14 +12,15 @@ public System.Void Fail(System.String message);
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+| Name    | Type                                                                        | Description |
+|:--------|:----------------------------------------------------------------------------|:------------|
+| message | [System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|[System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void)||
+| Type                                                                    | Description |
+|:------------------------------------------------------------------------|:------------|
+| [System.Void](https://learn.microsoft.com/en-us/dotnet/api/system.void) |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)

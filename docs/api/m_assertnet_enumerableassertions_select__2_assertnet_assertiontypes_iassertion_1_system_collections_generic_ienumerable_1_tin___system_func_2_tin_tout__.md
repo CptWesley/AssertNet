@@ -12,15 +12,16 @@ public static AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.I
 ```
 
 ## Parameters
-|Name|Type|Description|
-|:-|:-|:-|
-|`assertion`|AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TIn>>||
-|`selector`|[System.Func`2<TIn,TOut>](https://learn.microsoft.com/en-us/dotnet/api/system.func-2<tin,tout>)||
+| Name      | Type                                                                                            | Description |
+|:----------|:------------------------------------------------------------------------------------------------|:------------|
+| assertion | AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TIn>>            |             |
+| selector  | [System.Func`2<TIn,TOut>](https://learn.microsoft.com/en-us/dotnet/api/system.func-2<tin,tout>) |             |
+
 
 ## Returns
-|Type|Description|
-|:-|:-|
-|AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TOut>>||
+| Type                                                                                  | Description |
+|:--------------------------------------------------------------------------------------|:------------|
+| AssertNet.AssertionTypes.IAssertion`1<System.Collections.Generic.IEnumerable`1<TOut>> |             |
 
 ## Available for
 - [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)
