@@ -3,10 +3,10 @@ using AssertNet.AssertionTypes;
 namespace AssertNet.Tests.AssertionTypes.Objects;
 
 /// <summary>
-/// Test class for the <see cref="Assertion{Double}"/> class.
+/// Test class for the <see cref="Sut{Double}"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class DoubleAssertionTests() : ObjectAssertionTests<Assertion<double>, double>(42)
+public class DoubleAssertionTests() : ObjectAssertionTests<Sut<double>, double>(42)
 {
     /// <summary>
     /// Checks that the assertion passes if the value is equal to 0.

@@ -23,7 +23,7 @@ public class VoidMethodInvocationAssertionTests
         _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.GetInt();
         _assertion = new VoidMethodInvocationAssertion<IMockable>(
-            new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
+            new Sut<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
             _expression);
     }
 

@@ -6,7 +6,7 @@ namespace AssertNet.Tests.AssertionTypes.Objects;
 /// Test class for the <see cref="DoubleAssertion"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{TAssert, TTarget}" />
-public class ComparableAssertionTests() : ObjectAssertionTests<Assertion<long>, long>(42)
+public class ComparableAssertionTests() : ObjectAssertionTests<Sut<long>, long>(42)
 {
     /// <summary>
     /// Checks that the assertion passes if the value is greater than a certain value.

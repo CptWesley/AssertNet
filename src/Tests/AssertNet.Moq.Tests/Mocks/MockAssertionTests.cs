@@ -10,7 +10,7 @@ namespace AssertNet.Moq.Tests.Mocks;
 /// </summary>
 public class MockAssertionTests
 {
-    private readonly Assertion<Mock<IMockable>> _assertion;
+    private readonly Sut<Mock<IMockable>> _assertion;
     private readonly Mock<IMockable> _target;
 
     /// <summary>
@@ -19,7 +19,7 @@ public class MockAssertionTests
     public MockAssertionTests()
     {
         _target = new Mock<IMockable>(MockBehavior.Loose);
-        _assertion = new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target);
+        _assertion = new Sut<Mock<IMockable>>(FailureHandlerFactory.Create(), _target);
     }
 
     /// <summary>

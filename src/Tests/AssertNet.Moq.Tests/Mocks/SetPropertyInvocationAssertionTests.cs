@@ -22,7 +22,7 @@ public class SetPropertyInvocationAssertionTests
         _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.Number = It.IsAny<int>();
         _assertion = new SetPropertyInvocationAssertion<IMockable>(
-            new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
+            new Sut<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
             _expression);
     }
 

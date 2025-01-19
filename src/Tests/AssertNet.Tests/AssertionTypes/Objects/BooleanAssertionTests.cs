@@ -7,7 +7,7 @@ namespace AssertNet.Tests.AssertionTypes.Objects;
 /// Test class for the <see cref="IAssertion{bool}"/> class.
 /// </summary>
 /// <seealso cref="ObjectAssertionTests{T1, T2}" />
-public class BooleanAssertionTests : ObjectAssertionTests<Assertion<bool>, bool>
+public class BooleanAssertionTests : ObjectAssertionTests<Sut<bool>, bool>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="BooleanAssertionTests"/> class.

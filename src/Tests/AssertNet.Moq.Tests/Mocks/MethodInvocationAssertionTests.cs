@@ -23,7 +23,7 @@ public class MethodInvocationAssertionTests
         _target = new Mock<IMockable>(MockBehavior.Loose);
         _expression = x => x.Number;
         _assertion = new MethodInvocationAssertion<IMockable, int>(
-            new Assertion<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
+            new Sut<Mock<IMockable>>(FailureHandlerFactory.Create(), _target),
             _expression);
     }
 
