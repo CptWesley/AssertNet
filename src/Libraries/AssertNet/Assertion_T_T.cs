@@ -1,4 +1,6 @@
-namespace AssertNet.AssertionTypes;
+using AssertNet.AssertionTypes;
+
+namespace AssertNet;
 
 /// <summary>
 /// Abstract class representing assertions of objects.

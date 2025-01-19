@@ -1,4 +1,4 @@
-namespace AssertNet.AssertionTypes;
+namespace AssertNet;
 
 /// <summary>
 /// Class representing assertions made on single objects.
