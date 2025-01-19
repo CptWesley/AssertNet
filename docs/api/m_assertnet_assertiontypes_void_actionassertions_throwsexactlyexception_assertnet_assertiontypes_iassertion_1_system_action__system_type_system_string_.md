@@ -1,0 +1,29 @@
+---
+title: ThrowsExactlyException(AssertNet.AssertionTypes.IAssertion`1<System.Action>, System.Type, System.String)
+has_children: true
+parent: Methods
+grand_parent: ActionAssertions
+ancestor: AssertNet
+---
+# ThrowsExactlyException(AssertNet.AssertionTypes.IAssertion`1&lt;System.Action&gt;, System.Type, System.String)
+
+```csharp
+public static AssertNet.AssertionTypes.IAssertion`1<System.Exception> ThrowsExactlyException(AssertNet.AssertionTypes.IAssertion`1<System.Action> assertion, System.Type t, System.String message);
+```
+
+## Parameters
+|Name|Type|Description|
+|-|-|-|
+|`assertion`|AssertNet.AssertionTypes.IAssertion`1<System.Action>||
+|`t`|[System.Type](https://learn.microsoft.com/en-us/dotnet/api/system.type)||
+|`message`|[System.String](https://learn.microsoft.com/en-us/dotnet/api/system.string)||
+
+## Returns
+|Type|Description|
+|-|-|
+|AssertNet.AssertionTypes.IAssertion`1<System.Exception>||
+
+## Available for
+- [.NET 7.0 (net7.0)](https://versionsof.net/core/7.0/)
+- .NET Standard 2.0 (netstandard2.0)
+- .NET Standard 2.1 (netstandard2.1)
